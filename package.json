@@ -2,13 +2,14 @@
   "name": "scripts",
   "version": "1.0.0",
   "description": "usefull scripts",
-  "main": "index.js",
+  "main": "",
   "directories": {
     "example": "examples",
     "test": "test"
   },
   "dependencies": {
-    "chai": "^4.0.2"
+    "chai": "^4.0.2",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "mocha": "^3.4.2"
