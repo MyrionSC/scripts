@@ -2,14 +2,13 @@
   "name": "scripts",
   "version": "1.0.0",
   "description": "usefull scripts",
-  "main": "",
+  "main": "scraper.js",
   "directories": {
     "example": "examples",
     "test": "test"
   },
   "dependencies": {
-    "chai": "^4.0.2",
-    "request": "^2.81.0"
+    "cheerio": "^1.0.0-rc.1"
   },
   "devDependencies": {
     "mocha": "^3.4.2"
