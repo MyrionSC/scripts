@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+P="/"
+
+if [ "$1" == "-w"  ];
+then
+    shift
+    P="/var/www/html/"
+fi
+
+if [ "$1" == "-h"  ];
+then
+    shift
+    P="/home/pi/"
+fi
+
+src=${@:1:${#}-1}
+dest="pi@marand.dk:$P${@: -1}"
+
+echo "scp -r $src $dest"
+scp -r $src $dest
