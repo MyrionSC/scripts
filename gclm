@@ -1,1 +1,14 @@
-git clone https://github.com/MyrionSC/$1.git
+if [ -n "$1" ]; then
+	git clone https://github.com/MyrionSC/$1.git
+else
+	echo "Argument 1 needs to be a git repo"
+	echo ""
+	echo "Following git repos are available:"
+	echo "todo"
+	echo "wi-crawler"
+	echo "starcraft-judication"
+	echo "ang2-ts-server"
+	echo "scripts"
+	echo "diceroller"
+	echo "nih-status"
+fi
