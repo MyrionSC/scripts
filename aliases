@@ -1,0 +1,28 @@
+alias ai='apt install'
+alias au='apt update && apt upgrade'
+alias ar='apt remove'
+
+alias open='xdg-open'
+alias m='micro'
+
+#navigation aliases
+alias ca='cd ..'
+alias caa='cd ../..'
+alias caaa='cd ../../..'
+alias caaaa='cd ../../../..'
+alias caaaaa='cd ../../../../..'
+alias caaaaaa='cd ../../../../../..'
+alias caaaaaaa='cd ../../../../../../..'
+alias cf='cd -'
+
+alias countfiles='find . -type f | wc -l'
+alias countdirs='find . -maxdepth 1 -type d | wc -l'
+
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/bin/git_aliases ]; then
+    . ~/bin/git_aliases
+fi
