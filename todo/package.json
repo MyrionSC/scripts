@@ -1,0 +1,21 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "marand todo commandline",
+  "main": "todo.js",
+  "scripts": {
+    "start": "node ./todo.js",
+    "build": "tsc",
+    "bs": "tsc && node ./todo.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "marand",
+  "license": "ISC",
+  "dependencies": {
+    "needle": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.30",
+    "@types/needle": "^2.0.2"
+  }
+}
