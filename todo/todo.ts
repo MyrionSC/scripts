@@ -12,12 +12,44 @@ let help = "Commands are:\n" +
     "todo rm -s \"number\"\n" +
     "todo rm -l \"number\"\n";
 
-let printGetResult = (error: Error, res: any): void => {
+let printGetShortResult = (error: Error, res: any): void => {
     if (error) return console.error(error);
     if (res.statusCode == 200) {
-        console.log(res.body);
+        for (let i = 0; i < res.body.length; i++) {
+            let item = res.body[i];
+            console.log(i + ": " + item);
+        }
     } else {
-        console.log("call returned with status: " + res.statusCode);
+        console.log("get short returned with status: " + res.statusCode);
+    }
+};
+let printGetLongResult = (error: Error, res: any): void => {
+    if (error) return console.error(error);
+    if (res.statusCode == 200) {
+        for (let i = 0; i < res.body.length; i++) {
+            let item = res.body[i];
+            console.log(i + ": " + item);
+        }
+    } else {
+        console.log("get long returned with status: " + res.statusCode);
+    }
+};
+let printGetListResult = (error: Error, res: any): void => {
+    if (error) return console.error(error);
+    if (res.statusCode == 200) {
+        console.log("short:");
+        for (let i = 0; i < res.body.short.length; i++) {
+            let item = res.body.short[i];
+            console.log(i + ": " + item);
+        }
+        console.log();
+        console.log("long");
+        for (let i = 0; i < res.body.long.length; i++) {
+            let item = res.body.long[i];
+            console.log(i + ": " + item);
+        }
+    } else {
+        console.log("get list returned with status: " + res.statusCode);
     }
 };
 let printAddResult = (error: Error, res: any): void => {
@@ -39,11 +71,11 @@ let printDeleteResult = (error: Error, res: any): void => {
 
 let get = (flag?: string): void => {
     if (flag && flag === "-s") {
-        needle.get(url + "api/short", printGetResult);
+        needle.get(url + "api/short", printGetShortResult);
     } else if(flag && flag === "-l") {
-        needle.get(url + "api/long", printGetResult);
+        needle.get(url + "api/long", printGetLongResult);
     } else {
-        needle.get(url + "api/list", printGetResult);
+        needle.get(url + "api/list", printGetListResult);
     }
 };
 
