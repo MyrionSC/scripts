@@ -16,6 +16,7 @@ alias gbd='git branch -d'
 alias gbl='git blame -b -w'
 alias gbnm='git branch --no-merged'
 alias gbr='git branch --remote'
+alias gbdl='git branch -D' #delete local
 alias gbs='git bisect'
 alias gbsb='git bisect bad'
 alias gbsg='git bisect good'
@@ -62,10 +63,6 @@ git_current_branch="$(git symbolic-ref --short -q HEAD)"
 ggu() {
   [[ "$#" != 1 ]] && local b=$git_current_branch
   git pull --rebase origin "${b:=$1}"
-}
-# delete local branch
-gbdl() {
-	git branch -D $1
 }
 
 
