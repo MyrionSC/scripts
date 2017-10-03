@@ -2,10 +2,6 @@
 # Git Aliases
 # (sorted alphabetically)
 #
-# add following lines to ~/.bashrc:
-# if [ -f ~/bin/git_aliases ]; then
-#     . ~/bin/git_aliases
-# fi
 
 alias g='git'
 
@@ -62,6 +58,7 @@ alias gfo='git fetch origin'
 alias gg='git gui citool'
 alias gga='git gui citool --amend'
 
+git_current_branch="$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)"
 ggu() {
   [[ "$#" != 1 ]] && local b="$(git_current_branch)"
   git pull --rebase origin "${b:=$1}"
