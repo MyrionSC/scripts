@@ -9,6 +9,7 @@ alias ar='apt remove'
 
 alias open='xdg-open'
 alias m='micro'
+alias xc='xclip -selection c' # exampel: pwd | xc
 
 #navigation aliases
 alias ca='cd ..'
@@ -22,6 +23,10 @@ alias cf='cd -'
 
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'
+
+als () {
+	cat ~/bin/aliases
+}
 
 if [ -f ~/bin/git_aliases ]; then
     . ~/bin/git_aliases
