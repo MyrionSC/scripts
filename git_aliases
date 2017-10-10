@@ -59,7 +59,9 @@ alias gfo='git fetch origin'
 alias gg='git gui citool'
 alias gga='git gui citool --amend'
 
+
 git_current_branch="$(git symbolic-ref --short -q HEAD)"
+
 ggu() {
   [[ "$#" != 1 ]] && local b=$git_current_branch
   git pull --rebase origin "${b:=$1}"
@@ -133,4 +135,9 @@ alias gtv='git tag | sort -V'
 alias gup='git pull --rebase'
 alias gupv='git pull --rebase -v'
 alias glum='git pull upstream master'
+
+grmtgi () {
+	git rm --cached `git ls-files -i --exclude-from=.gitignore`
+}
+
 
