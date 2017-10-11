@@ -3,7 +3,7 @@
 #     . ~/bin/aliases
 # fi
 
-alias ai='apt install'
+alias ai='apt-get install'
 alias au='apt update && apt upgrade'
 alias ar='apt remove'
 
