@@ -6,6 +6,8 @@
 alias ai='apt-get install'
 alias au='apt update && apt upgrade'
 alias ar='apt remove'
+alias nr='npm run'
+alias nre='npm run env'
 
 alias open='xdg-open'
 alias m='micro'

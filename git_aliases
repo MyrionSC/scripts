@@ -88,6 +88,7 @@ alias glgm='git log --graph --max-count=10'
 alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
+alias gdf='git log -p [--follow] [-1]'
 
 alias gm='git merge'
 alias gmom='git merge origin/master'
