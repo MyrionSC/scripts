@@ -6,6 +6,9 @@
 alias ai='apt-get install'
 alias au='apt update && apt upgrade'
 alias ar='apt remove'
+
+alias ni='npm install'
+alias ns='npm start'
 alias nr='npm run'
 alias nre='npm run env'
 
