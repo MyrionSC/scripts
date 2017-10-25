@@ -28,6 +28,7 @@ alias cf='cd -'
 
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'
+alias findfile='find -iname'
 
 als () {
 	cat ~/bin/aliases
