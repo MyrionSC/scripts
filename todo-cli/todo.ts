@@ -7,10 +7,10 @@ let help = "Commands are:\n" +
     "todo ls\n" +
     "todo ls -s\n" +
     "todo ls -l\n" +
-    "todo add -s \"string\"\n" +
-    "todo add -l \"string\"\n" +
-    "todo rm -s \"number\"\n" +
-    "todo rm -l \"number\"\n";
+    "todo add -s [string]\n" +
+    "todo add -l [string]\n" +
+    "todo rm -s [number]\n" +
+    "todo rm -l [number]\n";
 
 let printGetShortResult = (error: Error, res: any): void => {
     if (error) return console.error(error);
