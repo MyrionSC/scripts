@@ -59,23 +59,25 @@ alias gfo='git fetch origin'
 alias gg='git gui citool'
 alias gga='git gui citool --amend'
 
-
-git_current_branch="$(git symbolic-ref --short -q HEAD)"
+cur_br() {
+	echo "$(git symbolic-ref --short -q HEAD)";
+}
+echo $(cur_br)
 
 ggu() {
-  [[ "$#" != 1 ]] && local b=$git_current_branch
+  [[ "$#" != 1 ]] && local b=$(cur_br)
   git pull --rebase origin "${b:=$1}"
 }
 
 
 alias ggpur='ggu'
 
-alias ggpull='git pull origin $git_current_branch'
+alias ggpull='git pull origin $(cur_br)'
 
-alias ggpush='git push origin $git_current_branch'
+alias ggpush='git push origin $(cur_br)'
 
-alias ggsup='git branch --set-upstream-to=origin/$git_current_branch'
-alias gpsup='git push --set-upstream origin $git_current_branch'
+alias ggsup='git branch --set-upstream-to=origin/$(cur_br)'
+alias gpsup='git push --set-upstream origin $(cur_br)'
 
 alias ghh='git help'
 
