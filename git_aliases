@@ -62,13 +62,11 @@ alias gga='git gui citool --amend'
 cur_br() {
 	echo "$(git symbolic-ref --short -q HEAD)";
 }
-echo $(cur_br)
 
 ggu() {
   [[ "$#" != 1 ]] && local b=$(cur_br)
   git pull --rebase origin "${b:=$1}"
 }
-
 
 alias ggpur='ggu'
 
