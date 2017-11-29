@@ -3,9 +3,10 @@
 #     . ~/bin/aliases
 # fi
 
-alias ai='apt-get install'
-alias au='apt update && apt upgrade'
-alias ar='apt remove'
+alias ai='sudo apt-get install'
+alias au='sudo apt-get update && apt upgrade'
+alias ar='sudo apt-get remove'
+alias au='sudo apt-get autoremove'
 
 alias ni='npm install'
 alias ns='npm start'
@@ -14,7 +15,8 @@ alias nre='npm run env'
 
 alias open='xdg-open'
 alias m='micro'
-alias xc='xclip -selection c' # exampel: pwd | xc
+alias xc='xclip -selection c' # example: pwd | xc
+alias pwdc='pwd | xc'
 
 #navigation aliases
 alias ca='cd ..'
