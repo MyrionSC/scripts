@@ -16,7 +16,7 @@ alias nre='npm run env'
 alias open='xdg-open'
 alias m='micro'
 alias xc='xclip -selection c' # example: pwd | xc
-alias pwdc='pwd | xc'
+alias pc='pwd | xc'
 
 #navigation aliases
 alias ca='cd ..'
@@ -31,6 +31,7 @@ alias cf='cd -'
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'
 alias findfile='find -iname'
+alias finddir='find . -name'
 
 als () {
 	cat ~/bin/aliases
