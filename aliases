@@ -3,6 +3,10 @@
 #     . ~/bin/aliases
 # fi
 
+
+# apt list <searchterm> - list all packagenames containing <searchterm>
+# apt show pckgname - shows information about a package
+
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
 alias ag='sudo apt-get upgrade'
