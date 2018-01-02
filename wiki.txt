@@ -2,4 +2,6 @@ A wiki of useful commands and scripts
 
 htop: system monitor
 ncdu: see disc space usage
+df -Th: see disc partitions
 systemctl: system control. create and manage services.
+
