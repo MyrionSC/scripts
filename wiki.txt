@@ -1,0 +1,5 @@
+A wiki of useful commands and scripts
+
+htop: system monitor
+ncdu: see disc space usage
+systemctl: system control. create and manage services.
