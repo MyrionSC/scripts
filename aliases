@@ -4,7 +4,7 @@
 # fi
 
 
-# apt list <searchterm> - list all packagenames containing <searchterm>
+# apt list "searchterm" - list all packagenames containing <searchterm>
 # apt show pckgname - shows information about a package
 
 alias ai='sudo apt-get install'
@@ -12,7 +12,10 @@ alias au='sudo apt-get update'
 alias ag='sudo apt-get upgrade'
 alias ar='sudo apt-get remove'
 alias au='sudo apt-get autoremove'
-alias al='apt list --installed'
+alias al='apt list'
+alias ali='apt list --installed'
+alias ase='apt search'
+alias ash='apt show'
 
 alias ni='npm install'
 alias ns='npm start'
