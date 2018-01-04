@@ -28,6 +28,8 @@ alias m='micro'
 alias xc='xclip -selection c' # example: pwd | xc
 alias pc='pwd | xc'
 
+alias linuxv='cat /etc/*-release'
+
 #navigation aliases
 alias ca='cd ..'
 alias caa='cd ../..'
