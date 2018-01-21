@@ -11,4 +11,5 @@ else
 	echo "scripts"
 	echo "diceroller"
 	echo "nih-status"
+	echo "redrain"
 fi
