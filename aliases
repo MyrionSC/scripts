@@ -18,6 +18,7 @@ alias ase='apt search'
 alias ash='apt show'
 
 alias ni='npm install'
+alias nrm='npm remove'
 alias ns='npm start'
 alias nr='npm run'
 alias nre='npm run env'
