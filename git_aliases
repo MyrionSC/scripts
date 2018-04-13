@@ -38,7 +38,7 @@ alias gcl='git clone --recursive'
 alias gclean='git clean -fd'
 alias gpristine='git reset --hard && git clean -dfx'
 alias gcm='git checkout master'
-alias gcd='git checkout develop'
+alias gcd='git checkout dev'
 alias gcmsg='git commit -m'
 alias gco='git checkout'
 alias gcp='git cherry-pick'
@@ -65,7 +65,7 @@ cur_br() {
 
 ggu() {
   [[ "$#" != 1 ]] && local b=$(cur_br)
-  git pull --rebase origin "${b:=$1}"
+  git pull --rebase origin "${b:=$2}"
 }
 
 alias ggpur='ggu'
