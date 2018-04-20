@@ -27,6 +27,7 @@ alias open='xdg-open'
 alias m='micro'
 alias xc='xclip -selection c' # example: pwd | xc
 alias pc='pwd | xc'
+alias cmux='sudo chmod u+x'
 
 alias linuxv='cat /etc/*-release'
 
