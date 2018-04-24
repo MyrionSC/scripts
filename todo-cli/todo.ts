@@ -2,7 +2,7 @@
 
 let needle = require('needle'); // for http calls
 
-let url = "http://marand.dk:8080/";
+let url = "http://marand.dk:8002/";
 let help = "Commands are:\n" +
     "todo ls\n" +
     "todo ls -s\n" +
