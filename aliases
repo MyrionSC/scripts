@@ -30,6 +30,7 @@ alias pc='pwd | xc'
 alias cmux='sudo chmod u+x'
 
 alias linuxv='cat /etc/*-release'
+alias gs='echo fuckoff ghostscript'
 
 #navigation aliases
 alias ca='cd ..'
