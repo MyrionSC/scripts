@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+# Serves index.html in current dir or dir structure if no index.html
+
 import SimpleHTTPServer
 import SocketServer
 import sys
