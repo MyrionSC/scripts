@@ -28,6 +28,7 @@ alias m='micro'
 alias xc='xclip -selection c' # example: pwd | xc
 alias pc='pwd | xc'
 alias cmux='sudo chmod u+x'
+alias rsy='rsync -avzP'
 
 alias linuxv='cat /etc/*-release'
 alias gs='echo fuckoff ghostscript'
