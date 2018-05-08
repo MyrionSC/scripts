@@ -59,4 +59,7 @@ if [ -f ~/bin/git_aliases ]; then
     }
 fi
 
+dragon-say () {
+	echo $1 | cowsay -e OO -f dragon-and-cow
+}
 
