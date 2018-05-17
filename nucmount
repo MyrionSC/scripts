@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-sshfs marand@marand.dk:shared $1
+sudo sshfs -o allow_other -o reconnect -o ServerAliveInterval=15 marand@marand.dk:shared $1 -p 22
+
 
