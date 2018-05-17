@@ -43,8 +43,8 @@ alias caaaaaa='cd ../../../../../..'
 alias caaaaaaa='cd ../../../../../../..'
 alias cf='cd -'
 
-alias cdf='cd $(ls | head -1)' # enter first dir
-alias cdl='cd $(ls -r | head -1)' # enter last dir
+alias cdf='cd $(ls -d ./*/ | head -1)' # enter first dir
+alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
 
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'

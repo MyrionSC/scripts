@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sshfs marand@marand.dk:shared $1
+
