@@ -70,3 +70,6 @@ dragon-say () {
 	echo $1 | cowsay -e OO -f dragon-and-cow
 }
 
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
