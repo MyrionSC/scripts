@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-sshfs -o reconnect -o ServerAliveInterval=15 marand@marand.dk:shared $1
+sshfs -o reconnect -o ServerAliveInterval=15 delt@marand.dk:delt/Martin $1
 
 
