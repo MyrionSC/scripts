@@ -1,0 +1,33 @@
+#!/usr/bin/env python
+
+import sys
+import subprocess
+
+if len(sys.argv) < 2:
+    print("arg 1 must be file or dir. wildcards are allowed")
+    exit()
+
+args = sys.argv[1:len(sys.argv)]
+
+try:
+    res2 = subprocess.check_output(["ls"] + args)
+except subprocess.CalledProcessError:
+    print("some files / dirs do not exist. Try again.")
+    exit();
+
+try:
+    res2 = subprocess.check_output(["scp", "-r"] + args + ["marand@marand.dk:/var/www/html/share"])
+except subprocess.CalledProcessError:
+    exit();
+
+path = "marand.dk/share/"
+print("share succesful. links:")
+print("")
+for arg in args:
+    print(path + arg) 
+
+
+
+
+
+
