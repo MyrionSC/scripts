@@ -2,7 +2,6 @@
 
 import sys
 import discord
-import asyncio
 
 client = discord.Client()
 
@@ -16,32 +15,11 @@ async def on_ready():
     user = discord.User(id = '354240853071364097')
     
     await client.send_message(user, 'testing')
-    print("message sent")
-    return exit(0)
+    await client.logout() # logging out ends the event loop
+    return None
 
-    # return exit(0)
-
-    
-
-
-
-#@client.event
-#async def on_message(message):
-#    if message.content.startswith('!test'):
-#        counter = 0
-#        tmp = await client.send_message(message.echannel, 'Calculating messages...')
-#        async for log in client.logs_from(message.channel, limit=100):
-#            if log.author == message.author:
-#                counter += 1
-#
-#        await client.edit_message(tmp, 'You have {} messages.'.format(counter))
-#
-#    elif message.content.startswith('!sleep'):
-#        await asyncio.sleep(5)
-#        await client.send_message(message.channel, 'Done sleeping')
 
 with open(sys.path[0] + '/token', 'r') as tokenfile:
     token = tokenfile.read().replace("\n", "")
     client.run(token)
-
 
