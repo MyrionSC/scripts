@@ -4,4 +4,6 @@ htop: system monitor
 ncdu: see disc space usage
 df -Th: see disc partitions
 systemctl: system control. create and manage services.
+journalctl -u SERVICE-NAME.service -f: see service logs in real time
+usermod -a -G GROUP1,GROUP2 USER: add USER to groups GROUP1 and GROUP2
 
