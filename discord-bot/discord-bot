@@ -32,8 +32,8 @@ async def on_ready():
 #        await asyncio.sleep(5)
 #        await client.send_message(message.channel, 'Done sleeping')
 
-
-client.run("NDU5NzMxMzY2MDU4MjYyNTM5.Dg6eVg.CBYb4FsimrghxcBtK3WVNUFXMlg")
-
+with open('token', 'r') as tokenfile:
+    token = tokenfile.read().replace("\n", "")
+    client.run(token)
 
 
