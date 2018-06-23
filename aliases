@@ -73,3 +73,5 @@ dragon-say () {
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+shopt -s globstar
+
