@@ -3,6 +3,13 @@
 import sys
 import discord
 
+if len(sys.argv) < 2:
+    print("first arg must be message string")
+    exit()
+
+msg = sys.argv[1]
+print(msg)
+
 client = discord.Client()
 
 @client.event
@@ -14,7 +21,7 @@ async def on_ready():
 
     user = discord.User(id = '354240853071364097')
     
-    await client.send_message(user, 'testing')
+    await client.send_message(user, msg)
     await client.logout() # logging out ends the event loop
     return None
 
