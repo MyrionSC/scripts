@@ -8,7 +8,6 @@ if len(sys.argv) < 2:
     exit()
 
 msg = sys.argv[1]
-print(msg)
 
 client = discord.Client()
 
@@ -21,6 +20,7 @@ async def on_ready():
 
     user = discord.User(id = '354240853071364097')
     
+    print("sending message to self: " + msg)
     await client.send_message(user, msg)
     await client.logout() # logging out ends the event loop
     return None
