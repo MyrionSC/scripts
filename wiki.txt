@@ -7,3 +7,4 @@ systemctl: system control. create and manage services.
 journalctl -u SERVICE-NAME.service -f: see service logs in real time
 usermod -a -G GROUP1,GROUP2 USER: add USER to groups GROUP1 and GROUP2
 
+marand ip: 85.191.218.167
