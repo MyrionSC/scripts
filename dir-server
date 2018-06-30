@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 # Serves index.html in current dir or dir structure if no index.html
 
@@ -19,5 +19,5 @@ Handler.extensions_map.update({
 
 httpd = SocketServer.TCPServer(("", PORT), Handler)
 
-print("Serving at port " + PORT)
+print("Serving at port " + str(PORT))
 httpd.serve_forever()
