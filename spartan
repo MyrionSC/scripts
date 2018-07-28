@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ssh marand@spartan.hpc.unimelb.edu.au
