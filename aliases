@@ -51,8 +51,12 @@ alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
 
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'
-alias findfile='find -iname'
-alias finddir='find . -name'
+alias finddir='find . -type d -name'
+
+findfile () {
+	find -iname $1
+}
+
 
 als () {
 	cat ~/bin/aliases
@@ -81,6 +85,7 @@ shopt -s globstar
 
 #fasd init. Try different setups from "man fasd"
 eval "$(fasd --init auto)"
-
+alias v='f -e vim' # quick opening files with vim
+alias o='a -e xdg-open' # quick opening files with xdg-open
 
 
