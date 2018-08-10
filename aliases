@@ -70,8 +70,17 @@ dragon-say () {
 	echo $1 | cowsay -e OO -f dragon-and-cow
 }
 
+slink () {
+	streamlink https://www.twitch.tv/$1 720p
+}
+
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
 shopt -s globstar
+
+#fasd init. Try different setups from "man fasd"
+eval "$(fasd --init auto)"
+
+
 
