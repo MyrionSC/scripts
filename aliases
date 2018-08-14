@@ -53,10 +53,14 @@ alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
 
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'
-alias finddir='find . -type d -name'
+#alias finddir='find . -type d -name'
+
+finddir () {
+	find . -type d -iname *$1*
+}
 
 findfile () {
-	find -iname $1
+	find . -type f -iname *$1*
 }
 
 
