@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+import os
+import sys
+
+input = sys.argv[1]
+
+if input.startswith("https://www.twitch.tv/"):
+    bashcmd = "streamlink " + input + " 720p"
+else:
+    bashcmd = "streamlink https://www.twitch.tv/" + input + " 720p"
+
+os.system(bashcmd + " &")
+#> /dev/null 2>&1 
+
+

@@ -80,10 +80,6 @@ dragon-say () {
 	echo $1 | cowsay -e OO -f dragon-and-cow
 }
 
-slink () {
-	streamlink https://www.twitch.tv/$1 720p
-}
-
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
