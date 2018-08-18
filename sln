@@ -4,10 +4,16 @@ import sys
 
 input = sys.argv[1]
 
+bashcmd = "streamlink "
+
 if input.startswith("https://www.twitch.tv/"):
-    bashcmd = "streamlink " + input + " 720p"
+    bashcmd += input 
 else:
-    bashcmd = "streamlink https://www.twitch.tv/" + input + " 720p"
+    bashcmd += "https://www.twitch.tv/" + input
+
+bashcmd += " 720p"
+
+print(bashcmd)
 
 os.system(bashcmd + " &")
 #> /dev/null 2>&1 
