@@ -67,17 +67,30 @@ findfile () {
 }
 
 
+lst() {
+	if [ $# -eq 0 ] 
+	then
+		ls -t | head -1
+	else
+		ls -t | head -$1
+	fi
+}
+
+
 als () {
 	cat ~/bin/aliases
 }
 
 if [ -f ~/bin/git_aliases ]; then
     . ~/bin/git_aliases
-
     gitals () {
     	cat ~/bin/git_aliases
     }
 fi
+
+
+
+
 
 dragon-say () {
 	echo $1 | cowsay -e OO -f dragon-and-cow
