@@ -51,9 +51,21 @@ alias cf='cd -'
 alias cdf='cd $(ls -d ./*/ | head -1)' # enter first dir
 alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
 
+fina () {
+	find . -iname *$1*
+}
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'
-#alias finddir='find . -type d -name'
+
+# list latest modified file / dir in current dir
+lst() {
+	if [ $# -eq 0 ] 
+	then
+		ls -t | head -1
+	else
+		ls -t | head -$1
+	fi
+}
 
 alias fori="for ((I=0;;I++)) do"
 
@@ -67,14 +79,7 @@ findfile () {
 }
 
 
-lst() {
-	if [ $# -eq 0 ] 
-	then
-		ls -t | head -1
-	else
-		ls -t | head -$1
-	fi
-}
+
 
 
 als () {
