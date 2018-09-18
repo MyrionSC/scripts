@@ -32,6 +32,10 @@ alias rsy='rsync -avzP'
 alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
 alias unmount='fusermount -u' # first arg: mountdir
 
+cac () {
+	cat $1 | xc
+}
+
 alias linuxv='cat /etc/*-release'
 alias gs='echo fuckoff ghostscript'
 
