@@ -55,6 +55,10 @@ alias cf='cd -'
 alias cdf='cd $(ls -d ./*/ | head -1)' # enter first dir
 alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
 
+alias dl='cd ~/Downloads'
+
+
+
 fina () {
 	find . -iname *$1*
 }
