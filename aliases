@@ -71,6 +71,13 @@ lst() {
 	fi
 }
 
+mvl () {
+	mv $(lst) $1
+}
+cpl () {
+	cp -r $(lst) $1
+}
+
 alias fori="for ((I=0;;I++)) do"
 
 
