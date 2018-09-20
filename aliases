@@ -76,10 +76,23 @@ lst() {
 }
 
 mvl () {
-	mv $(lst) $1
+	if [ $# -eq 1 ] 
+	then
+		mv $(lst) $1
+	else
+		mv $(lst $1) $2
+	fi
 }
 cpl () {
-	cp -r $(lst) $1
+	if [ $# -eq 1 ] 
+	then
+		cp -r $(lst) $1
+	else
+		cp -r $(lst $1) $2
+	fi
+}
+ol () {
+	open $(lst)
 }
 
 alias fori="for ((I=0;;I++)) do"
@@ -96,10 +109,9 @@ findfile () {
 
 
 
-
-als () {
-	cat ~/bin/aliases
-}
+alias vars='ls ~/bin/vars'
+alias als='cat ~/bin/aliases'
+alias eals='vim ~/bin/aliases'
 
 if [ -f ~/bin/git_aliases ]; then
     . ~/bin/git_aliases
@@ -130,5 +142,6 @@ alias o='a -e xdg-open' # quick opening files with xdg-open
 c () {
 	f -e cat $1 | tr '\n' ' ' | xclip -selection c
 }
+
 
 
