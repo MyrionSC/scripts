@@ -7,6 +7,10 @@
 # apt list "searchterm" - list all packagenames containing <searchterm>
 # apt show pckgname - shows information about a package
 
+
+alias mv='mv -i'
+alias cp='cp -i'
+
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
 alias ag='sudo apt-get upgrade'
@@ -24,7 +28,7 @@ alias nr='npm run'
 alias nre='npm run env'
 
 alias open='xdg-open'
-alias m='micro'
+alias o='open'
 alias xc='xclip -selection c' # example: pwd | xc
 alias pc='pwd | xc'
 alias cmux='sudo chmod u+x'
@@ -78,17 +82,17 @@ lst() {
 mvl () {
 	if [ $# -eq 1 ] 
 	then
-		mv $(lst) $1
+		mv -i $(lst) $1
 	else
-		mv $(lst $1) $2
+		mv -i $(lst $1) $2
 	fi
 }
 cpl () {
 	if [ $# -eq 1 ] 
 	then
-		cp -r $(lst) $1
+		cp -ir $(lst) $1
 	else
-		cp -r $(lst $1) $2
+		cp -ir $(lst $1) $2
 	fi
 }
 ol () {
@@ -115,6 +119,7 @@ alias eals='vim ~/bin/aliases'
 
 if [ -f ~/bin/git_aliases ]; then
     . ~/bin/git_aliases
+    alias egitals='vim ~/bin/git_aliases'
     gitals () {
     	cat ~/bin/git_aliases
     }
