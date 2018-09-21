@@ -7,7 +7,6 @@
 # apt list "searchterm" - list all packagenames containing <searchterm>
 # apt show pckgname - shows information about a package
 
-
 alias mv='mv -i'
 alias cp='cp -i'
 
@@ -28,7 +27,7 @@ alias nr='npm run'
 alias nre='npm run env'
 
 alias open='xdg-open'
-alias o='open'
+alias o='xdg-open'
 alias xc='xclip -selection c' # example: pwd | xc
 alias pc='pwd | xc'
 alias cmux='sudo chmod u+x'
@@ -142,11 +141,11 @@ shopt -s globstar
 #fasd init. Try different setups from "man fasd"
 eval "$(fasd --init auto)"
 alias v='f -e vim' # quick opening files with vim
-alias o='a -e xdg-open' # quick opening files with xdg-open
 
 c () {
 	f -e cat $1 | tr '\n' ' ' | xclip -selection c
 }
 
-
+# temp todo
+alias todo='open https://docs.google.com/document/d/1BWNAm6uQTEr_VOAqHkCHhz-AevDXbZMHCUlfppe6vL8/edit'
 
