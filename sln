@@ -1,21 +1,32 @@
 #!/usr/bin/env python3
 import os
 import sys
+import subprocess
 
 input = sys.argv[1]
 
-bashcmd = "streamlink "
+stream = "streamlink "
 
 if input.startswith("https://www.twitch.tv/"):
-    bashcmd += input 
+    stream += input 
 else:
-    bashcmd += "https://www.twitch.tv/" + input
+    stream += "https://www.twitch.tv/" + input
 
-bashcmd += " 720p"
+definition = " 720p"
 
-print(bashcmd)
+try:
+    subprocess.check_output(stream + definition, shell=True)
+except subprocess.CalledProcessError as err:
+    print("error: 720p not available, using 720p60 instead")
+    definition = " 720p60"
+    try:
+        subprocess.check_output(stream + definition, shell=True)
+    except subprocess.CalledProcessError as err2:
+        print("error: 720p60 not available either, just using best then!")
+        definition = " best"
+        subprocess.check_output(stream + definition, shell=True)
 
-os.system(bashcmd + " &")
+# status = os.system(stream + " &")
 #> /dev/null 2>&1 
 
 
