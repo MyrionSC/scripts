@@ -143,7 +143,7 @@ eval "$(fasd --init auto)"
 alias v='f -e vim' # quick opening files with vim
 
 c () {
-	f -e cat $1 | tr '\n' ' ' | xclip -selection c
+	f -e cat $@ | tr '\n' ' ' | xclip -selection c
 }
 
 # temp todo
