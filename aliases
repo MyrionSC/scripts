@@ -143,6 +143,7 @@ eval "$(fasd --init auto)"
 alias v='f -e vim' # quick opening files with vim
 
 c () {
+	echo "copied $(f $@) to clipholder"
 	f -e cat $@ | tr '\n' ' ' | xclip -selection c
 }
 
