@@ -35,6 +35,10 @@ alias rsy='rsync -avzP'
 alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
 alias unmount='fusermount -u' # first arg: mountdir
 
+xp () {
+	realpath $1 | xc
+}
+
 cac () {
 	cat $1 | xc
 }
@@ -59,6 +63,7 @@ alias cdf='cd $(ls -d ./*/ | head -1)' # enter first dir
 alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
 
 alias dl='cd ~/Downloads'
+alias bin='cd ~/bin'
 
 
 
@@ -149,4 +154,10 @@ c () {
 
 # temp todo
 alias todo='open https://docs.google.com/document/d/1BWNAm6uQTEr_VOAqHkCHhz-AevDXbZMHCUlfppe6vL8/edit'
+
+alias pgrep='pgrep -f'
+alias pkill='pkill -f'
+
+
+
 
