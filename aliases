@@ -10,6 +10,10 @@
 alias mv='mv -i'
 alias cp='cp -i'
 
+alias pgrep='pgrep -f'
+alias pkill='pkill -f'
+alias ps='ps aux'
+
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
 alias ag='sudo apt-get upgrade'
@@ -154,10 +158,6 @@ c () {
 
 # temp todo
 alias todo='open https://docs.google.com/document/d/1BWNAm6uQTEr_VOAqHkCHhz-AevDXbZMHCUlfppe6vL8/edit'
-
-alias pgrep='pgrep -f'
-alias pkill='pkill -f'
-
 
 
 
