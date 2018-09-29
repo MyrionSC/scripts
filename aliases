@@ -72,7 +72,7 @@ alias bin='cd ~/bin'
 
 
 fina () {
-	find . -iname *$1*
+	find . -iname *$1* -not -path "./drive/*"
 }
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'
@@ -122,17 +122,34 @@ findfile () {
 
 
 alias vars='ls ~/bin/vars'
-alias als='cat ~/bin/aliases'
-alias eals='vim ~/bin/aliases'
+#alias als='cat ~/bin/aliases'
+
+als () {
+	if [ $# -eq 0 ] 
+	then
+		cat ~/bin/aliases	
+	else
+		cat ~/bin/aliases | grep $1
+	fi
+}
 
 if [ -f ~/bin/git_aliases ]; then
     . ~/bin/git_aliases
-    alias egitals='vim ~/bin/git_aliases'
-    gitals () {
-    	cat ~/bin/git_aliases
-    }
+    	alias egitals='vim ~/bin/git_aliases'
+#    	gitals () {
+#	cat ~/bin/git_aliases
+ 
+	gitals () {
+		if [ $# -eq 0 ] 
+		then
+			cat ~/bin/git_aliases	
+		else
+			cat ~/bin/git_aliases | grep $1
+		fi
+	}
 fi
 
+alias eals='vim ~/bin/aliases'
 
 
 

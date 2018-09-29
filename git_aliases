@@ -131,6 +131,9 @@ alias gstal='git stash list'
 alias gstap='git stash pop'
 alias gstas='git stash show --text'
 
+alias gt='git tag'
+alias gtd='git tag -d' # delete tag arg1 locally
+alias gtdr='git push --delete origin' # delete tag arg1 remote
 alias gts='git tag -s'
 alias gtv='git tag | sort -V'
 
