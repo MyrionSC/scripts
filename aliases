@@ -30,8 +30,9 @@ alias ns='npm start'
 alias nr='npm run'
 alias nre='npm run env'
 
+alias df='df -Th'
+
 alias open='xdg-open'
-alias o='xdg-open'
 alias xc='xclip -selection c' # example: pwd | xc
 alias pc='pwd | xc'
 alias cmux='sudo chmod u+x'
@@ -173,8 +174,14 @@ c () {
 	f -e cat $@ | tr '\n' ' ' | xclip -selection c
 }
 
+o () {
+	echo "opening $(f $@)"
+	f -e xdg-open $@ & disown
+}
+
+
 # temp todo
-alias todo='open https://docs.google.com/document/d/1BWNAm6uQTEr_VOAqHkCHhz-AevDXbZMHCUlfppe6vL8/edit'
+#alias todo='open https://docs.google.com/document/d/1BWNAm6uQTEr_VOAqHkCHhz-AevDXbZMHCUlfppe6vL8/edit'
 
 
 
