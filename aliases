@@ -70,10 +70,14 @@ alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
 alias dl='cd ~/Downloads'
 alias bin='cd ~/bin'
 
-
-
-fina () {
-	find . -iname *$1* -not -path "./drive/*"
+finda () {
+	find . -iname "*$1*"
+}
+findd () {
+	find . -type d -iname "*$1*"
+}
+findf () {
+	find . -type f -iname "*$1*"
 }
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'
