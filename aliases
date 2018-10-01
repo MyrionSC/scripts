@@ -187,5 +187,5 @@ o () {
 # temp todo
 #alias todo='open https://docs.google.com/document/d/1BWNAm6uQTEr_VOAqHkCHhz-AevDXbZMHCUlfppe6vL8/edit'
 
-
+alias books='open https://docs.google.com/document/d/1Kz8ryAhjm8AHjcVO956MMFzlwhvrF84n0x21UVvmjA0/edit'
 
