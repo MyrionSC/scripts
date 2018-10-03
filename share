@@ -1,31 +1,41 @@
 #!/usr/bin/env python
 
+import os
 import sys
 import subprocess
+import argparse
 
-if len(sys.argv) < 2:
-    print("arg 1 must be file or dir. wildcards are allowed")
-    exit()
+parser = argparse.ArgumentParser()
+parser.add_argument("-c", "--copy", action='store_true', help="copies output to clipholder")
+parser.add_argument("input", type=str, nargs='+',
+                    help="files to be shared")
+args = parser.parse_args()
 
-args = sys.argv[1:len(sys.argv)]
+inputargs = args.input
 
 try:
-    res2 = subprocess.check_output(["ls"] + args)
+    res2 = subprocess.check_output(["ls"] + inputargs)
 except subprocess.CalledProcessError:
     print("some files / dirs do not exist. Try again.")
     exit();
 
 try:
-    res2 = subprocess.check_output(["scp", "-r"] + args + ["marand@marand.dk:/var/www/html/share"])
+    subprocess.check_output(["scp", "-r"] + inputargs + ["marand@marand.dk:/var/www/html/share"])
 except subprocess.CalledProcessError:
     exit();
 
 path = "marand.dk/share/"
 print("share succesful. links:")
 print("")
-for arg in args:
-    print(path + arg) 
 
+out = reduce(lambda x, y: path + x + "\n" + path + y, inputargs) # Haha
+print(out)
+
+# insert to clipholder
+if args.copy:
+    print("")
+    print("Copied to clipholder")
+    os.system("echo " + repr(out) + " | xclip -selection c")
 
 
 
