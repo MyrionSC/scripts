@@ -32,7 +32,6 @@ alias nre='npm run env'
 
 alias df='df -Th'
 
-alias open='xdg-open'
 alias xc='xclip -selection c' # example: pwd | xc
 alias pc='pwd | xc'
 alias cmux='sudo chmod u+x'
@@ -109,7 +108,7 @@ cpl () {
 	fi
 }
 ol () {
-	open $(lst)
+	xdg-open $(lst)
 }
 
 alias fori="for ((I=0;;I++)) do"
