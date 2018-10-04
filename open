@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "lskdjflksdjf"
+
 if [ $# -eq 0 ]; then
   xdg-open &> /dev/null
 else
