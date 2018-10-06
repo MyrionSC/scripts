@@ -46,6 +46,9 @@ alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
 alias gcs='git commit -S'
 
+#git revert <commit_hash> # revert single commit
+#git revert <oldest_commit_hash>..<latest_commit_hash> # revert range of commits
+
 alias gd='git diff'
 alias gdca='git diff --cached'
 alias gdct='git describe --tags `git rev-list --tags --max-count=1`'
