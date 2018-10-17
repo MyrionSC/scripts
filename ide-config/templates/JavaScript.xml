@@ -40,7 +40,6 @@
     <variable name="INDEX" expression="jsSuggestIndexName()" defaultValue="&quot;i&quot;" alwaysStopAt="true" />
     <variable name="ARRAY" expression="jsArrayVariable()" defaultValue="&quot;array&quot;" alwaysStopAt="true" />
     <variable name="VAR" expression="jsSuggestVariableName()" defaultValue="&quot;o&quot;" alwaysStopAt="true" />
-    <context />
   </template>
   <template name="swi" value="switch ($START$) &#10;{ &#10;    case $CASE1$: &#10;      &#10;      break; &#10;    case $CASE2$: &#10;      &#10;      break;&#10;    default: &#10;      console.log(&quot;default case&quot;);&#10;} &#10;" description="switch" toReformat="false" toShortenFQNames="true">
     <variable name="START" expression="" defaultValue="" alwaysStopAt="true" />

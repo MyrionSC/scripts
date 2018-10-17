@@ -33,14 +33,18 @@ alias nre='npm run env'
 alias df='df -Th'
 
 alias xc='xclip -selection c' # example: pwd | xc
-alias pc='pwd | xc'
 alias cmux='sudo chmod u+x'
 alias rsy='rsync -avzP'
 alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
 alias unmount='fusermount -u' # first arg: mountdir
 
 xp () {
-	realpath $1 | xc
+	if [ $# -eq 0 ] 
+	then
+		realpath . | xc
+	else
+		realpath $1 | xc
+	fi
 }
 
 cac () {

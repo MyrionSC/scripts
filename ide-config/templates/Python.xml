@@ -1,0 +1,13 @@
+<templateSet group="Python">
+  <template name="p" value="print($END$)" description="print()" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="readfile" value="with open($FILE$, &quot;r&quot;) as file:&#10;    for line in file:&#10;        print(line)&#10;        $END$&#10;        " description="Read a file line by line" toReformat="false" toShortenFQNames="true">
+    <variable name="FILE" expression="" defaultValue="&quot;filename&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+</templateSet>
