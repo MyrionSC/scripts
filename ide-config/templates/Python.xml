@@ -10,4 +10,26 @@
       <option name="Python" value="true" />
     </context>
   </template>
+  <template name="getargs" value="args = sys.argv[1:]" description="get cmd line args" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="getpath" value="path = sys.path[0]" description="get script dir path" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="writefile" value="with open($FILE$, &quot;w+&quot;) as file:  # creates / overwrites file&#10;    file.write($END$)&#10;" description="Writes to file" toReformat="false" toShortenFQNames="true">
+    <variable name="FILE" expression="" defaultValue="&quot;file.out&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="diter" value="for key, value in $DICT$.items():&#10;    $END$" description="iterate over dict" toReformat="false" toShortenFQNames="true">
+    <variable name="DICT" expression="" defaultValue="&quot;dict&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
 </templateSet>
