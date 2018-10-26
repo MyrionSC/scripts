@@ -192,4 +192,7 @@ o () {
 #alias todo='open https://docs.google.com/document/d/1BWNAm6uQTEr_VOAqHkCHhz-AevDXbZMHCUlfppe6vL8/edit'
 
 alias books='open https://docs.google.com/document/d/1Kz8ryAhjm8AHjcVO956MMFzlwhvrF84n0x21UVvmjA0/edit'
+alias activities='open https://docs.google.com/document/d/1mKbc0Or2XXEoOD5FeBMuv4sDaxz_Gfh8pwBtoabJrfU/edit'
+alias career='open https://docs.google.com/document/d/191BaYenDZRrsV5F8JS0t0LbSyWddEC1dGhrqj7DGfkk/edit'
+alias friends='open https://docs.google.com/document/d/1MwawZDJWUjvCwoLIukIJlS-L3Czc9gCQTti04PZSLII/edit'
 
