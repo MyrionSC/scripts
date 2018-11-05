@@ -10,7 +10,7 @@
 alias mv='mv -i'
 alias cp='cp -i'
 
-alias pgrep='pgrep -f'
+alias pgrep='pgrep -f -l'
 alias pkill='pkill -f'
 alias ps='ps aux'
 
