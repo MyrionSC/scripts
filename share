@@ -28,7 +28,10 @@ path = "marand.dk/share/"
 print("share succesful. links:")
 print("")
 
-out = reduce(lambda x, y: path + x + "\n" + path + y, inputargs) # Haha
+if len(inputargs) == 1:
+    out = path + inputargs[0]
+else:
+    out = reduce(lambda x, y: path + x + "\n" + path + y, inputargs) # Haha
 print(out)
 
 # insert to clipholder
