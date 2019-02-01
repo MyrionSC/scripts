@@ -73,6 +73,7 @@ alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
 
 alias dl='cd ~/Downloads'
 alias bin='cd ~/bin'
+alias www='cd /var/www/html/'
 
 finda () {
 	find . -iname "*$1*"
