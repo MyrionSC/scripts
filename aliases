@@ -84,6 +84,14 @@ findd () {
 findf () {
 	find . -type f -iname "*$1*"
 }
+findlib () {
+	if [ $# -eq 0 ]
+	then
+		ldconfig -p
+	else
+		ldconfig -p | grep $1
+	fi
+}
 alias countf='find . -type f | wc -l'
 alias countd='find . -maxdepth 1 -type d | wc -l'
 
