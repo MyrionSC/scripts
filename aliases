@@ -23,6 +23,7 @@ alias al='apt list'
 alias ali='apt list --installed'
 alias ase='apt search'
 alias ash='apt show'
+alias av='apt-cache policy'
 
 alias ni='npm install'
 alias nrm='npm remove'
@@ -33,12 +34,14 @@ alias nre='npm run env'
 alias df='df -Th'
 alias writer='lowriter'
 
+#misc stuff
 alias xc='xclip -selection c' # example: pwd | xc
 alias cmux='sudo chmod u+x'
 alias rsy='rsync -avzP'
 alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
 alias unmount='fusermount -u' # first arg: mountdir
 alias breset='. ~/.bashrc'
+alias vact='. $(pwd)/venv/bin/activate'
 
 xp () {
 	if [ $# -eq 0 ] 
@@ -161,7 +164,7 @@ if [ -f ~/bin/git_aliases ]; then
 fi
 
 alias eals='vim ~/bin/aliases'
-alias ebashrc='vim ~/.bashrc'
+alias ebrc='vim ~/.bashrc'
 
 
 dragon-say () {
