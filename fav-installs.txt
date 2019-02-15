@@ -1,9 +1,0 @@
-Packages that should be installed on new linux env:
-
-sudo
-git
-fasd
-xclip
-xdotool
-
-

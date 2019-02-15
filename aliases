@@ -136,7 +136,6 @@ alias fori="for ((I=0;;I++)) do"
 
 
 alias vars='ls ~/bin/vars'
-#alias als='cat ~/bin/aliases'
 
 als () {
 	if [ $# -eq 0 ] 
@@ -150,8 +149,6 @@ als () {
 if [ -f ~/bin/git_aliases ]; then
     . ~/bin/git_aliases
     	alias egitals='vim ~/bin/git_aliases'
-#    	gitals () {
-#	cat ~/bin/git_aliases
  
 	gitals () {
 		if [ $# -eq 0 ] 
@@ -192,11 +189,13 @@ o () {
 }
 
 
-# temp todo
-#alias todo='open https://docs.google.com/document/d/1BWNAm6uQTEr_VOAqHkCHhz-AevDXbZMHCUlfppe6vL8/edit'
-
+# documents
 alias books='open https://docs.google.com/document/d/1Kz8ryAhjm8AHjcVO956MMFzlwhvrF84n0x21UVvmjA0/edit'
 alias activities='open https://docs.google.com/document/d/1mKbc0Or2XXEoOD5FeBMuv4sDaxz_Gfh8pwBtoabJrfU/edit'
 alias career='open https://docs.google.com/document/d/191BaYenDZRrsV5F8JS0t0LbSyWddEC1dGhrqj7DGfkk/edit'
 alias friends='open https://docs.google.com/document/d/1MwawZDJWUjvCwoLIukIJlS-L3Czc9gCQTti04PZSLII/edit'
+
+#ssh
+alias nuc='ssh marand@marand.dk'
+alias p10ssh='ssh rmp10@172.25.11.191'
 
