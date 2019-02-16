@@ -43,6 +43,7 @@ alias unmount='fusermount -u' # first arg: mountdir
 alias breset='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
 
+
 sgrep () {
 	grep -rn $1 .
 }
@@ -56,7 +57,11 @@ xp () {
 	fi
 }
 
+
 cac () {
+	cat $1 | xc
+}
+cpf () {
 	cat $1 | xc
 }
 
