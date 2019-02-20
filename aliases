@@ -42,6 +42,9 @@ alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
 alias unmount='fusermount -u' # first arg: mountdir
 alias breset='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
+wordcount () {
+	echo $1 | wc --words -
+}
 
 
 sgrep () {
