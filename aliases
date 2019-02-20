@@ -107,6 +107,9 @@ findlib () {
 		ldconfig -p | grep $1
 	fi
 }
+findcore () { # search EVERYWHERE
+	sudo find /bin /lib /lib64 /snap /usr /etc /opt /sbin /var /home -iname "*$1*"
+}
 alias countfiles='find . -type f | wc -l'
 alias countdirs='find . -maxdepth 1 -type d | wc -l'
 
@@ -207,4 +210,10 @@ alias friends='open https://docs.google.com/document/d/1MwawZDJWUjvCwoLIukIJlS-L
 #ssh
 alias nuc='ssh marand@marand.dk'
 alias p10ssh='ssh rmp10@172.25.11.191'
+
+#globals
+export P10='172.25.11.191'
+export P10_ADRESS='rmp10@172.25.11.191'
+
+
 
