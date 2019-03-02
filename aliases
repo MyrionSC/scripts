@@ -211,12 +211,12 @@ alias career='open https://docs.google.com/document/d/191BaYenDZRrsV5F8JS0t0LbSy
 alias friends='open https://docs.google.com/document/d/1MwawZDJWUjvCwoLIukIJlS-L3Czc9gCQTti04PZSLII/edit'
 
 #ssh
-alias nuc='ssh marand@marand.dk'
+alias nuc='ssh -X marand@marand.dk'
 alias p10ssh='ssh rmp10@172.25.11.191'
 
 #globals
-export P10='172.25.11.191'
-export P10_ADRESS='rmp10@172.25.11.191'
+export P10='rmp10@172.25.11.191'
+export P10_HOST='172.25.11.191'
 
 
 
