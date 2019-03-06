@@ -122,6 +122,7 @@ alias grset='git remote set-url'
 alias gru='git reset --'
 alias grup='git remote update'
 alias grv='git remote -v'
+alias grorigin='git reset --hard origin $(cur_br)'
 alias gpristine='git reset --hard && git clean -dfx'
 alias guncommit='git reset HEAD^'
 

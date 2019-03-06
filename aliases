@@ -40,6 +40,7 @@ alias cmux='sudo chmod u+x'
 alias rsy='rsync -avzP'
 alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
 alias unmount='fusermount -u' # first arg: mountdir
+alias rb='. ~/.bashrc'
 alias breset='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
 wordcount () {
@@ -116,7 +117,7 @@ findcore () { # search EVERYWHERE
 alias countfiles='find . -type f | wc -l'
 alias countdirs='find . -maxdepth 1 -type d | wc -l'
 
-# list latest modified file / dir in current dir
+# list, move, copy, open latest modified file / dir in current dir
 lst() {
 	if [ $# -eq 0 ] 
 	then
@@ -125,7 +126,6 @@ lst() {
 		ls -t | head -$1
 	fi
 }
-
 mvl () {
 	if [ $# -eq 1 ] 
 	then
@@ -147,7 +147,6 @@ ol () {
 }
 
 alias fori="for ((I=0;;I++)) do"
-
 
 
 alias vars='ls ~/bin/vars'
@@ -192,7 +191,6 @@ shopt -s globstar
 #fasd init. Try different setups from "man fasd"
 eval "$(fasd --init auto)"
 alias v='f -e vim' # quick opening files with vim
-
 c () {
 	echo "copied $(f $@) to clipholder"
 	f -e cat $@ | tr -d '\n' | xclip -selection c
@@ -217,6 +215,5 @@ alias p10ssh='ssh rmp10@172.25.11.191'
 #globals
 export P10='rmp10@172.25.11.191'
 export P10_HOST='172.25.11.191'
-
 
 

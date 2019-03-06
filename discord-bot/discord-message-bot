@@ -4,7 +4,7 @@ import sys
 import discord
 
 if len(sys.argv) < 2:
-    print("first arg must be message string")
+    print("Usage: first arg must be message string")
     exit()
 
 msg = sys.argv[1]
@@ -18,10 +18,15 @@ async def on_ready():
     print(client.user.id)
     print('-------------')
 
-    user = discord.User(id = '354240853071364097')
+    #user = discord.User(id = '354240853071364097')
+    #channel = discord.Channel(id = '460123414313828355')
+
+    await client.send_message(client.get_channel('460123414313828355'), msg)
     
-    print("sending message to self: " + msg)
-    await client.send_message(user, msg)
+    #print("sending message to self: " + msg)
+    #print("sending message to channel: " + msg)
+    #await client.send_message(channel, msg)
+    #await client.send_message(user, msg)
     await client.logout() # logging out ends the event loop
     return None
 
