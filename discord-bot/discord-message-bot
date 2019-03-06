@@ -18,15 +18,10 @@ async def on_ready():
     print(client.user.id)
     print('-------------')
 
-    #user = discord.User(id = '354240853071364097')
-    #channel = discord.Channel(id = '460123414313828355')
+    #user = discord.User(id = '354240853071364097') # marand
+    #channel = discord.Channel(id = '460123414313828355') # Marand-notify server
 
     await client.send_message(client.get_channel('460123414313828355'), msg)
-    
-    #print("sending message to self: " + msg)
-    #print("sending message to channel: " + msg)
-    #await client.send_message(channel, msg)
-    #await client.send_message(user, msg)
     await client.logout() # logging out ends the event loop
     return None
 
