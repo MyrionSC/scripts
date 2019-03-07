@@ -41,10 +41,14 @@ alias rsy='rsync -avzP'
 alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
 alias unmount='fusermount -u' # first arg: mountdir
 alias rb='. ~/.bashrc'
+alias rbc='. ~/.bashrc'
 alias breset='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
 wordcount () {
 	echo $1 | wc --words -
+}
+function trspace () {
+	echo "$@" | tr " " "_"
 }
 
 
