@@ -19,8 +19,12 @@ alias au='sudo apt-get update'
 alias ag='sudo apt-get upgrade'
 alias ar='sudo apt-get remove'
 alias aar='sudo apt-get autoremove'
-alias al='apt list'
-alias ali='apt list --installed'
+al () {
+	apt list "*$1*"
+}
+ali () {
+	apt list --installed "*$1*"
+}
 alias ase='apt search'
 alias ash='apt show'
 alias av='apt-cache policy'
@@ -47,7 +51,7 @@ alias vact='. $(pwd)/venv/bin/activate'
 wordcount () {
 	echo $1 | wc --words -
 }
-function trspace () {
+trspace () {
 	echo "$@" | tr " " "_"
 }
 
@@ -211,6 +215,7 @@ alias books='open https://docs.google.com/document/d/1Kz8ryAhjm8AHjcVO956MMFzlwh
 alias activities='open https://docs.google.com/document/d/1mKbc0Or2XXEoOD5FeBMuv4sDaxz_Gfh8pwBtoabJrfU/edit'
 alias career='open https://docs.google.com/document/d/191BaYenDZRrsV5F8JS0t0LbSyWddEC1dGhrqj7DGfkk/edit'
 alias friends='open https://docs.google.com/document/d/1MwawZDJWUjvCwoLIukIJlS-L3Czc9gCQTti04PZSLII/edit'
+alias wishlist='open https://docs.google.com/document/d/1GapiFZZXzOXmDn1hb6Uy4f_jUxMTnPr3b2jAlHL06ag/edit'
 
 #ssh
 alias nuc='ssh -X marand@marand.dk'
