@@ -193,6 +193,8 @@ dragon-say () {
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
+alias evim="vim ~/.vimrc"
+alias evimrc="vim ~/.vimrc"
 
 shopt -s globstar
 

@@ -27,6 +27,9 @@ imap <C-w> <Esc>`^wi
 imap <C-e> <Esc>`^ei
 
 
+" replace last search team 
+nnoremap <C-r> :%s///gc<Left><Left><Left>
+
 
 
 " Status line ------------------------------------------------------
