@@ -11,7 +11,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 
 alias pgrep='pgrep -f -l'
-alias pkill='pkill -f'
+alias pkill='pkill -s 9 -f'
 alias ps='ps aux'
 
 alias ai='sudo apt-get install'
@@ -59,6 +59,9 @@ trspace () {
 sgrep () {
 	grep -rn $1 .
 }
+greps () {
+	grep -rn $1 .
+}
 
 xp () {
 	if [ $# -eq 0 ] 
@@ -93,8 +96,9 @@ alias caaaaaa='cd ../../../../../..'
 alias caaaaaaa='cd ../../../../../../..'
 alias cb='cd -'
 
-alias cdf='cd $(ls -d ./*/ | head -1)' # enter first dir
-alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
+#alias cdf='cd $(ls -d ./*/ | head -1)' # enter first dir
+#alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
+alias cdl='cd $(ls -t | head -1)'
 
 alias dl='cd ~/Downloads'
 alias bin='cd ~/bin'
