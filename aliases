@@ -54,6 +54,19 @@ wordcount () {
 trspace () {
 	echo "$@" | tr " " "_"
 }
+arrayify () {
+	echo "[$@]" | tr "\n" ", " # cut off last two chars at some point
+}
+
+trim() {
+    #local var="$*"
+    read var # from pipe
+    # remove leading whitespace characters
+    var="${var#"${var%%[![:space:]]*}"}"
+    # remove trailing whitespace characters
+    var="${var%"${var##*[![:space:]]}"}"   
+    echo -n "$var"
+}
 
 
 sgrep () {
