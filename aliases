@@ -57,6 +57,12 @@ trspace () {
 arrayify () {
 	echo "[$@]" | tr "\n" ", " # cut off last two chars at some point
 }
+trupper () {
+	echo "$@" | tr '[:lower:]' '[:upper:]'
+}
+trlower () {
+	echo "$@" | tr '[:upper:]' '[:lower:]'
+}
 
 trim() {
     #local var="$*"
