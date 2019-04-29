@@ -6,6 +6,10 @@ xnoremap p "_dP
 " show line numbers
 set number
 
+" search highlight
+"set hlsearch
+set incsearch
+
 " use same clipboard, need addon download
 set clipboard=unnamedplus
 
