@@ -205,6 +205,10 @@ if [ -f ~/bin/git_aliases ]; then
 	}
 fi
 
+# drive aliases
+alias drivep='sudo drive push'
+alias drivel='sudo drive pull'
+
 alias eals='vim ~/bin/aliases'
 alias ebrc='vim ~/.bashrc'
 

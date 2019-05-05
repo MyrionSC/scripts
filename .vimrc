@@ -32,7 +32,7 @@ imap <C-e> <Esc>`^ei
 
 
 " replace last search team 
-nnoremap <C-r> :%s///gc<Left><Left><Left>
+"nnoremap <C-r> :%s///gc<Left><Left><Left>
 
 
 
