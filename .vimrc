@@ -1,6 +1,8 @@
 " remember to make symlink to this file in home dir
 
-" prevents pasting over values from being entered in the register
+" prevents deleting / pasting over values from being entered in the register
+nnoremap d "_d
+xnoremap d "_d
 xnoremap p "_dP
 
 " show line numbers
