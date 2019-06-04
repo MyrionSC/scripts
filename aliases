@@ -76,10 +76,10 @@ trim() {
 
 
 sgrep () {
-	grep -rn $1 .
+	grep -rn "$1" .
 }
 greps () {
-	grep -rn $1 .
+	grep -rn "$1" .
 }
 
 xp () {
@@ -255,4 +255,23 @@ alias p10ssh='ssh rmp10@172.25.11.191'
 export P10='rmp10@172.25.11.191'
 export P10_HOST='172.25.11.191'
 
+
+countdown(){
+   date1=$((`date +%s` + $1)); 
+   while [ "$date1" -ge `date +%s` ]; do 
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 0.1
+   done
+}
+stopwatch(){
+  date1=`date +%s`; 
+   while true; do 
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r"; 
+    sleep 0.1
+   done
+}
+
+alarm(){
+	countdown $1 && open ~/bin/alarm.wav
+}
 

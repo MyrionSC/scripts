@@ -1,5 +1,16 @@
 " remember to make symlink to this file in home dir
 
+
+" from some video
+set nocompatible
+syntax enable
+filetype plugin on
+
+" finding files
+set path+=**
+set wildmenu
+
+
 " prevents deleting / pasting over values from being entered in the register
 nnoremap d "_d
 xnoremap d "_d
@@ -34,8 +45,9 @@ imap <C-e> <Esc>`^ei
 
 
 " replace last search team 
-"nnoremap <C-r> :%s///gc<Left><Left><Left>
-
+nmap <C-s> :%s///gc<Left><Left><Left><Left>
+nnoremap <F3> :%s///gc<Left><Left><Left><Left>
+"nnoremap <F3> :ls<CR>
 
 
 " Status line ------------------------------------------------------
