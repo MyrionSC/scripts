@@ -76,10 +76,10 @@ trim() {
 
 
 sgrep () {
-	grep -rn "$1" .
+	grep -irn "$1" .
 }
 greps () {
-	grep -rn "$1" .
+	grep -irn "$1" .
 }
 
 xp () {
@@ -139,7 +139,7 @@ findlib () {
 	then
 		ldconfig -p
 	else
-		ldconfig -p | grep $1
+		ldconfig -p | grep -i $1
 	fi
 }
 findcore () { # search EVERYWHERE
@@ -187,7 +187,7 @@ als () {
 	then
 		cat ~/bin/aliases	
 	else
-		cat ~/bin/aliases | grep $1
+		cat ~/bin/aliases | grep -i $1
 	fi
 }
 
@@ -200,7 +200,7 @@ if [ -f ~/bin/git_aliases ]; then
 		then
 			cat ~/bin/git_aliases	
 		else
-			cat ~/bin/git_aliases | grep $1
+			cat ~/bin/git_aliases | grep -i $1
 		fi
 	}
 fi
