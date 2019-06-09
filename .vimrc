@@ -3,8 +3,39 @@
 
 " from some video
 set nocompatible
-syntax enable
-filetype plugin on
+syntax on
+filetype off
+" filetype plugin on
+
+
+" -------
+" PLUGINS
+" -------
+
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim	"required
+call vundle#begin()			"required
+
+Plugin 'VundleVim/Vundle.vim'
+
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" -----------
+" PLUGINS END
+" -----------
+
+
+
+
+
+
+
+
+
 
 " finding files
 set path+=**
