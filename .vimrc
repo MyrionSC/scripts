@@ -19,6 +19,15 @@ call vundle#begin()			"required
 
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'tpope/vim-repeat'
+
+" add some plugins from https://www.youtube.com/watch?v=wlR5gYd6um0
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+"    vim-scripts/ReplaceWithRegister
+"    christoomey/vim-titlecase
+"    christoomey/sort-motion
+"    christommey/system-copy
 
 
 call vundle#end()            " required
