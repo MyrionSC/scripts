@@ -142,9 +142,11 @@ findlib () {
 		ldconfig -p | grep -i $1
 	fi
 }
+# can also use locate PATTERN to find a file on the system (much faster)
 findcore () { # search EVERYWHERE
 	sudo find /bin /lib /lib64 /snap /usr /etc /opt /sbin /var /home -iname "*$1*"
 }
+
 alias countfiles='find . -type f | wc -l'
 alias countdirs='find . -maxdepth 1 -type d | wc -l'
 
@@ -274,4 +276,18 @@ stopwatch(){
 alarm(){
 	countdown $1 && open ~/bin/alarm.wav
 }
+
+# google search for string
+gsearch() {
+	if [ $# -eq 0 ] 
+	then
+		echo "first arg must be search string"
+	else 
+		google-chrome "https://www.google.com/search?q=$(echo $1 | tr ' ' '+')"
+	fi
+}
+
+
+
+
 

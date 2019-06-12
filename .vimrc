@@ -39,13 +39,6 @@ filetype plugin indent on    " required
 
 
 
-
-
-
-
-
-
-
 " finding files
 set path+=**
 set wildmenu
@@ -56,26 +49,17 @@ nnoremap d "_d
 xnoremap d "_d
 xnoremap p "_dP
 
-" relative number
+" simple options
 set relativenumber
-
-" show line numbers
-set number
-
-" search highlight
-"set hlsearch
-set incsearch
+set number " show line numbers
+set incsearch " search highlight
+set laststatus=2 " set permanent status bar (i hope)
 
 " use same clipboard, need addon download
 set clipboard=unnamedplus
 
 " save bash shebang in register b. use @b to get it in vim
 let @b='i#!/usr/bin/env bashq'
-
-" set permanent status bar (i hope)
-set laststatus=2
-
-
 
 " Useful shortcuts
 "- Delete word undercursor in insert mode
@@ -86,11 +70,17 @@ imap <C-b> <Esc>`^bi
 imap <C-w> <Esc>`^wi
 imap <C-e> <Esc>`^ei
 
+" windows
+set splitbelow splitright
+" nagigate in windows with ctrl-hjkl
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " replace last search team 
 nmap <C-s> :%s///gc<Left><Left><Left><Left>
 nnoremap <F3> :%s///gc<Left><Left><Left><Left>
-"nnoremap <F3> :ls<CR>
 
 
 " Status line ------------------------------------------------------
