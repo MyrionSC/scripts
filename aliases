@@ -7,6 +7,9 @@
 # apt list "searchterm" - list all packagenames containing <searchterm>
 # apt show pckgname - shows information about a package
 
+#set -o vi
+#bind -m vi-insert "\C-l":clear-screen
+
 alias mv='mv -i'
 alias cp='cp -i'
 
@@ -287,7 +290,12 @@ gsearch() {
 	fi
 }
 
-
-
-
+# replace space in file names with underscore
+mvnu() {
+	for arg in "$@"
+	do
+		mv "$arg" $(echo $arg | tr " " "_")
+		echo $arg renamed to: $(echo $arg | tr " " "_")
+	done
+}
 
