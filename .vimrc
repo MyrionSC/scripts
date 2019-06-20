@@ -5,6 +5,7 @@
 set nocompatible
 syntax on
 filetype off
+set encoding=utf-8 " test this
 " filetype plugin on
 
 
@@ -49,10 +50,44 @@ nnoremap d "_d
 xnoremap d "_d
 xnoremap p "_dP
 
-" simple options
+"-- simple options
 set relativenumber
 set number " show line numbers
+set showmatch " show matching item (like {})
+set nowrap " Turn off line wrapping.
+set scrolloff=7 " Show 7 lines of context around the cursor.
+set sidescrolloff=7
+
+
+" search
+set ignorecase
+set smartcase
 set incsearch " search highlight
+set wrapscan
+
+" Tabs and indentation.
+set expandtab
+set autoindent
+set smartindent
+
+
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=1024
+
+
+" When editing a file, always jump to the last known cursor position.
+autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+
+" Go to first and last char of current line easier
+noremap H ^
+noremap L $
+
+" Yank from the cursor to the end of the line, to be consistent with C and D.
+nnoremap Y y$
+
 set laststatus=2 " set permanent status bar (i hope)
 
 " use same clipboard, need addon download
@@ -81,6 +116,9 @@ map <C-l> <C-w>l
 " replace last search team 
 nmap <C-s> :%s///gc<Left><Left><Left><Left>
 nnoremap <F3> :%s///gc<Left><Left><Left><Left>
+
+
+
 
 
 " Status line ------------------------------------------------------
