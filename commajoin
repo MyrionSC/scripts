@@ -6,6 +6,7 @@ if len(sys.argv) != 2:
     print("Usage: newline or space separated string that should be made comma separated")
     exit()
 
+sys.argv[1] = sys.argv[1].replace(" ", "\n")
 arr = sys.argv[1].split("\n")
 
 print(", ".join(arr))

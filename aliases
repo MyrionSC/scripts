@@ -291,7 +291,7 @@ gsearch() {
 }
 
 # replace space in file names with underscore
-mvnu() {
+rename_space_underscore() {
 	for arg in "$@"
 	do
 		mv "$arg" $(echo $arg | tr " " "_")
