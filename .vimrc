@@ -22,6 +22,9 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-repeat'
 
+" python autocompletion
+Plugin 'davidhalter/jedi-vim'
+
 " add some plugins from https://www.youtube.com/watch?v=wlR5gYd6um0
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -38,7 +41,8 @@ filetype plugin indent on    " required
 " PLUGINS END
 " -----------
 
-
+" remap leader to space
+let mapleader = ' ' 
 
 " finding files
 set path+=**
@@ -116,6 +120,14 @@ map <C-l> <C-w>l
 " replace last search team 
 nmap <C-s> :%s///gc<Left><Left><Left><Left>
 nnoremap <F3> :%s///gc<Left><Left><Left><Left>
+
+" save readonly file changes
+cmap w!! w !sudo tee >/dev/null %
+
+
+" jedi-vim
+let g:jedi#auto_initialization = 1
+
 
 
 
