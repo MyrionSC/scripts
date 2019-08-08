@@ -42,7 +42,14 @@ alias df='df -Th'
 alias writer='lowriter'
 
 #misc stuff
-alias xc='xclip -selection c' # example: pwd | xc
+
+if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
+    alias xc='pbcopy'
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Do something under GNU/Linux platform
+    alias xc='xclip -selection c' # example: pwd | xc
+fi
+
 alias cmux='sudo chmod u+x'
 alias rsy='rsync -avzP'
 alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
@@ -229,7 +236,7 @@ alias evim="vim ~/.vimrc"
 alias evimrc="vim ~/.vimrc"
 alias viml="vim $(lst)"
 
-shopt -s globstar
+#shopt -s globstar
 
 #fasd init. Try different setups from "man fasd"
 eval "$(fasd --init auto)"
