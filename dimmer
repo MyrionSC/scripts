@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo $(($(cat /sys/class/backlight/intel_backlight/brightness) - 250)) | tee /sys/class/backlight/intel_backlight/brightness
+
