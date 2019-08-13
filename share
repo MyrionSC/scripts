@@ -38,7 +38,7 @@ print(out)
 if args.copy:
     print("")
     print("Copied to clipholder")
-    os.system("echo " + repr(out) + " | xclip -selection c")
+    os.system("echo " + repr(out) + " | xc")
 
 
 

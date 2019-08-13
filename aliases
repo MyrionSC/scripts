@@ -3,6 +3,7 @@
 #     . ~/bin/aliases
 # fi
 
+PATH=$PATH:~/bin
 
 # apt list "searchterm" - list all packagenames containing <searchterm>
 # apt show pckgname - shows information about a package
@@ -130,6 +131,7 @@ alias cb='cd -'
 alias cdl='cd $(ls -t | head -1)'
 
 alias dl='cd ~/Downloads'
+alias desk='cd ~/Desktop'
 alias bin='cd ~/bin'
 alias www='cd /var/www/html/'
 
@@ -243,7 +245,7 @@ eval "$(fasd --init auto)"
 alias v='f -e vim' # quick opening files with vim
 c () {
 	echo "copied $(f $@) to clipholder"
-	f -e cat $@ | tr -d '\n' | xclip -selection c
+	f -e cat $@ | tr -d '\n' | xc
 }
 
 o () {
