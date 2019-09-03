@@ -42,18 +42,17 @@ alias nre='npm run env'
 alias df='df -Th'
 alias writer='lowriter'
 
-#misc stuff
-
 # platform specific stuff
 if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
     alias xc='pbcopy'
-elif [ "$(uname)" == "MINGW64_NT-10.0-18362" ]; then # It's windows git bash!
+elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
     alias xc='clip' 
-    alias open='start'
+    # alias open='start'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     alias xc='xclip -selection c' # example: pwd | xc
 fi
 
+# misc stuff
 alias cmux='sudo chmod u+x'
 alias rsy='rsync -avzP'
 alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
