@@ -95,12 +95,30 @@ greps () {
 	grep -irn "$1" .
 }
 
+# TODO: Turn around slashes maybe (it is understood most of the time right now)
+winpath () {
+	if [ $# -eq 0 ] 
+	then
+		temppath=$(realpath .)
+	else
+		temppath=$(realpath $1)
+	fi
+
+        # for windows sake
+        if [ $(echo $temppath | cut -c1-2) == "/c" ]
+        then
+             temppath=":c${temppath:2}"
+        fi
+
+        echo $temppath | tr -d "\n" | xc
+}
+
 xp () {
 	if [ $# -eq 0 ] 
 	then
-		realpath . | tr -d "\n" | xc
+                realpath . | tr -d "\n" | xc
 	else
-		realpath $1 | tr -d "\n" | xc
+                realpath $1 | tr -d "\n" | xc
 	fi
 }
 
