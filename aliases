@@ -107,10 +107,11 @@ winpath () {
         # for windows sake
         if [ $(echo $temppath | cut -c1-2) == "/c" ]
         then
-             temppath=":c${temppath:2}"
+             temppath="c:${temppath:2}"
+             temppath=$(echo $temppath | tr '/' '\\')
         fi
 
-        echo $temppath | tr -d "\n" | xc
+        echo $temppath | tr -d "\n"
 }
 
 xp () {
