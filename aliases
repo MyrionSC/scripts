@@ -47,7 +47,7 @@ if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
     alias xc='pbcopy'
 elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
     alias xc='clip' 
-    # alias open='start'
+    alias open='start'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     alias xc='xclip -selection c' # example: pwd | xc
 fi
@@ -96,7 +96,6 @@ greps () {
 	grep -irn "$1" .
 }
 
-# TODO: Turn around slashes maybe (it is understood most of the time right now)
 winpath () {
 	if [ $# -eq 0 ] 
 	then
@@ -108,7 +107,7 @@ winpath () {
         # for windows sake
         if [ $(echo $temppath | cut -c1-2) == "/c" ]
         then
-             temppath="c:${temppath:2}"
+             temppath="C:${temppath:2}"
              temppath=$(echo $temppath | tr '/' '\\')
         fi
 
@@ -210,7 +209,7 @@ cpl () {
 	fi
 }
 ol () {
-	xdg-open $(lst)
+	open $(lst)
 }
 
 alias fori="for ((I=0;;I++)) do"
@@ -272,7 +271,7 @@ c () {
 
 o () {
 	echo "opening $(f $@)"
-	f -e xdg-open $@ & disown
+	f -e open $@ & disown
 }
 
 

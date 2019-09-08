@@ -1,6 +1,3 @@
 .idea/
-micro
 node_modules/
-swipl*
-xpce-client
 token

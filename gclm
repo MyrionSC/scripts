@@ -1,6 +1,6 @@
-if [ -n "$1" ]; then
-	git clone https://github.com/MyrionSC/$1.git
-else
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
 	echo "Argument 1 needs to be a git repo"
 	echo ""
 	echo "Following git repos are available:"
@@ -14,4 +14,8 @@ else
 	echo "redrain"
 	echo "Uni"
 	echo "foundafunny"
+        exit
 fi
+
+git clone git@github.com:MyrionSC/$1.git
+
