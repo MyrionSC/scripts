@@ -62,6 +62,7 @@ alias rbc='. ~/.bashrc'
 alias breset='. ~/.bashrc'
 alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
+alias bashdocs='cat ~/bin/bashdocs.txt'
 wordcount () {
 	echo $1 | wc --words -
 }
