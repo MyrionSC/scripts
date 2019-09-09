@@ -1,0 +1,22 @@
+
+# ----- if
+if [ $COND ]; then
+        # code
+else 
+        # code
+fi
+
+# ----- foreach
+for file in * 
+do
+  echo "$file"
+done
+
+# ----- common conditionals
+[ -n "$1" ] # true if arg1 exists
+[ -z "$1" ] # true if arg1 does not exist
+[ "$1" == "first" ] # true if arg1 equals the string "first" 
+[ ! $COND ] # false if $COND is true
+[ $COND1 && $COND2 ] # true if $COND1 and $COND2 is true
+[ $COND1 || $COND2 ] # true if either $COND1 or $COND2 is true
+

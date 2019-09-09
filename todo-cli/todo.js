@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 var needle = require('needle'); // for http calls
-var url = "https://marand-todo.herokuapp.com/";
+var url = "http://marand.dk:8002/";
 var help = "Commands are:\n" +
     "todo ls\n" +
     "todo ls -pe\n" +

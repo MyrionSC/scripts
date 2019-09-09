@@ -43,6 +43,7 @@ filetype plugin indent on    " required
 
 " remap leader to space
 let mapleader = ' ' 
+inoremap jk <ESC>
 
 " finding files
 set path+=**

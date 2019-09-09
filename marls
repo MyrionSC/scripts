@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "-l" ]; then
+        ssh marand@marand.dk "ls -tAl /var/www/html/share"
+        exit 
+fi
+
+ssh marand@marand.dk "ls -tA /var/www/html/share"
+
