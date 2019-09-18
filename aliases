@@ -44,11 +44,17 @@ alias writer='lowriter'
 
 # platform specific stuff
 if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
+    alias dl='cd ~/Downloads'
+    alias desk='cd ~/Desktop'
     alias xc='pbcopy'
 elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
+    alias dl='cd /c/Users/$USER/Downloads'
+    alias desk='cd /c/Users/$USER/Desktop'
     alias xc='clip' 
-    # alias open='start'
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    alias open='start'
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
+    alias dl='cd ~/Downloads'
+    alias desk='cd ~/Desktop'
     alias xc='xclip -selection c' # example: pwd | xc
 fi
 
@@ -107,7 +113,7 @@ winpath () {
         # for windows sake
         if [ $(echo $temppath | cut -c1-2) == "/c" ]
         then
-             temppath="c:${temppath:2}"
+             temppath="C:${temppath:2}"
              temppath=$(echo $temppath | tr '/' '\\')
         fi
 
@@ -151,8 +157,6 @@ alias cb='cd -'
 #alias cdl='cd $(ls -dr ./*/ | head -1)' # enter last dir
 alias cdl='cd $(ls -t | head -1)'
 
-alias dl='cd ~/Downloads'
-alias desk='cd ~/Desktop'
 alias bin='cd ~/bin'
 alias www='cd /var/www/html/'
 
@@ -271,7 +275,7 @@ c () {
 
 o () {
 	echo "opening $(f $@)"
-	f -e xdg-open $@ & disown
+	f -e open $@ & disown
 }
 
 
@@ -285,11 +289,6 @@ alias wishlist='open https://docs.google.com/document/d/1GapiFZZXzOXmDn1hb6Uy4f_
 #ssh
 alias nuc='ssh -X marand@marand.dk'
 alias p10ssh='ssh rmp10@172.25.11.191'
-
-#globals
-export P10='rmp10@172.25.11.191'
-export P10_HOST='172.25.11.191'
-
 
 countdown(){
    date1=$((`date +%s` + $1)); 
