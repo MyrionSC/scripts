@@ -56,6 +56,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux
     alias dl='cd ~/Downloads'
     alias desk='cd ~/Desktop'
     alias xc='xclip -selection c' # example: pwd | xc
+    alias open='xdg-open'
 fi
 
 # misc stuff
@@ -66,7 +67,10 @@ alias unmount='fusermount -u' # first arg: mountdir
 alias rb='. ~/.bashrc'
 alias rbc='. ~/.bashrc'
 alias breset='. ~/.bashrc'
+alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
+alias bashdocs='cat ~/bin/bashdocs.txt'
+
 wordcount () {
 	echo $1 | wc --words -
 }
@@ -101,7 +105,6 @@ greps () {
 	grep -irn "$1" .
 }
 
-# TODO: Turn around slashes maybe (it is understood most of the time right now)
 winpath () {
 	if [ $# -eq 0 ] 
 	then
@@ -213,7 +216,7 @@ cpl () {
 	fi
 }
 ol () {
-	xdg-open $(lst)
+	open $(lst)
 }
 
 alias fori="for ((I=0;;I++)) do"
@@ -285,6 +288,7 @@ alias activities='open https://docs.google.com/document/d/1mKbc0Or2XXEoOD5FeBMuv
 alias career='open https://docs.google.com/document/d/191BaYenDZRrsV5F8JS0t0LbSyWddEC1dGhrqj7DGfkk/edit'
 alias friends='open https://docs.google.com/document/d/1MwawZDJWUjvCwoLIukIJlS-L3Czc9gCQTti04PZSLII/edit'
 alias wishlist='open https://docs.google.com/document/d/1GapiFZZXzOXmDn1hb6Uy4f_jUxMTnPr3b2jAlHL06ag/edit'
+alias work='open https://docs.google.com/spreadsheets/d/1Z-3PQJbS1fUwjIs86l6sh5ffAfT7gtQz6pg7tfYzE2I/edit'
 
 #ssh
 alias nuc='ssh -X marand@marand.dk'

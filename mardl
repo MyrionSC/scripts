@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+        echo Quickly download stuff from marand@marand.dk:/var/www/html/share.
+        echo First argument should be file or folder in share folder.
+        echo if first argument is '-l', download latest modified. 
+        exit
+fi
+
+HOST="marand@marand.dk"
+DIR="/var/www/html/share/"
+
+if [ "$1" == "-l" ]; then
+        LATEST=$(ssh $HOST "ls -tA $DIR | head -1")
+        rsync -avz "$HOST:$DIR$LATEST" .
+        exit 
+fi
+
+rsync -avz "$HOST:$DIR$1" .
+

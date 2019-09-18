@@ -43,6 +43,7 @@ filetype plugin indent on    " required
 
 " remap leader to space
 let mapleader = ' ' 
+inoremap jk <ESC>
 
 " finding files
 set path+=**
@@ -95,7 +96,8 @@ nnoremap Y y$
 set laststatus=2 " set permanent status bar (i hope)
 
 " use same clipboard, need addon download
-set clipboard=unnamedplus
+" set clipboard=unnamedplus "Linux
+set clipboard=unnamed "Mac
 
 " save bash shebang in register b. use @b to get it in vim
 let @b='i#!/usr/bin/env bashq'
