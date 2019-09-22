@@ -95,10 +95,6 @@ nnoremap Y y$
 
 set laststatus=2 " set permanent status bar (i hope)
 
-" use same clipboard, need addon download
-" set clipboard=unnamedplus "Linux
-set clipboard=unnamed "Mac
-
 " save bash shebang in register b. use @b to get it in vim
 let @b='i#!/usr/bin/env bashq'
 
@@ -131,58 +127,24 @@ cmap w!! w !sudo tee >/dev/null %
 let g:jedi#auto_initialization = 1
 
 
+" Custom operating system settings
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
 
-
-
-
-" Status line ------------------------------------------------------
-"set laststatus=2
-"
-"" Show (partial) command in the status line
-"set showcmd
-"
-"augroup ft_statuslinecolor
-"    au!
-"
-"    au InsertEnter * hi StatusLine ctermfg=196 guifg=#FF3145
-"    au InsertLeave * hi StatusLine ctermfg=130 guifg=#CD5907
-"augroup END
-"
-"set statusline=%f       " Path.
-"set statusline+=%m      " Modified flag.
-"set statusline+=%r      " Readonly flag.
-"set statusline+=%w      " Preview window flag
-"
-"set statusline+=\       " Space.
-"
-"set statusline+=%=   " Right align.
-"
-"" File format, encoding and type.  Ex: "(unix/utf-8/python)"
-"set statusline+=(
-"set statusline+=%{&ff}                        " Format (unix/DOS).
-"set statusline+=/
-"set statusline+=%{strlen(&fenc)?&fenc:&enc}   " Encoding (utf-8).
-"set statusline+=/
-"set statusline+=%{&ft}                        " Type (python).
-"set statusline+=)
-"
-"" Line and column position and counts.
-"set statusline+=\ (line\ %l\/%L,\ col\ %03c)
-
-
-
-
-" trying out some status lines
-"set statusline=   " clear the statusline for when vimrc is reloaded
-"set statusline+=%-3.3n\                      " buffer number
-"set statusline+=%f\                          " file name
-"set statusline+=%h%m%r%w                     " flags
-"set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
-"set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
-"set statusline+=%{&fileformat}]              " file format
-"set statusline+=%=                           " right align
-"set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
-"set statusline+=%b,0x%-8B\                   " current char
-"set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+if has("gui_running")
+    if g:os == "Darwin" # Macos
+        set clipboard=unnamed
+    elseif g:os == "Linux"
+        " use same clipboard, need addon download
+        set clipboard=unnamedplus
+    elseif g:os == "Windows"
+        set guifont=Fira_Mono:h12:cANSI
+    endif
+endif
 
 
