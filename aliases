@@ -47,16 +47,19 @@ if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
     alias dl='cd ~/Downloads'
     alias desk='cd ~/Desktop'
     alias xc='pbcopy'
+    alias xpaste='pbpaste'
 elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
     alias dl='cd /c/Users/$USER/Downloads'
     alias desk='cd /c/Users/$USER/Desktop'
     alias xc='clip' 
     alias open='start'
+    #alias xpaste='pbpaste' #todo: windows paste
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
     alias dl='cd ~/Downloads'
     alias desk='cd ~/Desktop'
     alias xc='xclip -selection c' # example: pwd | xc
     alias open='xdg-open'
+    alias xpaste='xclip -selection clipboard -o'
 fi
 
 # misc stuff

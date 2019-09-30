@@ -19,4 +19,11 @@ done
 [ ! $COND ] # false if $COND is true
 [ $COND1 && $COND2 ] # true if $COND1 and $COND2 is true
 [ $COND1 || $COND2 ] # true if either $COND1 or $COND2 is true
+[ "$#" -ne 1 ] # true if number of arguments not equal to 1
+[ "$#" -eq 1 ] # true if number of arguments equal to 1
+
+
+# arithmetic operators: -eq, -ne, -lt, -le, -gt, -ge
+
+
 
