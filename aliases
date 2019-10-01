@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # add following lines to ~/.bashrc:
 # if [ -f ~/bin/aliases ]; then
 #     . ~/bin/aliases
@@ -251,9 +253,6 @@ if [ -f ~/bin/git_aliases ]; then
 fi
 
 # drive aliases
-alias drivep='sudo drive push'
-alias drivel='sudo drive pull'
-
 alias eals='vim ~/bin/aliases'
 alias ebrc='vim ~/.bashrc'
 
@@ -334,4 +333,11 @@ rename_space_underscore() {
 		echo $arg renamed to: $(echo $arg | tr " " "_")
 	done
 }
+
+
+# commentor specific stuff
+alias com-wiki='vim ~/bin/commentor-wiki.txt'
+
+
+
 

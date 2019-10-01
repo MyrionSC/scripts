@@ -1,0 +1,16 @@
+
+--- sync onedrive to windows 
+1: go to https://logisticsas.sharepoint.com/sites/Commentor 
+2: click "Commentor" in left tab 
+3: click "Sync" in top bar
+
+
+--- get signature in outlook
+1: search for exclaimer
+2: log in
+3: restart outlook
+
+
+
+
+
