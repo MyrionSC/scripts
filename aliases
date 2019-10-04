@@ -146,7 +146,6 @@ cpf () {
 }
 
 alias linuxv='cat /etc/*-release'
-alias gs='echo fuckoff ghostscript'
 
 #docker
 alias dock-enter='docker exec -it todo bash'
