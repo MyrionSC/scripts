@@ -1,29 +1,29 @@
-" remember to make symlink to this file in home dir
-
-
-" from some video
+"-- simple options
 set nocompatible
 syntax on
-filetype off
+set relativenumber
+set number " show line numbers
+set showmatch " show matching item (like {})
+set nowrap " Turn off line wrapping.
+set scrolloff=7 " Show 7 lines of context around the cursor.
+set sidescrolloff=7
 set encoding=utf-8 " test this
-" filetype plugin on
+" finding files
+set path+=**
+set wildmenu
+
 
 
 " -------
 " PLUGINS
 " -------
 
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim	"required
 call vundle#begin()			"required
-
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'           "required
 
 Plugin 'tpope/vim-repeat'
-
-" python autocompletion
-Plugin 'davidhalter/jedi-vim'
 
 " add some plugins from https://www.youtube.com/watch?v=wlR5gYd6um0
 Plugin 'tpope/vim-surround'
@@ -34,35 +34,36 @@ Plugin 'tpope/vim-commentary'
 "    christommey/system-copy
 
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+" tab completion. Notice: Vim has to be compiled with python i think.
+Plugin 'SirVer/ultisnips' " engine
+Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
+Plugin 'ervandew/supertab' " tab completion in insert mode
+
+let g:SuperTabDefaultCompletionType    = '<C-n>'
+let g:SuperTabCrMapping                = 0
+let g:UltiSnipsExpandTrigger           = '<tab>'
+let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+
+
+" all vundle plugins must be added before this line
+call vundle#end()                       " required
+filetype plugin indent on               " required
 
 " -----------
 " PLUGINS END
 " -----------
 
+
 " remap leader to space
 let mapleader = ' ' 
 inoremap jk <ESC>
-
-" finding files
-set path+=**
-set wildmenu
 
 
 " prevents deleting / pasting over values from being entered in the register
 nnoremap d "_d
 xnoremap d "_d
 xnoremap p "_dP
-
-"-- simple options
-set relativenumber
-set number " show line numbers
-set showmatch " show matching item (like {})
-set nowrap " Turn off line wrapping.
-set scrolloff=7 " Show 7 lines of context around the cursor.
-set sidescrolloff=7
-
 
 " search
 set ignorecase
@@ -115,6 +116,23 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+
+" move lines with Ctrl + (Shift) +J/K
+nnoremap <C-j> :m +1<CR>
+nnoremap <C-k> :m -2<CR>
+inoremap <C-j> <Esc>:m +1<CR>gi
+inoremap <C-k> <Esc>:m -2<CR>gi
+vnoremap <C-j> :m '>+1<CR>gvgv
+vnoremap <C-k> :m '<-2<CR>gvgv
+
+
+" file operations
+nmap <C-l> :!ls .<CR>
+nmap <C-s> :w<CR>
+nmap <C-q> :q<CR>
+
+
+
 " replace last search team 
 nmap <C-s> :%s///gc<Left><Left><Left><Left>
 nnoremap <F3> :%s///gc<Left><Left><Left><Left>
@@ -124,7 +142,9 @@ cmap w!! w !sudo tee >/dev/null %
 
 
 " jedi-vim
-let g:jedi#auto_initialization = 1
+" let g:jedi#auto_initialization = 1
+
+
 
 
 " Custom operating system settings
@@ -136,15 +156,36 @@ if !exists("g:os")
     endif
 endif
 
-if has("gui_running")
-    if g:os == "Darwin" # Macos
-        set clipboard=unnamed
-    elseif g:os == "Linux"
-        " use same clipboard, need addon download
-        set clipboard=unnamedplus
-    elseif g:os == "Windows"
-        set guifont=Fira_Mono:h12:cANSI
-    endif
+" system clipboard
+if g:os == "Linux"
+   vmap <leader>y "+y
+   vmap <leader>d "+d
+   vmap <leader>p "+p
+   vmap <leader>P "+P
+   nmap <leader>y "+yy
+   nmap <leader>Y "+yy
+   nmap <leader>p "+p
+   nmap <leader>P "+P
+   nmap <leader>D "+d
+elseif g:os == "Darwin" " mac
+   vmap <leader>y "*y
+   vmap <leader>d "*d
+   vmap <leader>p "*p
+   vmap <leader>P "*P
+   nmap <leader>y "*yy
+   nmap <leader>Y "*yy
+   nmap <leader>p "*p
+   nmap <leader>P "*P
+   nmap <leader>D "*d
+elseif g:os == "Windows"
+   vmap <leader>y "*y
+   vmap <leader>d "*d
+   vmap <leader>p "*p
+   vmap <leader>P "*P
+   nmap <leader>y "*yy
+   nmap <leader>Y "*yy
+   nmap <leader>p "*p
+   nmap <leader>P "*P
+   nmap <leader>D "*d
 endif
-
 
