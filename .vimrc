@@ -37,13 +37,22 @@ Plugin 'tpope/vim-commentary'
 " tab completion. Notice: Vim has to be compiled with python i think.
 Plugin 'SirVer/ultisnips' " engine
 Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
-Plugin 'ervandew/supertab' " tab completion in insert mode
 
 let g:SuperTabDefaultCompletionType    = '<C-n>'
 let g:SuperTabCrMapping                = 0
+let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsExpandTrigger           = '<tab>'
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+let g:UltiSnipsListSnippets            = '<tab><space>'
+" let g:UltiSnipsExpandSnippetOrJump     = '<tab>'
+" let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+
+" custom snippets dir. Remember to make symlink to ~/bin/ultisnippets in .vim
+let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
+let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
+let g:UltiSnipsEditSplit               = 'vertical'
 
 
 " all vundle plugins must be added before this line
@@ -127,7 +136,7 @@ vnoremap <C-k> :m '<-2<CR>gvgv
 
 
 " file operations
-nmap <C-l> :!ls .<CR>
+" nmap <C-l> :!ls .<CR>
 nmap <C-s> :w<CR>
 nmap <C-q> :q<CR>
 
