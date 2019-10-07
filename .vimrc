@@ -141,7 +141,8 @@ vnoremap <C-k> :m '<-2<CR>gvgv
 nmap <C-s> :w<CR>
 nmap <C-q> :q<CR>
 
-
+" reformat command " TODO: set mark to return to same position
+command Reformat gg=G
 
 " replace last search team 
 nmap <C-s> :%s///gc<Left><Left><Left><Left>
