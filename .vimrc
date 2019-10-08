@@ -33,6 +33,9 @@ Plugin 'tpope/vim-commentary'
 "    christoomey/sort-motion
 "    christommey/system-copy
 
+" js beautify
+Plugin 'maksimr/vim-jsbeautify'
+
 Plugin 'ervandew/supertab' " tab completion in insert mode
 
 " tab completion. Notice: Vim has to be compiled with python i think.
