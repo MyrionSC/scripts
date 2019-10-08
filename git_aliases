@@ -155,3 +155,8 @@ grmtgi () {
 	git rm --cached `git ls-files -i --exclude-from=.gitignore`
 }
 
+# Find out which pattern / .gitignore file is ignoring a file
+#git check-ignore -v <some-ignored-file> 
+
+
+

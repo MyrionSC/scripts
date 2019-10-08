@@ -323,7 +323,9 @@ gsearch() {
 		google-chrome "https://www.google.com/search?q=$(echo $1 | tr ' ' '+')"
 	fi
 }
-
+simpleserver(){
+        python -m SimpleHTTPServer $1
+}
 # replace space in file names with underscore
 rename_space_underscore() {
 	for arg in "$@"
