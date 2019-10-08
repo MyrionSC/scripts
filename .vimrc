@@ -11,7 +11,7 @@ set encoding=utf-8 " test this
 " finding files
 set path+=**
 set wildmenu
-
+set backspace=indent,eol,start
 
 
 " -------
@@ -143,6 +143,17 @@ nmap <C-q> :q<CR>
 
 " reformat command " TODO: set mark to return to same position
 command Reformat gg=G
+
+" Simple re-format for minified Javascript
+command! UnMinify call UnMinify()
+function! UnMinify()
+    %s/{\ze[^\r\n]/{\r/g
+    %s/){/) {/g
+    %s/};\?\ze[^\r\n]/\0\r/g
+    %s/;\ze[^\r\n]/;\r/g
+    %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
+    normal ggVG=
+endfunction
 
 " replace last search team 
 nmap <C-s> :%s///gc<Left><Left><Left><Left>
