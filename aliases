@@ -75,6 +75,7 @@ alias breset='. ~/.bashrc'
 alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
 alias bashdocs='cat ~/bin/bashdocs.txt'
+alias mddocs='vim ~/bin/Markdown-Cheatsheet.md'
 
 wordcount () {
 	echo $1 | wc --words -
