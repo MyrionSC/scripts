@@ -50,7 +50,7 @@ Plugin 'tpope/vim-commentary'
 "    christoomey/sort-motion
 "    christommey/system-copy
 
-Plugin 'ntpeters/vim-better-whitespace' " highlight trailing whitespace (:StripWhitespace to remove) 
+Plugin 'ntpeters/vim-better-whitespace' " highlight trailing whitespace (:StripWhitespace to remove)
 Plugin 'maksimr/vim-jsbeautify' " jsformatting (maybe delete after a while)
 Plugin 'ervandew/supertab' " tab completion in insert mode
 
@@ -85,7 +85,7 @@ filetype plugin indent on               " required
 
 
 " remap leader to space
-let mapleader = ' ' 
+let mapleader = ' '
 inoremap jk <ESC>
 inoremap kj <ESC>
 vnoremap jk <ESC>
@@ -129,12 +129,11 @@ imap <C-e> <Esc>`^ei
 
 " windows
 set splitbelow splitright
-" nagigate in windows with ctrl-hjkl
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
+" navigate in windows with ctrl-hjkl
+" map <C-h> <C-w>h
+" map <C-j> <C-w>j
+" map <C-k> <C-w>k
+" map <C-l> <C-w>l
 
 " move lines with Ctrl + (Shift) +J/K
 nnoremap <C-j> :m +1<CR>
@@ -146,9 +145,9 @@ vnoremap <C-k> :m '<-2<CR>gvgv
 
 
 " file operations
-" nmap <C-l> :!ls .<CR>
-nmap <C-s> :w<CR>
-nmap <C-q> :q<CR>
+nmap <C-l> @:
+" nmap <C-w> :w<CR>
+" map <C-q> :q<CR>
 
 " reformat command " TODO: set mark to return to same position
 command Reformat gg=G
@@ -164,9 +163,9 @@ function! UnMinify()
     normal ggVG=
 endfunction
 
-" replace last search team 
-nmap <C-s> :%s///gc<Left><Left><Left><Left>
-nnoremap <F3> :%s///gc<Left><Left><Left><Left>
+" replace last search team
+" nmap <C-s> :%s///gc<Left><Left><Left><Left>
+" nnoremap <F3> :%s///gc<Left><Left><Left><Left>
 
 " save readonly file changes
 cmap w!! w !sudo tee >/dev/null %
