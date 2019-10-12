@@ -12,7 +12,24 @@ set encoding=utf-8 " test this
 set path+=**
 set wildmenu
 set backspace=indent,eol,start
+filetype plugin indent on
 
+" search set ignorecase
+set smartcase
+set incsearch " search highlight
+set wrapscan
+
+" Tabs and indentation.
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set expandtab
+" set autoindent
+" set smartindent
+
+
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=1024
 
 " -------
 " PLUGINS
@@ -33,9 +50,8 @@ Plugin 'tpope/vim-commentary'
 "    christoomey/sort-motion
 "    christommey/system-copy
 
-" js beautify
-Plugin 'maksimr/vim-jsbeautify'
-
+Plugin 'ntpeters/vim-better-whitespace' " highlight trailing whitespace (:StripWhitespace to remove) 
+Plugin 'maksimr/vim-jsbeautify' " jsformatting (maybe delete after a while)
 Plugin 'ervandew/supertab' " tab completion in insert mode
 
 " tab completion. Notice: Vim has to be compiled with python i think.
@@ -71,6 +87,9 @@ filetype plugin indent on               " required
 " remap leader to space
 let mapleader = ' ' 
 inoremap jk <ESC>
+inoremap kj <ESC>
+vnoremap jk <ESC>
+vnoremap kj <ESC>
 
 
 " prevents deleting / pasting over values from being entered in the register
@@ -78,21 +97,8 @@ nnoremap d "_d
 xnoremap d "_d
 xnoremap p "_dP
 
-" search
-set ignorecase
-set smartcase
-set incsearch " search highlight
-set wrapscan
-
-" Tabs and indentation.
-set expandtab
-set autoindent
-set smartindent
-
-
-" Syntax coloring lines that are too long just slows down the world
-set synmaxcol=1024
-
+" cut into vim default register
+nnoremap X ""D
 
 " When editing a file, always jump to the last known cursor position.
 autocmd BufReadPost *
@@ -192,6 +198,7 @@ if g:os == "Linux"
    nmap <leader>p "+p
    nmap <leader>P "+P
    nmap <leader>D "+d
+   nmap <leader>X "+D
 elseif g:os == "Darwin" " mac
    vmap <leader>y "*y
    vmap <leader>d "*d
@@ -202,6 +209,7 @@ elseif g:os == "Darwin" " mac
    nmap <leader>p "*p
    nmap <leader>P "*P
    nmap <leader>D "*d
+   nmap <leader>X "*D
 elseif g:os == "Windows"
    vmap <leader>y "*y
    vmap <leader>d "*d
@@ -212,5 +220,6 @@ elseif g:os == "Windows"
    nmap <leader>p "*p
    nmap <leader>P "*P
    nmap <leader>D "*d
+   nmap <leader>X "*D
 endif
 
