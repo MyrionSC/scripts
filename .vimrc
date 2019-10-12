@@ -210,7 +210,7 @@ elseif g:os == "Darwin" " mac
    nmap <leader>P "*P
    nmap <leader>D "*d
    nmap <leader>X "*D
-elseif g:os == "Windows"
+elseif g:os == "MSYS_NT-10.0-18362"
    vmap <leader>y "*y
    vmap <leader>d "*d
    vmap <leader>p "*p

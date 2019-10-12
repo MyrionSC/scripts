@@ -43,6 +43,7 @@ alias nre='npm run env'
 
 alias df='df -Th'
 alias writer='lowriter'
+alias work='cd ~/work'
 
 # platform specific stuff
 if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
@@ -74,7 +75,11 @@ alias rbc='. ~/.bashrc'
 alias breset='. ~/.bashrc'
 alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
-alias bashdocs='cat ~/bin/bashdocs.txt'
+
+# documentation
+alias bashdocs='cat ~/bin/docs/bashdocs.txt'
+alias mddocs='vim ~/bin/docs/Markdown-Cheatsheet.md'
+alias jqdocs='vim ~/bin/docs/jqdocs.txt'
 
 wordcount () {
 	echo $1 | wc --words -
@@ -289,7 +294,7 @@ alias activities='open https://docs.google.com/document/d/1mKbc0Or2XXEoOD5FeBMuv
 alias career='open https://docs.google.com/document/d/191BaYenDZRrsV5F8JS0t0LbSyWddEC1dGhrqj7DGfkk/edit'
 alias friends='open https://docs.google.com/document/d/1MwawZDJWUjvCwoLIukIJlS-L3Czc9gCQTti04PZSLII/edit'
 alias wishlist='open https://docs.google.com/document/d/1GapiFZZXzOXmDn1hb6Uy4f_jUxMTnPr3b2jAlHL06ag/edit'
-alias work='open https://docs.google.com/spreadsheets/d/1Z-3PQJbS1fUwjIs86l6sh5ffAfT7gtQz6pg7tfYzE2I/edit'
+alias hours='open https://docs.google.com/spreadsheets/d/1Z-3PQJbS1fUwjIs86l6sh5ffAfT7gtQz6pg7tfYzE2I/edit'
 
 #ssh
 alias nuc='ssh -X marand@marand.dk'
