@@ -174,8 +174,8 @@ cmap w!! w !sudo tee >/dev/null %
 " jedi-vim
 " let g:jedi#auto_initialization = 1
 
-
-
+" ctags keybind
+nmap <leader>T :!ctags -R -f ./.git/tags .<CR><CR>
 
 " Custom operating system settings
 if !exists("g:os")
