@@ -86,11 +86,14 @@ filetype plugin indent on               " required
 
 " remap leader to space
 let mapleader = ' '
+
+" edit vimrc from vim
+nmap <leader>v :tabe ~/.vimrc<CR>
+autocmd bufwritepost .vimrc source ~/.vimrc
+
+" exit insert mode from homebar
 inoremap jk <ESC>
 inoremap kj <ESC>
-vnoremap jk <ESC>
-vnoremap kj <ESC>
-
 
 " prevents deleting / pasting over values from being entered in the register
 nnoremap d "_d
@@ -175,7 +178,14 @@ cmap w!! w !sudo tee >/dev/null %
 " let g:jedi#auto_initialization = 1
 
 " ctags keybind
-nmap <leader>T :!ctags -R -f ./.git/tags .<CR><CR>
+set tags=./.git/tags
+nmap <leader>T :!ctags -R .<CR><CR>
+
+" todo: test Ctrlp
+" nnoremap <leader>. :CtrlPTag<cr>
+
+" todo: test Tagbar
+" nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 " Custom operating system settings
 if !exists("g:os")
