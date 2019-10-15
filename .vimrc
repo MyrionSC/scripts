@@ -167,7 +167,7 @@ cmap w!! w !sudo tee >/dev/null %
 " let g:jedi#auto_initialization = 1
 
 " ctags keybind
-set tags=./.git/tags
+set tags=.git/tags,tags
 nmap <leader>T :!ctags -R .<CR><CR>
 
 " todo: test Ctrlp
