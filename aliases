@@ -4,9 +4,11 @@
 # if [ -f ~/bin/aliases ]; then
 #     . ~/bin/aliases
 # fi
-#if [ -f ~/bin/.autocompletion.sh ]; then
-#    . ~/bin/.autocompletion.sh
-#fi
+
+# Autocompletion
+if [ -f ~/bin/.autocomplete.sh ]; then
+    . ~/bin/.autocomplete.sh
+fi
 
 PATH=$PATH:~/bin
 
