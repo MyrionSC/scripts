@@ -80,7 +80,7 @@ alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
 
 # documentation
-alias bashdocs='cat ~/bin/docs/bashdocs.txt'
+alias bashdocs='vim ~/bin/docs/bashdocs.txt'
 alias mddocs='vim ~/bin/docs/Markdown-Cheatsheet.md'
 alias jqdocs='vim ~/bin/docs/jqdocs.txt'
 

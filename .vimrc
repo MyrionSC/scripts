@@ -50,6 +50,8 @@ Plugin 'tpope/vim-commentary'
 "    christoomey/sort-motion
 "    christommey/system-copy
 
+Plugin 'valloric/MatchTagAlways' " highlight html tags
+
 Plugin 'ntpeters/vim-better-whitespace' " highlight trailing whitespace (:StripWhitespace to remove)
 Plugin 'maksimr/vim-jsbeautify' " jsformatting (maybe delete after a while)
 Plugin 'ervandew/supertab' " tab completion in insert mode

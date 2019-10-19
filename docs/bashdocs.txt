@@ -2,12 +2,20 @@
 # ----- if
 if [ $COND ]; then
         # code
-else 
+else
         # code
 fi
 
+
+# ------ for
+for (( c=1; c<=5; c++ ))
+do
+   echo "Welcome $c times"
+done
+
+
 # ----- foreach
-for file in * 
+for file in *
 do
   echo "$file"
 done
@@ -15,7 +23,7 @@ done
 # ----- common conditionals
 [ -n "$1" ] # true if arg1 exists
 [ -z "$1" ] # true if arg1 does not exist
-[ "$1" == "first" ] # true if arg1 equals the string "first" 
+[ "$1" == "first" ] # true if arg1 equals the string "first"
 [ ! $COND ] # false if $COND is true
 [ $COND1 && $COND2 ] # true if $COND1 and $COND2 is true
 [ $COND1 || $COND2 ] # true if either $COND1 or $COND2 is true
@@ -24,6 +32,17 @@ done
 
 
 # arithmetic operators: -eq, -ne, -lt, -le, -gt, -ge
+
+
+
+
+
+
+
+# ------ entr (filewatch command runner)
+# cat file.txt every time it changes (-c clear console, -p postpone execution)
+ls file.txt | entr -cp cat /_
+
 
 
 

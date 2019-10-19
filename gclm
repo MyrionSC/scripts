@@ -3,18 +3,24 @@
 if [ -z "$1" ]; then
 	echo "Argument 1 needs to be a git repo"
 	echo ""
-	echo "Following git repos are available:"
-	echo "todo"
-	echo "wi-crawler"
-	echo "starcraft-judication"
-	echo "ang2-ts-server"
-	echo "scripts"
-	echo "diceroller"
-	echo "nih-status"
-	echo "redrain"
-	echo "Uni"
-	echo "foundafunny"
-        exit
+    echo "devops-migration"
+    echo "starcraft-judication"
+    echo "todo"
+    echo "P10"
+    echo "games"
+    echo "parallel-and-multicore-computing"
+    echo "sml-assignment-2"
+    echo "Uni"
+    echo "sml-assignment-1"
+    echo "solid-state-drive"
+    echo "foundafunny"
+    echo "diceroller"
+    echo "redrain"
+    echo "wi-crawler"
+    echo "ang2-ts-server"
+    echo "scoreboard"
+    echo "nih-status"
+    exit
 fi
 
 git clone git@github.com:MyrionSC/$1.git
