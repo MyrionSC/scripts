@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ $# -eq 0 ]
+then
+    ls ~/bin/documentation
+else
+    vim ~/bin/documentation/$1
+fi
+

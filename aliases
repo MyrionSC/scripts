@@ -4,11 +4,11 @@
 # if [ -f ~/bin/aliases ]; then
 #     . ~/bin/aliases
 # fi
+#if [ -f ~/bin/.autocompletion.sh ]; then
+#    . ~/bin/.autocompletion.sh
+#fi
 
 PATH=$PATH:~/bin
-
-# apt list "searchterm" - list all packagenames containing <searchterm>
-# apt show pckgname - shows information about a package
 
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
@@ -32,7 +32,7 @@ ali () {
 	apt list --installed "*$1*"
 }
 alias ase='apt search'
-alias ash='apt show'
+alias ash='apt show' # apt show pckgname - shows information about a package
 alias av='apt-cache policy'
 
 alias ni='npm install'
@@ -78,11 +78,6 @@ alias rbc='. ~/.bashrc'
 alias breset='. ~/.bashrc'
 alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
-
-# documentation
-alias bashdocs='vim ~/bin/docs/bashdocs.txt'
-alias mddocs='vim ~/bin/docs/Markdown-Cheatsheet.md'
-alias jqdocs='vim ~/bin/docs/jqdocs.txt'
 
 wordcount () {
 	echo $1 | wc --words -
@@ -241,8 +236,6 @@ ol () {
 }
 
 alias fori="for ((I=0;;I++)) do"
-
-
 alias vars='ls ~/bin/vars'
 
 als () {
@@ -312,6 +305,7 @@ alias hours='open https://docs.google.com/spreadsheets/d/1Z-3PQJbS1fUwjIs86l6sh5
 alias nuc='ssh -X marand@marand.dk'
 alias p10ssh='ssh rmp10@172.25.11.191'
 
+# shell timers
 countdown(){
    date1=$((`date +%s` + $1));
    while [ "$date1" -ge `date +%s` ]; do
@@ -326,7 +320,6 @@ stopwatch(){
     sleep 0.1
    done
 }
-
 alarm(){
 	countdown $1 && open ~/bin/alarm.wav
 }
@@ -340,9 +333,12 @@ gsearch() {
 		google-chrome "https://www.google.com/search?q=$(echo $1 | tr ' ' '+')"
 	fi
 }
+
+# start static file httpserver in current dir. Arg1: port
 simpleserver(){
         python3 -m http.server $1
 }
+
 # replace space in file names with underscore
 rename_space_underscore() {
 	for arg in "$@"
@@ -351,11 +347,6 @@ rename_space_underscore() {
 		echo $arg renamed to: $(echo $arg | tr " " "_")
 	done
 }
-
-
-# commentor specific stuff
-alias com-wiki='vim ~/bin/commentor-wiki.txt'
-
 
 
 
