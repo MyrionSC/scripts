@@ -12,6 +12,9 @@ fi
 
 PATH=$PATH:~/bin
 
+export NUC=marand@marand.dk
+export WEB=/var/www/html
+
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
 
@@ -72,7 +75,7 @@ fi
 
 # misc stuff
 alias cmux='sudo chmod u+x'
-alias rsy='rsync -avzP'
+alias rsync='rsync -arvzP'
 alias drivemount='google-drive-ocamlfuse' # first arg: mountdir
 alias unmount='fusermount -u' # first arg: mountdir
 alias rb='. ~/.bashrc'

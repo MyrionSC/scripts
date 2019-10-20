@@ -150,12 +150,12 @@ vnoremap <C-k> :m '<-2<CR>gvgv
 
 
 " file operations
-nmap <C-l> @:
+" nmap <C-l> @:
 " nmap <C-w> :w<CR>
 " map <C-q> :q<CR>
 
 " reformat command " TODO: set mark to return to same position
-command Reformat gg=G
+" command Reformat gg=G
 
 " replace last search team
 " nmap <C-s> :%s///gc<Left><Left><Left><Left>
@@ -222,4 +222,11 @@ elseif g:os == "MSYS_NT-10.0-18362"
    nmap <leader>D "*d
    nmap <leader>X "*D
 endif
+
+" Execute macros over multiple visual lines
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
