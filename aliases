@@ -62,6 +62,7 @@ elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
     alias desk='cd /c/Users/$USER/Desktop'
     alias xc='clip'
     alias open='start'
+    alias ln='echo "use cmd //c mklink"'
     dl=~/c/Users/mar/Downloads
     #alias xpaste='pbpaste' #todo: windows paste
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!

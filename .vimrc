@@ -100,6 +100,8 @@ inoremap kj <ESC>
 " prevents deleting / pasting over values from being entered in the register
 nnoremap d "_d
 xnoremap d "_d
+nnoremap D "_D
+xnoremap D "_D
 xnoremap p "_dP
 
 " cut into vim default register
@@ -148,6 +150,8 @@ inoremap <C-k> <Esc>:m -2<CR>gi
 vnoremap <C-j> :m '>+1<CR>gvgv
 vnoremap <C-k> :m '<-2<CR>gvgv
 
+" insert four space
+inoremap <leader><tab> <space><space><space><space>
 
 " file operations
 " nmap <C-l> @:
@@ -194,7 +198,7 @@ if g:os == "Linux"
    vmap <leader>p "+p
    vmap <leader>P "+P
    nmap <leader>y "+yy
-   nmap <leader>Y "+yy
+   nmap <leader>Y vf$"+y
    nmap <leader>p "+p
    nmap <leader>P "+P
    nmap <leader>D "+d
@@ -205,7 +209,7 @@ elseif g:os == "Darwin" " mac
    vmap <leader>p "*p
    vmap <leader>P "*P
    nmap <leader>y "*yy
-   nmap <leader>Y "*yy
+   nmap <leader>Y vf$"*y
    nmap <leader>p "*p
    nmap <leader>P "*P
    nmap <leader>D "*d
@@ -216,7 +220,7 @@ elseif g:os == "MSYS_NT-10.0-18362"
    vmap <leader>p "*p
    vmap <leader>P "*P
    nmap <leader>y "*yy
-   nmap <leader>Y "*yy
+   nmap <leader>Y vf$"*y
    nmap <leader>p "*p
    nmap <leader>P "*P
    nmap <leader>D "*d
