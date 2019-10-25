@@ -7,12 +7,8 @@ _docs_completion='$(ls ~/bin/documentation)'
 complete -W "${_docs_completion}" 'docs'
 
 # mardl (note: only gets what was in marand:/var/www/html/share when opening shell)
-_mardl_completion=$(ssh marand@marand.dk "ls -tA /var/www/html/share")
-complete -W "${_mardl_completion}" 'mardl'
-
-
-
-
+#_mardl_completion=$(ssh marand@marand.dk "ls -tA /var/www/html/share")
+#complete -W "${_mardl_completion}" 'mardl'
 
 # to add have normal bash options as well:
 #complete -W "${options}" -o bashdefault -o default 'scriptname'
