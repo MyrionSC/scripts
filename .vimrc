@@ -14,6 +14,20 @@ set wildmenu
 set backspace=indent,eol,start
 filetype plugin indent on
 
+" Ignore certain files and folders when globbing
+set wildignore+=*.o,*.obj,*.bin,*.dll,*.exe
+set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**
+set wildignore+=*.jpg,*.png,*.jpeg,*.gif,*.bmp,*.tiff
+set wildignore+=*.pyc
+set wildignore+=*.DS_Store
+set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
+
+" Ask for confirmation when handling unsaved or read-only files
+set confirm
+
+" Do not use visual and error bells
+set novisualbell noerrorbells
+
 " search set ignorecase
 set smartcase
 set incsearch " search highlight
@@ -21,11 +35,24 @@ set wrapscan
 
 " Tabs and indentation.
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
-set expandtab
 set expandtab
 " set autoindent
 " set smartindent
+
+" Set matching pairs of characters and highlight matching brackets
+set matchpairs+=<:>
+
+" Break line at predefined characters
+set linebreak
+" Character to show before the lines that have been soft-wrapped
+set showbreak=↪
+
+" Do not add two space after a period when joining lines or formatting texts,
+" see https://tinyurl.com/y3yy9kov
+set nojoinspaces
+
 
 
 " Syntax coloring lines that are too long just slows down the world
@@ -113,6 +140,9 @@ autocmd BufReadPost *
       \   exe "normal! g`\"" |
       \ endif
 
+" set folder for .swp files (has to be created manually)
+set backupdir=~/.vim/backup
+
 " Go to first and last char of current line easier
 noremap H ^
 noremap L $
@@ -141,6 +171,14 @@ set splitbelow splitright
 " map <C-j> <C-w>j
 " map <C-k> <C-w>k
 " map <C-l> <C-w>l
+
+" Resize windows using <Alt> and h,j,k,l, inspiration from
+" https://goo.gl/vVQebo (bottom page).
+" If you enable mouse support, shorcuts below may not be necessary.
+nnoremap <silent> <M-h> <C-w><
+nnoremap <silent> <M-l> <C-w>>
+nnoremap <silent> <M-j> <C-W>-
+nnoremap <silent> <M-k> <C-W>+
 
 " move lines with Ctrl + (Shift) +J/K
 nnoremap <C-j> :m +1<CR>
@@ -173,7 +211,7 @@ cmap w!! w !sudo tee >/dev/null %
 " let g:jedi#auto_initialization = 1
 
 " ctags keybind
-set tags=.git/tags,tags
+set tags=tags
 nmap <leader>T :!ctags -R .<CR><CR>
 
 " todo: test Ctrlp
@@ -191,10 +229,14 @@ if !exists("g:os")
     endif
 endif
 
+" use system clipboard multiplatform
+"set clipboard^=unnamed,unnamedplus
+
 " system clipboard
 if g:os == "Linux"
    vmap <leader>y "+y
    vmap <leader>d "+d
+   vmap <leader>x "+x
    vmap <leader>p "+p
    vmap <leader>P "+P
    nmap <leader>y "+yy
@@ -206,6 +248,7 @@ if g:os == "Linux"
 elseif g:os == "Darwin" " mac
    vmap <leader>y "*y
    vmap <leader>d "*d
+   vmap <leader>x "*x
    vmap <leader>p "*p
    vmap <leader>P "*P
    nmap <leader>y "*yy
@@ -217,6 +260,7 @@ elseif g:os == "Darwin" " mac
 elseif g:os == "MSYS_NT-10.0-18362"
    vmap <leader>y "*y
    vmap <leader>d "*d
+   vmap <leader>x "*x
    vmap <leader>p "*p
    vmap <leader>P "*P
    nmap <leader>y "*yy
@@ -233,4 +277,84 @@ function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+
+" Display a message when the current file is not in utf-8 format.
+" Note that we need to use `unsilent` command here because of this issue:
+" https://github.com/vim/vim/issues/4379
+augroup non_utf8_file_warn
+    autocmd!
+    autocmd BufRead * if &fileencoding != 'utf-8'
+                \ | unsilent echomsg 'File not in UTF-8 format!' | endif
+augroup END
+
+
+
+let g:currentmode={
+       \ 'n'  : 'NORMAL ',
+       \ 'no' : 'N·Operator Pending ',
+       \ 'v'  : 'VISUAL ',
+       \ 'V'  : 'V·Line ',
+       \ '' : 'V·Block ',
+       \ 'i'  : 'INSERT ',
+       \ 'R'  : 'R ',
+       \ 'Rv' : 'V·Replace ',
+       \ 'c'  : 'Command ',
+       \ 'cv' : 'Vim Ex ',
+       \ 'ce' : 'Ex ',
+       \ 'r'  : 'Prompt ',
+       \ 'rm' : 'More ',
+       \ 'r?' : 'Confirm ',
+       \ '!'  : 'Shell ',
+       \ 't'  : 'Terminal '
+       \}
+
+set statusline=
+set statusline+=\ %{toupper(g:currentmode[mode()])}   " Current mode
+set statusline+=\|
+
+" Truncate line here
+set statusline+=\ %<
+
+" File path, as typed or relative to current directory
+set statusline+=%f
+
+set statusline+=\ %{&modified?'[+]':''}
+set statusline+=%{&readonly?'[]':''}
+
+set statusline+=%{&spell?'[SPELL]':''}
+set statusline+=%#WarningMsg#
+set statusline+=%{&paste?'[PASTE]':''}
+set statusline+=%*
+
+" Separation point between left and right aligned items
+set statusline+=%=
+
+set statusline+=%-5{&filetype!=#''?&filetype:'none'}
+
+" Encoding & Fileformat
+set statusline+=%#WarningMsg#
+set statusline+=%{&fileencoding!='utf-8'?'['.&fileencoding.']':''}
+set statusline+=%*
+
+set statusline+=[%{&fileformat}]
+
+" Warning about byte order
+set statusline+=%#WarningMsg#
+set statusline+=%{&bomb?'[BOM]':''}
+set statusline+=%*
+
+" Location of cursor line
+set statusline+=\ [%l/%L\ %2p%%]
+
+" Column number
+set statusline+=\ col:%3c
+
+highlight StatusLine ctermfg=2
+
+
+
+
+
+
+
 
