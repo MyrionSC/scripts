@@ -34,10 +34,10 @@ set incsearch " search highlight
 set wrapscan
 
 " Tabs and indentation.
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+" set tabstop=4
+" set softtabstop=4
+" set shiftwidth=4
+" set expandtab
 " set autoindent
 " set smartindent
 
@@ -53,10 +53,12 @@ set showbreak=↪
 " see https://tinyurl.com/y3yy9kov
 set nojoinspaces
 
-
-
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1024
+
+" remap leader to space
+let mapleader = ' '
+
 
 " -------
 " PLUGINS
@@ -79,29 +81,40 @@ Plugin 'tpope/vim-commentary'
 
 Plugin 'valloric/MatchTagAlways' " highlight html tags
 
+" navigate filesystem in vim
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+cmap nt NERDTree
+
+" fuzzy search
+Plugin 'ctrlpvim/ctrlp.vim'
+
 Plugin 'ntpeters/vim-better-whitespace' " highlight trailing whitespace (:StripWhitespace to remove)
 Plugin 'maksimr/vim-jsbeautify' " jsformatting (maybe delete after a while)
+
 Plugin 'ervandew/supertab' " tab completion in insert mode
-
-" tab completion. Notice: Vim has to be compiled with python i think.
-Plugin 'SirVer/ultisnips' " engine
-Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
-
 let g:SuperTabDefaultCompletionType    = '<C-n>'
 let g:SuperTabCrMapping                = 0
-let g:UltiSnipsExpandTrigger="<tab>"
+nmap <leader>f :CtrlP<CR>
+nmap <leader>b :CtrlBuffer<CR>
+
+" Snippets! Notice: Vim has to be compiled with python i think.
+Plugin 'SirVer/ultisnips' " snippets engine
+Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
+
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsExpandTrigger           = '<tab>'
-let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-let g:UltiSnipsListSnippets            = '<tab><space>'
+
+" let g:UltiSnipsExpandTrigger           = '<tab>'
+" let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+" let g:UltiSnipsListSnippets             = '<tab><space>'
 " let g:UltiSnipsExpandSnippetOrJump     = '<tab>'
 " let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 
 " custom snippets dir. Remember to make symlink to ~/bin/ultisnippets in .vim
-let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
-let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
-let g:UltiSnipsEditSplit               = 'vertical'
+" let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
+" let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
+" let g:UltiSnipsEditSplit               = 'vertical'
 
 
 " all vundle plugins must be added before this line
@@ -113,8 +126,8 @@ filetype plugin indent on               " required
 " -----------
 
 
-" remap leader to space
-let mapleader = ' '
+" print buffers and prepare to go to one
+nnoremap gb :ls<cr>:b<space>
 
 " edit vimrc from vim
 nmap <leader>v :tabe ~/.vimrc<CR>
@@ -141,7 +154,10 @@ autocmd BufReadPost *
       \ endif
 
 " set folder for .swp files (has to be created manually)
-set backupdir=~/.vim/backup
+" set backupdir=/home/mar/.vim/backup
+set backupdir=/tmp//
+set directory=/tmp//
+set undodir=/tmp//
 
 " Go to first and last char of current line easier
 noremap H ^
@@ -157,7 +173,8 @@ let @b='i#!/usr/bin/env bashq'
 
 " Useful shortcuts
 "- Delete word undercursor in insert mode
-:imap <C-d> <C-[>diwi
+" imap <C-d> <C-[>diwi
+inoremap <C-d> <C-[>diwi
 
 "- Insert Mode Movement
 imap <C-b> <Esc>`^bi
@@ -189,7 +206,7 @@ vnoremap <C-j> :m '>+1<CR>gvgv
 vnoremap <C-k> :m '<-2<CR>gvgv
 
 " insert four space
-inoremap <leader><tab> <space><space><space><space>
+" inoremap <leader><tab> <space><space><space><space>
 
 " file operations
 " nmap <C-l> @:
@@ -205,7 +222,6 @@ inoremap <leader><tab> <space><space><space><space>
 
 " save readonly file changes
 cmap w!! w !sudo tee >/dev/null %
-
 
 " jedi-vim
 " let g:jedi#auto_initialization = 1
@@ -353,8 +369,8 @@ highlight StatusLine ctermfg=2
 
 
 
-
-
-
-
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 
