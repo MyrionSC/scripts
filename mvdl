@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then
+    dl=/c/Users/mar/Downloads
+else
+    dl=~/Downloads
+fi
+
+if [ $# -eq 0 ]; then
+    ls -t $dl | sed "s/ /\\\ /" | head -1 | sed "s|^|$dl/|" | xargs -I {} mv -v {} .   #statements
+else
+    ls -t $dl | sed "s/ /\\\ /" | head -$1 | sed "s|^|$dl/|" | xargs -I {} mv -v {} .   #statements
+fi
+
