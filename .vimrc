@@ -79,6 +79,11 @@ Plugin 'tpope/vim-commentary'
 "    christoomey/sort-motion
 "    christommey/system-copy
 
+" typescript highlighting
+Plugin 'leafgarland/typescript-vim'
+autocmd BufNewFile,BufRead *.ts  set filetype=typescript
+autocmd BufNewFile,BufRead *.tsx setfiletype typescript
+
 Plugin 'valloric/MatchTagAlways' " highlight html tags
 
 " navigate filesystem in vim
