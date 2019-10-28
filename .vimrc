@@ -14,22 +14,51 @@ set wildmenu
 set backspace=indent,eol,start
 filetype plugin indent on
 
+" Ignore certain files and folders when globbing
+set wildignore+=*.o,*.obj,*.bin,*.dll,*.exe
+set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**
+set wildignore+=*.jpg,*.png,*.jpeg,*.gif,*.bmp,*.tiff
+set wildignore+=*.pyc
+set wildignore+=*.DS_Store
+set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
+
+" Ask for confirmation when handling unsaved or read-only files
+set confirm
+
+" Do not use visual and error bells
+set novisualbell noerrorbells
+
 " search set ignorecase
 set smartcase
 set incsearch " search highlight
 set wrapscan
 
 " Tabs and indentation.
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set expandtab
+" set tabstop=4
+" set softtabstop=4
+" set shiftwidth=4
+" set expandtab
 " set autoindent
 " set smartindent
 
+" Set matching pairs of characters and highlight matching brackets
+set matchpairs+=<:>
+
+" Break line at predefined characters
+set linebreak
+" Character to show before the lines that have been soft-wrapped
+set showbreak=↪
+
+" Do not add two space after a period when joining lines or formatting texts,
+" see https://tinyurl.com/y3yy9kov
+set nojoinspaces
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1024
+
+" remap leader to space
+let mapleader = ' '
+
 
 " -------
 " PLUGINS
@@ -50,31 +79,47 @@ Plugin 'tpope/vim-commentary'
 "    christoomey/sort-motion
 "    christommey/system-copy
 
+" typescript highlighting
+Plugin 'leafgarland/typescript-vim'
+autocmd BufNewFile,BufRead *.ts  set filetype=typescript
+autocmd BufNewFile,BufRead *.tsx setfiletype typescript
+
 Plugin 'valloric/MatchTagAlways' " highlight html tags
+
+" navigate filesystem in vim
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+cmap nt NERDTree
+
+" fuzzy search
+Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'ntpeters/vim-better-whitespace' " highlight trailing whitespace (:StripWhitespace to remove)
 Plugin 'maksimr/vim-jsbeautify' " jsformatting (maybe delete after a while)
+
 Plugin 'ervandew/supertab' " tab completion in insert mode
-
-" tab completion. Notice: Vim has to be compiled with python i think.
-Plugin 'SirVer/ultisnips' " engine
-Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
-
 let g:SuperTabDefaultCompletionType    = '<C-n>'
 let g:SuperTabCrMapping                = 0
-let g:UltiSnipsExpandTrigger="<tab>"
+nmap <leader>f :CtrlP<CR>
+nmap <leader>b :CtrlBuffer<CR>
+
+" Snippets! Notice: Vim has to be compiled with python i think.
+Plugin 'SirVer/ultisnips' " snippets engine
+Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
+
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsExpandTrigger           = '<tab>'
-let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-let g:UltiSnipsListSnippets            = '<tab><space>'
+
+" let g:UltiSnipsExpandTrigger           = '<tab>'
+" let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+" let g:UltiSnipsListSnippets             = '<tab><space>'
 " let g:UltiSnipsExpandSnippetOrJump     = '<tab>'
 " let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 
 " custom snippets dir. Remember to make symlink to ~/bin/ultisnippets in .vim
-let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
-let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
-let g:UltiSnipsEditSplit               = 'vertical'
+" let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
+" let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
+" let g:UltiSnipsEditSplit               = 'vertical'
 
 
 " all vundle plugins must be added before this line
@@ -86,8 +131,8 @@ filetype plugin indent on               " required
 " -----------
 
 
-" remap leader to space
-let mapleader = ' '
+" print buffers and prepare to go to one
+nnoremap gb :ls<cr>:b<space>
 
 " edit vimrc from vim
 nmap <leader>v :tabe ~/.vimrc<CR>
@@ -113,6 +158,12 @@ autocmd BufReadPost *
       \   exe "normal! g`\"" |
       \ endif
 
+" set folder for .swp files (has to be created manually)
+" set backupdir=/home/mar/.vim/backup
+set backupdir=/tmp//
+set directory=/tmp//
+set undodir=/tmp//
+
 " Go to first and last char of current line easier
 noremap H ^
 noremap L $
@@ -127,7 +178,8 @@ let @b='i#!/usr/bin/env bashq'
 
 " Useful shortcuts
 "- Delete word undercursor in insert mode
-:imap <C-d> <C-[>diwi
+" imap <C-d> <C-[>diwi
+inoremap <C-d> <C-[>diwi
 
 "- Insert Mode Movement
 imap <C-b> <Esc>`^bi
@@ -142,6 +194,14 @@ set splitbelow splitright
 " map <C-k> <C-w>k
 " map <C-l> <C-w>l
 
+" Resize windows using <Alt> and h,j,k,l, inspiration from
+" https://goo.gl/vVQebo (bottom page).
+" If you enable mouse support, shorcuts below may not be necessary.
+nnoremap <silent> <M-h> <C-w><
+nnoremap <silent> <M-l> <C-w>>
+nnoremap <silent> <M-j> <C-W>-
+nnoremap <silent> <M-k> <C-W>+
+
 " move lines with Ctrl + (Shift) +J/K
 nnoremap <C-j> :m +1<CR>
 nnoremap <C-k> :m -2<CR>
@@ -151,7 +211,7 @@ vnoremap <C-j> :m '>+1<CR>gvgv
 vnoremap <C-k> :m '<-2<CR>gvgv
 
 " insert four space
-inoremap <leader><tab> <space><space><space><space>
+" inoremap <leader><tab> <space><space><space><space>
 
 " file operations
 " nmap <C-l> @:
@@ -168,12 +228,11 @@ inoremap <leader><tab> <space><space><space><space>
 " save readonly file changes
 cmap w!! w !sudo tee >/dev/null %
 
-
 " jedi-vim
 " let g:jedi#auto_initialization = 1
 
 " ctags keybind
-set tags=.git/tags,tags
+set tags=tags
 nmap <leader>T :!ctags -R .<CR><CR>
 
 " todo: test Ctrlp
@@ -191,10 +250,14 @@ if !exists("g:os")
     endif
 endif
 
+" use system clipboard multiplatform
+"set clipboard^=unnamed,unnamedplus
+
 " system clipboard
 if g:os == "Linux"
    vmap <leader>y "+y
    vmap <leader>d "+d
+   vmap <leader>x "+x
    vmap <leader>p "+p
    vmap <leader>P "+P
    nmap <leader>y "+yy
@@ -206,6 +269,7 @@ if g:os == "Linux"
 elseif g:os == "Darwin" " mac
    vmap <leader>y "*y
    vmap <leader>d "*d
+   vmap <leader>x "*x
    vmap <leader>p "*p
    vmap <leader>P "*P
    nmap <leader>y "*yy
@@ -217,6 +281,7 @@ elseif g:os == "Darwin" " mac
 elseif g:os == "MSYS_NT-10.0-18362"
    vmap <leader>y "*y
    vmap <leader>d "*d
+   vmap <leader>x "*x
    vmap <leader>p "*p
    vmap <leader>P "*P
    nmap <leader>y "*yy
@@ -233,4 +298,84 @@ function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+
+" Display a message when the current file is not in utf-8 format.
+" Note that we need to use `unsilent` command here because of this issue:
+" https://github.com/vim/vim/issues/4379
+augroup non_utf8_file_warn
+    autocmd!
+    autocmd BufRead * if &fileencoding != 'utf-8'
+                \ | unsilent echomsg 'File not in UTF-8 format!' | endif
+augroup END
+
+
+
+let g:currentmode={
+       \ 'n'  : 'NORMAL ',
+       \ 'no' : 'N·Operator Pending ',
+       \ 'v'  : 'VISUAL ',
+       \ 'V'  : 'V·Line ',
+       \ '' : 'V·Block ',
+       \ 'i'  : 'INSERT ',
+       \ 'R'  : 'R ',
+       \ 'Rv' : 'V·Replace ',
+       \ 'c'  : 'Command ',
+       \ 'cv' : 'Vim Ex ',
+       \ 'ce' : 'Ex ',
+       \ 'r'  : 'Prompt ',
+       \ 'rm' : 'More ',
+       \ 'r?' : 'Confirm ',
+       \ '!'  : 'Shell ',
+       \ 't'  : 'Terminal '
+       \}
+
+set statusline=
+set statusline+=\ %{toupper(g:currentmode[mode()])}   " Current mode
+set statusline+=\|
+
+" Truncate line here
+set statusline+=\ %<
+
+" File path, as typed or relative to current directory
+set statusline+=%f
+
+set statusline+=\ %{&modified?'[+]':''}
+set statusline+=%{&readonly?'[]':''}
+
+set statusline+=%{&spell?'[SPELL]':''}
+set statusline+=%#WarningMsg#
+set statusline+=%{&paste?'[PASTE]':''}
+set statusline+=%*
+
+" Separation point between left and right aligned items
+set statusline+=%=
+
+set statusline+=%-5{&filetype!=#''?&filetype:'none'}
+
+" Encoding & Fileformat
+set statusline+=%#WarningMsg#
+set statusline+=%{&fileencoding!='utf-8'?'['.&fileencoding.']':''}
+set statusline+=%*
+
+set statusline+=[%{&fileformat}]
+
+" Warning about byte order
+set statusline+=%#WarningMsg#
+set statusline+=%{&bomb?'[BOM]':''}
+set statusline+=%*
+
+" Location of cursor line
+set statusline+=\ [%l/%L\ %2p%%]
+
+" Column number
+set statusline+=\ col:%3c
+
+highlight StatusLine ctermfg=2
+
+
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 
