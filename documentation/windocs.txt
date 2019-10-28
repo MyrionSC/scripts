@@ -1,0 +1,3 @@
+
+# cmd search for file
+dir *filename* /p /s
