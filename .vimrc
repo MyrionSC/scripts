@@ -89,7 +89,7 @@ Plugin 'valloric/MatchTagAlways' " highlight html tags
 " navigate filesystem in vim
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-cmap nt NERDTree
+com! NT NERDTree
 
 " fuzzy search
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -372,7 +372,18 @@ set statusline+=\ col:%3c
 
 highlight StatusLine ctermfg=2
 
+" reformat html: gq<motion> (reformat line example: gql)
+autocmd FileType html
+\ setlocal formatprg=tidy\ -indent\ -quiet\ --show-errors\ 0\ --tidy-mark\ no\ --show-body-only\ auto
 
+" commentor create csharp class from boomi profile (needs reformated html)
+com! -bar CamelCase  :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#g
+com! -bar FirstCharUpper :%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g
+com! -bar BoomiToCSharp1 :v/title/d<bar>:g/./norm 0df"f"D
+com! -bar BoomiToCSharp2 :g/./norm Ipublic string A { get; set; }
+com! BoomiToCSharp BoomiToCSharp1 | FirstCharUpper | CamelCase | BoomiToCSharp2
+
+" | :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#g | :%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g | :g/./norm Ipublic string A { get; set; }
 
 set tabstop=4
 set softtabstop=4
