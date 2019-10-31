@@ -245,7 +245,6 @@ ol () {
 }
 
 alias fori="for ((I=0;;I++)) do"
-alias vars='ls ~/bin/vars'
 
 #====== Vim stuff
 # wrapper for vim that allows to use previously captured keys by terminal like c-s for mappings

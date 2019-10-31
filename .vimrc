@@ -84,7 +84,8 @@ Plugin 'leafgarland/typescript-vim'
 autocmd BufNewFile,BufRead *.ts  set filetype=typescript
 autocmd BufNewFile,BufRead *.tsx setfiletype typescript
 
-Plugin 'valloric/MatchTagAlways' " highlight html tags
+" highlight html tags
+Plugin 'valloric/MatchTagAlways'
 
 " navigate filesystem in vim
 Plugin 'scrooloose/nerdtree'
@@ -309,7 +310,7 @@ augroup non_utf8_file_warn
 augroup END
 
 
-
+" ====== STATUS LINE SETTINGS
 let g:currentmode={
        \ 'n'  : 'NORMAL ',
        \ 'no' : 'N·Operator Pending ',
@@ -372,6 +373,15 @@ set statusline+=\ col:%3c
 
 highlight StatusLine ctermfg=2
 
+" format xml using xmllint, TODO: test it
+" com! FormatXML !xmllint --format -<CR>
+
+
+" ====== FORMAT STUFF
+
+" must have jq installed
+com! FormatJSON :%!jq '.'
+
 " reformat html: gq<motion> (reformat line example: gql)
 autocmd FileType html
 \ setlocal formatprg=tidy\ -indent\ -quiet\ --show-errors\ 0\ --tidy-mark\ no\ --show-body-only\ auto
@@ -379,11 +389,14 @@ autocmd FileType html
 " commentor create csharp class from boomi profile (needs reformated html)
 com! -bar CamelCase  :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#g
 com! -bar FirstCharUpper :%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g
-com! -bar BoomiToCSharp1 :v/title/d<bar>:g/./norm 0df"f"D
-com! -bar BoomiToCSharp2 :g/./norm Ipublic string A { get; set; }
-com! BoomiToCSharp BoomiToCSharp1 | FirstCharUpper | CamelCase | BoomiToCSharp2
+com! -bar FindTitle :v/title/d<bar>:g/./norm 0df"f"D
+com! -bar Text2CSharpProp :g/./norm Ipublic string A { get; set; }
+com! BoomiToCSharp FindTitle | FirstCharUpper | CamelCase | Text2CSharpProp
+com! PlaceholdersToTypes :%s/s$/string/ge | :%s/n$/int/ge | :%s/d$/DateTime/ge | :%s/b$/bool/ge
 
-" | :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#g | :%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g | :g/./norm Ipublic string A { get; set; }
+
+" translate text (needs trans-shell: wget git.io/trans)
+com! -bar TranslateDaEn :%!trans -d -b da:en
 
 set tabstop=4
 set softtabstop=4
