@@ -153,9 +153,6 @@ xp () {
 cac () {
 	cat $1 | xc
 }
-cpf () {
-	cat $1 | xc
-}
 
 alias linuxv='cat /etc/*-release'
 

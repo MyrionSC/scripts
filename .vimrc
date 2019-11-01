@@ -376,6 +376,8 @@ highlight StatusLine ctermfg=2
 " format xml using xmllint, TODO: test it
 " com! FormatXML !xmllint --format -<CR>
 
+" remove front whitespace
+com! RemoveFrontWhitespace :%s/^[\t ]*//g
 
 " ====== FORMAT STUFF
 
@@ -387,8 +389,8 @@ autocmd FileType html
 \ setlocal formatprg=tidy\ -indent\ -quiet\ --show-errors\ 0\ --tidy-mark\ no\ --show-body-only\ auto
 
 " commentor create csharp class from boomi profile (needs reformated html)
-com! -bar CamelCase  :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#g
-com! -bar FirstCharUpper :%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g
+com! -bar CamelCase  :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#ge
+com! -bar FirstCharUpper :%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/ge
 com! -bar FindTitle :v/title/d<bar>:g/./norm 0df"f"D
 com! -bar Text2CSharpProp :g/./norm Ipublic string A { get; set; }
 com! BoomiToCSharp FindTitle | FirstCharUpper | CamelCase | Text2CSharpProp
