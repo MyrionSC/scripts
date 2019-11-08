@@ -46,6 +46,8 @@ alias gcpc='git cherry-pick --continue'
 alias gcs='git commit -S'
 alias gcom='git checkout master'
 alias gcod='git checkout dev'
+alias gcol='git checkout @{-1}' #checkout previous branch
+alias gcop='git checkout @{-1}' #checkout previous branch
 
 #git revert <commit_hash> # revert single commit
 #git revert <oldest_commit_hash>..<latest_commit_hash> # revert range of commits
@@ -100,6 +102,8 @@ alias gmom='git merge origin/master'
 alias gmt='git mergetool --no-prompt'
 alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
 alias gmum='git merge upstream/master'
+alias gmp='git merge @{-1}' #checkout previous branch
+alias gml='git merge @{-1}' #checkout previous branch
 
 alias gp='git push'
 alias gpd='git push --dry-run'
