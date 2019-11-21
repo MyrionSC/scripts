@@ -188,12 +188,13 @@ finddir () {
 	find . -type d -iname "*$1*"
 }
 
-
 ff () {
-	find . -type f -iname "*$1*"
+	#find . -type f -iname "*$1*"
+    rg --files -g "*$1*"
 }
 findfile () {
-	find . -type f -iname "*$1*"
+	#find . -type f -iname "*$1*"
+    rg --files -g "*$1*"
 }
 
 findlib () {
@@ -261,6 +262,13 @@ export EDITOR="$VISUAL"
 alias evim="vim ~/.vimrc"
 alias evimrc="vim ~/.vimrc"
 alias viml="vim $(lst)"
+
+rgv () {
+    vim $(rg --files -g "*$1*")
+}
+rgvim () {
+    vim $(rg --files -g "*$1*")
+}
 
 # quickly edit aliases
 als () {
