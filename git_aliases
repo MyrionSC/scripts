@@ -45,7 +45,7 @@ alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
 alias gcs='git commit -S'
 alias gcom='git checkout master'
-alias gcod='git checkout dev'
+alias gcod='git checkout develop'
 alias gcol='git checkout @{-1}' #checkout previous branch
 alias gcop='git checkout @{-1}' #checkout previous branch
 
@@ -83,6 +83,8 @@ alias ggpush='git push origin $(cur_br)'
 
 alias ggsup='git branch --set-upstream-to=origin/$(cur_br)'
 alias gpsup='git push --set-upstream origin $(cur_br)'
+
+alias ggpusup='git push origin $(cur_br) && git branch --set-upstream-to=origin/$(cur_br)'
 
 alias ghh='git help'
 
@@ -132,6 +134,7 @@ alias grv='git remote -v'
 alias grorigin='git reset --hard origin/$(cur_br)'
 alias gpristine='git reset --hard && git clean -dfx'
 alias guncommit='git reset HEAD^'
+alias grfile='git checkout --' # first arg: filename
 
 alias gsb='git status -sb'
 alias gsps='git show --pretty=short --show-signature'
@@ -164,5 +167,7 @@ grmtgi () {
 # Find out which pattern / .gitignore file is ignoring a file
 #git check-ignore -v <some-ignored-file> 
 
-
-
+# Checkout all branches from remote at once. Credits: https://gist.github.com/octasimo/66f3cc230725d1cf1421
+#for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master `; do
+#   git branch --track ${branch#remotes/origin/} $branch
+#done
