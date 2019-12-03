@@ -263,6 +263,9 @@ alias evim="vim ~/.vimrc"
 alias evimrc="vim ~/.vimrc"
 alias viml="vim $(lst)"
 
+ffv () {
+    vim $(rg --files -g "*$1*")
+}
 rgv () {
     vim $(rg --files -g "*$1*")
 }
@@ -375,5 +378,9 @@ rename_space_underscore() {
 	done
 }
 
+# replace space with underscore normal input
+tr_underscore(){
+    echo "$@" | tr " " "_"
+}
 
 

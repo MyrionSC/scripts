@@ -30,13 +30,14 @@ done
 [ "$#" -ne 1 ] # true if number of arguments not equal to 1
 [ "$#" -eq 1 ] # true if number of arguments equal to 1
 
-
 # arithmetic operators: -eq, -ne, -lt, -le, -gt, -ge
 
 
-
-
-
+# chaining cheatsheet (from https://askubuntu.com/questions/334994/which-one-is-better-using-or-to-execute-multiple-commands-in-one-line)
+A; B    # Run A and then B, regardless of success of A
+A && B  # Run B if and only if A succeeded
+A || B  # Run B if and only if A failed
+A &     # Run A in background.
 
 
 # ------ entr (filewatch command runner)
