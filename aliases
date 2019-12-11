@@ -267,10 +267,10 @@ ffv () {
     vim $(rg --files -g "*$1*")
 }
 rgv () {
-    vim $(rg --files -g "*$1*")
+    vim $(rg -l "$1")
 }
 rgvim () {
-    vim $(rg --files -g "*$1*")
+    vim $(rg -l "$1")
 }
 
 # quickly edit aliases

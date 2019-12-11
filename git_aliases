@@ -26,6 +26,7 @@ alias gbsr='git bisect reset'
 alias gbss='git bisect start'
 
 alias gc='git commit'
+alias gcs='git commit -S'
 alias gcv='git commit -v'
 alias gc!='git commit -v --amend'
 alias gcn!='git commit -v --no-edit --amend'
@@ -36,16 +37,18 @@ alias gcans!='git commit -v -a -s --no-edit --amend'
 alias gcm='git commit -m'
 alias gcam='git commit -m'
 alias gcsm='git commit -s -m'
-alias gcb='git checkout -b'
+
 alias gcf='git config --list'
 alias gcl='git clone --recursive'
 alias gclean='git clean -fd'
 
-alias gco='git checkout'
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
-alias gcs='git commit -S'
+
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gcob='git checkout -b'
 alias gcom='git checkout master'
 alias gcod='git checkout develop 2>/dev/null || git checkout development'
 alias gcol='git checkout @{-1}' #checkout previous branch
@@ -166,6 +169,8 @@ alias grmt='git rm -r --cached .' # remove locally tracked files. use gaa after 
 grmtgi () {
 	git rm --cached `git ls-files -i --exclude-from=.gitignore`
 }
+
+alias gmlr='gcol && gl && gcol && gml' #merge previous branch
 
 # Find out which pattern / .gitignore file is ignoring a file
 #git check-ignore -v <some-ignored-file> 
