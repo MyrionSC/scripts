@@ -188,12 +188,13 @@ finddir () {
 	find . -type d -iname "*$1*"
 }
 
-
 ff () {
-	find . -type f -iname "*$1*"
+	#find . -type f -iname "*$1*"
+    rg --files -g "*$1*"
 }
 findfile () {
-	find . -type f -iname "*$1*"
+	#find . -type f -iname "*$1*"
+    rg --files -g "*$1*"
 }
 
 findlib () {
@@ -261,6 +262,16 @@ export EDITOR="$VISUAL"
 alias evim="vim ~/.vimrc"
 alias evimrc="vim ~/.vimrc"
 alias viml="vim $(lst)"
+
+ffv () {
+    vim $(rg --files -g "*$1*")
+}
+rgv () {
+    vim $(rg -l "$1")
+}
+rgvim () {
+    vim $(rg -l "$1")
+}
 
 # quickly edit aliases
 als () {
@@ -367,5 +378,9 @@ rename_space_underscore() {
 	done
 }
 
+# replace space with underscore normal input
+tr_underscore(){
+    echo "$@" | tr " " "_"
+}
 
 

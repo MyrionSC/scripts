@@ -4,6 +4,11 @@
 " Opens them again: vim -S ~/today.ses
 
 
+" Execute command on file from commandline
+" To execute on multiple files, find them via cli utility and use :read !<cmd> to get into vim
+vim -c ":%s/syn_gs_api.Models/syn_gs_api.v1.Models/g | write | quit" <file>
+
+
 " ====== Search Replace
 " search replace with match
 \0 is the whole match. To use only part of it you need to set it like this and use \1
