@@ -171,6 +171,7 @@ grmtgi () {
 }
 
 alias gmlr='gcol && gl && gcol && gml' #merge previous branch
+alias gmdr='gcod && gl && gcol && gml'
 
 alias gciq='git add --all && git commit -m "quick commit!"'
 

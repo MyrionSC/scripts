@@ -5,8 +5,8 @@ set relativenumber
 set number " show line numbers
 set showmatch " show matching item (like {})
 set nowrap " Turn off line wrapping.
-set scrolloff=7 " Show 7 lines of context around the cursor.
-set sidescrolloff=7
+set scrolloff=10 " Show 7 lines of context around the cursor.
+set sidescrolloff=10
 set encoding=utf-8 " test this
 " finding files
 set path+=**
