@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 sed -i -E "/\"id\":/s/\"\/.*resourceGroups.*functions\/(.*)\"/\"\[variables\('\1'\)\]\"/g" "$1"
-sed -i "s+https://app-test.iteras.dk/api/customers/?id=@{triggerOutputs()['relativePathParameters']['CustomerId']}&fields=data,subscriptions+[concat(variables('iteras-api'),'/customers/?id=@{triggerOutputs()[''relativePathParameters''][''CustomerId'']}&fields=data,subscriptions')]+g" "$1"
+sed -i "s+https://app-test.iteras.dk/api/customers/?id=@{triggerOutputs()\['relativePathParameters'\]\['CustomerId'\]}\&fields=data,subscriptions+[concat(variables('iteras-api'), '/customers/?id=@{triggerOutputs()[''relativePathParameters''][''CustomerId'']}\&fields=data,subscriptions')]+g" "$1"
 sed -i "s+https://app-test.iteras.dk/api/customers/update/+[variables('iteras-customer-update')]+g" "$1"
