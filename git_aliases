@@ -182,3 +182,8 @@ alias gciq='git add --all && git commit -m "quick commit!"'
 #for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master `; do
 #   git branch --track ${branch#remotes/origin/} $branch
 #done
+
+# To debug git cli problems:
+#GIT_CURL_VERBOSE=1 GIT_TRACE=1 <command> # eg: git pull
+
+
