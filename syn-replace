@@ -2,4 +2,13 @@
 
 sed -i -E "/\"id\":/s/\"\/.*resourceGroups.*functions\/(.*)\"/\"\[variables\('\1'\)\]\"/g" "$1"
 sed -i "s+https://app-test.iteras.dk/api/customers/?id=@{triggerOutputs()\['relativePathParameters'\]\['CustomerId'\]}\&fields=data,subscriptions+[concat(variables('iteras-api'), '/customers/?id=@{triggerOutputs()[''relativePathParameters''][''CustomerId'']}\&fields=data,subscriptions')]+g" "$1"
+sed -i "s+https://app-test.iteras.dk/api/customers/?id=@{triggerBody()?\['customer'\]?\['customerId'\]}&fields=data,subscriptions+[concat(variables('iteras-api'), '/customers/?id=@{triggerBody()?[''customer'']?[''customerId'']}\&fields=data,subscriptions')]+g" "$1"
 sed -i "s+https://app-test.iteras.dk/api/customers/update/+[variables('iteras-customer-update')]+g" "$1"
+sed -i "s+https://app-test.iteras.dk/api/placeorder/api-glasogon-se/+[concat(variables('iteras-api'), '/placeorder/api-glasogon-se/')]+g" "$1"
+sed -i "s+https://app-test.iteras.dk/api/placeorder/api-brille-dk/+[concat(variables('iteras-api'), '/placeorder/api-brille-dk/')]+g" "$1"
+
+
+#sed -i -E "/\"message\":/s/([0-9]+).*\"/\1: @{body('BuildErrorMessagesDictionary')?['\1']}\"/g" "$1"
+
+
+
