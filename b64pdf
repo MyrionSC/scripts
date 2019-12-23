@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Opens a base64 string from clipholder in default app
+
+# platform specific stuff
+if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
+    echo "TODO"
+elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
+    powershell -command "Get-Clipboard" > ~/.cache/b64pdf.txt
+    base64 -d ~/.cache/b64pdf.txt > ~/.cache/b64pdf.pdf
+    start ~/.cache/b64pdf.pdf
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
+    echo "TODO"
+fi
+
+
