@@ -18,6 +18,11 @@ export WEB=/var/www/html
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
 
+alias ll='ls -alF'
+alias la='ls -A'
+alias lt='ls -t'
+alias l='ls -CF'
+
 alias mv='mv -i'
 alias cp='cp -i'
 

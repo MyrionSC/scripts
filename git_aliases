@@ -63,6 +63,7 @@ alias gdca='git diff --cached'
 alias gdct='git describe --tags `git rev-list --tags --max-count=1`'
 alias gdt='git diff-tree --no-commit-id --name-only -r'
 alias gdw='git diff --word-diff'
+alias gdi='git diff --no-index' # compare files outside git
 
 alias gf='git fetch'
 alias gfa='git fetch --all --prune'
