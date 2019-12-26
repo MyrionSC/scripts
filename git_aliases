@@ -177,7 +177,7 @@ alias gmdr='gcod && gl && gcol && gml'
 alias gciq='git add --all && git commit -m "quick commit!"'
 
 # Find out which pattern / .gitignore file is ignoring a file
-#git check-ignore -v <some-ignored-file> 
+#git check-ignore -v <some-ignored-file>
 
 # Checkout all branches from remote at once. Credits: https://gist.github.com/octasimo/66f3cc230725d1cf1421
 #for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master `; do
@@ -186,5 +186,8 @@ alias gciq='git add --all && git commit -m "quick commit!"'
 
 # To debug git cli problems:
 #GIT_CURL_VERBOSE=1 GIT_TRACE=1 <command> # eg: git pull
+
+# To rename / delete multiple local commits
+#git rebase -i HEAD~X # where X is number of commits back to edit
 
 
