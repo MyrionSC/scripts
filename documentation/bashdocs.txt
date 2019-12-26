@@ -47,3 +47,10 @@ ls file.txt | entr -cp cat /_
 
 
 
+# if running a script from keyboard shortcut, ensure that all necessary libs are in path by having below in top of file
+LD_LIBRARY_PATH="/usr/local/lib" # or whereever the lib files are
+export LD_LIBRARY_PATH
+
+
+
+
