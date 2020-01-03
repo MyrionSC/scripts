@@ -149,6 +149,9 @@ xnoremap d "_d
 nnoremap D "_D
 xnoremap D "_D
 xnoremap p "_dP
+vnoremap p "_dP
+vnoremap P "_dP
+
 
 " cut into vim default register
 nnoremap X ""D
