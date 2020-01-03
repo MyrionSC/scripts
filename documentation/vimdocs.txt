@@ -22,3 +22,12 @@ rking/ag.vim to search the files with respect to gitignore
 scrooloose/nerdtree to see the directory structure, lookaround, add/delete/modify files
 UPDATE : Recently I am using dyng/ctrlsf.vim to search with contextual view (like Sublime search) and I switched the engine from ag to ripgrep. The performance is outstanding.
 
+
+
+" run each line in vim buffer through sh command and back into vim
+:%!xargs -n1 -I{} sh -c 'echo {} | base64 -d'
+
+
+
+
+

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+#=== use ocular image recognizition to copy text on screen into clipholder
+#Requirements: tesseract, shutter
+
+# tell tesseract where to find leptonica lib files
+LD_LIBRARY_PATH="/usr/local/lib"
+export LD_LIBRARY_PATH
+
+#shutter -s -e -n -o '/home/martin/.screencuts/%y-%m-%d_$w_$h.png'
+
+#FILE="/home/martin/.screencuts/$(ls -t /home/martin/.screencuts/ | head -1)"
+FILE="/home/martin/work/Untitled.png"
+
+#tesseract $FILE - | sed '/Warning/d' | sed '/Estimating resolution as/d' | sed '/^$/d' > ~/work/screencut.txt
+#tesseract $FILE - | sed 's///g' | xclip -selection c
+OUT=$(/usr/local/bin/tesseract $FILE - | sed 's///g')
+echo "$OUT" > ~/work/hello.txt
+echo "testing" > ~/work/hello2.txt
+#tesseract $FILE - | sed 's///g' > ~/work/screencut.txt
+#tesseract $FILE - | sed 's///g' | xclip -selection c
+
+
+
+#echo "$FILE"

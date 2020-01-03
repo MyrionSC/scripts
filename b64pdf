@@ -10,7 +10,9 @@ elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
     base64 -d ~/.cache/b64pdf.txt > ~/.cache/b64pdf.pdf
     start ~/.cache/b64pdf.pdf
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
-    echo "TODO"
+    xclip -selection clipboard -o > ~/.cache/b64pdf.txt
+    base64 -d ~/.cache/b64pdf.txt > ~/.cache/b64pdf.pdf
+    xdg-open ~/.cache/b64pdf.pdf
 fi
 
 
