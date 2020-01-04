@@ -2,7 +2,7 @@
 "use strict";
 var needle = require('needle'); // for http calls
 var url = "http://marand.dk:8002/";
-var help = "Commands are:\n" +
+var instructionsString = "Commands are:\n" +
     "todo ls\n" +
     "todo add -pe [string]\n" +
     "todo add -pr [string]\n" +
@@ -10,6 +10,7 @@ var help = "Commands are:\n" +
     "todo rm -pr [number]\n\n" +
     "Host URL: " + url;
 
+// ====== Helpers
 var printGetListResult = function (error, res) {
     if (error)
         return console.error(error);
@@ -57,6 +58,7 @@ var printDeleteResult = function (error, res) {
     }
 };
 
+// ====== operations
 var get = function (flag) {
     needle.get(url + "api/list", printGetListResult);
 };
@@ -64,38 +66,38 @@ var add = function (flag, item) {
     if (flag === "-pe") {
         needle.post(url + "api/personal", {item: item}, printAddResult);
     }
-    else {
+    else if (flag === "-pr") {
         needle.post(url + "api/professional", {item: item}, printAddResult);
+    }
+    else {
+        needle.post(url + "api/shopping", {item: item}, printAddResult);
     }
 };
 var rm = function (flag, pos) {
     if (flag === "-pe") {
         needle.delete(url + "api/personal/" + pos, null, printDeleteResult);
     }
-    else {
+    else if (flag === "-pr") {
         needle.delete(url + "api/professional/" + pos, null, printDeleteResult);
+    }
+    else {
+        needle.delete(url + "api/shopping/" + pos, null, printDeleteResult);
     }
 };
 
 // parse arguments
 var arg2 = process.argv[2];
 if (!arg2 || arg2 != "ls" && arg2 != "add" && arg2 != "rm") {
-    console.log(help);
+    console.log(instructionsString);
 }
 else {
     var arg3 = process.argv[3], arg4 = process.argv[4], arg5 = process.argv[5];
     if (arg2 === "ls") {
-        if (arg3 && arg3 === "-pe" && !arg4) {
-            get("-pe");
-        }
-        else if (arg3 && arg3 === "-pr" && !arg4) {
-            get("-pr");
-        }
-        else if (!arg3) {
+        if (!arg3) {
             get();
         }
         else {
-            console.log(help);
+            console.log(instructionsString);
         }
     }
     else if (arg2 === "add") {
@@ -105,8 +107,11 @@ else {
         else if (arg3 && arg3 == "-pe" && arg4 && typeof arg4 === "string" && !arg5) {
             add("-pe", arg4);
         }
+        else if (arg3 && arg3 === "-s" && arg4 && typeof arg4 === "string" && !arg5) {
+            add("-s", arg4);
+        }
         else {
-            console.log(help);
+            console.log(instructionsString);
         }
     }
     else if (arg2 === "rm") {
@@ -116,12 +121,15 @@ else {
         else if (arg3 && arg3 == "-pe" && arg4 && typeof Number(arg4) === "number" && !arg5) {
             rm("-pe", Number(arg4));
         }
+        else if (arg3 && arg3 == "-s" && arg4 && typeof Number(arg4) === "number" && !arg5) {
+            rm("-s", Number(arg4));
+        }
         else {
-            console.log(help);
+            console.log(instructionsString);
         }
     }
     else {
-        console.log(help);
+        console.log(instructionsString);
     }
 }
 //# sourceMappingURL=todo.js.map

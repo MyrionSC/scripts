@@ -5,6 +5,16 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["p"],
+      "after": ["\"", "_", "d", "P"]
+    },
+    {
+      "before": ["P"],
+      "after": ["\"", "_", "d", "P"]
+    }
+  ],
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "k"],
