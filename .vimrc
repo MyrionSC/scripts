@@ -74,10 +74,8 @@ Plugin 'tpope/vim-repeat'
 " add some plugins from https://www.youtube.com/watch?v=wlR5gYd6um0
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
-"    vim-scripts/ReplaceWithRegister
-"    christoomey/vim-titlecase
-"    christoomey/sort-motion
-"    christommey/system-copy
+
+Plugin 'justinmk/vim-sneak'
 
 " typescript highlighting
 Plugin 'leafgarland/typescript-vim'
@@ -126,6 +124,10 @@ Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
 " all vundle plugins must be added before this line
 call vundle#end()                       " required
 filetype plugin indent on               " required
+
+" Plugins TODO:
+" - Test out CamelCaseMotion
+" - Fix snippets
 
 " -----------
 " PLUGINS END

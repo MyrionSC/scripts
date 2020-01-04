@@ -1,5 +1,6 @@
 {
-  "vim.easymotion": true,
+  "vim.easymotion": false,
+  "vim.surround": true,
   "vim.sneak": true,
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
