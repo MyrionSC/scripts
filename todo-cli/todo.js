@@ -4,40 +4,12 @@ var needle = require('needle'); // for http calls
 var url = "http://marand.dk:8002/";
 var help = "Commands are:\n" +
     "todo ls\n" +
-    "todo ls -pe\n" +
-    "todo ls -pr\n" +
     "todo add -pe [string]\n" +
     "todo add -pr [string]\n" +
     "todo rm -pe [number]\n" +
     "todo rm -pr [number]\n\n" +
     "Host URL: " + url;
 
-var printGetPersonalResult = function (error, res) {
-    if (error)
-        return console.error(error);
-    if (res.statusCode == 200) {
-        for (var i = 0; i < res.body.length; i++) {
-            var item = res.body[i];
-            console.log(i + ": " + item);
-        }
-    }
-    else {
-        console.log("get personal returned with status: " + res.statusCode);
-    }
-};
-var printGetProfessionalResult = function (error, res) {
-    if (error)
-        return console.error(error);
-    if (res.statusCode == 200) {
-        for (var i = 0; i < res.body.length; i++) {
-            var item = res.body[i];
-            console.log(i + ": " + item);
-        }
-    }
-    else {
-        console.log("get professional returned with status: " + res.statusCode);
-    }
-};
 var printGetListResult = function (error, res) {
     if (error)
         return console.error(error);
@@ -51,6 +23,12 @@ var printGetListResult = function (error, res) {
         console.log("professional");
         for (var i = 0; i < res.body.professional.length; i++) {
             var item = res.body.professional[i];
+            console.log(i + ": " + item);
+        }
+        console.log();
+        console.log("shopping:");
+        for (var i = 0; i < res.body.shopping.length; i++) {
+            var item = res.body.shopping[i];
             console.log(i + ": " + item);
         }
     }
@@ -78,16 +56,9 @@ var printDeleteResult = function (error, res) {
         console.log("delete operation returned with status: " + res.statusCode);
     }
 };
+
 var get = function (flag) {
-    if (flag && flag === "-pe") {
-        needle.get(url + "api/personal", printGetPersonalResult);
-    }
-    else if (flag && flag === "-pr") {
-        needle.get(url + "api/professional", printGetProfessionalResult);
-    }
-    else {
-        needle.get(url + "api/list", printGetListResult);
-    }
+    needle.get(url + "api/list", printGetListResult);
 };
 var add = function (flag, item) {
     if (flag === "-pe") {
