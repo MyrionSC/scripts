@@ -2,12 +2,14 @@
 "use strict";
 var needle = require('needle'); // for http calls
 var url = "http://marand.dk:8002/";
-var instructionsString = "Commands are:\n" +
+var instructionsString = "Commands are:\n\n" +
     "todo ls\n" +
     "todo add -pe [string]\n" +
     "todo add -pr [string]\n" +
+    "todo add -s [string]\n" +
     "todo rm -pe [number]\n" +
-    "todo rm -pr [number]\n\n" +
+    "todo rm -pr [number]\n" +
+    "todo rm -s [number]\n\n" +
     "Host URL: " + url;
 
 // ====== Helpers
