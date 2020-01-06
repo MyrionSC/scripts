@@ -7,7 +7,7 @@ import numpy as np
 def instructions():
     print("Usage: guestimate SRC DEST_ARRAY")
     print("Tries to guess which word in DEST_ARRAY SRC are most likely to correspond to.")
-    print("SRC should be a string, DEST_ARRAY should be array of strings, delimited by % like so: str1%str2%str3.")
+    print("SRC should be a string, DEST_ARRAY should be array of strings, delimited by + like so: str1+str2+str3.")
 
 def levenshtein(seq1, seq2):
     size_x = len(seq1) + 1
@@ -41,7 +41,7 @@ if __name__ == '__main__':
         exit()
 
     src = args[1]
-    dest_arr = args[2].split("%")
+    dest_arr = args[2].split("+")
     cost_arr = [0 for x in dest_arr]
 
     for i in range(len(dest_arr)):
