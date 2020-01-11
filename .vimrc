@@ -154,6 +154,14 @@ xnoremap p "_dP
 vnoremap p "_dP
 vnoremap P "_dP
 
+" remap search
+vnoremap <leader>j /
+nnoremap <leader>j /
+vnoremap <leader>k ?
+nnoremap <leader>k ?
+
+nnoremap ø /
+vnoremap ø /
 
 " cut into vim default register
 nnoremap X ""D
