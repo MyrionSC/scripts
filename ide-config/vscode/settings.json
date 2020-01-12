@@ -97,5 +97,6 @@
     "<C-a>": false,
     "<C-f>": false
   },
-  "editor.minimap.enabled": true
+  "editor.minimap.enabled": true,
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }
