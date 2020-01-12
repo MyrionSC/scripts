@@ -9,6 +9,14 @@
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": [
+        "d"
+      ],
+      "after": [
+        "\"", "_", "d"
+      ]
+    },
+    {
+      "before": [
         "p"
       ],
       "after": [
@@ -51,6 +59,22 @@
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "d"
+      ],
+      "after": [
+        "\"", "_", "d"
+      ]
+    },
+    {
+      "before": [
+        "D"
+      ],
+      "after": [
+        "\"", "_", "D"
+      ]
+    },
     {
       "before": [
         "L"
