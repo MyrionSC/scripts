@@ -144,6 +144,9 @@ autocmd bufwritepost .vimrc source ~/.vimrc
 " exit insert mode from homebar
 inoremap jk <ESC>
 inoremap kj <ESC>
+noremap! <silent> <C-l> <ESC>
+vnoremap <silent> <C-l> <ESC>
+onoremap <silent> <C-l> <ESC>
 
 " prevents deleting / pasting over values from being entered in the register
 nnoremap d "_d
@@ -154,6 +157,14 @@ xnoremap p "_dP
 vnoremap p "_dP
 vnoremap P "_dP
 
+" remap search
+vnoremap <leader>j /
+nnoremap <leader>j /
+vnoremap <leader>k ?
+nnoremap <leader>k ?
+
+nnoremap ø /
+vnoremap ø /
 
 " cut into vim default register
 nnoremap X ""D

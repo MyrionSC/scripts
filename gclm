@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
-	echo "Argument 1 needs to be a git repo"
-	echo ""
     echo "devops-migration"
     echo "starcraft-judication"
     echo "todo"

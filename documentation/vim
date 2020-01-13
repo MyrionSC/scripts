@@ -1,32 +1,25 @@
 
-
 " saves all buffers and windows setup etc: :mksession! ~/today.ses
 " Opens them again: vim -S ~/today.ses
-
 
 " Execute command on file from commandline
 " To execute on multiple files, find them via cli utility and use :read !<cmd> to get into vim
 vim -c ":%s/syn_gs_api.Models/syn_gs_api.v1.Models/g | write | quit" <file>
-
 
 " ====== Search Replace
 " search replace with match
 \0 is the whole match. To use only part of it you need to set it like this and use \1
 .s/(\([0-9]*\))/{\1}/
 
-
 " ====== plugins to try out
 ctrlpvim/ctrlp.vim - to find file by name fuzzy search by its location or just its name
 jlanzarotta/bufexplorer - to browse opened buffers (when you do not remember how many files you opened and modified recently and you do not remember where they are, probably because you searched for them with Ag)
 rking/ag.vim to search the files with respect to gitignore
 scrooloose/nerdtree to see the directory structure, lookaround, add/delete/modify files
-UPDATE : Recently I am using dyng/ctrlsf.vim to search with contextual view (like Sublime search) and I switched the engine from ag to ripgrep. The performance is outstanding.
-
-
 
 " run each line in vim buffer through sh command and back into vim
 :%!xargs -n1 -I{} sh -c 'echo {} | base64 -d'
-
+:%!xargs -L1 -I {} guestimate {} Investering\%karrierePlan\%text
 
 
 

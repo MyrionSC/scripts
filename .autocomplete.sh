@@ -10,6 +10,10 @@ complete -W "${_docs_completion}" 'docs'
 _var_completion='$(ls ~/bin/variables)'
 complete -W "${_var_completion}" 'var'
 
+#gclm
+_gclm_completion='$(~/bin/gclm)'
+complete -W "${_gclm_completion}" 'gclm'
+
 # mardl (note: only gets what was in marand:/var/www/html/share when opening shell)
 #_mardl_completion=$(ssh marand@marand.dk "ls -tA /var/www/html/share")
 #complete -W "${_mardl_completion}" 'mardl'

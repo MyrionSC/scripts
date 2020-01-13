@@ -9,6 +9,14 @@
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": [
+        "d"
+      ],
+      "after": [
+        "\"", "_", "d"
+      ]
+    },
+    {
+      "before": [
         "p"
       ],
       "after": [
@@ -53,6 +61,22 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
+        "d"
+      ],
+      "after": [
+        "\"", "_", "d"
+      ]
+    },
+    {
+      "before": [
+        "D"
+      ],
+      "after": [
+        "\"", "_", "D"
+      ]
+    },
+    {
+      "before": [
         "L"
       ],
       "after": [
@@ -73,5 +97,6 @@
     "<C-a>": false,
     "<C-f>": false
   },
-  "editor.minimap.enabled": true
+  "editor.minimap.enabled": true,
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }
