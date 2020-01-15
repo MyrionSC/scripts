@@ -150,10 +150,12 @@ onoremap <silent> <C-l> <ESC>
 
 " prevents deleting / pasting over values from being entered in the register
 nnoremap d "_d
-xnoremap d "_d
 nnoremap D "_D
+xnoremap d "_d
 xnoremap D "_D
 xnoremap p "_dP
+xnoremap P "_dP
+vnoremap d "_d
 vnoremap p "_dP
 vnoremap P "_dP
 
@@ -162,9 +164,10 @@ vnoremap <leader>j /
 nnoremap <leader>j /
 vnoremap <leader>k ?
 nnoremap <leader>k ?
-
-nnoremap ø /
-vnoremap ø /
+nnoremap æ /
+vnoremap æ /
+nnoremap Æ ?
+vnoremap Æ ?
 
 " cut into vim default register
 nnoremap X ""D
