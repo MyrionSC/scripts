@@ -151,11 +151,12 @@ onoremap <silent> <C-l> <ESC>
 " prevents deleting / pasting over values from being entered in the register
 nnoremap d "_d
 nnoremap D "_D
-xnoremap d "_d
-xnoremap D "_D
-xnoremap p "_dP
-xnoremap P "_dP
+" xnoremap d "_d
+" xnoremap D "_D
+" xnoremap p "_dP
+" xnoremap P "_dP
 vnoremap d "_d
+vnoremap c "_di
 vnoremap p "_dP
 vnoremap P "_dP
 
@@ -436,5 +437,13 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
+
+" visual studio vim rebinds (enter with : )
+" nnoremap Xae _iAssert.AreEqual();<ENTER><ESC>kf)
+" inoremap jk <ESC>
+" nnoremap æ /
+" nnoremap Æ ?
+" vnoremap æ /
+" vnoremap Æ ?
 
 
