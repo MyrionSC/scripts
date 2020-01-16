@@ -7,12 +7,14 @@ if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
     echo "TODO"
 elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
     powershell -command "Get-Clipboard" > ~/.cache/b64pdf.txt
-    base64 -d ~/.cache/b64pdf.txt > ~/.cache/b64pdf.pdf
-    echo "TODO: pick out b64 string and see if can be launched with shortcut, maybe replace start"
+    grep -E -o '[A-Za-z0-9+\/]{50,}(={1,6})?' ~/.cache/b64pdf.txt > ~/.cache/b64pdf-clean.txt
+    base64 -d ~/.cache/b64pdf-clean.txt > ~/.cache/b64pdf.pdf
+    #base64 -d ~/.cache/b64pdf.txt > ~/.cache/b64pdf.pdf
+    #echo "TODO: pick out b64 string and see if can be launched with shortcut, maybe replace start"
     start ~/.cache/b64pdf.pdf
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
     xclip -selection clipboard -o > ~/.cache/b64pdf.txt
-    grep -E -o '[A-Za-z0-9+\/]{50,}(={1,3})' ~/.cache/b64pdf.txt > ~/.cache/b64pdf-clean.txt
+    grep -E -o '[A-Za-z0-9+\/]{50,}(={1,6})?' ~/.cache/b64pdf.txt > ~/.cache/b64pdf-clean.txt
     base64 -d ~/.cache/b64pdf-clean.txt > ~/.cache/b64pdf.pdf
     #xdg-open ~/.cache/b64pdf.pdf # cannot be used with a launcher, maybe because standard apps can't be accessed
     google-chrome ~/.cache/b64pdf.pdf
