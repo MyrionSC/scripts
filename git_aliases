@@ -127,6 +127,8 @@ alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbm='git rebase master'
 alias grbs='git rebase --skip'
+alias grbl='git rebase @{-1}'
+alias grbp='git rebase @{-1}'
 
 alias gr='git reset'
 alias grh='git reset HEAD'
@@ -188,6 +190,9 @@ alias gciq='git add --all && git commit -m "quick commit!"'
 #GIT_CURL_VERBOSE=1 GIT_TRACE=1 <command> # eg: git pull
 
 # To rename / delete multiple local commits
-#git rebase -i HEAD~X # where X is number of commits back to edit
+# git rebase -i HEAD~X # where X is number of commits back to edit
+grewrite() {
+    git rebase -i HEAD~$1
+}
 
 

@@ -150,10 +150,13 @@ onoremap <silent> <C-l> <ESC>
 
 " prevents deleting / pasting over values from being entered in the register
 nnoremap d "_d
-xnoremap d "_d
 nnoremap D "_D
-xnoremap D "_D
-xnoremap p "_dP
+" xnoremap d "_d
+" xnoremap D "_D
+" xnoremap p "_dP
+" xnoremap P "_dP
+vnoremap d "_d
+vnoremap c "_di
 vnoremap p "_dP
 vnoremap P "_dP
 
@@ -162,9 +165,10 @@ vnoremap <leader>j /
 nnoremap <leader>j /
 vnoremap <leader>k ?
 nnoremap <leader>k ?
-
-nnoremap ø /
-vnoremap ø /
+nnoremap æ /
+vnoremap æ /
+nnoremap Æ ?
+vnoremap Æ ?
 
 " cut into vim default register
 nnoremap X ""D
@@ -420,4 +424,26 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+
+" visual studio vim rebinds (enter with : )
+" nnoremap Xae _iAssert.AreEqual();<ENTER><ESC>kf)
+" inoremap jk <ESC>
+" nnoremap æ /
+" nnoremap Æ ?
+" vnoremap æ /
+" vnoremap Æ ?
+
 
