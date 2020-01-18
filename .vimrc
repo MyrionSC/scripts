@@ -169,6 +169,7 @@ nnoremap æ /
 vnoremap æ /
 nnoremap Æ ?
 vnoremap Æ ?
+cnoremap æ <ENTER>
 
 " cut into vim default register
 nnoremap X ""D

@@ -388,4 +388,7 @@ tr_underscore(){
     echo "$@" | tr " " "_"
 }
 
+sr () {
+    echo "TODO: call syn-replace with azure files"
+}
 
