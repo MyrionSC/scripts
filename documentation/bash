@@ -44,13 +44,18 @@ A &     # Run A in background.
 # cat file.txt every time it changes (-c clear console, -p postpone execution)
 ls file.txt | entr -cp cat /_
 
-
-
-
 # if running a script from keyboard shortcut, ensure that all necessary libs are in path by having below in top of file
 LD_LIBRARY_PATH="/usr/local/lib" # or whereever the lib files are
 export LD_LIBRARY_PATH
 
-
+# redirects docs
+"> file" means redirect stdout to file. stout is meant because it is the default stream when none is specified by number.
+"2> file" means redirect stderr to file
+">&2" means redirect stdout to stderr (default stream)
+"1>&2" means redirect stdout to stderr
+"2>&1" means redirect stderr to stdout
+"&> file" means redirect stdout and stderr to file, however this only works in newer shells, like bash 4 onwards
+"> /dev/null 2>&1" hide every output
+"&> /dev/null" hide every output (bash 4+)
 
 
