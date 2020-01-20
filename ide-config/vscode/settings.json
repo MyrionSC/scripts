@@ -12,23 +12,20 @@
         "d"
       ],
       "after": [
-        "\"", "_", "d"
+        "\"",
+        "_",
+        "d"
       ]
     },
     {
       "before": [
-        "p"
+        "p",
       ],
       "after": [
-        "\"", "_", "d", "P"
-      ]
-    },
-    {
-      "before": [
-        "P"
-      ],
-      "after": [
-        "\"", "_", "d", "P"
+        "p",
+        "g",
+        "v",
+        "y"
       ]
     },
     {
@@ -46,12 +43,13 @@
       "commands": [
         "editor.action.outdentLines"
       ]
-    },
+    }
   ],
   "vim.insertModeKeyBindings": [
     {
       "before": [
-        "j", "k"
+        "j",
+        "k"
       ],
       "after": [
         "<Esc>"
@@ -61,10 +59,30 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
+        "<leader>",
+        "j"
+      ],
+      "after": [
+        "/"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "k"
+      ],
+      "after": [
+        "?"
+      ]
+    },
+    {
+      "before": [
         "d"
       ],
       "after": [
-        "\"", "_", "d"
+        "\"",
+        "_",
+        "d"
       ]
     },
     {
@@ -72,7 +90,9 @@
         "D"
       ],
       "after": [
-        "\"", "_", "D"
+        "\"",
+        "_",
+        "D"
       ]
     },
     {
@@ -88,14 +108,18 @@
         "H"
       ],
       "after": [
-        "0"
+        "_"
       ]
     }
   ],
   "vim.leader": "<space>",
   "vim.handleKeys": {
     "<C-a>": false,
-    "<C-f>": false
+    "<C-f>": false,
+    "<C-w>": false,
+    "<C-o>": true,
+    "<C-i>": true,
+    "<C-l>": true
   },
   "editor.minimap.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always"
