@@ -166,9 +166,10 @@ nnoremap <leader>j /
 vnoremap <leader>k ?
 nnoremap <leader>k ?
 nnoremap æ /
-vnoremap æ /
 nnoremap Æ ?
+vnoremap æ /
 vnoremap Æ ?
+cnoremap æ <ENTER>
 
 " cut into vim default register
 nnoremap X ""D
@@ -445,5 +446,4 @@ vnoremap <silent> # :<C-U>
 " nnoremap Æ ?
 " vnoremap æ /
 " vnoremap Æ ?
-
 
