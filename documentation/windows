@@ -1,3 +1,7 @@
 
 # cmd search for file
 dir *filename* /p /s
+
+# find router external ip in powershell
+(Invoke-WebRequest ifconfig.me/ip).Content.Trim()
+
