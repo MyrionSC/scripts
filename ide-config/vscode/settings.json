@@ -1,126 +1,173 @@
 {
-  "vim.easymotion": false,
-  "vim.surround": true,
-  "vim.sneak": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "d"
-      ],
-      "after": [
-        "\"",
-        "_",
-        "d"
-      ]
+    "vim.vimrc.path": "$HOME/.vimrc",
+    "window.zoomLevel": 0,
+
+    "vim.easymotion": false,
+    "vim.surround": true,
+    "vim.sneak": false,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "c"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "d",
+                "i"
+            ]
+        },
+        {
+            "before": [
+                "æ"
+            ],
+            "after": [
+                "\""
+            ]
+        },
+        {
+            "before": [
+                "Æ"
+            ],
+            "after": [
+                "?"
+            ]
+        },
+        {
+            "before": [
+                "d"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "p"
+            ],
+            "after": [
+                "p",
+                "g",
+                "v",
+                "y"
+            ]
+        },
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.commandLineModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "æ"
+            ],
+            "after": [
+                "<ENTER>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "X"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "æ"
+            ],
+            "after": [
+                "/"
+            ]
+        },
+        {
+            "before": [
+                "Æ"
+            ],
+            "after": [
+                "?"
+            ]
+        },
+        {
+            "before": [
+                "d"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "D"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "D"
+            ]
+        },
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "$"
+            ]
+        },
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "_"
+            ]
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-w>": false,
+        "<C-o>": true,
+        "<C-i>": true,
+        "<C-l>": true
     },
-    {
-      "before": [
-        "p",
-      ],
-      "after": [
-        "p",
-        "g",
-        "v",
-        "y"
-      ]
-    },
-    {
-      "before": [
-        ">"
-      ],
-      "commands": [
-        "editor.action.indentLines"
-      ]
-    },
-    {
-      "before": [
-        "<"
-      ],
-      "commands": [
-        "editor.action.outdentLines"
-      ]
-    }
-  ],
-  "vim.insertModeKeyBindings": [
-    {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<Esc>"
-      ]
-    }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "<leader>",
-        "j"
-      ],
-      "after": [
-        "/"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "k"
-      ],
-      "after": [
-        "?"
-      ]
-    },
-    {
-      "before": [
-        "d"
-      ],
-      "after": [
-        "\"",
-        "_",
-        "d"
-      ]
-    },
-    {
-      "before": [
-        "D"
-      ],
-      "after": [
-        "\"",
-        "_",
-        "D"
-      ]
-    },
-    {
-      "before": [
-        "L"
-      ],
-      "after": [
-        "$"
-      ]
-    },
-    {
-      "before": [
-        "H"
-      ],
-      "after": [
-        "_"
-      ]
-    }
-  ],
-  "vim.leader": "<space>",
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": false,
-    "<C-w>": false,
-    "<C-o>": true,
-    "<C-i>": true,
-    "<C-l>": true
-  },
-  "editor.minimap.enabled": true,
-  "typescript.updateImportsOnFileMove.enabled": "always"
+    "editor.minimap.enabled": true,
+    "typescript.updateImportsOnFileMove.enabled": "always"
 }

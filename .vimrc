@@ -133,6 +133,7 @@ filetype plugin indent on               " required
 " PLUGINS END
 " -----------
 
+map <C-s> :w
 
 " print buffers and prepare to go to one
 nnoremap gb :ls<cr>:b<space>
