@@ -9,7 +9,8 @@ var instructionsString = "Commands are:\n\n" +
     "todo add -s [string]\n" +
     "todo rm -pe [number]\n" +
     "todo rm -pr [number]\n" +
-    "todo rm -s [number]\n\n" +
+    "todo rm -s [number]\n" +
+    "todo open\n\n" +
     "Host URL: " + url;
 
 // ====== Helpers
@@ -64,6 +65,11 @@ var printDeleteResult = function (error, res) {
 var get = function (flag) {
     needle.get(url + "api/list", printGetListResult);
 };
+var open = function () {
+    var url = 'http://marand.dk/todo/';
+    var start = (process.platform == 'darwin'? 'open': process.platform == 'win32'? 'start': 'xdg-open');
+    require('child_process').exec(start + ' ' + url);
+}
 var add = function (flag, item) {
     if (flag === "-pe") {
         needle.post(url + "api/personal", {item: item}, printAddResult);
@@ -89,7 +95,7 @@ var rm = function (flag, pos) {
 
 // parse arguments
 var arg2 = process.argv[2];
-if (!arg2 || arg2 != "ls" && arg2 != "add" && arg2 != "rm") {
+if (!arg2 || arg2 != "ls" && arg2 != "add" && arg2 != "rm" && arg2 != "open") {
     console.log(instructionsString);
 }
 else {
@@ -97,6 +103,14 @@ else {
     if (arg2 === "ls") {
         if (!arg3) {
             get();
+        }
+        else {
+            console.log(instructionsString);
+        }
+    }
+    else if (arg2 === "open") {
+        if (!arg3) {
+            open();
         }
         else {
             console.log(instructionsString);
