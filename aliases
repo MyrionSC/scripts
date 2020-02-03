@@ -195,11 +195,11 @@ finddir () {
 
 ff () {
 	#find . -type f -iname "*$1*"
-    rg --files -g "*$1*"
+    rg --hidden --files -g "*$1*"
 }
 findfile () {
 	#find . -type f -iname "*$1*"
-    rg --files -g "*$1*"
+    rg --hidden --files -g "*$1*"
 }
 
 findlib () {
@@ -269,7 +269,10 @@ alias evimrc="vim ~/.vimrc"
 alias viml="vim $(lst)"
 
 ffv () {
-    vim $(rg --files -g "*$1*")
+    vim $(rg --hidden --files -g "*$1*")
+}
+ffrm () {
+    rm $(rg --hidden --files -g "*$1*")
 }
 rgv () {
     vim $(rg -l "$1")
