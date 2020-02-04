@@ -392,15 +392,18 @@ tr_underscore(){
     echo "$@" | tr " " "_"
 }
 
-sr () {
-    echo "TODO: call syn-replace with azure files"
-}
+alias scanlocal='sudo nmap -sn 192.168.87.0/24'
 
+
+### Commentor
 # run syn-replace on azure deploy files
 synr () {
     ~/bin/syn-replace /c/Users/mar/source/Synoptik-Brilleabonnement/syn-gs/syn-gs-rg/azuredeploy.json
     ~/bin/syn-replace /c/Users/mar/source/Synoptik-Brilleabonnement/syn-gs/syn-gs-rg/azuredeploy-dk.json
 }
+
+
+
 
 
 

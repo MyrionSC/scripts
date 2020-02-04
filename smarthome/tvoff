@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-hs100.sh -i 192.168.87.166 off
+hs100.sh -i 192.168.87.167 off
 
