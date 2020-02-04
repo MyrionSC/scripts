@@ -22,6 +22,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias lt='ls -t'
 alias l='ls -CF'
+alias lf='ls -t | head -1'
 
 alias mv='mv -i'
 alias cp='cp -i'

@@ -406,9 +406,13 @@ com! RemoveFrontWhitespace :%s/^[\t ]*//g
 " must have jq installed
 com! FormatJSON :%!jq '.'
 
+" discount xml format, slow on big stuff
+com! FormatXML :%s/</\r</g || norm gg=G
+
 " reformat html: gq<motion> (reformat line example: gql)
 autocmd FileType html
 \ setlocal formatprg=tidy\ -indent\ -quiet\ --show-errors\ 0\ --tidy-mark\ no\ --show-body-only\ auto
+
 
 " commentor create csharp class from boomi profile (needs reformated html)
 com! -bar CamelCase  :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#ge
