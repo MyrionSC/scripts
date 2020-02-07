@@ -400,6 +400,8 @@ highlight StatusLine ctermfg=2
 
 " remove front whitespace
 com! RemoveFrontWhitespace :%s/^[\t ]*//g
+com! RemoveBackWhitespace :%s/\s\+$//e
+com! RemoveFrontBackWhitespace :%s/^\s\+//e | %s/\s\+$//e
 
 " ====== FORMAT STUFF
 
