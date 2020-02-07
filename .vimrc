@@ -415,11 +415,12 @@ autocmd FileType html
 
 
 " commentor create csharp class from boomi profile (needs reformated html)
-com! -bar CamelCase  :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#ge
+com! -bar FindTitle :v/title/d
+com! -bar ExtractTitle :%norm 0/titlee3ld0elD
 com! -bar FirstCharUpper :%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/ge
-com! -bar FindTitle :v/title/d<bar>:g/./norm 0df"f"D
+com! -bar CamelCase  :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#ge
 com! -bar Text2CSharpProp :g/./norm Ipublic string A { get; set; }
-com! BoomiToCSharp FindTitle | FirstCharUpper | CamelCase | Text2CSharpProp
+com! BoomiToCSharp FindTitle | ExtractTitle | FirstCharUpper | CamelCase | Text2CSharpProp
 com! PlaceholdersToTypes :%s/s$/string/ge | :%s/n$/int/ge | :%s/d$/DateTime/ge | :%s/b$/bool/ge
 
 
