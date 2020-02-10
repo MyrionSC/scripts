@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+
+def print_instructions():
+    print("Tries to camelcase a string containing english words")
+    print("first arg should be a string")
+
+if len(sys.argv) < 2:
+    print_instructions()
+    exit()
+
+inputstring = sys.argv[1].replace("-","").replace("_","")
+out = []
+
+scriptpath = os.path.dirname(os.path.realpath(__file__))
+words = [w.strip() for w in open(scriptpath + "/words-cleaned.txt", "r").readlines()]
+wordsDict = { i : 1 for i in words }
+
+def compute(content):
+    longestWord = ""
+    endIdx = 0
+    while endIdx <= len(content):
+        # print(content[:endIdx])
+        if content[:endIdx] in wordsDict:
+            longestWord = content[:endIdx]
+            # print(content[:endIdx])
+        endIdx = endIdx + 1
+
+    if longestWord != "":
+        out.append(longestWord.capitalize())
+        # print(content[len(longestWord):].capitalize())
+        compute(content[len(longestWord):])
+
+
+compute(inputstring)
+
+print("".join(out))
+
+
+#importsequencenumber is not handling so well
+
+
+# Go forward until found word.
+# Keep going until longest word is found
+# remove longest word from front of in and add to out with first letter uppercase
+# repeat
+
+# if no word found: remove one char from front of input and try again
+
