@@ -11,36 +11,55 @@ if len(sys.argv) < 2:
     print_instructions()
     exit()
 
-inputstring = sys.argv[1].replace("-","").replace("_","")
+inputstring = sys.argv[1].replace("-","").replace("_","").lower()
 out = []
 
 scriptpath = os.path.dirname(os.path.realpath(__file__))
-words = [w.strip() for w in open(scriptpath + "/words-cleaned.txt", "r").readlines()]
-wordsDict = { i : 1 for i in words }
+words = [w.strip() for w in open(scriptpath + "/50000_common_words_ranked2.txt", "r").readlines()]
+wordsDict = {}
+for w in words:
+    arr = w.split()
+    wordsDict[arr[0]] = int(arr[1])
 
-def compute(content):
+def findLongestWord(content):
     longestWord = ""
     endIdx = 0
     while endIdx <= len(content):
-        # print(content[:endIdx])
         if content[:endIdx] in wordsDict:
             longestWord = content[:endIdx]
-            # print(content[:endIdx])
         endIdx = endIdx + 1
+    # if longestWord != "":
+    #     print(longestWord, len(longestWord), wordsDict[longestWord])
+    return longestWord
 
+def compute(content):
+    longestWord = findLongestWord(content)
     if longestWord != "":
-        out.append(longestWord.capitalize())
-        # print(content[len(longestWord):].capitalize())
-        compute(content[len(longestWord):])
+        nextLongestWord = findLongestWord(content[len(longestWord):])
+        nextlongestWordPrevChar = findLongestWord(content[len(longestWord)-1:])
+        if len(nextLongestWord) > 0 and len(nextlongestWordPrevChar) > 0:
+            goBackOneChar = wordsDict[nextLongestWord] > wordsDict[nextlongestWordPrevChar]
+            if goBackOneChar == True:
+                # print("back")
+                out.append(longestWord[:-1].capitalize())
+                # print(out)
+                compute(content[len(longestWord)-1:])
+            else:
+                # print("stay")
+                out.append(longestWord.capitalize())
+                # print(out)
+                compute(content[len(longestWord):])
+        else:
+            # print("end")
+            out.append(longestWord.capitalize())
+            # print(out)
+            compute(content[len(longestWord):])
+    else:
+        out.append(content)
 
 
 compute(inputstring)
-
 print("".join(out))
-
-
-#importsequencenumber is not handling so well
-
 
 # Go forward until found word.
 # Keep going until longest word is found

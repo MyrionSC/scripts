@@ -403,6 +403,8 @@ com! RemoveFrontWhitespace :%s/^[\t ]*//g
 com! RemoveBackWhitespace :%s/\s\+$//e
 com! RemoveFrontBackWhitespace :%s/^\s\+//e | %s/\s\+$//e
 
+com! TryCamelCase :%!xargs -n1 -I{} sh -c 'camelcase {}'
+
 " ====== FORMAT STUFF
 
 " must have jq installed
