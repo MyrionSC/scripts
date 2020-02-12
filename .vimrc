@@ -288,7 +288,7 @@ if g:os == "Linux"
    nmap <leader>p "+p
    nmap <leader>P "+P
    nmap <leader>D "+d
-   nmap <leader>X "+D
+   nmap <leader>X "+dd
 elseif g:os == "Darwin" " mac
    vmap <leader>y "*y
    vmap <leader>d "*d
@@ -300,7 +300,7 @@ elseif g:os == "Darwin" " mac
    nmap <leader>p "*p
    nmap <leader>P "*P
    nmap <leader>D "*d
-   nmap <leader>X "*D
+   nmap <leader>X "*dd
 elseif g:os == "MSYS_NT-10.0-18362"
    vmap <leader>y "*y
    vmap <leader>d "*d
@@ -312,7 +312,7 @@ elseif g:os == "MSYS_NT-10.0-18362"
    nmap <leader>p "*p
    nmap <leader>P "*P
    nmap <leader>D "*d
-   nmap <leader>X "*D
+   nmap <leader>X "*dd
 endif
 
 " Execute macros over multiple visual lines
@@ -399,9 +399,11 @@ highlight StatusLine ctermfg=2
 " com! FormatXML !xmllint --format -<CR>
 
 " remove front whitespace
-com! RemoveFrontWhitespace :%s/^[\t ]*//g
-com! RemoveBackWhitespace :%s/\s\+$//e
+"com! RemoveFrontWhitespace :%s/^[\t ]*//g
+"com! RemoveBackWhitespace :%s/\s\+$//e
 com! RemoveFrontBackWhitespace :%s/^\s\+//e | %s/\s\+$//e
+com! TrimWhitespace :%s/^\s\+//e | %s/\s\+$//e
+com! RemoveEmptyLines :g/^\s*$/d
 
 " ====== FORMAT STUFF
 
@@ -424,6 +426,7 @@ com! -bar CamelCase  :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#ge
 com! -bar Text2CSharpProp :g/./norm Ipublic string A { get; set; }
 com! BoomiToCSharp FindTitle | ExtractTitle | FirstCharUpper | CamelCase | Text2CSharpProp
 com! PlaceholdersToTypes :%s/s$/string/ge | :%s/n$/int/ge | :%s/d$/DateTime/ge | :%s/b$/bool/ge
+com! GenerateMapper :%norm yiwIto.La = from.pa;
 
 
 " translate text (needs trans-shell: wget git.io/trans)
@@ -454,4 +457,5 @@ vnoremap <silent> # :<C-U>
 " nnoremap Æ ?
 " vnoremap æ /
 " vnoremap Æ ?
+" nnoremap X ""dd
 
