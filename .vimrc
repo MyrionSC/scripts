@@ -405,6 +405,8 @@ com! RemoveFrontBackWhitespace :%s/^\s\+//e | %s/\s\+$//e
 com! TrimWhitespace :%s/^\s\+//e | %s/\s\+$//e
 com! RemoveEmptyLines :g/^\s*$/d
 
+com! TryCamelCase :%!xargs -n1 -I{} sh -c 'camelcase {}'
+
 " ====== FORMAT STUFF
 
 " must have jq installed
