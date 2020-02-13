@@ -135,8 +135,11 @@ filetype plugin indent on               " required
 
 map <C-s> :w
 
+" === Buffers
 " print buffers and prepare to go to one
 nnoremap gb :ls<cr>:b<space>
+" load all files in dir and subdirs into buffers
+com! LoadBuffers :args `rg --hidden --files`
 
 " edit vimrc from vim
 nmap <leader>v :tabe ~/.vimrc<CR>
