@@ -394,6 +394,9 @@ tr_underscore(){
 
 alias scanlocal='sudo nmap -sn 192.168.87.0/24'
 
+viewlog() {
+    less +F ~/logs/$1
+}
 
 ### Commentor
 # run syn-replace on azure deploy files
