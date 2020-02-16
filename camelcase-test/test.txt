@@ -134,7 +134,6 @@ renewal_info
 requirements
 salary_no
 send_private_offer
-send_to_amn
 send_to_nav
 service_provider
 settlement_broker

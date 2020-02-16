@@ -96,24 +96,17 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ntpeters/vim-better-whitespace' " highlight trailing whitespace (:StripWhitespace to remove)
 Plugin 'maksimr/vim-jsbeautify' " jsformatting (maybe delete after a while)
 
-Plugin 'ervandew/supertab' " tab completion in insert mode
-let g:SuperTabDefaultCompletionType    = '<C-n>'
-let g:SuperTabCrMapping                = 0
 nmap <leader>f :CtrlP<CR>
 nmap <leader>b :CtrlBuffer<CR>
 
 " Snippets! Notice: Vim has to be compiled with python i think.
+Plugin 'ervandew/supertab' " tab completion in insert mode
+Plugin 'ycm-core/YouCompleteMe' " contextual completion engine (remember to compile)
 Plugin 'SirVer/ultisnips' " snippets engine
 Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
 
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" let g:UltiSnipsExpandTrigger           = '<tab>'
-" let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-" let g:UltiSnipsListSnippets             = '<tab><space>'
-" let g:UltiSnipsExpandSnippetOrJump     = '<tab>'
-" let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+" Expand snippets with ctrl-enter (might be different on windows). Also jumps forward in snippets
+let g:UltiSnipsExpandTrigger="<C-J>"
 
 " custom snippets dir. Remember to make symlink to ~/bin/ultisnippets in .vim
 " let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
