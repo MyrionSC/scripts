@@ -231,9 +231,9 @@ lst() {
 mvl () {
 	if [ $# -eq 1 ]
 	then
-		mv -i $(lst) $1
+		mv -i -v $(lst) $1
 	else
-		mv -i $(lst $1) $2
+		mv -i -v $(lst $1) $2
 	fi
 }
 cpl () {
