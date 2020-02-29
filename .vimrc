@@ -109,9 +109,9 @@ Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
 let g:UltiSnipsExpandTrigger="<C-J>"
 
 " custom snippets dir. Remember to make symlink to ~/bin/ultisnippets in .vim
-" let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
-" let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
-" let g:UltiSnipsEditSplit               = 'vertical'
+let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
+let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
+let g:UltiSnipsEditSplit               = 'vertical'
 
 
 " all vundle plugins must be added before this line
