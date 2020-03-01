@@ -15,7 +15,7 @@ inputstring = sys.argv[1].replace("-","").replace("_","").lower()
 out = []
 
 scriptpath = os.path.dirname(os.path.realpath(__file__))
-words = [w.strip() for w in open(scriptpath + "/50000_common_words_ranked2.txt", "r").readlines()]
+words = [w.strip() for w in open(scriptpath + "/english-word-files/50000_common_words_ranked2.txt", "r").readlines()]
 wordsDict = {}
 for w in words:
     arr = w.split()
