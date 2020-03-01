@@ -48,11 +48,14 @@ alias gcpc='git cherry-pick --continue'
 
 alias gco='git checkout'
 alias gcb='git checkout -b'
-alias gcob='git checkout -b'
+#alias gcob='git checkout -b'
 alias gcom='git checkout master'
 alias gcod='git checkout develop 2>/dev/null || git checkout development'
 alias gcol='git checkout @{-1}' #checkout previous branch
 alias gcop='git checkout @{-1}' #checkout previous branch
+gcob() {
+    git checkout -b $(echo "$@" | tr " " "_" | tr "-" "_" | tr -d ":")
+}
 
 #git revert <commit_hash> # revert single commit
 #git revert <oldest_commit_hash>..<latest_commit_hash> # revert range of commits
