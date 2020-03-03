@@ -11,17 +11,14 @@ fi
 if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
     echo "TODO"
 elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
-    powershell -command "Get-Clipboard" > ~/.cache/b64c.txt
-    grep -E -o '[A-Za-z0-9+\/]{70,}(={1,6})?' ~/.cache/b64c.txt > ~/.cache/b64c-clean.txt
+    powershell -command "Get-Clipboard" > ~/.cache/clipboard.txt
+    grep -E -o '[A-Za-z0-9+\/]{70,}(={1,6})?' ~/.cache/clipboard.txt > ~/.cache/b64c-clean.txt
     base64 -d ~/.cache/b64c-clean.txt > ~/.cache/b64c.$1
     start ~/.cache/b64c.$1
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
     xclip -selection clipboard -o > ~/.cache/clipboard.txt
-    cat ~/.cache/clipboard.txt
     grep -E -o '[A-Za-z0-9+\/]{70,}(={1,6})?' ~/.cache/clipboard.txt > ~/.cache/b64c-clean.txt
-    cat ~/.cache/b64c-clean.txt
     base64 -d ~/.cache/b64c-clean.txt > ~/.cache/b64c.$1
-    cat ~/.cache/b64c.$1
     /usr/bin/xdg-open ~/.cache/b64c.$1
 fi
 
