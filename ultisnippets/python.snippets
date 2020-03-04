@@ -1,0 +1,53 @@
+priority -40
+
+###########################################################################
+#                            TEXTMATE SNIPPETS                            #
+###########################################################################
+# For ultisnips syntax help, see https://bazaar.launchpad.net/~sirver/ultisnips/trunk/view/head:/doc/UltiSnips.txt
+#  or :h ultisnips
+
+# todo: test a snippet with shellcode, where bash inside tics is evaluated?
+# example from docs:
+snippet today
+Today is the `date +%d.%m.%y`.
+endsnippet
+
+
+# === File Operations
+snippet fread "Read from file. Error if file not exists." b
+with open(${1:path}, "r") as f:
+    content = f.read()
+    $0
+endsnippet
+
+snippet freadlines "Read lines from file and trim. Error if file not exists." b
+with open(${1:path}, "r") as f:
+    lines = [l.strip() for l in f.readlines()]
+    $0
+endsnippet
+
+snippet fwrite "Write to file. Overwrites file if exists." b
+with open(${1:path}, "w") as f:
+    f.write(${2:"Hello World " + f.name})
+    $0
+endsnippet
+
+snippet fappend "Append to file. Creates if not exists." b
+with open(${1:path}, "a") as f:
+    f.write(${2:"Hello World " + f.name})
+    $0
+endsnippet
+
+snippet fdexists "Test whether file or dir exists" w
+os.path.exists(${1:path})
+endsnippet
+
+snippet fexists "Test whether file exists" w
+os.path.isfile(${1:path})
+endsnippet
+
+snippet dexists "Test whether dir exists" w
+os.path.isdir(${1:path})
+endsnippet
+
+

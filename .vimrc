@@ -109,9 +109,9 @@ Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
 let g:UltiSnipsExpandTrigger="<C-J>"
 
 " custom snippets dir. Remember to make symlink to ~/bin/ultisnippets in .vim
-" let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
-" let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
-" let g:UltiSnipsEditSplit               = 'vertical'
+let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
+let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
+let g:UltiSnipsEditSplit               = 'vertical'
 
 
 " all vundle plugins must be added before this line
@@ -133,6 +133,8 @@ map <C-s> :w
 nnoremap gb :ls<cr>:b<space>
 " load all files in dir and subdirs into buffers
 com! LoadBuffers :args `rg --hidden --files`
+" save all buffers. If not able to, like if unnamed file exists, write message
+nnoremap <silent> <C-m> :try\|wa\|catch /\<E141\>/\|echomsg 'Not all files saved!'\|endtry<CR>
 
 " edit vimrc from vim
 nmap <leader>v :tabe ~/.vimrc<CR>
@@ -445,7 +447,6 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
-
 
 " visual studio vim rebinds (enter with : )
 " nnoremap Xae _iAssert.AreEqual();<ENTER><ESC>kf)
