@@ -1,16 +1,30 @@
+
 "-- simple options
 set nocompatible
 syntax on
+set showcmd
 set relativenumber
 set number " show line numbers
 set showmatch " show matching item (like {})
 set nowrap " Turn off line wrapping.
-set scrolloff=10 " Show 7 lines of context around the cursor.
+set scrolloff=10 " Show lines of context around the cursor.
 set sidescrolloff=10
-set encoding=utf-8 " test this
+set encoding=utf-8
+set hidden " keeps buffers loaded
+set undofile " keeps undofile, which allows undo in file even after closing
+set laststatus=2 " set permanent status bar
+set confirm " Ask for confirmation when handling unsaved or read-only files
+set novisualbell noerrorbells " Do not use visual and error bells
+set matchpairs+=<:> " Set matching pairs of characters and highlight matching brackets
+set linebreak " Break line at predefined characters
+set showbreak=↪ " Character to show before the lines that have been soft-wrapped
+set nojoinspaces " Do not add two space after a period when joining lines or formatting texts,
+set synmaxcol=1024 " Syntax coloring lines that are too long just slows down the world
+
 " finding files
 set path+=**
-set wildmenu
+set wildmenu " show match list if appropriate
+set wildmode=list:longest " match automatically to longest unambigious string.
 set backspace=indent,eol,start
 filetype plugin indent on
 
@@ -22,39 +36,18 @@ set wildignore+=*.pyc
 set wildignore+=*.DS_Store
 set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
 
-" Ask for confirmation when handling unsaved or read-only files
-set confirm
-
-" Do not use visual and error bells
-set novisualbell noerrorbells
-
-" search set ignorecase
-set smartcase
+" search options
+set smartcase " ignores case if all lowercase, does not if one or more uppercase
 set incsearch " search highlight
 set wrapscan
 
 " Tabs and indentation.
-" set tabstop=4
-" set softtabstop=4
-" set shiftwidth=4
-" set expandtab
-" set autoindent
-" set smartindent
-
-" Set matching pairs of characters and highlight matching brackets
-set matchpairs+=<:>
-
-" Break line at predefined characters
-set linebreak
-" Character to show before the lines that have been soft-wrapped
-set showbreak=↪
-
-" Do not add two space after a period when joining lines or formatting texts,
-" see https://tinyurl.com/y3yy9kov
-set nojoinspaces
-
-" Syntax coloring lines that are too long just slows down the world
-set synmaxcol=1024
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
 
 " remap leader to space
 let mapleader = ' '
@@ -63,7 +56,6 @@ let mapleader = ' '
 " -------
 " PLUGINS
 " -------
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim	"required
 call vundle#begin()			"required
@@ -125,6 +117,11 @@ filetype plugin indent on               " required
 " -----------
 " PLUGINS END
 " -----------
+
+
+" --------------
+" MAPPINGS START
+" --------------
 
 map <C-s> :w
 
@@ -192,8 +189,6 @@ noremap L $
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
-set laststatus=2 " set permanent status bar (i hope)
-
 " save bash shebang in register b. use @b to get it in vim
 let @b='i#!/usr/bin/env bashq'
 
@@ -206,6 +201,11 @@ inoremap <C-d> <C-[>diwi
 imap <C-b> <Esc>`^bi
 imap <C-w> <Esc>`^wi
 imap <C-e> <Esc>`^ei
+
+
+
+
+
 
 " windows
 set splitbelow splitright
@@ -231,16 +231,10 @@ inoremap <C-k> <Esc>:m -2<CR>gi
 vnoremap <C-j> :m '>+1<CR>gvgv
 vnoremap <C-k> :m '<-2<CR>gvgv
 
-" insert four space
-" inoremap <leader><tab> <space><space><space><space>
-
 " file operations
 " nmap <C-l> @:
 " nmap <C-w> :w<CR>
 " map <C-q> :q<CR>
-
-" reformat command " TODO: set mark to return to same position
-" command Reformat gg=G
 
 " replace last search team
 " nmap <C-s> :%s///gc<Left><Left><Left><Left>
@@ -248,9 +242,6 @@ vnoremap <C-k> :m '<-2<CR>gvgv
 
 " save readonly file changes
 cmap w!! w !sudo tee >/dev/null %
-
-" jedi-vim
-" let g:jedi#auto_initialization = 1
 
 " ctags keybind
 set tags=tags
@@ -329,8 +320,12 @@ augroup non_utf8_file_warn
                 \ | unsilent echomsg 'File not in UTF-8 format!' | endif
 augroup END
 
+" ------------
+" MAPPINGS END
+" ------------
 
-" ====== STATUS LINE SETTINGS
+
+" STATUS LINE SETTINGS
 let g:currentmode={
        \ 'n'  : 'NORMAL ',
        \ 'no' : 'N·Operator Pending ',
@@ -359,10 +354,8 @@ set statusline+=\ %<
 
 " File path, as typed or relative to current directory
 set statusline+=%f
-
 set statusline+=\ %{&modified?'[+]':''}
 set statusline+=%{&readonly?'[]':''}
-
 set statusline+=%{&spell?'[SPELL]':''}
 set statusline+=%#WarningMsg#
 set statusline+=%{&paste?'[PASTE]':''}
@@ -370,14 +363,12 @@ set statusline+=%*
 
 " Separation point between left and right aligned items
 set statusline+=%=
-
 set statusline+=%-5{&filetype!=#''?&filetype:'none'}
 
 " Encoding & Fileformat
 set statusline+=%#WarningMsg#
 set statusline+=%{&fileencoding!='utf-8'?'['.&fileencoding.']':''}
 set statusline+=%*
-
 set statusline+=[%{&fileformat}]
 
 " Warning about byte order
@@ -393,9 +384,6 @@ set statusline+=\ col:%3c
 
 highlight StatusLine ctermfg=2
 
-" format xml using xmllint, TODO: test it
-" com! FormatXML !xmllint --format -<CR>
-
 " remove front whitespace
 "com! RemoveFrontWhitespace :%s/^[\t ]*//g
 "com! RemoveBackWhitespace :%s/\s\+$//e
@@ -405,13 +393,14 @@ com! RemoveEmptyLines :g/^\s*$/d
 
 com! TryCamelCase :%!xargs -n1 -I{} sh -c 'camelcase {}'
 
+
 " ====== FORMAT STUFF
+com! Reformat norm mygg=G`y " format file and return to same position
+com! FormatJSON :%!jq '.' " must have jq installed
+com! FormatXML :%s/</\r</g || norm gg=G " discount xml format, slow on big stuff
 
-" must have jq installed
-com! FormatJSON :%!jq '.'
-
-" discount xml format, slow on big stuff
-com! FormatXML :%s/</\r</g || norm gg=G
+" format xml using xmllint
+" com! FormatXML !xmllint --format -<CR>
 
 " reformat html: gq<motion> (reformat line example: gql)
 autocmd FileType html
@@ -431,11 +420,6 @@ com! GenerateMapper :%norm yiwIto.La = from.pa;
 
 " translate text (needs trans-shell: wget git.io/trans)
 com! -bar TranslateDaEn :%!trans -d -b da:en
-
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
