@@ -11,7 +11,6 @@ set scrolloff=10 " Show lines of context around the cursor.
 set sidescrolloff=10
 set encoding=utf-8
 set hidden " keeps buffers loaded
-set undofile " keeps undofile, which allows undo in file even after closing
 set laststatus=2 " set permanent status bar
 set confirm " Ask for confirmation when handling unsaved or read-only files
 set novisualbell noerrorbells " Do not use visual and error bells
@@ -20,6 +19,8 @@ set linebreak " Break line at predefined characters
 set showbreak=↪ " Character to show before the lines that have been soft-wrapped
 set nojoinspaces " Do not add two space after a period when joining lines or formatting texts,
 set synmaxcol=1024 " Syntax coloring lines that are too long just slows down the world
+set showmatch " show matching brackets on screen
+au FocusLost * :wa " save files when tabbing away
 
 " finding files
 set path+=**
@@ -37,9 +38,14 @@ set wildignore+=*.DS_Store
 set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
 
 " search options
+" nnoremap / /\v
+" vnoremap / /\v
+" nnoremap <leader><space> :noh<cr>
+set ignorecase
 set smartcase " ignores case if all lowercase, does not if one or more uppercase
-set incsearch " search highlight
-set wrapscan
+set incsearch " search highlight while typing
+set wrapscan " search from top if bottom reached
+set gdefault " replace multiple occurences of search replace on line. Use g suffix to return to first occurence
 
 " Tabs and indentation.
 set tabstop=4
@@ -49,9 +55,22 @@ set expandtab
 set autoindent
 set smartindent
 
+" keeps undofile, which allows undo in file even after closing
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
+
 " remap leader to space
 let mapleader = ' '
 
+" show hidden characters
+" set list
+" set listchars=tab:▸\ ,eol:¬
 
 " -------
 " PLUGINS
@@ -112,7 +131,6 @@ filetype plugin indent on               " required
 
 " Plugins TODO:
 " - Test out CamelCaseMotion
-" - Fix snippets
 
 " -----------
 " PLUGINS END
@@ -157,10 +175,6 @@ vnoremap p "_dP
 vnoremap P "_dP
 
 " remap search
-vnoremap <leader>j /
-nnoremap <leader>j /
-vnoremap <leader>k ?
-nnoremap <leader>k ?
 nnoremap æ /
 nnoremap Æ ?
 vnoremap æ /
@@ -202,11 +216,6 @@ imap <C-b> <Esc>`^bi
 imap <C-w> <Esc>`^wi
 imap <C-e> <Esc>`^ei
 
-
-
-
-
-
 " windows
 set splitbelow splitright
 " navigate in windows with ctrl-hjkl
@@ -223,7 +232,7 @@ nnoremap <silent> <M-l> <C-w>>
 nnoremap <silent> <M-j> <C-W>-
 nnoremap <silent> <M-k> <C-W>+
 
-" move lines with Ctrl + (Shift) +J/K
+" move lines with Ctrl + j/k
 nnoremap <C-j> :m +1<CR>
 nnoremap <C-k> :m -2<CR>
 inoremap <C-j> <Esc>:m +1<CR>gi
@@ -246,6 +255,9 @@ cmap w!! w !sudo tee >/dev/null %
 " ctags keybind
 set tags=tags
 nmap <leader>T :!ctags -R .<CR><CR>
+
+" select text just pasted in
+nnoremap <leader>r V`]
 
 " todo: test Ctrlp
 " nnoremap <leader>. :CtrlPTag<cr>
@@ -432,6 +444,7 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
+
 " visual studio vim rebinds (enter with : )
 " nnoremap Xae _iAssert.AreEqual();<ENTER><ESC>kf)
 " inoremap jk <ESC>
@@ -441,4 +454,5 @@ vnoremap <silent> # :<C-U>
 " vnoremap Æ ?
 " nnoremap X ""dd
 " nnoremap D "_D
+
 
