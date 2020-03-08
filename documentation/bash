@@ -65,3 +65,8 @@ sudo nmap -sn 192.168.1.0/24, which basically scans from 192.168.1.0 to 192.168.
 # view autorefreshing log file
 less +F <filepath>
 
+# ----- datetime formatting
+dt=$(date '+%d/%m/%Y %H:%M:%S');
+echo "$dt" # Output format: 08/03/2020 16:40:30
+
+
