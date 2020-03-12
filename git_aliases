@@ -99,6 +99,7 @@ alias ggpup='git push origin $(cur_br) && git branch --set-upstream-to=origin/$(
 alias ghh='git help'
 
 alias gl='git pull'
+
 alias glg='git log --stat'
 alias glgp='git log --stat -p'
 alias glgg='git log --graph'
@@ -108,6 +109,7 @@ alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 alias gdf='git log -p [--follow] [-1]'
+# log show: use git show COMMIT to see commit changes
 
 alias gm='git merge'
 alias gmom='git merge origin/master'

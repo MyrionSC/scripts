@@ -427,7 +427,9 @@ com! -bar CamelCase  :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#ge
 com! -bar Text2CSharpProp :g/./norm Ipublic string A { get; set; }
 com! BoomiToCSharp FindTitle | ExtractTitle | FirstCharUpper | CamelCase | Text2CSharpProp
 com! PlaceholdersToTypes :%s/s$/string/ge | :%s/n$/int/ge | :%s/d$/DateTime/ge | :%s/b$/bool/ge
-com! GenerateMapper :%norm yiwIto.La = from.pA;
+com! CSharpGenerateMapper :%norm yiwIto.La = from.pA;
+com! SwaggerToCSharpClass :g/:/norm J0Evd0viWxLa pa { get; set; }0dwipublic 
+com! CSharpGetPropNames :%norm d2exElD
 
 " translate text (needs trans-shell: wget git.io/trans)
 com! -bar TranslateDaEn :%!trans -d -b da:en
@@ -454,5 +456,7 @@ vnoremap <silent> # :<C-U>
 " vnoremap Æ ?
 " nnoremap X ""dd
 " nnoremap D "_D
+
+
 
 
