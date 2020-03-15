@@ -54,7 +54,7 @@ alias gcod='git checkout develop 2>/dev/null || git checkout development'
 alias gcol='git checkout @{-1}' #checkout previous branch
 alias gcop='git checkout @{-1}' #checkout previous branch
 gcob() {
-    git checkout -b $(echo "$@" | tr " " "_" | tr "-" "_" | tr -d ":")
+    git checkout -b $(echo "$@" | tr " " "-" | tr -d ":")
 }
 
 #git revert <commit_hash> # revert single commit
@@ -116,6 +116,8 @@ alias gmom='git merge origin/master'
 alias gmt='git mergetool --no-prompt'
 alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
 alias gmum='git merge upstream/master'
+alias gma='git merge --abort'
+alias gmab='git merge --abort'
 alias gmp='git merge @{-1}' #merge previous branch
 alias gml='git merge @{-1}' #merge previous branch
 alias gmlo='git pull origin @{-1}' #fetch origin of last branch and merge to current
