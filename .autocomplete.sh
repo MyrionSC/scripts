@@ -14,6 +14,10 @@ complete -W "${_var_completion}" 'var'
 _gclm_completion='$(~/bin/gclm)'
 complete -W "${_gclm_completion}" 'gclm'
 
+#gbdl
+_gbdl_completion='$(git branch)'
+complete -W "${_gbdl_completion}" 'gbdl'
+
 #viewlog
 _viewlogs_completion='$(ls ~/logs)'
 complete -W "${_viewlogs_completion}" 'viewlog'
