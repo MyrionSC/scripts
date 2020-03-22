@@ -449,15 +449,7 @@ vnoremap <silent> # :<C-U>
 
 
 " visual studio vim rebinds (enter with : )
+" remember to symlink to ~/.vimrc from  %WINHOME%, so vsvim can find it
 " nnoremap Xae _iAssert.AreEqual();<ENTER><ESC>kf)
-" inoremap jk <ESC>
-" nnoremap æ /
-" nnoremap Æ ?
-" vnoremap æ /
-" vnoremap Æ ?
-" nnoremap X ""dd
-" nnoremap D "_D
-
-
 
 

@@ -398,6 +398,13 @@ viewlog() {
     less +F ~/logs/$1
 }
 
+# Print Len of input
+strlen() {
+    strlenargs="$@"
+    echo ${#strlenargs}
+}
+
+
 ### Commentor
 # run syn-replace on azure deploy files
 synr () {
