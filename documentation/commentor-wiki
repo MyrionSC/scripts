@@ -4,6 +4,10 @@
 2: click "Commentor" in left tab 
 3: click "Sync" in top bar
 
+open https://logisticsas.sharepoint.com/sites/Commentor/Commentor/Forms/AllItems.aspx?viewpath=%2Fsites%2FCommentor%2FCommentor%2FForms%2FAllItems.aspx
+press sync
+
+filer er i $HOME$\Commentor mappe, ikke $HOME$\OneDrive - Commentor
 
 --- get signature in outlook
 1: search for exclaimer
