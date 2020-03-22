@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Ifnull</Title>
+            <Author>Marand</Author>
+            <Description>Null check on input, which throws null arg exception</Description>
+            <Shortcut>ifnull</Shortcut>
+            <SnippetType>Expansion</SnippetType>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[if ($Prop$ == null) throw new ArgumentNullException(nameof($Prop$));]]>
+            </Code>
+            <Declarations>
+                <Literal>
+                    <ID>Prop</ID>
+                    <ToolTip>prop to check null</ToolTip>
+                    <Default>prop</Default>
+                </Literal>
+            </Declarations>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
