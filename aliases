@@ -195,12 +195,12 @@ finddir () {
 }
 
 ff () {
-	#find . -type f -iname "*$1*"
-    rg --hidden --files -g "*$1*"
+	find . -type f -iname "*$1*"
+    #rg --hidden --files -g "*$1*"
 }
 findfile () {
-	#find . -type f -iname "*$1*"
-    rg --hidden --files -g "*$1*"
+	find . -type f -iname "*$1*"
+    #rg --hidden --files -g "*$1*"
 }
 
 findlib () {
@@ -413,6 +413,7 @@ synr () {
 }
 
 
+alias rg='rg -M 100'
 
 
 

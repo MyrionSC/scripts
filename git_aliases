@@ -173,7 +173,15 @@ alias gstaa='git stash apply'
 alias gstac='git stash clear'
 alias gstad='git stash drop'
 alias gstal='git stash list'
-alias gstap='git stash pop'
+# alias gstap='git stash pop'
+gstap () {
+	if [ $# -eq 0 ]
+	then
+        git stash pop
+	else
+        git stash pop stash{$1}
+	fi
+}
 alias gstas='git stash show --text'
 #apply specific stash (in this case 1): git stash apply stash@{1}
 #create branch from stash and pop it: git stash branch <name> stash@{1}
