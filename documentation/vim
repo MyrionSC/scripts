@@ -26,4 +26,14 @@ scrooloose/nerdtree to see the directory structure, lookaround, add/delete/modif
 2: find files to edit with "find" (:r !find . -name '*ts')
 3: copy vim commands in front of each
 example: vim -c 'g/public MOVE_SPEED/norm Opublic INITIAL_MOVE_SPEED = 0;' -c 'wq' file.txt
+ 	== OR ==
+1: Open files in buffers
+2: bufdo <COMMAND>
+
+" === echo word under cursor
+:echo expand("<cword>") " small word
+:echo expand("<cWORD>") " big WORD
+
+
+
 
