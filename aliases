@@ -55,6 +55,7 @@ alias nre='npm run env'
 alias df='df -Th'
 alias writer='lowriter'
 alias work='cd ~/work'
+alias notes='cd ~/notes'
 
 # platform specific stuff
 if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
@@ -413,8 +414,9 @@ synr () {
 }
 
 
-alias rg='rg -M 100'
+alias rg='rg -M 400'
 
+alias less='less +F' # real time update on file
 
 
 

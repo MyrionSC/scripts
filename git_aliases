@@ -204,7 +204,9 @@ alias gmlr='gcol && gl && gcol && gml' #merge previous branch
 alias gmdr='gcod && gl && gcol && gml'
 
 alias gciq='git add --all && git commit -m "quick commit!"'
+alias gcic='git add --all && git commit -m "quick commit!"'
 alias gqic='git add --all && git commit -m "quick commit!"'
+alias gqiq='git add --all && git commit -m "quick commit!"'
 
 # Find out which pattern / .gitignore file is ignoring a file
 #git check-ignore -v <some-ignored-file>
