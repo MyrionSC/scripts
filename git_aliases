@@ -207,6 +207,7 @@ alias gciq='git add --all && git commit -m "quick commit!"'
 alias gcic='git add --all && git commit -m "quick commit!"'
 alias gqic='git add --all && git commit -m "quick commit!"'
 alias gqiq='git add --all && git commit -m "quick commit!"'
+alias cinotes='git add --all && git commit -m "notes commit" && git push'
 
 # Find out which pattern / .gitignore file is ignoring a file
 #git check-ignore -v <some-ignored-file>
