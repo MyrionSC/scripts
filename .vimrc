@@ -86,43 +86,43 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 
-Plugin 'justinmk/vim-sneak'
+" Plugin 'justinmk/vim-sneak'
 
 " typescript highlighting
-Plugin 'leafgarland/typescript-vim'
-autocmd BufNewFile,BufRead *.ts  set filetype=typescript
-autocmd BufNewFile,BufRead *.tsx setfiletype typescript
+" Plugin 'leafgarland/typescript-vim'
+" autocmd BufNewFile,BufRead *.ts  set filetype=typescript
+" autocmd BufNewFile,BufRead *.tsx setfiletype typescript
 
 " highlight html tags
-Plugin 'valloric/MatchTagAlways'
+" Plugin 'valloric/MatchTagAlways'
 
 " navigate filesystem in vim
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-com! NT NERDTree
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'Xuyuanp/nerdtree-git-plugin'
+" com! NT NERDTree
 
 " fuzzy search
-Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'ntpeters/vim-better-whitespace' " highlight trailing whitespace (:StripWhitespace to remove)
-Plugin 'maksimr/vim-jsbeautify' " jsformatting (maybe delete after a while)
+" Plugin 'maksimr/vim-jsbeautify' " jsformatting (maybe delete after a while)
 
-nmap <leader>f :CtrlP<CR>
-nmap <leader>b :CtrlBuffer<CR>
+" nmap <leader>f :CtrlP<CR>
+" nmap <leader>b :CtrlBuffer<CR>
 
 " Snippets! Notice: Vim has to be compiled with python i think.
-Plugin 'ervandew/supertab' " tab completion in insert mode
-Plugin 'ycm-core/YouCompleteMe' " contextual completion engine (remember to compile)
-Plugin 'SirVer/ultisnips' " snippets engine
-Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
+" Plugin 'ervandew/supertab' " tab completion in insert mode
+" Plugin 'ycm-core/YouCompleteMe' " contextual completion engine (remember to compile)
+" Plugin 'SirVer/ultisnips' " snippets engine
+" Plugin 'honza/vim-snippets' " a bunch of snippets for many languages
 
 " Expand snippets with ctrl-enter (might be different on windows). Also jumps forward in snippets
-let g:UltiSnipsExpandTrigger="<C-J>"
+" let g:UltiSnipsExpandTrigger="<C-J>"
 
 " custom snippets dir. Remember to make symlink to ~/bin/ultisnippets in .vim
-let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
-let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
-let g:UltiSnipsEditSplit               = 'vertical'
+" let g:UltiSnipsSnippetsDir             = '~/bin/ultisnippets'
+" let g:UltiSnipsSnippetDirectories      = ["UltiSnips", "ultisnippets"]
+" let g:UltiSnipsEditSplit               = 'vertical'
 
 
 " all vundle plugins must be added before this line
@@ -275,7 +275,7 @@ if !exists("g:os")
 endif
 
 " use system clipboard multiplatform
-"set clipboard^=unnamed,unnamedplus
+set clipboard^=unnamed,unnamedplus
 
 " system clipboard
 if g:os == "Linux"
