@@ -59,14 +59,14 @@ alias notes='cd ~/notes'
 alias todo='vim ~/notes/todo.txt'
 
 # platform specific stuff
-if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
+if [[ "$(uname)" == "Darwin" ]]; then # It's a Mac!
     alias dl='cd ~/Downloads'
     alias desk='cd ~/Desktop'
     alias xc='pbcopy'
     alias xpaste='pbpaste'
     dl=~/Downloads
     desk=~/Desktop
-elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
+elif [[ "$(uname)" == "MSYS_NT-10.0-18362" ]]; then # It's MSYS2!
     alias dl='cd /c/Users/$USER/Downloads'
     alias desk='cd /c/Users/$USER/Desktop'
     alias xc='clip'
@@ -75,7 +75,7 @@ elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
     dl=/c/Users/mar/Downloads
     desk=/c/Users/mar/Desktop
     #alias xpaste='pbpaste' #todo: windows paste
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
+elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Linux!
     alias dl='cd ~/Downloads'
     alias desk='cd ~/Desktop'
     alias xc='xclip -selection c' # example: pwd | xc
@@ -314,6 +314,7 @@ fi
 # drive aliases
 alias eals='vim ~/bin/aliases'
 alias ebrc='vim ~/.bashrc'
+alias ezrc='vim ~/.zshrc'
 
 
 dragon-say () {
