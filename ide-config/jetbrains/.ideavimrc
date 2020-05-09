@@ -1,0 +1,14 @@
+
+" source ~/.vimrc
+
+nnoremap H ^
+nnoremap L $
+
+set clipboard+=unnamedplus
+
+" ideavim plugin emulators
+set surround
+set commentary
+set argtextobj
+
+
