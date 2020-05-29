@@ -37,10 +37,10 @@ alias ag='sudo apt-get upgrade'
 alias ar='sudo apt-get remove'
 alias aar='sudo apt-get autoremove'
 al () {
-	apt list "*$1*"
+    apt list "*$1*"
 }
 ali () {
-	apt list --installed "*$1*"
+    apt list --installed "*$1*"
 }
 alias ase='apt search'
 alias ash='apt show' # apt show pckgname - shows information about a package
@@ -97,19 +97,19 @@ alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
 
 wordcount () {
-	echo $1 | wc --words -
+    echo $1 | wc --words -
 }
 trspace () {
-	echo "$@" | tr " " "_"
+    echo "$@" | tr " " "_"
 }
 arrayify () {
-	echo "[$@]" | tr "\n" ", " # cut off last two chars at some point
+    echo "[$@]" | tr "\n" ", " # cut off last two chars at some point
 }
 trupper () {
-	echo "$@" | tr '[:lower:]' '[:upper:]'
+    echo "$@" | tr '[:lower:]' '[:upper:]'
 }
 trlower () {
-	echo "$@" | tr '[:upper:]' '[:lower:]'
+    echo "$@" | tr '[:upper:]' '[:lower:]'
 }
 
 trim() {
@@ -124,42 +124,42 @@ trim() {
 
 
 sgrep () {
-	grep -irn "$1" .
+    grep -irn "$1" .
 }
 greps () {
-	grep -irn "$1" .
+    grep -irn "$1" .
 }
 
 winpath () {
-	if [ $# -eq 0 ]
-	then
-		temppath=$(realpath .)
-	else
-		temppath=$(realpath $1)
-	fi
+    if [ $# -eq 0 ]
+    then
+        temppath=$(realpath .)
+    else
+        temppath=$(realpath $1)
+    fi
 
         # for windows sake
         if [ $(echo $temppath | cut -c1-2) == "/c" ]
         then
-             temppath="C:${temppath:2}"
-             temppath=$(echo $temppath | tr '/' '\\')
+            temppath="C:${temppath:2}"
+            temppath=$(echo $temppath | tr '/' '\\')
         fi
 
         echo $temppath | tr -d "\n"
-}
+    }
 
 xp () {
-	if [ $# -eq 0 ]
-	then
-                realpath . | tr -d "\n" | xc
-	else
-                realpath $1 | tr -d "\n" | xc
-	fi
+    if [ $# -eq 0 ]
+    then
+        realpath . | tr -d "\n" | xc
+    else
+        realpath $1 | tr -d "\n" | xc
+    fi
 }
 
 
 cac () {
-	cat $1 | xc
+    cat $1 | xc
 }
 
 alias linuxv='cat /etc/*-release'
@@ -190,36 +190,36 @@ alias www='cd /var/www/html/'
 
 #search aliases
 findall () {
-	find . -iname "*$1*"
+    find . -iname "*$1*"
 }
 
 fd () {
-	find . -type d -iname "*$1*"
+    find . -type d -iname "*$1*"
 }
 finddir () {
-	find . -type d -iname "*$1*"
+    find . -type d -iname "*$1*"
 }
 
 ff () {
-	find . -type f -iname "*$1*"
+    find . -type f -iname "*$1*"
     #rg --hidden --files -g "*$1*"
 }
 findfile () {
-	find . -type f -iname "*$1*"
+    find . -type f -iname "*$1*"
     #rg --hidden --files -g "*$1*"
 }
 
 findlib () {
-	if [ $# -eq 0 ]
-	then
-		ldconfig -p
-	else
-		ldconfig -p | grep -i $1
-	fi
+    if [ $# -eq 0 ]
+    then
+        ldconfig -p
+    else
+        ldconfig -p | grep -i $1
+    fi
 }
 # can also use locate PATTERN to find a file on the system (much faster)
 findcore () { # search EVERYWHERE
-	sudo find /bin /lib /lib64 /snap /usr /etc /opt /sbin /var /home -iname "*$1*"
+    sudo find /bin /lib /lib64 /snap /usr /etc /opt /sbin /var /home -iname "*$1*"
 }
 
 alias countfiles='find . -type f | wc -l'
@@ -227,31 +227,31 @@ alias countdirs='find . -maxdepth 1 -type d | wc -l'
 
 # list, move, copy, open latest modified file / dir in current dir
 lst() {
-	if [ $# -eq 0 ]
-	then
-		ls -t | head -1
-	else
-		ls -t | head -$1
-	fi
+    if [ $# -eq 0 ]
+    then
+        ls -t | head -1
+    else
+        ls -t | head -$1
+    fi
 }
 mvl () {
-	if [ $# -eq 1 ]
-	then
-		mv -i -v $(lst) $1
-	else
-		mv -i -v $(lst $1) $2
-	fi
+    if [ $# -eq 1 ]
+    then
+        mv -i -v $(lst) $1
+    else
+        mv -i -v $(lst $1) $2
+    fi
 }
 cpl () {
-	if [ $# -eq 1 ]
-	then
-		cp -ir $(lst) $1
-	else
-		cp -ir $(lst $1) $2
-	fi
+    if [ $# -eq 1 ]
+    then
+        cp -ir $(lst) $1
+    else
+        cp -ir $(lst $1) $2
+    fi
 }
 ol () {
-	open $(lst)
+    open $(lst)
 }
 
 alias fori="for ((I=0;;I++)) do"
@@ -290,25 +290,25 @@ rgvim () {
 
 # quickly edit aliases
 als () {
-	if [ $# -eq 0 ]
-	then
-		cat ~/bin/aliases
-	else
-		cat ~/bin/aliases | grep -i $1
-	fi
+    if [ $# -eq 0 ]
+    then
+        cat ~/bin/aliases
+    else
+        cat ~/bin/aliases | grep -i $1
+    fi
 }
 if [ -f ~/bin/git_aliases ]; then
     . ~/bin/git_aliases
     alias egitals='vim ~/bin/git_aliases'
 
-	gitals () {
-		if [ $# -eq 0 ]
-		then
-			cat ~/bin/git_aliases
-		else
-			cat ~/bin/git_aliases | grep -i $1
-		fi
-	}
+    gitals () {
+        if [ $# -eq 0 ]
+        then
+            cat ~/bin/git_aliases
+        else
+            cat ~/bin/git_aliases | grep -i $1
+        fi
+    }
 fi
 
 # drive aliases
@@ -318,7 +318,7 @@ alias ezrc='vim ~/.zshrc'
 
 
 dragon-say () {
-	echo $1 | cowsay -e OO -f dragon-and-cow
+echo $1 | cowsay -e OO -f dragon-and-cow
 }
 
 
@@ -329,13 +329,13 @@ dragon-say () {
 eval "$(fasd --init auto)"
 alias v='f -e vim' # quick opening files with vim
 c () {
-	echo "copied $(f $@) to clipholder"
-	f -e cat $@ | tr -d '\n' | xc
+    echo "copied $(f $@) to clipholder"
+    f -e cat $@ | tr -d '\n' | xc
 }
 
 o () {
-	echo "opening $(f $@)"
-	f -e open $@ & disown
+    echo "opening $(f $@)"
+    f -e open $@ & disown
 }
 
 
@@ -353,45 +353,45 @@ alias p10ssh='ssh rmp10@172.25.11.191'
 
 # shell timers
 countdown(){
-   date1=$((`date +%s` + $1));
-   while [ "$date1" -ge `date +%s` ]; do
-     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
-     sleep 0.1
-   done
+    date1=$((`date +%s` + $1));
+    while [ "$date1" -ge `date +%s` ]; do
+        echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+        sleep 0.1
+    done
 }
 stopwatch(){
-  date1=`date +%s`;
-   while true; do
-    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
-    sleep 0.1
-   done
+    date1=`date +%s`;
+    while true; do
+        echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+        sleep 0.1
+    done
 }
 alarm(){
-	countdown $1 && open ~/bin/alarm.wav
+    countdown $1 && open ~/bin/alarm.wav
 }
 
 # google search for string
 gsearch() {
-	if [ $# -eq 0 ]
-	then
-		echo "first arg must be search string"
-	else
-		google-chrome "https://www.google.com/search?q=$(echo $1 | tr ' ' '+')"
-	fi
+    if [ $# -eq 0 ]
+    then
+        echo "first arg must be search string"
+    else
+        google-chrome "https://www.google.com/search?q=$(echo $1 | tr ' ' '+')"
+    fi
 }
 
 # start static file httpserver in current dir. Arg1: port
 simpleserver(){
-        python3 -m http.server $1
+    python3 -m http.server $1
 }
 
 # replace space in file names with underscore
 rename_space_underscore() {
-	for arg in "$@"
-	do
-		mv "$arg" $(echo $arg | tr " " "_")
-		echo $arg renamed to: $(echo $arg | tr " " "_")
-	done
+    for arg in "$@"
+    do
+        mv "$arg" $(echo $arg | tr " " "_")
+        echo $arg renamed to: $(echo $arg | tr " " "_")
+    done
 }
 
 # replace space with underscore normal input
@@ -423,6 +423,16 @@ synr () {
 alias rg='rg -M 400'
 
 alias less='less +F' # real time update on file
+
+
+
+# fzf scripts
+cdd() {
+    local dir
+    dir=$(find ${1:-.} -path '*/\.*' -prune \
+        -o -type d -print 2> /dev/null | fzf +m) &&
+        cd "$dir"
+}
 
 
 

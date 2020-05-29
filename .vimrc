@@ -6,6 +6,7 @@ set showcmd
 set relativenumber
 set number " show line numbers
 set showmatch " show matching item (like {})
+set matchpairs+=<:> " Set matching pairs of characters and highlight matching brackets
 set nowrap " Turn off line wrapping.
 set scrolloff=10 " Show lines of context around the cursor.
 set sidescrolloff=10
@@ -14,12 +15,9 @@ set hidden " keeps buffers loaded
 set laststatus=2 " set permanent status bar
 set confirm " Ask for confirmation when handling unsaved or read-only files
 set novisualbell noerrorbells " Do not use visual and error bells
-set matchpairs+=<:> " Set matching pairs of characters and highlight matching brackets
-set linebreak " Break line at predefined characters
 set showbreak=↪ " Character to show before the lines that have been soft-wrapped
 set nojoinspaces " Do not add two space after a period when joining lines or formatting texts,
 set synmaxcol=1024 " Syntax coloring lines that are too long just slows down the world
-set showmatch " show matching brackets on screen
 au FocusLost * :wa " save files when tabbing away
 
 " finding files
