@@ -6,10 +6,15 @@
 _docs_completion='$(ls ~/bin/documentation)'
 complete -W "${_docs_completion}" 'docs'
 
+#viewlog
+_viewlogs_completion='$(ls ~/logs)'
+complete -W "${_viewlogs_completion}" 'viewlog'
+
 # vars
 _var_completion='$(ls ~/bin/variables)'
 complete -W "${_var_completion}" 'var'
 
+# === git
 #gclm
 _gclm_completion='$(~/bin/gclm)'
 complete -W "${_gclm_completion}" 'gclm'
@@ -18,9 +23,9 @@ complete -W "${_gclm_completion}" 'gclm'
 _gbdl_completion='$(git branch)'
 complete -W "${_gbdl_completion}" 'gbdl'
 
-#viewlog
-_viewlogs_completion='$(ls ~/logs)'
-complete -W "${_viewlogs_completion}" 'viewlog'
+#gmr
+_gmr_completion='$(git branch -r)'
+complete -W "${_gmr_completion}" 'gmr'
 
 # mardl (note: only gets what was in marand:/var/www/html/share when opening shell)
 #_mardl_completion=$(ssh marand@marand.dk "ls -tA /var/www/html/share")
