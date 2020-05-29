@@ -424,15 +424,9 @@ alias rg='rg -M 400'
 
 alias less='less +F' # real time update on file
 
-
-
 # fzf scripts
-cdd() {
-    local dir
-    dir=$(find ${1:-.} -path '*/\.*' -prune \
-        -o -type d -print 2> /dev/null | fzf +m) &&
-        cd "$dir"
-}
-
+if [ -f ./fzf-scripts.sh  ]; then
+    source ./fzf-scripts.sh
+fi
 
 
