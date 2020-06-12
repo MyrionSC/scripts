@@ -81,6 +81,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
     alias xc='xclip -selection c' # example: pwd | xc
     alias open='xdg-open'
     alias xpaste='xclip -selection clipboard -o'
+
     dl=~/Downloads
     desk=~/Desktop
 fi
@@ -432,4 +433,8 @@ fi
 # history
 alias ghist='cat ~/.bash_history | grep'
 alias ehist='vim ~/.bash_history'
+
+# === windows stuff
+alias gurl="egrep -o 'https?://[^ ]+' ~/.cache/gitpush-out.txt | xargs -I {} cmd.exe /C start {} > /dev/null 2>&1"
+
 
