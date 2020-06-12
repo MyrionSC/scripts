@@ -429,4 +429,7 @@ if [ -f ./fzf-scripts.sh  ]; then
     source ./fzf-scripts.sh
 fi
 
+# history
+alias ghist='cat ~/.bash_history | grep'
+alias ehist='vim ~/.bash_history'
 

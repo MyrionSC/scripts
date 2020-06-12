@@ -88,13 +88,12 @@ alias ggpur='ggu'
 
 alias ggpull='git pull origin $(cur_br)'
 
-alias ggpush='git push origin $(cur_br)'
+alias ggpush='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt'
 
 alias ggsup='git branch --set-upstream-to=origin/$(cur_br)'
 alias gpsup='git push --set-upstream origin $(cur_br)'
 
-alias ggpusup='git push origin $(cur_br) && git branch --set-upstream-to=origin/$(cur_br)'
-alias ggpup='git push origin $(cur_br) && git branch --set-upstream-to=origin/$(cur_br)'
+alias ggpup='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt && git branch --set-upstream-to=origin/$(cur_br) |& tee -a ~/.cache/gitpush-out.txt'
 
 alias ghh='git help'
 
@@ -128,7 +127,7 @@ gmr () {
     git fetch origin/$1 && git merge origin/$1
 }
 
-alias gp='git push'
+alias gp='git push |& tee ~/.cache/gitpush-out.txt'
 alias gpd='git push --dry-run'
 alias gpu='git push upstream'
 alias gpv='git push -v'
