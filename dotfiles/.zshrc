@@ -66,6 +66,7 @@ _comp_options+=(globdots)		# Include hidden files.
 
 
 # vim mode?
+export EDITOR='vim'
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -89,4 +90,5 @@ bindkey '^e' edit-command-line
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept # bind accept to ctrl enter
 
+bindkey "\e." insert-last-word # somehow works for alt-. as well. Great!
 
