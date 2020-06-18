@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <SimpleFilter LastSave="2020-02-20T15:40:49.2472794+01:00" ExtensionVersion="2.6.2.0">
   <Settings FiltersEnabled="true">
     <slHosts>www.google-analytics.com; *.boomi.com; *.teams.microsoft.com; *.office365.com;</slHosts>

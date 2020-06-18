@@ -275,6 +275,14 @@ endif
 " use system clipboard multiplatform
 set clipboard^=unnamed,unnamedplus
 
+" if WSL
+if system('uname -r') =~ "Microsoft"
+    augroup Yank
+        autocmd!
+        autocmd TextYankPost * :call system('clip.exe ',@")
+    augroup END
+endif
+
 " system clipboard
 if g:os == "Linux"
    vmap <leader>y "+y
