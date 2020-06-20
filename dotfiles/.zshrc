@@ -1,6 +1,36 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+## TODO: try them out
+# general options #
+# unsetopt correctall 
+# setopt extended_glob          # use global qualifiers in commands
+# setopt no_beep                # no annoying beep on error
+# setopt prompt_subst           # allow the use of parameters in the prompt (ex:'$PWD')
+#
+# # completion stuff
+# setopt auto_menu                      # show completion menu on succesive tab press
+# setopt always_to_end              # move cursor to end when completion
+# setopt always_last_prompt     
+# setopt auto_list          # list choices on any ambiguous completion
+# setopt auto_name_dirs         # 
+# setopt auto_param_slash           # add a trailing slash after name of a directory
+# setopt auto_remove_slash
+# setopt complete_aliases           # make alias a distinct command
+# setopt list_packed            # make completion list smaller
+#
+# # directory stuff
+# setopt auto_cd                # perform the cd command if command not found
+# setopt cdable_vars
+# setopt chase_links            # resolve symlink to its true values
+#
+#
+# # history #
+# setopt append_history         # on exit, append to history don't replace it
+# setopt hist_reduce_blanks     # remove extra blanks before adding to history
+# setopt hist_ignore_dups           # avoid duplicate lines in history
+# setopt hist_verify                    # expand history onto the current line instead of executing it                      
+# setopt share_history
 
 
 
@@ -67,15 +97,15 @@ _comp_options+=(globdots)		# Include hidden files.
 
 # vim mode?
 export EDITOR='vim'
-bindkey -v
-export KEYTIMEOUT=1
+# bindkey -v
+# bindkey -v '^?' backward-delete-char
+# export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
 
@@ -87,8 +117,10 @@ bindkey '^e' edit-command-line
 # [ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
 [ -f "$HOME/bin/aliases" ] && source "$HOME/bin/aliases"
 
-# zsh-autosuggestions
-bindkey '^ ' autosuggest-accept # bind accept to ctrl enter
+bindkey '^ ' autosuggest-accept # bind autosuggestion accept to ctrl enter
+bindkey "\e." insert-last-word # bash style cycle through last args. Works for alt-. as well. Great!
 
-bindkey "\e." insert-last-word # somehow works for alt-. as well. Great!
+# Exports
+export PATH="$HOME/.cargo/bin:$PATH"
+
 
