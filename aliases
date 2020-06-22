@@ -17,7 +17,8 @@ export WEB=/var/www/html
 
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
-#bind '"":"vim $(fzf)\n"'
+bind '"\C- f":"$(fzf)"'
+bind '"\C- v":"vim $(fzf)\n"'
 
 alias ll='ls -alF'
 alias la='ls -A'
