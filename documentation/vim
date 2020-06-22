@@ -34,6 +34,9 @@ example: vim -c 'g/public MOVE_SPEED/norm Opublic INITIAL_MOVE_SPEED = 0;' -c 'w
 :echo expand("<cword>") " small word
 :echo expand("<cWORD>") " big WORD
 
+" === Variables
+:let " See all defined variables
+:echo <var> " eg echo g:os " show value of variable
 
 
 

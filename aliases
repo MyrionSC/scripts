@@ -68,29 +68,38 @@ if [[ "$(uname)" == "Darwin" ]]; then # It's a Mac!
     alias desk='cd ~/Desktop'
     alias xc='pbcopy'
     alias xpaste='pbpaste'
-    dl=~/Downloads
-    desk=~/Desktop
+    export DL=~/Downloads
+    export DESK=~/Desktop
 elif [[ "$(uname)" == "MSYS_NT-10.0-18362" ]]; then # It's MSYS2!
     alias dl='cd /c/Users/$USER/Downloads'
     alias desk='cd /c/Users/$USER/Desktop'
     alias xc='clip'
     alias open='start'
     alias ln='echo "use cmd //c mklink"'
-    dl=/c/Users/mar/Downloads
-    desk=/c/Users/mar/Desktop
+    export DL=/c/Users/mar/Downloads
+    export DESK=/c/Users/mar/Desktop
     #alias xpaste='pbpaste' #todo: windows paste
 elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Linux!
-    alias dl='cd ~/commentor_mr/Downloads'
-    alias desk='cd ~/commentor_mr/Desktop'
-    # alias dl='cd ~/Downloads'
-    # alias desk='cd ~/Desktop'
-    # alias xc='xclip -selection c' # example: pwd | xc
-    alias xc='clip.exe' # example: pwd | xc
-    alias open='xdg-open'
-    alias xpaste='xclip -selection clipboard -o'
-
-    dl=~/Downloads
-    desk=~/Desktop
+    if grep -q Microsoft /proc/version; then # we are on WSL
+        # if not done, create symlink in ~ pointing to windows user home called 'winhome'
+        alias cmd='cmd.exe'
+        alias open='cmd.exe /C start'
+        alias xc='clip.exe'
+        alias dl='cd ~/winhome/Downloads'
+        alias desk='cd ~/winhome/Desktop'
+        export DL=~/winhome/Downloads
+        export DESK=~/winhome/Desktop
+        alias gurl="egrep -o 'https?://[^ ]+' ~/.cache/gitpush-out.txt | xargs -I {} cmd.exe /C start {} > /dev/null 2>&1"
+        alias gitg='cmd.exe /C "C:\Program Files\gitg\bin\gitg.exe"' # opens gitgui in current dir
+    else # It actually is linux
+        alias dl='cd ~/Downloads'
+        alias desk='cd ~/Desktop'
+        alias xc='xclip -selection c' # example: pwd | xc
+        alias open='xdg-open'
+        alias xpaste='xclip -selection clipboard -o'
+        export DL=~/Downloads
+        export DESK=~/Desktop
+    fi
 fi
 
 # misc stuff
@@ -146,15 +155,15 @@ winpath () {
         temppath=$(realpath $1)
     fi
 
-        # for windows sake
-        if [ $(echo $temppath | cut -c1-2) == "/c" ]
-        then
-            temppath="C:${temppath:2}"
-            temppath=$(echo $temppath | tr '/' '\\')
-        fi
+    # for windows sake
+    if [ $(echo $temppath | cut -c1-2) == "/c" ]
+    then
+        temppath="C:${temppath:2}"
+        temppath=$(echo $temppath | tr '/' '\\')
+    fi
 
-        echo $temppath | tr -d "\n"
-    }
+    echo $temppath | tr -d "\n"
+}
 
 xp () {
     if [ $# -eq 0 ]
@@ -441,7 +450,16 @@ fi
 alias ghist='cat ~/.bash_history | grep'
 alias ehist='vim ~/.bash_history'
 
-# === windows stuff
-alias gurl="egrep -o 'https?://[^ ]+' ~/.cache/gitpush-out.txt | xargs -I {} cmd.exe /C start {} > /dev/null 2>&1"
-
+# zsh shell aliases
+alias d='dirs -v | head -10'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+alias -g G='| grep -i'
 

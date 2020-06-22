@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 
-if [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then
-    dl=/c/Users/mar/Downloads
-else
-    dl=~/Downloads
-fi
-
+# copy x number of files from $DL (download dir) to current dir
 if [ $# -eq 0 ]; then
-    ls -t $dl | sed "s/ /\\\ /" | head -1 | sed "s|^|$dl/|" | xargs -I {} mv -v {} .   #statements
+    ls -t $DL | sed "s/ /\\\ /" | head -1 | sed "s|^|$DL/|" | xargs -I {} mv -v {} .
 else
-    ls -t $dl | sed "s/ /\\\ /" | head -$1 | sed "s|^|$dl/|" | xargs -I {} mv -v {} .   #statements
+    ls -t $DL | sed "s/ /\\\ /" | head -$1 | sed "s|^|$DL/|" | xargs -I {} mv -v {} .
 fi
 

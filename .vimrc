@@ -84,6 +84,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 
+Plugin 'rust-lang/rust.vim'
+
 " Plugin 'justinmk/vim-sneak'
 
 " typescript highlighting
@@ -296,6 +298,17 @@ if g:os == "Linux"
    nmap <leader>P "+P
    nmap <leader>D "+d
    nmap <leader>X "+dd
+
+   " WSL stuff
+   if system('uname -r') =~ "Microsoft"
+       " clipboard integration in WSL
+       augroup Yank
+           autocmd!
+           autocmd TextYankPost * :call system('clip.exe ',@")
+       augroup END
+       map <leader>p :r !powershell.exe -command "Get-Clipboard"
+   endif
+
 elseif g:os == "Darwin" " mac
    vmap <leader>y "*y
    vmap <leader>d "*d
