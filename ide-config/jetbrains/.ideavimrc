@@ -1,4 +1,6 @@
 
+" list of supported commands: https://github.com/JetBrains/ideavim/wiki/set-commands
+
 " source ~/.vimrc
 
 nnoremap H ^
@@ -10,5 +12,15 @@ set clipboard+=unnamedplus
 set surround
 set commentary
 set argtextobj
+
+" ideavim integrations
+set ideajoin " see https://github.com/JetBrains/ideavim/wiki/%60ideajoin%60-examples
+set scrolloff=10 " minimum number of lines above and below the cursor
+
+
+" todo: test rebind of ctrl-i, ctrl-o to intellij Back and Forward (?)
+
+" nnoremap <C-o> :action Back<CR>
+
 
 
