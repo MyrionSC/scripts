@@ -53,8 +53,11 @@ alias gcom='git checkout master'
 alias gcod='git checkout develop 2>/dev/null || git checkout development'
 alias gcol='git checkout @{-1}' #checkout previous branch
 alias gcop='git checkout @{-1}' #checkout previous branch
-gcob() {
+gcob() { # create branch while replacing stuff
     git checkout -b $(echo "$@" | tr " " "-" | tr -d ":")
+}
+gcog() { # shift to local branch using grep
+    git checkout $(git branch | grep "$1")
 }
 
 #git revert <commit_hash> # revert single commit
