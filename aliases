@@ -85,13 +85,15 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         # if not done, create symlink in ~ pointing to windows user home called 'winhome'
         alias cmd='cmd.exe'
         alias open='cmd.exe /C start'
+        alias start='cmd.exe /C start'
+        alias clip='clip.exe'
         alias xc='clip.exe'
         alias dl='cd ~/winhome/Downloads'
         alias desk='cd ~/winhome/Desktop'
-        export DL=~/winhome/Downloads
-        export DESK=~/winhome/Desktop
         alias gurl="egrep -o 'https?://[^ ]+' ~/.cache/gitpush-out.txt | xargs -I {} cmd.exe /C start {} > /dev/null 2>&1"
         alias gitg='cmd.exe /C "C:\Program Files\gitg\bin\gitg.exe"' # opens gitgui in current dir
+        export DL=~/winhome/Downloads
+        export DESK=~/winhome/Desktop
     else # It actually is linux
         alias dl='cd ~/Downloads'
         alias desk='cd ~/Desktop'

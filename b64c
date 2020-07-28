@@ -16,9 +16,16 @@ elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
     base64 -d ~/.cache/b64c-clean.txt > ~/.cache/b64c.$1
     start ~/.cache/b64c.$1
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
-    xclip -selection clipboard -o > ~/.cache/clipboard.txt
-    grep -E -o '[A-Za-z0-9+\/]{70,}(={1,6})?' ~/.cache/clipboard.txt > ~/.cache/b64c-clean.txt
-    base64 -d ~/.cache/b64c-clean.txt > ~/.cache/b64c.$1
-    /usr/bin/xdg-open ~/.cache/b64c.$1
+    if grep -q Microsoft /proc/version; then # we are on WSL
+        powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/clipboard.txt
+        grep -E -o '[A-Za-z0-9+\/]{70,}(={1,6})?' ~/winhome/.cache/clipboard.txt > ~/winhome/.cache/b64c-clean.txt
+        base64 -d ~/winhome/.cache/b64c-clean.txt > ~/winhome/.cache/b64c.$1
+        cmd.exe /c start %HOMEPATH%/.cache/b64c.$1
+    else # It actually is linux
+        xclip -selection clipboard -o > ~/.cache/clipboard.txt
+        grep -E -o '[A-Za-z0-9+\/]{70,}(={1,6})?' ~/.cache/clipboard.txt > ~/.cache/b64c-clean.txt
+        base64 -d ~/.cache/b64c-clean.txt > ~/.cache/b64c.$1
+        /usr/bin/xdg-open ~/.cache/b64c.$1
+    fi
 fi
 
