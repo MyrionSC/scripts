@@ -1,0 +1,50 @@
+
+" list of supported commands: https://github.com/JetBrains/ideavim/wiki/set-commands
+
+"-- simple options
+set nocompatible
+set showcmd
+set showmatch " show matching item (like {})
+set matchpairs+=<:> " Set matching pairs of characters and highlight matching brackets
+set encoding=utf-8
+set hidden " keeps buffers loaded
+set nojoinspaces " Do not add two space after a period when joining lines or formatting texts,
+set synmaxcol=1024 " Syntax coloring lines that are too long just slows down the world
+
+" search options
+set ignorecase
+set smartcase " ignores case if all lowercase, does not if one or more uppercase
+set incsearch " search highlight while typing
+set wrapscan " search from top if bottom reached
+set gdefault " replace multiple occurences of search replace on line. Use g suffix to return to first occurence
+
+" Tabs and indentation.
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
+
+" Remaps
+noremap c "_c
+noremap H ^
+noremap L $
+noremap d "_d
+noremap dd "_dd
+vnoremap p "_dP
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
+
+" ideavim plugin emulators
+set surround
+set commentary
+set argtextobj
+
+" ideavim integrations
+set ideajoin " see https://github.com/JetBrains/ideavim/wiki/%60ideajoin%60-examples
+set scrolloff=10 " minimum number of lines above and below the cursor
+
+" todo: test rebind of ctrl-i, ctrl-o to intellij Back and Forward (?)
+" nnoremap <C-o> :action Back<CR>
+

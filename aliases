@@ -17,6 +17,15 @@ export WEB=/var/www/html
 
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
+# ctrl-space is bind <leader> for now
+bind '"\C- f":"$(fzf --height 15)"'
+bind '"\C- v":"vim $(fzf --height 15)\n"'
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias lt='ls -t'
+alias l='ls -CF'
+alias lf='ls -t | head -1'
 
 alias mv='mv -i'
 alias cp='cp -i'
@@ -27,15 +36,17 @@ alias ps='ps aux'
 
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
-alias ag='sudo apt-get upgrade'
+# alias ag='sudo apt-get upgrade'
 alias ar='sudo apt-get remove'
 alias aar='sudo apt-get autoremove'
+
 al () {
-	apt list "*$1*"
+    apt list "*$1*"
 }
 ali () {
-	apt list --installed "*$1*"
+    apt list --installed "*$1*"
 }
+
 alias ase='apt search'
 alias ash='apt show' # apt show pckgname - shows information about a package
 alias av='apt-cache policy'
@@ -49,32 +60,49 @@ alias nre='npm run env'
 alias df='df -Th'
 alias writer='lowriter'
 alias work='cd ~/work'
+alias notes='cd ~/notes'
+alias todo='vim ~/notes/todo.txt'
 
 # platform specific stuff
-if [ "$(uname)" == "Darwin" ]; then # It's a Mac!
+if [[ "$(uname)" == "Darwin" ]]; then # It's a Mac!
     alias dl='cd ~/Downloads'
     alias desk='cd ~/Desktop'
     alias xc='pbcopy'
     alias xpaste='pbpaste'
-    dl=~/Downloads
-    desk=~/Desktop
-elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
+    export DL=~/Downloads
+    export DESK=~/Desktop
+elif [[ "$(uname)" == "MSYS_NT-10.0-18362" ]]; then # It's MSYS2!
     alias dl='cd /c/Users/$USER/Downloads'
     alias desk='cd /c/Users/$USER/Desktop'
     alias xc='clip'
     alias open='start'
     alias ln='echo "use cmd //c mklink"'
-    dl=/c/Users/mar/Downloads
-    desk=/c/Users/mar/Desktop
+    export DL=/c/Users/mar/Downloads
+    export DESK=/c/Users/mar/Desktop
     #alias xpaste='pbpaste' #todo: windows paste
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
-    alias dl='cd ~/Downloads'
-    alias desk='cd ~/Desktop'
-    alias xc='xclip -selection c' # example: pwd | xc
-    alias open='xdg-open'
-    alias xpaste='xclip -selection clipboard -o'
-    dl=~/Downloads
-    desk=~/Desktop
+elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Linux!
+    if grep -q Microsoft /proc/version; then # we are on WSL
+        # if not done, create symlink in ~ pointing to windows user home called 'winhome'
+        alias cmd='cmd.exe'
+        alias open='cmd.exe /C start'
+        alias start='cmd.exe /C start'
+        alias clip='clip.exe'
+        alias xc='clip.exe'
+        alias dl='cd ~/winhome/Downloads'
+        alias desk='cd ~/winhome/Desktop'
+        alias gurl="egrep -o 'https?://[^ ]+' ~/.cache/gitpush-out.txt | xargs -I {} cmd.exe /C start {} > /dev/null 2>&1"
+        alias gitg='cmd.exe /C "C:\Program Files\gitg\bin\gitg.exe"' # opens gitgui in current dir
+        export DL=~/winhome/Downloads
+        export DESK=~/winhome/Desktop
+    else # It actually is linux
+        alias dl='cd ~/Downloads'
+        alias desk='cd ~/Desktop'
+        alias xc='xclip -selection c' # example: pwd | xc
+        alias open='xdg-open'
+        alias xpaste='xclip -selection clipboard -o'
+        export DL=~/Downloads
+        export DESK=~/Desktop
+    fi
 fi
 
 # misc stuff
@@ -89,19 +117,19 @@ alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
 
 wordcount () {
-	echo $1 | wc --words -
+    echo $1 | wc --words -
 }
 trspace () {
-	echo "$@" | tr " " "_"
+    echo "$@" | tr " " "_"
 }
 arrayify () {
-	echo "[$@]" | tr "\n" ", " # cut off last two chars at some point
+    echo "[$@]" | tr "\n" ", " # cut off last two chars at some point
 }
 trupper () {
-	echo "$@" | tr '[:lower:]' '[:upper:]'
+    echo "$@" | tr '[:lower:]' '[:upper:]'
 }
 trlower () {
-	echo "$@" | tr '[:upper:]' '[:lower:]'
+    echo "$@" | tr '[:upper:]' '[:lower:]'
 }
 
 trim() {
@@ -116,42 +144,42 @@ trim() {
 
 
 sgrep () {
-	grep -irn "$1" .
+    grep -irn "$1" .
 }
 greps () {
-	grep -irn "$1" .
+    grep -irn "$1" .
 }
 
 winpath () {
-	if [ $# -eq 0 ]
-	then
-		temppath=$(realpath .)
-	else
-		temppath=$(realpath $1)
-	fi
+    if [ $# -eq 0 ]
+    then
+        temppath=$(realpath .)
+    else
+        temppath=$(realpath $1)
+    fi
 
-        # for windows sake
-        if [ $(echo $temppath | cut -c1-2) == "/c" ]
-        then
-             temppath="C:${temppath:2}"
-             temppath=$(echo $temppath | tr '/' '\\')
-        fi
+    # for windows sake
+    if [ $(echo $temppath | cut -c1-2) == "/c" ]
+    then
+        temppath="C:${temppath:2}"
+        temppath=$(echo $temppath | tr '/' '\\')
+    fi
 
-        echo $temppath | tr -d "\n"
+    echo $temppath | tr -d "\n"
 }
 
 xp () {
-	if [ $# -eq 0 ]
-	then
-                realpath . | tr -d "\n" | xc
-	else
-                realpath $1 | tr -d "\n" | xc
-	fi
+    if [ $# -eq 0 ]
+    then
+        realpath . | tr -d "\n" | xc
+    else
+        realpath $1 | tr -d "\n" | xc
+    fi
 }
 
 
 cac () {
-	cat $1 | xc
+    cat $1 | xc
 }
 
 alias linuxv='cat /etc/*-release'
@@ -167,6 +195,10 @@ alias caaaa='cd ../../../..'
 alias caaaaa='cd ../../../../..'
 alias caaaaaa='cd ../../../../../..'
 alias caaaaaaa='cd ../../../../../../..'
+alias caaaaaaaa='cd ../../../../../../../..'
+alias caaaaaaaaa='cd ../../../../../../../../..'
+alias caaaaaaaaaa='cd ../../../../../../../../../..'
+alias caaaaaaaaaaa='cd ../../../../../../../../../../..'
 alias cb='cd -'
 
 #alias cdf='cd $(ls -d ./*/ | head -1)' # enter first dir
@@ -178,35 +210,36 @@ alias www='cd /var/www/html/'
 
 #search aliases
 findall () {
-	find . -iname "*$1*"
+    find . -iname "*$1*"
 }
 
 fd () {
-	find . -type d -iname "*$1*"
+    find . -type d -iname "*$1*"
 }
 finddir () {
-	find . -type d -iname "*$1*"
+    find . -type d -iname "*$1*"
 }
-
 
 ff () {
-	find . -type f -iname "*$1*"
+    find . -type f -iname "*$1*"
+    #rg --hidden --files -g "*$1*"
 }
 findfile () {
-	find . -type f -iname "*$1*"
+    find . -type f -iname "*$1*"
+    #rg --hidden --files -g "*$1*"
 }
 
 findlib () {
-	if [ $# -eq 0 ]
-	then
-		ldconfig -p
-	else
-		ldconfig -p | grep -i $1
-	fi
+    if [ $# -eq 0 ]
+    then
+        ldconfig -p
+    else
+        ldconfig -p | grep -i $1
+    fi
 }
 # can also use locate PATTERN to find a file on the system (much faster)
 findcore () { # search EVERYWHERE
-	sudo find /bin /lib /lib64 /snap /usr /etc /opt /sbin /var /home -iname "*$1*"
+    sudo find /bin /lib /lib64 /snap /usr /etc /opt /sbin /var /home -iname "*$1*"
 }
 
 alias countfiles='find . -type f | wc -l'
@@ -214,31 +247,31 @@ alias countdirs='find . -maxdepth 1 -type d | wc -l'
 
 # list, move, copy, open latest modified file / dir in current dir
 lst() {
-	if [ $# -eq 0 ]
-	then
-		ls -t | head -1
-	else
-		ls -t | head -$1
-	fi
+    if [ $# -eq 0 ]
+    then
+        ls -t | head -1
+    else
+        ls -t | head -$1
+    fi
 }
 mvl () {
-	if [ $# -eq 1 ]
-	then
-		mv -i $(lst) $1
-	else
-		mv -i $(lst $1) $2
-	fi
+    if [ $# -eq 1 ]
+    then
+        mv -i -v $(lst) $1
+    else
+        mv -i -v $(lst $1) $2
+    fi
 }
 cpl () {
-	if [ $# -eq 1 ]
-	then
-		cp -ir $(lst) $1
-	else
-		cp -ir $(lst $1) $2
-	fi
+    if [ $# -eq 1 ]
+    then
+        cp -ir $(lst) $1
+    else
+        cp -ir $(lst $1) $2
+    fi
 }
 ol () {
-	open $(lst)
+    open $(lst)
 }
 
 alias fori="for ((I=0;;I++)) do"
@@ -262,36 +295,50 @@ alias evim="vim ~/.vimrc"
 alias evimrc="vim ~/.vimrc"
 alias viml="vim $(lst)"
 
+ffv () {
+    vim $(rg --hidden --files -g "*$1*")
+}
+ffrm () {
+    rm $(rg --hidden --files -g "*$1*")
+}
+rgv () {
+    vim $(rg -l "$1")
+}
+rgvim () {
+    vim $(rg -l "$1")
+}
+
 # quickly edit aliases
 als () {
-	if [ $# -eq 0 ]
-	then
-		cat ~/bin/aliases
-	else
-		cat ~/bin/aliases | grep -i $1
-	fi
+    if [ $# -eq 0 ]
+    then
+        cat ~/bin/aliases
+    else
+        cat ~/bin/aliases | grep -i $1
+    fi
 }
 if [ -f ~/bin/git_aliases ]; then
     . ~/bin/git_aliases
     alias egitals='vim ~/bin/git_aliases'
 
-	gitals () {
-		if [ $# -eq 0 ]
-		then
-			cat ~/bin/git_aliases
-		else
-			cat ~/bin/git_aliases | grep -i $1
-		fi
-	}
+    gitals () {
+        if [ $# -eq 0 ]
+        then
+            cat ~/bin/git_aliases
+        else
+            cat ~/bin/git_aliases | grep -i $1
+        fi
+    }
 fi
 
 # drive aliases
 alias eals='vim ~/bin/aliases'
 alias ebrc='vim ~/.bashrc'
+alias ezrc='vim ~/.zshrc'
 
 
 dragon-say () {
-	echo $1 | cowsay -e OO -f dragon-and-cow
+echo $1 | cowsay -e OO -f dragon-and-cow
 }
 
 
@@ -302,13 +349,13 @@ dragon-say () {
 eval "$(fasd --init auto)"
 alias v='f -e vim' # quick opening files with vim
 c () {
-	echo "copied $(f $@) to clipholder"
-	f -e cat $@ | tr -d '\n' | xc
+    echo "copied $(f $@) to clipholder"
+    f -e cat $@ | tr -d '\n' | xc
 }
 
 o () {
-	echo "opening $(f $@)"
-	f -e open $@ & disown
+    echo "opening $(f $@)"
+    f -e open $@ & disown
 }
 
 
@@ -326,46 +373,96 @@ alias p10ssh='ssh rmp10@172.25.11.191'
 
 # shell timers
 countdown(){
-   date1=$((`date +%s` + $1));
-   while [ "$date1" -ge `date +%s` ]; do
-     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
-     sleep 0.1
-   done
+    date1=$((`date +%s` + $1));
+    while [ "$date1" -ge `date +%s` ]; do
+        echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+        sleep 0.1
+    done
 }
 stopwatch(){
-  date1=`date +%s`;
-   while true; do
-    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
-    sleep 0.1
-   done
+    date1=`date +%s`;
+    while true; do
+        echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+        sleep 0.1
+    done
 }
 alarm(){
-	countdown $1 && open ~/bin/alarm.wav
+    countdown $1 && open ~/bin/alarm.wav
 }
 
 # google search for string
 gsearch() {
-	if [ $# -eq 0 ]
-	then
-		echo "first arg must be search string"
-	else
-		google-chrome "https://www.google.com/search?q=$(echo $1 | tr ' ' '+')"
-	fi
+    if [ $# -eq 0 ]
+    then
+        echo "first arg must be search string"
+    else
+        google-chrome "https://www.google.com/search?q=$(echo $1 | tr ' ' '+')"
+    fi
 }
 
 # start static file httpserver in current dir. Arg1: port
 simpleserver(){
-        python3 -m http.server $1
+    python3 -m http.server $1
 }
 
 # replace space in file names with underscore
 rename_space_underscore() {
-	for arg in "$@"
-	do
-		mv "$arg" $(echo $arg | tr " " "_")
-		echo $arg renamed to: $(echo $arg | tr " " "_")
-	done
+    for arg in "$@"
+    do
+        mv "$arg" $(echo $arg | tr " " "_")
+        echo $arg renamed to: $(echo $arg | tr " " "_")
+    done
+}
+
+# replace space with underscore normal input
+tr_underscore(){
+    echo "$@" | tr " " "_"
+}
+
+alias scanlocal='sudo nmap -sn 192.168.87.0/24'
+
+viewlog() {
+    less +F ~/logs/$1
+}
+
+# Print Len of input
+strlen() {
+    strlenargs="$@"
+    echo ${#strlenargs}
 }
 
 
+### Commentor
+# run syn-replace on azure deploy files
+synr () {
+    ~/bin/syn-replace /c/Users/mar/source/Synoptik-Brilleabonnement/syn-gs/syn-gs-rg/azuredeploy.json
+    ~/bin/syn-replace /c/Users/mar/source/Synoptik-Brilleabonnement/syn-gs/syn-gs-rg/azuredeploy-dk.json
+}
+
+
+alias rg='rg -M 400'
+
+alias less='less +F' # real time update on file
+
+# fzf scripts
+if [ -f ./fzf-scripts.sh  ]; then
+    source ./fzf-scripts.sh
+fi
+
+# history
+alias ghist='cat ~/.bash_history | grep'
+alias ehist='vim ~/.bash_history'
+
+# zsh shell aliases
+alias d='dirs -v | head -10'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+# alias -g G='| grep -i'
 

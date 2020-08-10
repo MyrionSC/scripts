@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+# Increments first int found in filename
+
+import os
+import sys
+import re
+
+if len(sys.argv) < 2:
+    print("arg1 is missing. It should be file.")
+    exit()
+
+if not os.path.isfile(sys.argv[1]):
+    print("arg1 is not file.")
+    exit()
+
+inputFileName = sys.argv[1].split('/')[-1]
+
+obj = re.match(r'([a-zA-Z_]*)([0-9]*)([a-zA-Z_\.].*)', inputFileName, re.M|re.I)
+if obj:
+    first = obj.group(1)
+    num = obj.group(2)
+    last = obj.group(3)
+
+    if len(num) == 0:
+        num = "1"
+    else:
+        num = str(int(num)+1)
+
+    outputFileName = first + num + last
+    outputPath = "/".join(sys.argv[1].split('/')[:-1]) + "/" + outputFileName
+
+    os.rename(sys.argv[1], outputPath)
+    print(sys.argv[1] + " -> " + outputPath)
+
+
+
+
+

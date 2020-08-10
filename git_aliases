@@ -13,10 +13,12 @@ alias gau='git add --update'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gbd='git branch -d'
-alias gbl='git blame -b -w'
 alias gbnm='git branch --no-merged'
 alias gbr='git branch --remote'
 alias gbdl='git branch -D' #delete local
+alias gbdr='git push origin --delete' # delete remote arg1=branchname
+
+alias gbl='git blame -b -w'
 alias gbs='git bisect'
 alias gbsb='git bisect bad'
 alias gbsg='git bisect good'
@@ -24,6 +26,7 @@ alias gbsr='git bisect reset'
 alias gbss='git bisect start'
 
 alias gc='git commit'
+alias gcs='git commit -S'
 alias gcv='git commit -v'
 alias gc!='git commit -v --amend'
 alias gcn!='git commit -v --no-edit --amend'
@@ -34,18 +37,28 @@ alias gcans!='git commit -v -a -s --no-edit --amend'
 alias gcm='git commit -m'
 alias gcam='git commit -m'
 alias gcsm='git commit -s -m'
-alias gcb='git checkout -b'
+
 alias gcf='git config --list'
 alias gcl='git clone --recursive'
 alias gclean='git clean -fd'
 
-alias gco='git checkout'
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
-alias gcs='git commit -S'
+
+alias gco='git checkout'
+alias gcb='git checkout -b'
+#alias gcob='git checkout -b'
 alias gcom='git checkout master'
-alias gcod='git checkout dev'
+alias gcod='git checkout develop 2>/dev/null || git checkout development'
+alias gcol='git checkout @{-1}' #checkout previous branch
+alias gcop='git checkout @{-1}' #checkout previous branch
+gcob() { # create branch while replacing stuff
+    git checkout -b $(echo "$@" | tr " " "-" | tr -d ":")
+}
+gcog() { # shift to local branch using grep
+    git checkout $(git branch | grep "$1")
+}
 
 #git revert <commit_hash> # revert single commit
 #git revert <oldest_commit_hash>..<latest_commit_hash> # revert range of commits
@@ -56,6 +69,7 @@ alias gdca='git diff --cached'
 alias gdct='git describe --tags `git rev-list --tags --max-count=1`'
 alias gdt='git diff-tree --no-commit-id --name-only -r'
 alias gdw='git diff --word-diff'
+alias gdi='git diff --no-index' # compare files outside git
 
 alias gf='git fetch'
 alias gfa='git fetch --all --prune'
@@ -77,14 +91,17 @@ alias ggpur='ggu'
 
 alias ggpull='git pull origin $(cur_br)'
 
-alias ggpush='git push origin $(cur_br)'
+alias ggpush='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt'
 
 alias ggsup='git branch --set-upstream-to=origin/$(cur_br)'
 alias gpsup='git push --set-upstream origin $(cur_br)'
 
+alias ggpup='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt && git branch --set-upstream-to=origin/$(cur_br) |& tee -a ~/.cache/gitpush-out.txt'
+
 alias ghh='git help'
 
 alias gl='git pull'
+
 alias glg='git log --stat'
 alias glgp='git log --stat -p'
 alias glgg='git log --graph'
@@ -94,14 +111,26 @@ alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 alias gdf='git log -p [--follow] [-1]'
+# log show: use git show COMMIT to see commit changes
 
 alias gm='git merge'
 alias gmom='git merge origin/master'
 alias gmt='git mergetool --no-prompt'
 alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
 alias gmum='git merge upstream/master'
+alias gma='git merge --abort'
+alias gmab='git merge --abort'
+alias gmp='git merge @{-1}' #merge previous branch
+alias gml='git merge @{-1}' #merge previous branch
+alias gmlo='git pull origin @{-1}' #fetch origin of last branch and merge to current
+alias gmrd='git fetch origin/develop && git merge origin/develop'
 
-alias gp='git push'
+# merge with remote branch $1
+gmr () {
+    git fetch origin/$1 && git merge origin/$1
+}
+
+alias gp='git push |& tee ~/.cache/gitpush-out.txt'
 alias gpd='git push --dry-run'
 alias gpu='git push upstream'
 alias gpv='git push -v'
@@ -113,6 +142,17 @@ alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbm='git rebase master'
 alias grbs='git rebase --skip'
+alias grbl='git rebase @{-1}'
+alias grbp='git rebase @{-1}'
+
+# To rename / delete multiple local commits
+# git rebase -i HEAD~X # where X is number of commits back to edit
+grewrite() {
+    git rebase -i HEAD~$1
+}
+grebase() {
+    git rebase -i HEAD~$1
+}
 
 alias gr='git reset'
 alias grh='git reset HEAD'
@@ -128,23 +168,34 @@ alias grv='git remote -v'
 alias grorigin='git reset --hard origin/$(cur_br)'
 alias gpristine='git reset --hard && git clean -dfx'
 alias guncommit='git reset HEAD^'
+alias grfile='git checkout --' # first arg: filename
 
 alias gsb='git status -sb'
 alias gsps='git show --pretty=short --show-signature'
 alias gss='git status -s'
 alias gs='git status'
 alias gst='git status'
+
 alias gsta='git stash save'
 alias gstaa='git stash apply'
 alias gstac='git stash clear'
 alias gstad='git stash drop'
 alias gstal='git stash list'
-alias gstap='git stash pop'
+# alias gstap='git stash pop'
+gstap () {
+	if [ $# -eq 0 ]
+	then
+        git stash pop
+	else
+        git stash pop stash{$1}
+	fi
+}
 alias gstas='git stash show --text'
+#apply specific stash (in this case 1): git stash apply stash@{1}
+#create branch from stash and pop it: git stash branch <name> stash@{1}
 
 alias gt='git tag'
 alias gtd='git tag -d' # delete tag arg1 locally
-alias gtdr='git push origin --delete' # delete remote arg1=branchname
 alias gts='git tag -s'
 alias gtv='git tag | sort -V'
 
@@ -157,8 +208,22 @@ grmtgi () {
 	git rm --cached `git ls-files -i --exclude-from=.gitignore`
 }
 
+alias gmlr='gcol && gl && gcol && gml' #merge previous branch
+alias gmdr='gcod && gl && gcol && gml'
+
+alias gciq='git add --all && git commit -m "quick commit!"'
+alias gcic='git add --all && git commit -m "quick commit!"'
+alias gqic='git add --all && git commit -m "quick commit!"'
+alias gqiq='git add --all && git commit -m "quick commit!"'
+alias cinotes='git add --all && git commit -m "notes commit" && git push'
+
 # Find out which pattern / .gitignore file is ignoring a file
-#git check-ignore -v <some-ignored-file> 
+#git check-ignore -v <some-ignored-file>
 
+# Checkout all branches from remote at once. Credits: https://gist.github.com/octasimo/66f3cc230725d1cf1421
+#for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master `; do
+#   git branch --track ${branch#remotes/origin/} $branch
+#done
 
-
+# To debug git cli problems:
+#GIT_CURL_VERBOSE=1 GIT_TRACE=1 <command> # eg: git pull
