@@ -35,6 +35,8 @@ noremap dd "_dd
 vnoremap p "_dP
 nnoremap <C-o> :action Back<CR>
 nnoremap <C-i> :action Forward<CR>
+inoremap jk <ESC>
+inoremap jk <ESC>
 
 " ideavim plugin emulators
 set surround

@@ -115,6 +115,7 @@ alias rbc='. ~/.bashrc'
 alias breset='. ~/.bashrc'
 alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
+alias untar='tar -xvf'
 
 wordcount () {
     echo $1 | wc --words -
@@ -183,9 +184,6 @@ cac () {
 }
 
 alias linuxv='cat /etc/*-release'
-
-#docker
-alias dock-enter='docker exec -it todo bash'
 
 #navigation aliases
 alias ca='cd ..'
@@ -342,7 +340,6 @@ echo $1 | cowsay -e OO -f dragon-and-cow
 }
 
 
-
 #shopt -s globstar
 
 #fasd init. Try different setups from "man fasd"
@@ -464,5 +461,85 @@ alias 6='cd -6'
 alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
-# alias -g G='| grep -i'
+# alias -g G='| grep -i' # Bash can't handle this
+
+
+
+# === docker
+#alias dock-enter='docker exec -it todo bash'
+
+# Most of functions below copied from github user jgrodziski docker-aliases.sh gist
+function dnames-fn {
+	for ID in `docker ps | awk '{print $1}' | grep -v 'CONTAINER'`
+	do
+    	docker inspect $ID | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
+	done
+}
+
+function dip-fn {
+    echo "IP addresses of all named running containers"
+    for DOC in `dnames-fn`
+    do
+        IP=`docker inspect $DOC | grep -m3 IPAddress | cut -d '"' -f 4 | tr -d "\n"`
+        OUT+=$DOC'\t'$IP'\n'
+    done
+    echo $OUT|column -t
+}
+
+function dex-fn {
+	docker exec -it $1 ${2:-bash}
+}
+
+function di-fn {
+	docker inspect $1
+}
+
+function dl-fn {
+	docker logs -f $1
+}
+
+function drun-fn {
+	docker run -it $1 $2
+}
+
+function dsr-fn {
+	docker stop $1;docker rm $1
+}
+
+function drmc-fn {
+       docker rm $(docker ps --all -q -f status=exited)
+}
+
+function drmid-fn {
+       imgs=$(docker images -q -f dangling=true)
+       [ ! -z "$imgs" ] && docker rmi "$imgs" || echo "no dangling images."
+}
+
+#     dex <container>: execute a bash shell inside the RUNNING <container> #
+#     di <container> : docker inspect <container>                          #
+#     dim            : docker images                                       #
+#     dip            : IP addresses of all running containers              #
+#     dl <container> : docker logs -f <container>                          #
+#     dnames         : names of all running containers                     #
+#     dps            : docker ps                                           #
+#     dpsa           : docker ps -a                                        #
+#     drmc           : remove all exited containers                        #
+#     drmid          : remove all dangling images                          #
+#     drun <image>   : execute a bash shell in NEW container from <image>  #
+#     dsr <container>: stop then remove <container>                        #
+alias dex=dex-fn
+alias di=di-fn
+alias dim="docker images"
+alias dimr='docker rmi'
+alias dip=dip-fn
+alias dl=dl-fn
+alias dnames=dnames-fn
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias drmc=drmc-fn
+alias drmid=drmid-fn
+alias drun=drun-fn
+alias dsp="docker system prune --all"
+alias dsr=dsr-fn
+
 
