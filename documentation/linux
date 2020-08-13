@@ -2,9 +2,13 @@
 
 
 
+# Add existing user USER to existing group GROUP
+sudo groupadd -a -G GROUP USER
 
-# Keyboard shortcuts
-shutter -s -e
+# See groups of user USER
+groups USER
+
+
 
 
 
