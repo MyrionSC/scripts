@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    echo "Kills the processes running on a port"
+    echo "First arg should be port number"
+    exit
+fi
+
 # Only wsl for now
 PIDS=$(cmd.exe /c netstat -ano | cmd.exe /c findstr :$1 | awk '{print $5}')
 for pid in $PIDS
