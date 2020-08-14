@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Only wsl for now
+PIDS=$(cmd.exe /c netstat -ano | cmd.exe /c findstr :$1 | awk '{print $5}')
+for pid in $PIDS
+do
+    cmd.exe /c taskkill /PID $pid /F
+done
+
