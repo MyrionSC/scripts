@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-#!/usr/bin/env bash
-
 if [ -z "$1" ]; then
     echo "Kills the processes running on a port"
     echo "First arg should be port number"
