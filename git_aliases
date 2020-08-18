@@ -191,6 +191,15 @@ gstap () {
 	fi
 }
 alias gstas='git stash show --text'
+
+# save and retrieve stash by name
+gstan() {
+        git stash push -m "saved_stash_name_$1"
+}
+gstaan() {
+        git stash apply $(git stash list | grep "saved_stash_name_$1" | cut -d: -f1)
+}
+
 #apply specific stash (in this case 1): git stash apply stash@{1}
 #create branch from stash and pop it: git stash branch <name> stash@{1}
 
