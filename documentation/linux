@@ -1,9 +1,11 @@
 
 
 
+# create new group GROUP
+sudo groupadd GROUP
 
 # Add existing user USER to existing group GROUP
-sudo groupadd -a -G GROUP USER
+sudo usermod -a -G GROUP USER
 
 # See groups of user USER
 groups USER

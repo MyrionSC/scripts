@@ -115,7 +115,8 @@ alias rbc='. ~/.bashrc'
 alias breset='. ~/.bashrc'
 alias sourcebrc='. ~/.bashrc'
 alias vact='. $(pwd)/venv/bin/activate'
-alias untar='tar -xvf'
+alias tarzip='tar -cvf' # args: TARNAME FILES
+alias tarunzip='tar -xvf' # args: TARNAME
 
 wordcount () {
     echo $1 | wc --words -
