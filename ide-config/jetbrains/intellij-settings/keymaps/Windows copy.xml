@@ -1,6 +1,10 @@
 <keymap version="1" name="Windows copy" parent="$default">
   <action id="ChangesView.ShelveSilently" />
   <action id="CheckinProject" />
+  <action id="ChooseDebugConfiguration">
+    <keyboard-shortcut first-keystroke="shift alt f9" />
+    <keyboard-shortcut first-keystroke="shift ctrl #10000d8" />
+  </action>
   <action id="CollapseRegion">
     <keyboard-shortcut first-keystroke="ctrl subtract" />
     <keyboard-shortcut first-keystroke="ctrl minus" />
@@ -8,6 +12,7 @@
   </action>
   <action id="EditorMatchBrace" />
   <action id="EditorScrollToCenter" />
+  <action id="EditorUnSelectWord" />
   <action id="ExpandRegion">
     <keyboard-shortcut first-keystroke="ctrl add" />
     <keyboard-shortcut first-keystroke="ctrl equals" />
@@ -24,7 +29,7 @@
   </action>
   <action id="HideActiveWindow">
     <keyboard-shortcut first-keystroke="shift escape" />
-    <keyboard-shortcut first-keystroke="shift w" />
+    <keyboard-shortcut first-keystroke="shift ctrl w" />
   </action>
   <action id="InsertLiveTemplate" />
   <action id="MethodHierarchy" />
@@ -43,6 +48,9 @@
   <action id="ReplaceInPath">
     <keyboard-shortcut first-keystroke="shift ctrl r" />
     <keyboard-shortcut first-keystroke="shift ctrl h" />
+  </action>
+  <action id="RunAnything">
+    <keyboard-shortcut first-keystroke="ctrl #10000d8" />
   </action>
   <action id="ScrollTreeToCenter" />
   <action id="ShowErrorDescription">

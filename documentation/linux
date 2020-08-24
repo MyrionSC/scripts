@@ -1,5 +1,6 @@
 
-
+# create user with home (do not use useradd, which sets default shell to sh. adduser sets to bash)
+adduser -m USERNAME
 
 # create new group GROUP
 sudo groupadd GROUP
