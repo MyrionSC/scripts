@@ -1,0 +1,27 @@
+##### Send mail via commandline, using gmail as mailhub
+
+apt-get install mailutils ssmtp
+
+in /etc/ssmtp, edit files revaliases and ssmtp.conf
+
+### ssmtp.conf:
+root=GMAIL_USERNAME@gmail.com
+mailhub=smtp.gmail.com:587
+rewriteDomain=gmail.com
+hostname=marand-nuc
+AuthUser=GMAIL_USERNAME@gmail.com
+AuthPass=GMAIL_PASSWORD
+FromLineOverride=YES
+UseTLS=YES
+UseSTARTTLS=YES
+TLS_CA_File=/etc/ssl/certs/ca-certificates.crt
+
+### revaliases:
+root:GMAIL_USERNAME@gmail.com:smtp.gmail.com:587
+localuser:GMAIL_USERNAME@gmail.com:smtp.gmail.com:587
+
+
+##### To send mail:
+
+echo "test" | mail -s "subject" recipient@mail.com
+
