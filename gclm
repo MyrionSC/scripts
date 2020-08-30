@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
+    echo "marand-webpage"
     echo "devops-migration"
     echo "starcraft-judication"
     echo "todo"
