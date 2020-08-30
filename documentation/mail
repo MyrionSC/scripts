@@ -8,7 +8,7 @@ in /etc/ssmtp, edit files revaliases and ssmtp.conf
 root=GMAIL_USERNAME@gmail.com
 mailhub=smtp.gmail.com:587
 rewriteDomain=gmail.com
-hostname=marand-nuc
+hostname=HOSTNAME (whatever hostname command returns)
 AuthUser=GMAIL_USERNAME@gmail.com
 AuthPass=GMAIL_PASSWORD
 FromLineOverride=YES
