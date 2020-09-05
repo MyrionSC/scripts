@@ -65,6 +65,7 @@ alias todo='vim ~/notes/todo.txt'
 
 # platform specific stuff
 if [[ "$(uname)" == "Darwin" ]]; then # It's a Mac!
+    echo mac
     alias dl='cd ~/Downloads'
     alias desk='cd ~/Desktop'
     alias xc='pbcopy'
@@ -72,6 +73,7 @@ if [[ "$(uname)" == "Darwin" ]]; then # It's a Mac!
     export DL=~/Downloads
     export DESK=~/Desktop
 elif [[ "$(uname)" == "MSYS_NT-10.0-18362" ]]; then # It's MSYS2!
+    echo msys2
     alias dl='cd /c/Users/$USER/Downloads'
     alias desk='cd /c/Users/$USER/Desktop'
     alias xc='clip'
@@ -80,8 +82,9 @@ elif [[ "$(uname)" == "MSYS_NT-10.0-18362" ]]; then # It's MSYS2!
     export DL=/c/Users/mar/Downloads
     export DESK=/c/Users/mar/Desktop
     #alias xpaste='pbpaste' #todo: windows paste
-elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Linux!
-    if grep -q microsoft /proc/version; then # we are on WSL2
+elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Linux or WSL!
+    if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ];
+    then # WSL
         # if not done, create symlink in ~ pointing to windows user home called 'winhome'
         alias cmd='cmd.exe'
         alias open='cmd.exe /C start'
@@ -532,7 +535,7 @@ alias di=di-fn
 alias dim="docker images"
 alias dimr='docker rmi'
 alias dip=dip-fn
-alias dl=dl-fn
+#alias dl=dl-fn
 alias dnames=dnames-fn
 alias dps="docker ps"
 alias dpsa="docker ps -a"
