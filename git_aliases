@@ -123,7 +123,7 @@ alias gmab='git merge --abort'
 alias gmp='git merge @{-1}' #merge previous branch
 alias gml='git merge @{-1}' #merge previous branch
 alias gmlo='git pull origin @{-1}' #fetch origin of last branch and merge to current
-alias gmrd='git fetch origin/develop && git merge origin/develop'
+alias gmrd='git fetch origin develop && git merge origin/develop' # merge with remote develop
 
 # merge with remote branch $1
 gmr () {

@@ -277,14 +277,6 @@ endif
 " use system clipboard multiplatform
 set clipboard^=unnamed,unnamedplus
 
-" if WSL
-if system('uname -r') =~ "Microsoft"
-    augroup Yank
-        autocmd!
-        autocmd TextYankPost * :call system('clip.exe ',@")
-    augroup END
-endif
-
 " system clipboard
 if g:os == "Linux"
    vmap <leader>y "+y
@@ -306,6 +298,7 @@ if g:os == "Linux"
            autocmd!
            autocmd TextYankPost * :call system('clip.exe ',@")
        augroup END
+       "(system clipboard used for yank)
        map <leader>p :r !powershell.exe -command "Get-Clipboard"
    endif
 
@@ -472,4 +465,5 @@ vnoremap <silent> # :<C-U>
 " remember to symlink to ~/.vimrc from  %WINHOME%, so vsvim can find it
 " nnoremap Xae _iAssert.AreEqual();<ENTER><ESC>kf)
 
+com! -bar SingleLine :%s/\n// | %s/\t/ / | %s/  \+/ /
 
