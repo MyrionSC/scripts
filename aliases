@@ -18,8 +18,8 @@ export WEB=/var/www/html
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
 # ctrl-space is bind <leader> for now
-# bind '"\C- f":"$(fzf --height 15)"'
-# bind '"\C- v":"vim $(fzf --height 15)\n"'
+bind '"\C- f":"$(fzf --height 15)"'
+bind '"\C- v":"vim $(fzf --height 15)\n"'
 
 alias ll='ls -alF'
 alias la='ls -A'
