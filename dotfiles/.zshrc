@@ -122,5 +122,11 @@ bindkey "\e." insert-last-word # bash style cycle through last args. Works for a
 
 # Exports
 export PATH="$HOME/.cargo/bin:$PATH"
+export ADDR_MARNUC="marand@192.168.87.177"
+alias goto_marnuc="ssh $ADDR_MARNUC"
 
+alias cmd='cmd.exe'
+alias gimp='cmd.exe /c "C:\Program Files\GIMP 2\bin\gimp-2.10.exe"'
+alias node='node.exe'
+alias npm='cmd.exe /c "C:\Program Files\nodejs\npm"'
 
