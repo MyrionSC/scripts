@@ -5,3 +5,6 @@ dir *filename* /p /s
 # find router external ip in powershell
 (Invoke-WebRequest ifconfig.me/ip).Content.Trim()
 
+# delete env variable FOOBAR
+REG delete HKCU\Environment /F /V FOOBAR
+

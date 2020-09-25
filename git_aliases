@@ -40,7 +40,9 @@ alias gcsm='git commit -s -m'
 
 alias gcf='git config --list'
 alias gcl='git clone --recursive'
-alias gclean='git clean -fd'
+
+alias gcleanf='git clean -fd' # remove untracked files. git clean -n to see what is removed before remove
+alias gcleann='git clean -n' # remove untracked files dry-run
 
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'

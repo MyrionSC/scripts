@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+if [ -z "$1" ]; then
+    echo "Kills the process with pid ARG1"
+    echo "First arg should be pid"
+    exit
+fi
+cmd.exe /c taskkill /PID $pid /F

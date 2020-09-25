@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# dependency: sysutils handle from https://docs.microsoft.com/en-us/sysinternals/downloads/handle
+
+if [ -z "$1" ]; then
+    echo "Kills the processes with filehandle"
+    echo "First arg should be a path"
+    exit
+fi
+
+# print command and save to clipboard
+HANDLE_CMD="C:/Users/commentor_mr/scripts/handle.exe $1 > C:/Users/commentor_mr/cache/killhandle.out"
+echo "$HANDLE_CMD" | clip.exe
+echo "$HANDLE_CMD copied to output. ctrl v in elevated cmd."
+
+powershell.exe -Command "Start-Process cmd -Verb RunAs"
+
+read -n 1 -p "Handle is done?"
+
+# read ~/winhome/cache/killhandle.out
+cat ~/winhome/cache/killhandle.out
+
+# kill pid. Probably best not to automate this.
+echo "kill a process with killpid PID"
+
+
