@@ -129,4 +129,7 @@ alias cmd='cmd.exe'
 alias gimp='cmd.exe /c "C:\Program Files\GIMP 2\bin\gimp-2.10.exe"'
 alias node='node.exe'
 alias npm='cmd.exe /c "C:\Program Files\nodejs\npm"'
+alias tldr='cmd.exe /c tldr'
+
+alias fav=vim ~/winhome/source/repos/marand-webpage/src/templates/favorites.html
 
