@@ -1,0 +1,12 @@
+
+
+
+
+
+
+# === kotlin DSL
+
+# find type of task test
+./gradlew help --task test
+
+

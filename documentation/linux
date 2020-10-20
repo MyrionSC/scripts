@@ -14,5 +14,15 @@ groups USER
 
 
 
+# === Debugging connections
+
+# see which ports are exposed
+ss -lnt
+
+# something something
+nmap -sT -p 8080 me.hr.dev-lessor.dk
+
+# use ssh creds and settings on remote. Can be used to transfer files directly between two remotes
+ssh -A REMOTE
 
 

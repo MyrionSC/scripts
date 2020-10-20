@@ -8,7 +8,7 @@ if [ -z "$1" ]; then
         exit
 fi
 
-HOST="marand@marand.dk"
+HOST="marand"
 DIR="/var/www/html/share/"
 
 if [ "$1" == "-l" ]; then

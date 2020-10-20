@@ -4,4 +4,4 @@ if [ -z "$1" ]; then
     echo "First arg should be pid"
     exit
 fi
-cmd.exe /c taskkill /PID $pid /F
+cmd.exe /c taskkill /PID $1 /F

@@ -465,5 +465,5 @@ vnoremap <silent> # :<C-U>
 " remember to symlink to ~/.vimrc from  %WINHOME%, so vsvim can find it
 " nnoremap Xae _iAssert.AreEqual();<ENTER><ESC>kf)
 
-com! -bar SingleLine :%s/\n// | %s/\t/ / | %s/  \+/ /
+com! -bar SingleLine :%s/\n// | %s/\t/ /e | %s/ \+/ /
 
