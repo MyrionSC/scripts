@@ -11,6 +11,7 @@ if [ -f ~/bin/.autocomplete.sh ]; then
 fi
 
 PATH=$PATH:~/bin
+PATH=$PATH:~/.local/bin
 
 export NUC=marand@marand.dk
 export WEB=/var/www/html
@@ -368,9 +369,11 @@ alias friends='open https://docs.google.com/document/d/1MwawZDJWUjvCwoLIukIJlS-L
 alias wishlist='open https://docs.google.com/document/d/1GapiFZZXzOXmDn1hb6Uy4f_jUxMTnPr3b2jAlHL06ag/edit'
 alias hours='open https://docs.google.com/spreadsheets/d/1Z-3PQJbS1fUwjIs86l6sh5ffAfT7gtQz6pg7tfYzE2I/edit'
 
-#ssh
-alias nuc='ssh -X marand@marand.dk'
-alias p10ssh='ssh rmp10@172.25.11.191'
+# cat ssh config
+alias sshc='cat ~/.ssh/config'
+alias sshconf='cat ~/.ssh/config'
+alias esshc='vim ~/.ssh/config'
+alias esshconf='vim ~/.ssh/config'
 
 # shell timers
 countdown(){

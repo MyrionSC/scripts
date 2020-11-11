@@ -1,0 +1,13 @@
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	rb = rebase
+[user]
+	email = commentor_mr@lessor.dk
+	name = Martin Raunkjær Andersen
+[core]
+	autocrlf = true
+	eol = lf
+	filemode = false
