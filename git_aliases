@@ -127,6 +127,7 @@ alias gmp='git merge @{-1}' #merge previous branch
 alias gml='git merge @{-1}' #merge previous branch
 alias gmlo='git pull origin @{-1}' #fetch origin of last branch and merge to current
 alias gmrd='git fetch origin develop && git merge origin/develop' # merge with remote develop
+alias grbrd='git fetch origin develop && git rebase origin/develop' # rebase with remote develop
 
 # merge with remote branch $1
 gmr () {
@@ -144,6 +145,7 @@ alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbm='git rebase master'
+alias grbd='git rebase develop'
 alias grbs='git rebase --skip'
 alias grbl='git rebase @{-1}'
 alias grbp='git rebase @{-1}'
@@ -221,7 +223,8 @@ grmtgi () {
 }
 
 alias gmlr='gcol && gl && gcol && gml' #merge previous branch
-alias gmdr='gcod && gl && gcol && gml'
+alias gmdr='gcod && gl && gcol && gml' # TODO: this could be done better probably
+alias grbdr='gcod && gl && gcol && grbl'
 
 alias gciq='git add --all && git commit -m "quick commit!"'
 alias gcic='git add --all && git commit -m "quick commit!"'
