@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# todo: for linux as well
+
+# requirements:
+# - vlc
+# - youtube-dl
+
+#C:\Program Files\VideoLAN\VLC\vlc.exe
+#C:\ProgramData\chocolatey\bin\youtube-dl.exe
+
+if [ -z "$1" ]; then
+        echo First argument should be youtube url
+        exit
+fi
+
+URL=$1
+
+#echo $(cmd.exe /c 'C:\Program Files\VideoLAN\VLC\vlc.exe $URL')
+echo "$URL"
+#youtube-dl --get-url --format best 'https://www.youtube.com/watch?v=video_id
+#cmd.exe /c 'C:\ProgramData\chocolatey\bin\youtube-dl.exe' $URL
+
+
