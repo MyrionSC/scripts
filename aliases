@@ -231,6 +231,14 @@ findfile () {
     find . -type f -iname "*$1*"
     #rg --hidden --files -g "*$1*"
 }
+ffreg () {
+    if [ $# -eq 0 ]
+    then
+        echo 'regex find from current dir. input1 must be in quotation and you need to specify .*/ in the beginning because find matches the whole path. eg to find all files ending with .log: ".*\.log$"'
+    else
+        find . -regextype sed -regex $1
+    fi
+}
 
 findlib () {
     if [ $# -eq 0 ]
@@ -553,4 +561,6 @@ alias drun=drun-fn
 alias dsp="docker system prune --all"
 alias dsr=dsr-fn
 
+# cat ide search replace patterns
+alias idesrp="cat ~/bin/ide-config/jetbrains/search-replace-patterns"
 

@@ -1,0 +1,12 @@
+
+
+# snake_case to CamelCase
+(\w)[_]{1,1}([a-z])
+$1\U$2
+
+# CamelCase to snake_case
+([A-Z])
+\_\L$1
+
+
+
