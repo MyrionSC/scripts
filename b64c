@@ -16,7 +16,8 @@ elif [ "$(uname)" == "MSYS_NT-10.0-18362" ]; then # It's MSYS2!
     base64 -d ~/.cache/b64c-clean.txt > ~/.cache/b64c.$1
     start ~/.cache/b64c.$1
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # It's Good ol' Linux!
-    if grep -q Microsoft /proc/version; then # we are on WSL
+    if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; # Psych! It is WSL2!
+    then
         powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/clipboard.txt
         grep -E -o '[A-Za-z0-9+\/]{70,}(={1,6})?' ~/winhome/.cache/clipboard.txt > ~/winhome/.cache/b64c-clean.txt
         base64 -d ~/winhome/.cache/b64c-clean.txt > ~/winhome/.cache/b64c.$1
