@@ -1,0 +1,13 @@
+
+# version
+java -version
+
+# install
+sudo apt-get install openjdk-8-jdk
+
+# change global version
+sudo update-alternatives --config java
+
+# find location
+which java
+
