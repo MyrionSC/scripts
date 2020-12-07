@@ -8,3 +8,6 @@ dir *filename* /p /s
 # delete env variable FOOBAR
 REG delete HKCU\Environment /F /V FOOBAR
 
+# controll services in windows (find does not seem to work)
+windows + r: services.msc
+
