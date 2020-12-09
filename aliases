@@ -564,3 +564,5 @@ alias dsr=dsr-fn
 # cat ide search replace patterns
 alias idesrp="cat ~/bin/ide-config/jetbrains/search-replace-patterns"
 
+alias jvu="sudo update-alternatives --config java"
+

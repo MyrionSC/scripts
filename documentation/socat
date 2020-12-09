@@ -1,0 +1,18 @@
+
+TODO: play around with socat
+
+# be mindful of firewalls apparently
+
+# Since I can´t update my code to access chromedriver via an IP address, he always tries access chromedriver via the localhost. So to put chromedriver to run on localhost, I´m using the following command to relay requests from LOCALHOST:PORT to WINDOWSHOST:PORT.
+# So each request that I did from my wsl2 machine to "localhost:9515" is relayed to "ipaddress:9516". On the windows side, I just need to open the 9516 port on my firewall.
+socat -d -d TCP-LISTEN:9515,reuseaddr,fork TCP:$(cat /etc/resolv.conf | tail -n1 | cut -d " " -f 2):9516
+
+
+#You can avoid the need for a wsl1 distro too by running one of the socat ports for windows directly instead too, e.g.
+socat UNIX-LISTEN:/tmp/.X11-unix/X0,fork EXEC:"/mnt/d/Downloads/socat-1.7.3.2-1-x86_64/socat.exe - TCP\:localhost\:6000"
+
+#Thank you guys, I tried to download an unofficial socat-for-windows and run:
+#Then I can access the proxy server running on Windows at port 7890 easily by connect to localhost:7890 on WSL.
+socat tcp-listen:7890,fork exec:"/mnt/c/ProgramData/my-programs/socat/socat.exe - tcp\:localhost\:7890"
+
+
