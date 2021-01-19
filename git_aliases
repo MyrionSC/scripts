@@ -41,8 +41,17 @@ alias gcsm='git commit -s -m'
 alias gcf='git config --list'
 alias gcl='git clone --recursive'
 
-alias gcleanf='git clean -fd' # remove untracked files. git clean -n to see what is removed before remove
-alias gcleann='git clean -n' # remove untracked files dry-run
+#alias gcleanf='git clean -fd' # remove untracked files. git clean -n to see what is removed before remove
+#alias gcleann='git clean -n' # remove untracked files dry-run
+gclean() {
+    git clean -n
+    read -p "delete shown files? [y/n]" -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        git clean -f
+    fi
+}
 
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
@@ -65,6 +74,7 @@ gcog() { # shift to local branch using grep
 
 #git revert <commit_hash> # revert single commit
 #git revert <oldest_commit_hash>..<latest_commit_hash> # revert range of commits
+#git checkout HASH -- file1/to/revert file2/to/revert # revert files to commit with HASH
 
 alias gd='git diff'
 alias gdno='git diff --name-only'
@@ -231,6 +241,8 @@ alias gcic='git add --all && git commit -m "quick commit!"'
 alias gqic='git add --all && git commit -m "quick commit!"'
 alias gqiq='git add --all && git commit -m "quick commit!"'
 alias cinotes='git add --all && git commit -m "notes commit" && git push'
+
+alias gfix='$EDITOR `git diff --name-only | uniq`'
 
 # Find out which pattern / .gitignore file is ignoring a file
 #git check-ignore -v <some-ignored-file>

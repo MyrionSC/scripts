@@ -53,3 +53,37 @@ Socket: IPC (inter-process communication) socket
 Swap: swap file
 Timer: systemd timer.
 
+
+
+# === libraries
+
+Software libraries can be linked in two ways:
+- Statically: Built into binary
+- Dynamically: In filesystem. Requested at runtime. Often Shared by multiple programs.
+
+To list shared libraries for a binary (eg. ls):
+ldd /bin/ls
+
+# Install a library manually
+
+1. Copy the file into /usr/lib
+2. run: ldconfig -n -v /usr/lib
+  - creates links and cache, stored in /etc/ld.so.conf and trusted dirs /lib and /usr/lib
+  - Used by runtime linker ld.so or ld-linux.so
+
+ldconfig checks the header and filenames of the libraries it encounters when determining which versions should have their links updated.
+ldconfig  will attempt to deduce the type of ELF libs (i.e., libc5 or libc6/glibc) based on what C libs, if any, the library was linked against.
+
+# Use ldd to identify missing libraries
+ldd path/to/binary.so | grep "not found"
+
+# check if library exists
+ldconfig -p | grep -i libxss
+
+# search for / install library on apt (should link itself)
+apt search libxss
+sudo apt install libxss1
+
+
+
+

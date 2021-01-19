@@ -87,6 +87,9 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
     if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ];
     then # WSL
         # if not done, create symlink in ~ pointing to windows user home called 'winhome'
+        copy_ip () {
+            hostname -I | awk '{print $1}' | awk '{printf "%s", $0}' | clip.exe
+        }
         alias cmd='cmd.exe'
         alias open='cmd.exe /C start'
         alias start='cmd.exe /C start'
@@ -561,8 +564,27 @@ alias drun=drun-fn
 alias dsp="docker system prune --all"
 alias dsr=dsr-fn
 
+alias dcu="docker-compose up -d --remove-orphans"
+alias dcd="docker-compose down --remove-orphans"
+
 # cat ide search replace patterns
 alias idesrp="cat ~/bin/ide-config/jetbrains/search-replace-patterns"
 
 alias jvu="sudo update-alternatives --config java"
+
+
+# find files in parent dirs
+find-up () {
+  path=$(pwd)
+  while [[ "$path" != "" && ! -e "$path/$1" ]]; do
+    path=${path%/*}
+  done
+  echo "$path"
+}
+egiti() {
+    path="$(find-up .gitignore)/.gitignore"
+    vim $path
+}
+
+
 

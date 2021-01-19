@@ -1,3 +1,5 @@
+# preferred shebang:
+#!/usr/bin/env bash
 
 # ----- if
 if [ $COND ]; then
