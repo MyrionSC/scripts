@@ -1,4 +1,7 @@
 
 # connect to a file inside a container. Probably works with vim as well?
-docker exec -it danlon_app_1 less /root/payroll/logs/server.log
+docker exec -it APP_NAME less /root/payroll/logs/server.log
+
+# connect to bash shell inside container
+docker exec -it APP_NAME /bin/bash
 
