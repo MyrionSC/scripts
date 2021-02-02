@@ -1,0 +1,16 @@
+
+# ------ entr (filewatch command runner)
+# cat file.txt every time it changes (-c clear console, -p postpone execution)
+ls file.txt | entr -cp cat /_
+
+# nmap scan for devices on network
+in ifconfig look for inet addr in wlan0 (wireless) or eth0 (wired), eg: inet addr:192.168.1.91
+sudo nmap -sn 192.168.1.0/24, which basically scans from 192.168.1.0 to 192.168.1.255
+
+# view autorefreshing log file
+less +F <filepath>
+
+# ----- datetime formatting
+dt=$(date '+%d/%m/%Y %H:%M:%S');
+echo "$dt" # Output format: 08/03/2020 16:40:30
+

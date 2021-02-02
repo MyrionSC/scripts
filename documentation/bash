@@ -34,17 +34,11 @@ done
 
 # arithmetic operators: -eq, -ne, -lt, -le, -gt, -ge
 
-
 # chaining cheatsheet (from https://askubuntu.com/questions/334994/which-one-is-better-using-or-to-execute-multiple-commands-in-one-line)
 A; B    # Run A and then B, regardless of success of A
 A && B  # Run B if and only if A succeeded
 A || B  # Run B if and only if A failed
 A &     # Run A in background.
-
-
-# ------ entr (filewatch command runner)
-# cat file.txt every time it changes (-c clear console, -p postpone execution)
-ls file.txt | entr -cp cat /_
 
 # if running a script from keyboard shortcut, ensure that all necessary libs are in path by having below in top of file
 LD_LIBRARY_PATH="/usr/local/lib" # or whereever the lib files are
@@ -60,15 +54,7 @@ export LD_LIBRARY_PATH
 "> /dev/null 2>&1" hide every output
 "&> /dev/null" hide every output (bash 4+)
 
-# nmap scan for devices on network
-in ifconfig look for inet addr in wlan0 (wireless) or eth0 (wired), eg: inet addr:192.168.1.91
-sudo nmap -sn 192.168.1.0/24, which basically scans from 192.168.1.0 to 192.168.1.255
-
-# view autorefreshing log file
-less +F <filepath>
-
-# ----- datetime formatting
-dt=$(date '+%d/%m/%Y %H:%M:%S');
-echo "$dt" # Output format: 08/03/2020 16:40:30
+# count number of lines in var VAR
+echo -n "$VAR" | grep -c '^'
 
 
