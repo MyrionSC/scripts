@@ -34,6 +34,9 @@ done
 
 # arithmetic operators: -eq, -ne, -lt, -le, -gt, -ge
 
+# count number of lines in var VAR
+echo -n "$VAR" | grep -c '^'
+
 # chaining cheatsheet (from https://askubuntu.com/questions/334994/which-one-is-better-using-or-to-execute-multiple-commands-in-one-line)
 A; B    # Run A and then B, regardless of success of A
 A && B  # Run B if and only if A succeeded
@@ -53,8 +56,5 @@ export LD_LIBRARY_PATH
 "&> file" means redirect stdout and stderr to file, however this only works in newer shells, like bash 4 onwards
 "> /dev/null 2>&1" hide every output
 "&> /dev/null" hide every output (bash 4+)
-
-# count number of lines in var VAR
-echo -n "$VAR" | grep -c '^'
 
 

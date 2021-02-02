@@ -222,9 +222,22 @@ findall () {
 fd () {
     find . -type d -iname "*$1*"
 }
-cdd() {
+cdd() { # try to cd to a dir match
     DIRS=$(find . -type d -iname "*$1*")
+    NUM=$(echo -n "$DIRS" | grep -c '^')
+    if [ $NUM -eq 0 ]; then
+        echo did not match any dirs
+    elif [ $NUM -eq 1 ]; then
+        cd $DIRS
+    else
+        echo Matched more than one dir:
+        for dir in $DIRS
+        do
+            echo $dir
+        done
+    fi
 }
+alias cfd='cdd'
 finddir () {
     find . -type d -iname "*$1*"
 }
@@ -245,7 +258,6 @@ ffreg () {
         find . -regextype sed -regex $1
     fi
 }
-
 findlib () {
     if [ $# -eq 0 ]
     then
@@ -255,7 +267,7 @@ findlib () {
     fi
 }
 # can also use locate PATTERN to find a file on the system (much faster)
-findcore () { # search EVERYWHERE
+findcore () { # search EVERYWHERE # can also use locate for this
     sudo find /bin /lib /lib64 /snap /usr /etc /opt /sbin /var /home -iname "*$1*"
 }
 
