@@ -72,6 +72,15 @@ gcog() { # shift to local branch using grep
     git checkout $(git branch | grep "$1")
 }
 
+gback () { # go back in log
+    if [ "$#" -eq 1 ]; then
+        git checkout HEAD~$1
+    else
+        git checkout HEAD~1
+    fi
+}
+alias gswb='git switch -'
+
 #git revert <commit_hash> # revert single commit
 #git revert <oldest_commit_hash>..<latest_commit_hash> # revert range of commits
 #git checkout HASH -- file1/to/revert file2/to/revert # revert files to commit with HASH
