@@ -579,8 +579,15 @@ alias drun=drun-fn
 alias dsp="docker system prune --all"
 alias dsr=dsr-fn
 
+alias dc="docker-compose"
 alias dcu="docker-compose up -d --remove-orphans"
 alias dcd="docker-compose down --remove-orphans"
+alias dcdu="docker-compose down --remove-orphans && docker-compose up -d"
+
+dbash () {
+    docker exec -it "$1" /bin/bash
+}
+
 
 # cat ide search replace patterns
 alias idesrp="cat ~/bin/ide-config/jetbrains/search-replace-patterns"
