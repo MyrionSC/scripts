@@ -183,6 +183,18 @@ alias grh='git reset HEAD'
 alias grhh='git reset HEAD --hard'
 alias gr1c='git reset HEAD~1' # Remove one commit that has not been pushed to remote. If you want to remove more I presume change 1 -> X
 alias grac='git reset HEAD~' # Remove all commits that has not been pushed to remote.
+
+
+gresetorigin() {
+    read -p "reset to origin? Local commits / changes will be lost [y/n]" -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        git reset --hard "origin/$(cur_br)"
+    fi
+}
+
+
 alias grmv='git remote rename'
 alias grrm='git remote remove'
 alias grset='git remote set-url'
