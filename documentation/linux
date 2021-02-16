@@ -28,6 +28,11 @@ nmap -sT -p 8080 me.hr.dev-lessor.dk
 ssh -A REMOTE
 
 
+# ssh local -> remote portforward with jumphost inbetween
+ssh -v -J mar@gcpjh.dev-lessor.dk -L 8280:127.0.0.1:8280 hr
+
+# ssh remote -> local portforward with jumphost inbetween
+ssh -v -J mar@gcpjh.dev-lessor.dk -R 8280:127.0.0.1:8280 hr
 
 
 # === Systemd Cheatsheet
