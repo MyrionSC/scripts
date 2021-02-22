@@ -99,6 +99,12 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias desk='cd ~/winhome/Desktop'
         alias gurl="egrep -o 'https?://[^ ]+' ~/.cache/gitpush-out.txt | xargs -I {} cmd.exe /C start {} > /dev/null 2>&1"
         alias gitg='cmd.exe /C "C:\Program Files\gitg\bin\gitg.exe"' # opens gitgui in current dir
+        alias cset='cmd.exe /C set'
+        alias csetx='cmd.exe /C setx'
+        delenv () {
+            cmd.exe /C REG delete HKCU\Environment /F /V $1
+            echo remember to restart entire terminal
+        }
         export DL=~/winhome/Downloads
         export DESK=~/winhome/Desktop
     else # It actually is linux

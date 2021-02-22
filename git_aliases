@@ -263,6 +263,9 @@ alias gqic='git add --all && git commit -m "quick commit!"'
 alias gqiq='git add --all && git commit -m "quick commit!"'
 alias cinotes='git add --all && git commit -m "notes commit" && git push'
 
+alias gcreatepatch='git format-patch -1 HEAD' # creates patch from latest commit
+# to apply: git am < FILE.patch
+
 alias gfix='$EDITOR `git diff --name-only | uniq`'
 
 # Find out which pattern / .gitignore file is ignoring a file

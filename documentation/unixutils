@@ -1,4 +1,3 @@
-
 # ------ entr (filewatch command runner)
 # cat file.txt every time it changes (-c clear console, -p postpone execution)
 ls file.txt | entr -cp cat /_
@@ -13,4 +12,9 @@ less +F <filepath>
 # ----- datetime formatting
 dt=$(date '+%d/%m/%Y %H:%M:%S');
 echo "$dt" # Output format: 08/03/2020 16:40:30
+
+# use sed to replace multiple strings recursively from current dir
+find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i \
+-e 's/searc1/replace1/g' \
+-e 's/search2/replace2/g'
 
