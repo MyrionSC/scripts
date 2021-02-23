@@ -337,11 +337,16 @@ ffrm () {
     rm $(rg --hidden --files -g "*$1*")
 }
 rgv () {
-    vim $(rg -l "$1")
+    rg --vimgrep "$1" > vim_quickfix_list
+    vim -q vim_quickfix_list
+    rm vim_quickfix_list
 }
 rgvim () {
-    vim $(rg -l "$1")
+    rg --vimgrep "$1" > vim_quickfix_list
+    vim -q vim_quickfix_list
+    rm vim_quickfix_list
 }
+# read about navigation via quickfix with 'docs vim'
 
 # quickly edit aliases
 als () {
