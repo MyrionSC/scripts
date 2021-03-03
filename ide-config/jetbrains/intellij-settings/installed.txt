@@ -1,3 +1,0 @@
-IdeaVIM
-org.jetbrains.kotlin
-org.jetbrains.plugins.hocon

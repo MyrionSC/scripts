@@ -1,0 +1,3 @@
+to use: import settings.zip into jetbrains ide
+
+remember to turn off settings sync. That fucks up the import (maybe)

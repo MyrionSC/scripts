@@ -1,4 +1,9 @@
 
+" === Install vundle (in unix environment)
+Run: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+Launch vim and run :PluginInstall 
+
+
 " saves all buffers and windows setup etc: :mksession! ~/today.ses
 " Opens them again: vim -S ~/today.ses
 

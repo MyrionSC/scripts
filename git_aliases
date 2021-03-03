@@ -153,7 +153,7 @@ gmr () {
     git fetch origin/$1 && git merge origin/$1
 }
 
-alias gp='git push |& tee ~/.cache/gitpush-out.txt'
+alias gp='git push'
 alias gpd='git push --dry-run'
 alias gpu='git push upstream'
 alias gpv='git push -v'

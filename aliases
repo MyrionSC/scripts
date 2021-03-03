@@ -60,7 +60,7 @@ alias nre='npm run env'
 
 alias df='df -Th'
 alias writer='lowriter'
-alias work='cd ~/work'
+alias work='cd ~/winhome/work'
 alias notes='cd ~/notes'
 alias todo='vim ~/notes/todo.txt'
 
