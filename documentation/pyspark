@@ -1,0 +1,53 @@
+
+
+
+
+
+
+
+# === API
+
+
+
+# === Dataframes
+
+# = Create
+from datetime import datetime, date
+import pandas as pd
+from pyspark.sql import Row
+df = spark.createDataFrame([
+    Row(a=1, b=2., c='string1', d=date(2000, 1, 1), e=datetime(2000, 1, 1, 12, 0)),
+    Row(a=2, b=3., c='string2', d=date(2000, 2, 1), e=datetime(2000, 1, 2, 12, 0)),
+    Row(a=4, b=5., c='string3', d=date(2000, 3, 1), e=datetime(2000, 1, 3, 12, 0))
+])
+
+# = Functions
+
+df.display() # show df in table format
+df.show() # show df in text table format
+df.show(1, vertical=True) # show single row vertically
+df.columns # print df columns list
+df.printSchema() # print df column types
+df.collect() # gather data locally. Can throw out-of-memory exception if too much data.
+df.take(x: int) # get x rows
+df.tail(x: int) # get x rows from tail
+df.toPandas() # parse to pandas df. Can also result in out of memory exception.
+
+df = df.drop('column_name') # remove column
+
+df.select(df.column_name1, df.column_name2) # select columns
+df = df.withColumn('upper_c', upper(df.c)) # assign new column
+df.groupby('column_name').avg() # group by and apply aggregate function
+
+df.write.csv('foo.csv', header=True)
+spark.read.csv('foo.csv')
+
+df.createOrReplaceTempView("tableA")
+spark.sql("SELECT count(*) from tableA").show()
+
+
+spark dfs are lazily evaluated. Meaning that a function like .show() or .collect() must be called to actually fetch the data.
+
+# === Links
+https://spark.apache.org/docs/latest/api/python/getting_started/quickstart.html
+
