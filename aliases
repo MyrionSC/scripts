@@ -476,17 +476,7 @@ strlen() {
     echo ${#strlenargs}
 }
 
-
-### Commentor
-# run syn-replace on azure deploy files
-synr () {
-    ~/bin/syn-replace /c/Users/mar/source/Synoptik-Brilleabonnement/syn-gs/syn-gs-rg/azuredeploy.json
-    ~/bin/syn-replace /c/Users/mar/source/Synoptik-Brilleabonnement/syn-gs/syn-gs-rg/azuredeploy-dk.json
-}
-
-
 alias rg='rg -M 400'
-
 alias less='less +F' # real time update on file
 
 # fzf scripts
@@ -619,5 +609,7 @@ egiti() {
     vim $path
 }
 
+alias dclean='dotnet clean'
+alias drun='dotnet run'
 
 
