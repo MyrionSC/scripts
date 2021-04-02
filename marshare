@@ -20,7 +20,7 @@ except subprocess.CalledProcessError:
     exit();
 
 try:
-    subprocess.check_output(["scp", "-r"] + inputargs + ["marand@192.168.87.177:/var/www/html/share"])
+    subprocess.check_output(["scp", "-r"] + inputargs + ["marand@marand.dk:/var/www/marand/share"])
 except subprocess.CalledProcessError:
     exit();
 

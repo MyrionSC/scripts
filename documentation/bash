@@ -57,4 +57,12 @@ export LD_LIBRARY_PATH
 "> /dev/null 2>&1" hide every output
 "&> /dev/null" hide every output (bash 4+)
 
+bash creates 3 streams when calling command: stdin, stdout and stderr
+- stdin is input to function. It can be captured in variable: var=$(cat)
+- stdout is where data is going
+- stderr is any errors produced by script
+
+# hidden chars (like lineendings)
+- print hidden chars: echo $var | cat -v
+- remove hidden chars: echo $var | tr -d 'HIDDEN_VAR' # fx. 
 

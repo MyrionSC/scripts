@@ -18,11 +18,3 @@ usermod -a -G GROUP1,GROUP2 USER: add USER to groups GROUP1 and GROUP2
 youtube-dl -F <url> # print possible formats
 youtube-dl -f '<format>' <url> # example: '720p'
 
-marand ip: 85.191.218.167
-
-at some point: 
-
-in ~/.ssh/config:
-Host marand.dk
-    ForwardX11 yes
-    ForwardX11Trusted yes

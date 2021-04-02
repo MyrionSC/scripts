@@ -73,16 +73,6 @@ if [[ "$(uname)" == "Darwin" ]]; then # It's a Mac!
     alias xpaste='pbpaste'
     export DL=~/Downloads
     export DESK=~/Desktop
-elif [[ "$(uname)" == "MSYS_NT-10.0-18362" ]]; then # It's MSYS2!
-    echo msys2
-    alias dl='cd /c/Users/$USER/Downloads'
-    alias desk='cd /c/Users/$USER/Desktop'
-    alias xc='clip'
-    alias open='start'
-    alias ln='echo "use cmd //c mklink"'
-    export DL=/c/Users/mar/Downloads
-    export DESK=/c/Users/mar/Desktop
-    #alias xpaste='pbpaste' #todo: windows paste
 elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Linux or WSL!
     if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ];
     then # WSL
@@ -98,6 +88,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias dl='cd ~/winhome/Downloads'
         alias desk='cd ~/winhome/Desktop'
         alias gurl="egrep -o 'https?://[^ ]+' ~/.cache/gitpush-out.txt | xargs -I {} cmd.exe /C start {} > /dev/null 2>&1"
+        alias osite="egrep -o 'https?://[^ ]+'| tr -d '' | xargs cmd.exe /C start" # opens siteurl from std/in
         alias gitg='cmd.exe /C "C:\Program Files\gitg\bin\gitg.exe"' # opens gitgui in current dir
         alias cset='cmd.exe /C set'
         alias csetx='cmd.exe /C setx'

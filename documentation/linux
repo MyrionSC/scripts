@@ -1,8 +1,8 @@
 
-# === User management
+# === User management (has to be sudo)
 
 # create user with home (do not use useradd, which sets default shell to sh. adduser sets to bash)
-adduser -m USERNAME
+adduser USERNAME
 
 # create new group GROUP
 sudo groupadd GROUP
