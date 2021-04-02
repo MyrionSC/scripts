@@ -15,6 +15,11 @@ do
    echo "Welcome $c times"
 done
 
+# loop through files in dir and remove extension
+for f in *; do
+    base={f%.*}
+    echo $base;
+done
 
 # ----- foreach
 for file in *
