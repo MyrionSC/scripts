@@ -603,4 +603,6 @@ egiti() {
 alias dclean='dotnet clean'
 alias drun='dotnet run'
 
+alias winhome='cd ~/winhome'
+
 

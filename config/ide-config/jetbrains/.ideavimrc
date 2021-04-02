@@ -1,4 +1,6 @@
 
+" on rider, source .ideavimrc when changed: :source ~/.ideavimrc
+
 " list of supported commands: https://github.com/JetBrains/ideavim/wiki/set-commands
 
 "-- simple options
@@ -27,16 +29,16 @@ set autoindent
 set smartindent
 
 " Remaps
-noremap c "_c
 noremap H ^
 noremap L $
+noremap c "_c
 noremap d "_d
 noremap dd "_dd
 vnoremap p "_dP
 nnoremap <C-o> :action Back<CR>
 nnoremap <C-i> :action Forward<CR>
 inoremap jk <ESC>
-inoremap jk <ESC>
+inoremap kj <ESC>
 
 " ideavim plugin emulators
 set surround
@@ -46,6 +48,11 @@ set argtextobj
 " ideavim integrations
 set ideajoin " see https://github.com/JetBrains/ideavim/wiki/%60ideajoin%60-examples
 set scrolloff=10 " minimum number of lines above and below the cursor
+
+" Rider
+set clipboard+=unnamedplus
+nmap gcc :action CommentByLineComment<CR>
+vmap gc :action CommentByLineComment<CR>
 
 " todo: test rebind of ctrl-i, ctrl-o to intellij Back and Forward (?)
 " nnoremap <C-o> :action Back<CR>
