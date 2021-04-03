@@ -2,8 +2,11 @@
 # Good guide for settings up x-server to show GUI apps:
 https://github.com/lackovic/notes/tree/master/Windows/Windows%20Subsystem%20for%20Linux#run-a-linux-gui-application-in-wsl-2
 
-
 # according to https://github.com/shayne/wsl2-hacks normal file watch limit is too low
 sudo sysctl -w fs.inotify.max_user_watches=524288
+
+# copy from clipholder. The last part removes lineendings if that is what we want.
+COPY=$(powershell.exe -command "Get-Clipboard" | perl -p -e 's/\r\n$//')
+
 
 
