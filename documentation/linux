@@ -84,9 +84,11 @@ sudo systemctl enable myservice.service && sudo systemctl start myservice.servic
 
 # to allow USER to start / stop / restart new service
 edit /etc/sudoers with: sudo EDITOR=vim visudo
-%USER ALL= NOPASSWD: /bin/systemctl start myservice.service
-%USER ALL= NOPASSWD: /bin/systemctl stop myservice.service
-%USER ALL= NOPASSWD: /bin/systemctl restart myservice.service
+%USER ALL=(ALL) NOPASSWD: /bin/systemctl start myservice.service
+%USER ALL=(ALL) NOPASSWD: /bin/systemctl stop myservice.service
+%USER ALL=(ALL) NOPASSWD: /bin/systemctl restart myservice.service
+
+now USER can for instance restart service via ssh: ssh host "sudo systemctl restart myservice.service"
 
 # === libraries
 
