@@ -1,66 +1,50 @@
-#!/usr/bin/python2
+#!/usr/bin/env python3
 
-# reflects the requests from HTTP methods GET, POST, PUT, and DELETE
-# Written by Nathan Hamiel (2010)
+"""
+Very simple HTTP server in python for logging requests
+Usage::
+    ./server.py [<port>]
+"""
 
-from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
-from optparse import OptionParser
-import sys
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import logging
 
+class S(BaseHTTPRequestHandler):
+    def _set_response(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
 
-PORT = 0
-
-if len(sys.argv) == 2:
-    PORT = int(sys.argv[1])
-else:
-    print("first arg should be the port that that simple server should run on")
-    exit()
-
-class RequestHandler(BaseHTTPRequestHandler):
-    
     def do_GET(self):
-        
-        request_path = self.path
-        
-        print("\n----- Request Start ----->\n")
-        print(request_path)
-        print(self.headers)
-        print("<----- Request End -----\n")
-        
-        self.send_response(200)
-        self.send_header("Set-Cookie", "foo=bar")
-        
-    def do_POST(self):
-        
-        request_path = self.path
-        
-        print("\n----- Request Start ----->\n")
-        print(request_path)
-        
-        request_headers = self.headers
-        content_length = request_headers.getheaders('content-length')
-        length = int(content_length[0]) if content_length else 0
-        
-        print(request_headers)
-        print(self.rfile.read(length))
-        print("<----- Request End -----\n")
-        
-        self.send_response(200)
-    
-    do_PUT = do_POST
-    do_DELETE = do_GET
-        
-def main():
-    print('Listening on localhost:%s' % PORT)
-    server = HTTPServer(('', PORT), RequestHandler)
-    server.serve_forever()
+        logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
+        self._set_response()
+        self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
 
-        
-if __name__ == "__main__":
-    parser = OptionParser()
-    parser.usage = ("Creates an http-server that will echo out any GET or POST parameters\n"
-                    "Run:\n\n"
-                    "   reflect")
-    (options, args) = parser.parse_args()
-    
-    main()
+    def do_POST(self):
+        content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
+        post_data = self.rfile.read(content_length) # <--- Gets the data itself
+        logging.info("POST request,\nPath: %s\nHeaders:\n%s\n\nBody:\n%s\n",
+                str(self.path), str(self.headers), post_data.decode('utf-8'))
+
+        self._set_response()
+        self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
+
+def run(server_class=HTTPServer, handler_class=S, port=8080):
+    logging.basicConfig(level=logging.INFO)
+    server_address = ('', port)
+    httpd = server_class(server_address, handler_class)
+    logging.info('Starting server on port $server_address\n')
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    httpd.server_close()
+    logging.info('Stopping server...\n')
+
+if __name__ == '__main__':
+    from sys import argv
+
+    if len(argv) == 2:
+        run(port=int(argv[1]))
+    else:
+        run()
