@@ -266,6 +266,10 @@ alias cinotes='git add --all && git commit -m "notes commit" && git push'
 alias gcreatepatch='git format-patch -1 HEAD' # creates patch from latest commit
 # to apply: git am < FILE.patch
 
+gurl() {
+    cmd /C start "https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_git/VanDa-MST-DataUd-Produkt/pullrequestcreate?sourceRef=$(cur_br)&targetRef=develop"
+}
+
 alias gfix='$EDITOR `git diff --name-only | uniq`'
 
 # Find out which pattern / .gitignore file is ignoring a file
