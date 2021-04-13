@@ -52,4 +52,7 @@ example: vim -c 'g/public MOVE_SPEED/norm Opublic INITIAL_MOVE_SPEED = 0;' -c 'w
 :cnf   " Go to the first error in the next file
 :.cc   " Go to error under cursor (if cursor is in quickfix window)
 
+" === Show hidden characters
+:set list
+:set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 
