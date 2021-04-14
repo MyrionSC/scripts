@@ -1,0 +1,6 @@
+
+=== Print all config and where they come from (config is type IConfiguration)
+var root = (IConfigurationRoot)config;
+var debugView = root.GetDebugView();
+Console.WriteLine(debugView);
+
