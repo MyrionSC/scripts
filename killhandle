@@ -9,7 +9,7 @@ if [ -z "$1" ]; then
 fi
 
 # print command and save to clipboard
-HANDLE_CMD="C:/Users/commentor_mr/scripts/handle.exe $1 > C:/Users/commentor_mr/cache/killhandle.out"
+HANDLE_CMD="C:/Users/mar/Programs/handle/handle.exe $1 > C:/Users/mar/cache/killhandle.out"
 echo "$HANDLE_CMD" | clip.exe
 echo "$HANDLE_CMD copied to output. ctrl v in elevated cmd."
 

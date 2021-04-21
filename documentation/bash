@@ -8,6 +8,31 @@ else
         # code
 fi
 
+# ----- common conditionals
+[ -n "$1" ] # true if arg1 exists
+[ -z "$1" ] # true if arg1 does not exist
+[ "$1" == "first" ] # true if arg1 equals the string "first"
+[ ! $COND ] # false if $COND is true
+[ $COND1 && $COND2 ] # true if $COND1 and $COND2 is true
+[ $COND1 || $COND2 ] # true if either $COND1 or $COND2 is true
+[ "$#" -ne 1 ] # true if number of arguments not equal to 1
+[ "$#" -eq 1 ] # true if number of arguments equal to 1
+
+arithmetic operators: -eq, -ne, -lt, -le, -gt, -ge
+
+# count number of lines in var VAR
+echo -n "$VAR" | grep -c '^'
+
+# chaining cheatsheet (from https://askubuntu.com/questions/334994/which-one-is-better-using-or-to-execute-multiple-commands-in-one-line)
+A; B    # Run A and then B, regardless of success of A
+A && B  # Run B if and only if A succeeded
+A || B  # Run B if and only if A failed
+A &     # Run A in background.
+
+# ----- arguments
+$1 # first argument
+$@ # all arguments
+${@:2} # all arguments except first
 
 # ------ for
 for (( c=1; c<=5; c++ ))
@@ -27,26 +52,6 @@ do
   echo "$file"
 done
 
-# ----- common conditionals
-[ -n "$1" ] # true if arg1 exists
-[ -z "$1" ] # true if arg1 does not exist
-[ "$1" == "first" ] # true if arg1 equals the string "first"
-[ ! $COND ] # false if $COND is true
-[ $COND1 && $COND2 ] # true if $COND1 and $COND2 is true
-[ $COND1 || $COND2 ] # true if either $COND1 or $COND2 is true
-[ "$#" -ne 1 ] # true if number of arguments not equal to 1
-[ "$#" -eq 1 ] # true if number of arguments equal to 1
-
-# arithmetic operators: -eq, -ne, -lt, -le, -gt, -ge
-
-# count number of lines in var VAR
-echo -n "$VAR" | grep -c '^'
-
-# chaining cheatsheet (from https://askubuntu.com/questions/334994/which-one-is-better-using-or-to-execute-multiple-commands-in-one-line)
-A; B    # Run A and then B, regardless of success of A
-A && B  # Run B if and only if A succeeded
-A || B  # Run B if and only if A failed
-A &     # Run A in background.
 
 # if running a script from keyboard shortcut, ensure that all necessary libs are in path by having below in top of file
 LD_LIBRARY_PATH="/usr/local/lib" # or whereever the lib files are

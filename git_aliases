@@ -201,10 +201,13 @@ alias grset='git remote set-url'
 alias gru='git reset --'
 alias grup='git remote update'
 alias grv='git remote -v'
-alias grorigin='git reset --hard origin/$(cur_br)'
+alias grorigin='git reset --hard origin/$(cur_br)' # delete all local commits on branch
 alias gpristine='git reset --hard && git clean -dfx'
 alias guncommit='git reset HEAD^'
 alias grfile='git checkout --' # first arg: filename
+gcof() {
+    git checkout $1 -- ${@:2}
+} # checkout files from branch. arg1 is branch, rest are files
 
 alias gsb='git status -sb'
 alias gsps='git show --pretty=short --show-signature'
@@ -284,3 +287,4 @@ alias gfix='$EDITOR `git diff --name-only | uniq`'
 
 # To debug git cli problems:
 #GIT_CURL_VERBOSE=1 GIT_TRACE=1 <command> # eg: git pull
+
