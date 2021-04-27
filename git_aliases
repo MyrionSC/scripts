@@ -208,6 +208,7 @@ alias grfile='git checkout --' # first arg: filename
 gcof() {
     git checkout $1 -- ${@:2}
 } # checkout files from branch. arg1 is branch, rest are files
+# to checkout file from commit: git checkout COMMITHASH FILE
 
 alias gsb='git status -sb'
 alias gsps='git show --pretty=short --show-signature'

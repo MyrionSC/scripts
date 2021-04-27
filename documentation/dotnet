@@ -4,3 +4,10 @@ var root = (IConfigurationRoot)config;
 var debugView = root.GetDebugView();
 Console.WriteLine(debugView);
 
+
+
+
+
+=== Obligatory nuget packages
+MappingGenerator: https://github.com/cezarypiatek/MappingGenerator
+
