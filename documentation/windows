@@ -11,3 +11,6 @@ REG delete HKCU\Environment /F /V FOOBAR
 # controll services in windows (find does not seem to work)
 windows + r: services.msc
 
+# merge all csv files in folder
+copy *.csv newfile.csv
+
