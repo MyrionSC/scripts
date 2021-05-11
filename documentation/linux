@@ -119,6 +119,11 @@ ldconfig -p | grep -i libxss
 apt search libxss
 sudo apt install libxss1
 
+# === Find files on linux
+apt install mlocate
+run: updatedb
+locate FILENAME
+
 
 
 
