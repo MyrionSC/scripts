@@ -15,4 +15,14 @@ Some scripts expect ~/winhome to exist (if on WSL)
 
 create it with: ln -s /mnt/c/Users/CUR_USER ~/winhome
 
+-----
+
+hook up vim with: ln -s ~/bin/.vimrc ~
+then download vundle with: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+then install plugins in vim with :PluginInstall
+
+-----
+
+get dir colors: ln -s ~/bin/.dircolors ~
+
 
