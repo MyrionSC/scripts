@@ -11,6 +11,7 @@ if [ -f ~/bin/.autocomplete.sh ]; then
 fi
 
 PATH=$PATH:~/bin
+PATH=$PATH:~/bin/bin
 PATH=$PATH:~/.local/bin
 
 export NUC=marand@marand.dk

@@ -18,7 +18,7 @@ term = sys.argv[1]
 
 
 scriptpath = os.path.dirname(os.path.realpath(__file__))
-words = open(scriptpath + "/english-word-files/words-cleaned.txt", "r").readlines()
+words = open(scriptpath + "/../english-word-files/words-cleaned.txt", "r").readlines()
 matches = ""
 
 if len(sys.argv) == 3 and sys.argv[2] == "-b":

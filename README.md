@@ -1,20 +1,18 @@
-Some useful scripts
+# Some useful scripts and stuff
 
-# scripts
-to make use of them everywhere, move them into ~/.local/bin or somewhere else in $PATH
+Hook up by moving git repo to ~/bin and hooking them up in .bashrc:
 
-note: To use todo, go to todo-cli and run 'npm install'
+if [ -f ~/bin/aliases ]; then
+    . ~/bin/aliases
+fi
+if [ -f ~/bin/git_aliases ]; then
+    . ~/bin/git_aliases
+fi
 
-Useful programs:
+-----
 
-htop: system monitor
-ncdu: see disc space usage
-df -Th: see disc partitions
-systemctl: system control. create and manage services.
-journalctl -u SERVICE-NAME.service -f: see service logs in real time
-usermod -a -G GROUP1,GROUP2 USER: add USER to groups GROUP1 and GROUP2
+Some scripts expect ~/winhome to exist (if on WSL)
 
-# youtube-dl: cli tool for downloading vods
-youtube-dl -F <url> # print possible formats
-youtube-dl -f '<format>' <url> # example: '720p'
+create it with: ln -s /mnt/c/Users/CUR_USER ~/winhome
+
 
