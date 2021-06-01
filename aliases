@@ -441,6 +441,9 @@ simpleserver(){
 uuid() {
     python3 -c 'import uuid; print(str(uuid.uuid4()))'
 }
+guid() {
+    python3 -c 'import uuid; print(str(uuid.uuid4()))'
+}
 
 # replace space in file names with underscore
 rename_space_underscore() {
