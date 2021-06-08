@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
-rg "$@" ~/bin/documentation/*
+if [ -z "$1" ]; then
+    echo first arg should be searchstring
+    exit
+fi
+
+rg -i "$@" ~/bin/documentation/*
 

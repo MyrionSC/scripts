@@ -319,18 +319,6 @@ elseif g:os == "Darwin" " mac
    nmap <leader>P "*P
    nmap <leader>D "*d
    nmap <leader>X "*dd
-elseif g:os == "MSYS_NT-10.0-18362"
-   vmap <leader>y "*y
-   vmap <leader>d "*d
-   vmap <leader>x "*x
-   vmap <leader>p "*p
-   vmap <leader>P "*P
-   nmap <leader>y "*yy
-   nmap <leader>Y vf$"*y
-   nmap <leader>p "*p
-   nmap <leader>P "*P
-   nmap <leader>D "*d
-   nmap <leader>X "*dd
 endif
 
 " Execute macros over multiple visual lines
