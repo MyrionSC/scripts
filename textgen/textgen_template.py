@@ -1,13 +1,9 @@
 
-input_list = ["MfsLakeChemistryFreshConfiguration", "MfsSedimentFreshConfiguration", "LakeChemistryFreshConfiguration", "LakeChemistryMarineConfiguration"]
+input_list = ["world"]
 
 def template(inp):
     return f"""
-        alter table {tname}
-        drop column Id;
-
-        alter table {tname}
-        add Id Int IDENTITY NOT NULL PRIMARY KEY;
+        Hello {inp}
     """
 
 for inp in input_list:

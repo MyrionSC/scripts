@@ -17,8 +17,7 @@ FILE="$DIR/$1.py"
 mkdir -p "$DIR" # create dir if not exists
 
 if [ ! -f "$FILE" ]; then
-    echo "$FILE does not exist. Copying template..."
-    cp textgen_template.py $FILE
+    cp ~/bin/textgen/textgen_template.py $FILE
 fi
 
 if [ -z $NO_EDIT ]; then
