@@ -2,5 +2,10 @@
 
 # get text from clipholder, send to server
 COPY=$(powershell.exe -command "Get-Clipboard" | perl -p -e 's/\r\n$//')
+
+echo "$COPY"
+
+# TODO: fix
 curl -X POST "https://marand.dk/mockpiler/" -H "accept: text/plain" -d "$COPY"
+
 

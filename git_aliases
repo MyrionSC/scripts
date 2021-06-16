@@ -82,7 +82,9 @@ gback () { # go back in log
 alias gswb='git switch -'
 
 #git revert <commit_hash> # revert single commit
+
 #git revert <oldest_commit_hash>..<latest_commit_hash> # revert range of commits
+#git revert --no-commit <hash>..HEAD # revert from head until commit hash
 #git checkout HASH -- file1/to/revert file2/to/revert # revert files to commit with HASH
 
 alias gd='git diff'
@@ -271,10 +273,10 @@ alias gcreatepatch='git format-patch -1 HEAD' # creates patch from latest commit
 # to apply: git am < FILE.patch
 
 gurl () {
-    echo  "https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_git/VanDa-MST-DataUd-Produkt/pullrequestcreate?sourceRef=$(cur_br)&targetRef=develop"
-    cmd /C start "https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_git/VanDa-MST-DataUd-Produkt/pullrequestcreate?sourceRef=$(cur_br)&targetRef=develop"
+    URL="https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_git/VanDa-MST-DataUd-Produkt/pullrequestcreate?sourceRef=$(cur_br)^&targetRef=develop"
+    echo "$URL"
+    cmd /C start "$URL"
 }
-
 
 alias gfix='$EDITOR `git diff --name-only | uniq`'
 

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    echo first arg should be name of textgen template
+    echo if first parameter is -p, do not edit template, just play it
+    exit
+fi
+
+if [ "$1" == "-p" ]; then
+    NO_EDIT=1
+    shift
+fi
+
+DIR=~/winhome/.cache/textgen
+FILE="$DIR/$1.py"
+
+mkdir -p "$DIR" # create dir if not exists
+
+if [ ! -f "$FILE" ]; then
+    echo "$FILE does not exist. Copying template..."
+    cp textgen_template.py $FILE
+fi
+
+if [ -z $NO_EDIT ]; then
+    vim $FILE
+fi
+
+python3 $FILE
+

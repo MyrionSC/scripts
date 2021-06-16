@@ -36,8 +36,6 @@ set wildignore+=*.DS_Store
 set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
 
 " search options
-" nnoremap / /\v
-" vnoremap / /\v
 " nnoremap <leader><space> :noh<cr>
 set ignorecase
 set smartcase " ignores case if all lowercase, does not if one or more uppercase
@@ -180,11 +178,12 @@ vnoremap p "_dP
 vnoremap P "_dP
 
 " remap search
-nnoremap æ /
+nnoremap æ /\v
 nnoremap Æ ?
-vnoremap æ /
+vnoremap æ /\v
 vnoremap Æ ?
-cnoremap æ <ENTER>
+" try regex very magic
+nnoremap / /\v
 
 " cut into vim default register
 nnoremap X ""dd
