@@ -609,4 +609,10 @@ alias drun='dotnet run'
 
 alias winhome='cd ~/winhome'
 
+# autohotkey
+ahk () { # edit and launch autohotkey script
+    AHK_PATH=~/winhome/autohotkey
+    vim $AHK_PATH/$1
+    autohotkey.exe $AHK_PATH/$1
+}
 

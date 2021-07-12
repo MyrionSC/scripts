@@ -14,6 +14,10 @@ complete -W "${_viewlogs_completion}" 'viewlog'
 _textgen_completion='$(ls ~/winhome/.cache/textgen)'
 complete -W "${_textgen_completion}" 'textgen'
 
+# autohotkey
+_autohotkey_completion='$(ls ~/winhome/autohotkey)'
+complete -W "${_autohotkey_completion}" 'ahk'
+
 # === git
 #gclm
 _gclm_completion='$(~/bin/gclm)'
