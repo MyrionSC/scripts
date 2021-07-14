@@ -1,0 +1,38 @@
+# subs
+az_mst_sub_dev() {
+    az account set --subscription bc5b8fbd-aecd-4140-9b8e-4bcf1e63e1db
+    echo changed sub to mst dev
+}
+az_mst_sub_prod() {
+    az account set --subscription ddc28ac0-906d-4052-8be6-66966209c1ba
+    echo changed sub to mst prod
+}
+az_mst_logstream_prod() {
+    az webapp log tail --resource-group MST-VanDa-DataUd --name mst-dataud-prod-api-app
+}
+az_syn_sub() {
+    az account set --subscription 62fa9051-7e0e-4057-9b57-7ad0c73281ed
+    echo changed sub to synoptik
+}
+
+# tasks
+az_tasks_open() {
+    cmd /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/$1   
+}
+az_tasks_show() {
+    az boards work-item show --id $1
+}
+az_tasks_create_story() {
+    az boards work-item create \
+        --title "$@" \
+        --type "Product Backlog Item" \
+        --fields "System.IterationId=211" "System.IterationLevel1=VanDa-MST-DataUd" "System.IterationLevel2=Sprint\ 4" | tee ~/.cache/az_tasks_create
+    cat ~/.cache/az_tasks_create | jq .id | xargs -I {} cmd.exe /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/{}
+}
+az_tasks_create_bug() {
+    az boards work-item create \
+        --title "$@" \
+        --type "Bug" \
+        --fields "System.IterationId=211" "System.IterationLevel1=VanDa-MST-DataUd" "System.IterationLevel2=Sprint\ 4" | tee ~/.cache/az_tasks_create
+    cat ~/.cache/az_tasks_create | jq .id | xargs -I {} cmd.exe /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/{}
+}
