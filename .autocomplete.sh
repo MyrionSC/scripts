@@ -6,13 +6,17 @@
 _docs_completion='$(ls ~/bin/documentation)'
 complete -W "${_docs_completion}" 'docs'
 
-#viewlog
+# viewlog
 _viewlogs_completion='$(ls ~/logs)'
 complete -W "${_viewlogs_completion}" 'viewlog'
 
-# vars
-_var_completion='$(ls ~/bin/variables)'
-complete -W "${_var_completion}" 'var'
+# textgen
+_textgen_completion='$(ls ~/winhome/.cache/textgen)'
+complete -W "${_textgen_completion}" 'textgen'
+
+# autohotkey
+_autohotkey_completion='$(ls ~/winhome/autohotkey)'
+complete -W "${_autohotkey_completion}" 'ahk'
 
 # === git
 #gclm

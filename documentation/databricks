@@ -1,8 +1,17 @@
 
+
+
+
+
+====== WEB TERMINAL
+
+=== see network trafic with iftop
+apt install iftop
+iftop -n
+
 === Kill process using GPU, freeing it
 fuser -v /dev/nvidia*
 kill PID
-
 
 === nvtop (GPU htop) in webterminal: https://github.com/Syllo/nvtop
 git clone https://github.com/Syllo/nvtop.git
