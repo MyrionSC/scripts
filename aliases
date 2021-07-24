@@ -18,10 +18,11 @@ export NUC=marand@marand.dk
 export WEB=/var/www/html
 
 #set -o vi
-#bind -m vi-insert "\C-l":clear-screen
+bind -m vi-insert "\C-l":clear-screen
 # ctrl-space is bind <leader> for now
 bind '"\C- f":"$(fzf --height 15)"'
 bind '"\C- v":"vim $(fzf --height 15)\n"'
+#bind '"\C-r":"ls"'
 
 alias ll='ls -alF'
 alias la='ls -A'
@@ -38,7 +39,7 @@ alias ps='ps aux'
 
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
-# alias ag='sudo apt-get upgrade'
+alias aug='sudo apt-get upgrade'
 alias ar='sudo apt-get remove'
 alias aar='sudo apt-get autoremove'
 
@@ -213,13 +214,15 @@ alias bin='cd ~/bin'
 alias www='cd /var/www/html/'
 
 #search aliases
-findall () {
-    find . -iname "*$1*"
-}
+# trying out https://github.com/sharkdp/fd for now
+# findall () {
+#     find . -iname "*$1*"
+# }
+# fd () {
+#     find . -type d -iname "*$1*"
+# }
+alias fda='fd --hidden'
 
-fd () {
-    find . -type d -iname "*$1*"
-}
 cdd() { # try to cd to a dir match
     DIRS=$(find . -type d -iname "*$1*")
     NUM=$(echo -n "$DIRS" | grep -c '^')

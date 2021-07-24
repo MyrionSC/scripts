@@ -1,4 +1,7 @@
 
+# see ip adress of wsl
+ip add # then look for inet under eth0
+
 # Good guide for settings up x-server to show GUI apps:
 https://github.com/lackovic/notes/tree/master/Windows/Windows%20Subsystem%20for%20Linux#run-a-linux-gui-application-in-wsl-2
 

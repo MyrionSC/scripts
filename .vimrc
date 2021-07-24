@@ -472,3 +472,5 @@ vnoremap <silent> # :<C-U>
 
 com! -bar SingleLine :%s/\n// | %s/\t/ /e | %s/ \+/ /
 
+set visualbell
+

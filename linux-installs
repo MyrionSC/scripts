@@ -1,4 +1,15 @@
 fasd
 ripgrep
-fzf
+
+
+# fzf (do not use apt)
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# fd: https://github.com/sharkdp/fd
+sudo apt install fd-find
+ln -s $(which fdfind) ~/.local/bin/fd
+
+# duf
+https://github.com/muesli/duf
 
