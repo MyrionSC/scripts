@@ -5,6 +5,7 @@ ripgrep
 # fzf (do not use apt)
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+for fzf as as search history on c-r put into .bashrc: [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # fd: https://github.com/sharkdp/fd
 sudo apt install fd-find
