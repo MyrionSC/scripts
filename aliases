@@ -440,6 +440,9 @@ gsearch() {
 simpleserver(){
     python3 -m http.server $1
 }
+httpserver(){
+    python3 -m http.server $1
+}
 
 uuid() {
     python3 -c 'import uuid; print(str(uuid.uuid4()))'
