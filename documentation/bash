@@ -78,3 +78,10 @@ bash creates 3 streams when calling command: stdin, stdout and stderr
 
 sed -e 's/^.//' -e 's/.$//' # remove first and last char from string piped in
 
+# bind
+- bind help: bind --help
+- see currently bound functions: bind -P
+- bind function func to ctrl-e: bind '"\C-e": func'
+
+
+

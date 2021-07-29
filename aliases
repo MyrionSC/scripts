@@ -618,6 +618,10 @@ alias winhome='cd ~/winhome'
 
 # autohotkey
 ahk () { # edit and launch autohotkey script
+    if [ -z "$1" ]; then
+        echo "First arg should be name of autohotkey script that should be upserted and executed"
+        return
+    fi
     AHK_PATH=~/winhome/autohotkey
     vim $AHK_PATH/$1
     autohotkey.exe $AHK_PATH/$1
@@ -646,4 +650,21 @@ run_on_prompt_command()
 }
 
 PROMPT_COMMAND="run_on_prompt_command"
+
+# keybinding to search in persistent history
+__fzf_persistent_history__() {
+  local output
+  output=$(tac ~/.persistent_history | fzf | cut -c 23-)
+  # below put output on prompt
+  READLINE_LINE=${output#*$'\t'}
+  if [ -z "$READLINE_POINT" ]; then
+    echo "$READLINE_LINE"
+  else
+    READLINE_POINT=0x7fffffff
+  fi
+}
+# bind to ctrl-p because alt-r is taken
+bind -m emacs-standard -x '"\C-p": __fzf_persistent_history__'
+bind -m vi-command -x '"\C-p": __fzf_persistent_history__'
+bind -m vi-insert -x '"\C-p": __fzf_persistent_history__'
 
