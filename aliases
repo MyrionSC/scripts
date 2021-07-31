@@ -622,9 +622,8 @@ ahk () { # edit and launch autohotkey script
         echo "First arg should be name of autohotkey script that should be upserted and executed"
         return
     fi
-    AHK_PATH=~/winhome/autohotkey
-    vim $AHK_PATH/$1
-    autohotkey.exe $AHK_PATH/$1
+    vim ~/winhome/autohotkey/$1
+    cmd /c autohotkey %USERPROFILE%\\autohotkey\\$1
 }
 
 # === persistent history, credits to https://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash
@@ -667,4 +666,6 @@ __fzf_persistent_history__() {
 bind -m emacs-standard -x '"\C-p": __fzf_persistent_history__'
 bind -m vi-command -x '"\C-p": __fzf_persistent_history__'
 bind -m vi-insert -x '"\C-p": __fzf_persistent_history__'
+
+export ENTR_INOTIFY_WORKAROUND="true"
 
