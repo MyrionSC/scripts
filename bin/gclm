@@ -18,7 +18,7 @@ if [ -z "$1" ]; then
     echo "wi-crawler"
     echo "ang2-ts-server"
     echo "scoreboard"
-    echo "nih-status"
+    echo "databricks-navigation-chrome-extension"
     exit
 fi
 

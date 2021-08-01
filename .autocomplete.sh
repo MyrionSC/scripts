@@ -20,7 +20,7 @@ complete -W "${_autohotkey_completion}" 'ahk'
 
 # === git
 #gclm
-_gclm_completion='$(~/bin/gclm)'
+_gclm_completion='$(~/bin/bin/gclm)'
 complete -W "${_gclm_completion}" 'gclm'
 
 #gbdl
