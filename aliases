@@ -619,11 +619,21 @@ alias winhome='cd ~/winhome'
 # autohotkey
 ahk () { # edit and launch autohotkey script
     if [ -z "$1" ]; then
-        echo "First arg should be name of autohotkey script that should be upserted and executed"
+        echo "First arg should be name of autohotkey script that should be executed (tab for completion, remember .ahk ending)"
+        echo "If -e flag: edit file instead"
         return
     fi
-    vim ~/winhome/autohotkey/$1
-    cmd /c autohotkey %USERPROFILE%\\autohotkey\\$1
+
+    if [ "$1" == "-e" ]; then
+        shift
+        # if file does not exist, create from template
+        [ ! -f ~/winhome/autohotkey/$1 ] && echo "Creating new file from template" && cp ~/bin/autohotkey/template.ahk ~/winhome/autohotkey/$1
+        vim ~/winhome/autohotkey/$1
+        return
+    fi
+
+    # execute script
+    cmd /c autohotkey.exe %USERPROFILE%\\autohotkey\\$1 & # does not seem to quit if terminal is shut down
 }
 
 # === persistent history, credits to https://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash
