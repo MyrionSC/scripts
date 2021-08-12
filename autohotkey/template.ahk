@@ -8,6 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
 ;# ===== Docs / Examples
+; See Tutorial (quick start) in autohotkey program for much more
 
 ; # Win (Windows logo key)
 ; ^ Ctrl
