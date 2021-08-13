@@ -27,12 +27,18 @@ az_tasks_create_story() {
         --title "$@" \
         --type "Product Backlog Item" \
         --fields "System.IterationId=211" "System.IterationLevel1=VanDa-MST-DataUd" "System.IterationLevel2=Sprint\ 4" | tee ~/.cache/az_tasks_create
-    cat ~/.cache/az_tasks_create | jq .id | xargs -I {} cmd.exe /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/{}
+    NAME=$(cat ~/.cache/az_tasks_create | jq '.["fields"]["System.Title"]' | tr " " "-" | tr -d ":" | tr -d "\"")
+    ID=$(cat ~/.cache/az_tasks_create | jq .id)
+    git co -b "story/$ID-$NAME"
+    cmd.exe /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/$ID
 }
 az_tasks_create_bug() {
     az boards work-item create \
         --title "$@" \
         --type "Bug" \
         --fields "System.IterationId=211" "System.IterationLevel1=VanDa-MST-DataUd" "System.IterationLevel2=Sprint\ 4" | tee ~/.cache/az_tasks_create
-    cat ~/.cache/az_tasks_create | jq .id | xargs -I {} cmd.exe /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/{}
+    NAME=$(cat ~/.cache/az_tasks_create | jq '.["fields"]["System.Title"]' | tr " " "-" | tr -d ":" | tr -d "\"")
+    ID=$(cat ~/.cache/az_tasks_create | jq .id)
+    git co -b "bug/$ID-$NAME"
+    cmd.exe /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/$ID
 }
