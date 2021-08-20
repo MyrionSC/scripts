@@ -12,7 +12,7 @@ if [ "$1" == "-p" ]; then
 fi
 
 DIR=~/winhome/.cache/textgen
-FILE="$DIR/$1.py"
+FILE="$DIR/$1"
 
 mkdir -p "$DIR" # create dir if not exists
 
