@@ -44,12 +44,12 @@ alias gcl='git clone --recursive'
 #alias gcleanf='git clean -fd' # remove untracked files. git clean -n to see what is removed before remove
 #alias gcleann='git clean -n' # remove untracked files dry-run
 gclean() {
-    git clean -n
-    read -p "delete shown files? [y/n]" -n 1 -r
+    git clean -dn
+    read -p "delete shown files and dirs? [y/n]" -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-        git clean -f
+        git clean -fd
     fi
 }
 
