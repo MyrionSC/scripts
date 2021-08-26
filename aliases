@@ -350,7 +350,7 @@ als () {
     then
         cat ~/bin/aliases
     else
-        cat ~/bin/aliases | grep -i $1
+        cat ~/bin/aliases | grep -i "$@"
     fi
 }
 if [ -f ~/bin/git_aliases ]; then
