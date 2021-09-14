@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-sshfs -o reconnect -o ServerAliveInterval=15 delt@marand.dk:delt/Martin $1
-
-# to unmount: fusermount -u PATH

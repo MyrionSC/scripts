@@ -9,14 +9,14 @@ if [ -z "$1" ]; then
 fi
 
 HOST="marand"
-DIR="/var/www/html/share/"
+DIR="/var/www/marand/share/"
 
 if [ "$1" == "-l" ]; then
         LATEST=$(ssh $HOST "ls -tA $DIR | head -1")
         rsync -avz "$HOST:$DIR$LATEST" .
         exit
 elif [ "$1" == "-d" ]; then
-        marls | dmenu | xargs mardl
+        marls | fzf | xargs mardl
         exit
 fi
 

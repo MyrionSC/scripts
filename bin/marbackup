@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-scp -r $@ marand@marand.dk:~/backups
+scp -r $@ marand@marand.dk:backups/
 

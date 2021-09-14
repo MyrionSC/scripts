@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 if [ "$1" == "-l" ]; then
-        ssh marand@marand.dk "ls -tAl /var/www/html/share"
-        exit 
+        ssh marand@marand.dk "ls -tAl /var/www/marand/share"
+        exit
 fi
 
-ssh marand@marand.dk "ls -tA /var/www/html/share"
+ssh marand@marand.dk "ls -tA /var/www/marand/share"
 
