@@ -83,5 +83,13 @@ sed -e 's/^.//' -e 's/.$//' # remove first and last char from string piped in
 - see currently bound functions: bind -P
 - bind function func to ctrl-e: bind '"\C-e": func'
 
+# test if file exists
+if [ -f /tmp/foo.txt ]; then
+    echo "File not found!"
+fi
+shorthand file not exists: [ ! -f /tmp/foo.txt ] && echo "File not found!"
+more checks here: https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+
+
 
 
