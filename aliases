@@ -679,3 +679,7 @@ bind -m vi-insert -x '"\C-p": __fzf_persistent_history__'
 
 export ENTR_INOTIFY_WORKAROUND="true"
 
+alias isodate='date -u +"%Y-%m-%dT%H:%M:%S%Z"'
+
+
+
