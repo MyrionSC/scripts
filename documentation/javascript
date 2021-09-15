@@ -1,0 +1,20 @@
+
+// Download very large file in browser (check if fetch can be used)
+url = 'https://localhost:44330/api/testdata/test/DownloadLargeFile'
+fetch(url, {
+  method: 'GET', // or 'PUT'
+  headers: {
+    'Content-Type': 'plain/text',
+    'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjIzTF9NdlhLWndXUW8xeGdRZkVoWk50Z2tZZyIsIng1dCI6IjIzTF9NdlhLWndXUW8xeGdRZkVoWk50Z2tZZyIsInR5cCI6IkpXVCJ9.eyJ1aUlkIjoiYjUxMTBkZmUtZjdkMS00NzhhLWI5MTgtYjkyOGNhMjhhMGExIiwidW5pcXVlX25hbWUiOiIxOTFkZGIzYi04OWM5LTRjNDktOWYyNC04NzBjMWM0ZTdmNmMiLCJlbWFpbCI6ImZsbm9lQG1zdC5kayIsInZhdCI6IkRLMjU3OTgzNzYiLCJldWlkIjoiREtDVlIuMjU3OTgzNzYiLCJyb2xlIjpbIkJydWdlcmUiLCJPZmZlbnRsaWciLCIyNTc5ODM3NiIsIlN0YXQiLCJtaWxqb2VfdmFuZGFfc2tyaXYiLCJtaWxqb2VfdmFuZGFfYWRtaW4iLCJtaWxqb2VfdmFuZGFfa3Nfa3MyIiwibWlsam9lX3ZhbmRhX3Jla3Zpc2l0aW9uX2FkbWluIiwiRG9tYWluIFVzZXJzIl0sInN1YiI6IjE5MWRkYjNiLTg5YzktNGM0OS05ZjI0LTg3MGMxYzRlN2Y2YyIsIm5hbWUiOiJNU1QgVEVTVCIsInRva2VuX3VzYWdlIjoiYWNjZXNzX3Rva2VuIiwianRpIjoiODk4NzFjYWMtYjQ1Zi00Y2ZiLWI1OTctZDc1ZmY4NWYzNWUzIiwic2NvcGUiOlsic3RhbmxhYl9yZWFkIiwic3RhbmxhYl93cml0ZSIsInZhbmRhX3JlYWQiLCJ2YW5kYV93cml0ZSIsIm9wZW5pZCJdLCJhdWQiOiJodHRwczovL3ZhbmRhLWFwaS50ZXN0Lm1pbGpvZXBvcnRhbC5kayIsImF6cCI6ImNvbW1lbnRvci1pbnRlZ3JhdGlvbi12YW5kYS1sb2NhbGhvc3QiLCJpYXQiOjE2MzE2MTYxNzEsIm5iZiI6MTYzMTYxNjE3MSwiZXhwIjoxNjMxNjE5NzcxLCJpc3MiOiJodHRwczovL2xvZy1pbi50ZXN0Lm1pbGpvZXBvcnRhbC5kay9ydW50aW1lL29hdXRoMiJ9.DnXjTazU1YbiZ5CLlYbZp44HQx_08TVCnDI_V0MtYUAnZLjBTMAYHpN78tHgBBRRan9nwjd0ovydQDETmigvC874IkdgAkdRxGH9YpCEn5-lF7pCzs_gjR1LW7WECh5GpEwZUhX4nmRaIBOYHMtw10UwMhvwZEC31Jr2E2j-fIy6Zq38KyBeyXzTTQLzQzQhrLcTnomfxVYqshlcBxZz2gePznek7nd9kzdsvhT_O3UiH2ikXPP0pSV05UdPfFIMz0X3as2RMwYJh4a9tTIwvNMLnyQ7OKxhqrnDH7NQ0nv-HGiV0SLGrFXt9470Sh97CdxZlgDPc4STc47GdamH9A'
+  }
+})
+.then(response => response.blob())
+.then(blob => {
+	var url = window.URL.createObjectURL(blob);
+	var a = document.createElement('a');
+	a.href = url;
+	a.download = "largefile.txt";
+	document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+	a.click();
+	a.remove();  //afterwards we remove the element again
+});
