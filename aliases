@@ -101,6 +101,24 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         }
         export DL=~/winhome/Downloads
         export DESK=~/winhome/Desktop
+        # Trying out wsl git hack
+        # Does not work with sshkey
+        # checks to see if we are in a windows or linux dir
+        # function isWinDir {
+        #     case $PWD/ in
+        #         /mnt/*) return $(true);;
+        #         *) return $(false);;
+        #     esac
+        # }
+        # # wrap the git command to either run windows git or linux
+        # function git {
+        #     if isWinDir
+        #     then
+        #         git.exe "$@"
+        #     else
+        #         /usr/bin/git "$@"
+        #     fi
+        # }
     else # It actually is linux
         alias dl='cd ~/Downloads'
         alias desk='cd ~/Desktop'
