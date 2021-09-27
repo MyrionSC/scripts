@@ -1,23 +1,20 @@
+
 # subs
-az_mst_sub_dev() {
-    az account set --subscription bc5b8fbd-aecd-4140-9b8e-4bcf1e63e1db
-    echo changed sub to mst dev
+az_change_sub () {
+    NAME=$(az account list | jq '.[].name' | fzf --height 15)
+    SUB=$(az account list | jq ".[] | select(.name==$NAME)")
+    az account set --subscription $(echo $SUB | jq .id | sed -e 's/^.//' -e 's/.$//')
+    echo changed to subscription:
+    echo $SUB | jq .
 }
-az_mst_sub_prod() {
-    az account set --subscription ddc28ac0-906d-4052-8be6-66966209c1ba
-    echo changed sub to mst prod
-}
+
 az_mst_logstream_prod() {
     az webapp log tail --resource-group MST-VanDa-DataUd --name mst-dataud-prod-api-app
-}
-az_syn_sub() {
-    az account set --subscription 62fa9051-7e0e-4057-9b57-7ad0c73281ed
-    echo changed sub to synoptik
 }
 
 # tasks
 az_tasks_open() {
-    cmd /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/$1   
+    cmd /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/$1
 }
 az_tasks_show() {
     az boards work-item show --id $1
