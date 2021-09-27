@@ -1,4 +1,10 @@
 
+# where xx
+jq '.[] | select(.location=="Stockholm")'
+
+# where just names
+jq '.[] | select(.location=="Stockholm") | .name'
+
 # change value to field, leaving everything else the same and write to file (field does not have to exist)
 cat 000301837190.json | jq ".schemaCell[].toolValues.photoApplicable = true" >> temp.json
 
