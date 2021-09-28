@@ -695,7 +695,18 @@ bind -m emacs-standard -x '"\C-p": __fzf_persistent_history__'
 bind -m vi-command -x '"\C-p": __fzf_persistent_history__'
 bind -m vi-insert -x '"\C-p": __fzf_persistent_history__'
 
-export ENTR_INOTIFY_WORKAROUND="true"
+# register hook that saves last pwd to cachefile
+LASTPWD=~/.cache/last-pwd.txt
+typeset -g CHPWD_COMMAND=""
+_chpwd_hook() {
+  echo "$PWD" > "$LASTPWD"
+}
+PROMPT_COMMAND="_chpwd_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+
+# start at last dir
+if [ -f $LASTPWD ]; then
+    cd $(cat "$LASTPWD")
+fi
 
 alias isodate='date -u +"%Y-%m-%dT%H:%M:%S%Z"'
 

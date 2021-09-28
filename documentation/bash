@@ -11,6 +11,7 @@ fi
 # ----- common conditionals
 [ -n "$1" ] # true if arg1 exists
 [ -z "$1" ] # true if arg1 does not exist
+[ -f "$FILE" ] # true if file exists
 [ "$1" == "first" ] # true if arg1 equals the string "first"
 [ ! $COND ] # false if $COND is true
 [ $COND1 && $COND2 ] # true if $COND1 and $COND2 is true

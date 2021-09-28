@@ -119,6 +119,9 @@ ldconfig -p | grep -i libxss
 apt search libxss
 sudo apt install libxss1
 
+# print symbols in library with nm
+nm -D /lib/x86_64-linux-gnu/libc.so.6
+
 # === Find files on linux
 apt install mlocate
 run: updatedb

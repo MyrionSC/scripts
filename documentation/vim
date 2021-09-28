@@ -43,6 +43,10 @@ example: vim -c 'g/public MOVE_SPEED/norm Opublic INITIAL_MOVE_SPEED = 0;' -c 'w
 :let " See all defined variables
 :echo <var> " eg echo g:os " show value of variable
 
+" === print command at current cursor pos
+:exe ":normal i" . <command>
+eg :exe ":normal i" . stdpath('config')
+
 " === Quickfix list
 :copen " Open the quickfix window
 :ccl   " Close it
