@@ -1,4 +1,6 @@
 
+alias eazals='vim ~/bin/azure/aliases'
+
 # subs
 az_change_sub () {
     NAME=$(az account list | jq '.[].name' | fzf --height 15)

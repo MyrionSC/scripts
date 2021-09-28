@@ -14,3 +14,16 @@ windows + r: services.msc
 # merge all csv files in folder
 copy *.csv newfile.csv
 
+
+### processes (todo: write fzf thing to kill a process)
+
+# list processes
+tasklist
+tasklist | fzf # to search
+
+# kill processes
+taskkill /IM mspaint.exe # kill task by name
+taskkill /PID  processId # kill process by PID
+taskkill /FI "memusage gt 102400" # kill processes using large amount of mem (>100MB in this case)
+
+
