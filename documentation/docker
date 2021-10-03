@@ -5,3 +5,8 @@ docker exec -it APP_NAME less /root/payroll/logs/server.log
 # connect to bash shell inside container
 docker exec -it APP_NAME /bin/bash
 
+# connect to logs (-f for follow)
+docker logs <container-id> -f
+logs are stored at: /var/lib/docker/containers/<container-id>/<container-id>-json.log
+
+
