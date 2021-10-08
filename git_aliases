@@ -3,6 +3,16 @@
 # (sorted alphabetically)
 #
 
+# if in windows part of filesystem in WSL, use windows git
+# Remember to have symlink of .ssh (see windows docs)
+git() {
+  if $(pwd -P | grep -q "^\/mnt\/c\/*"); then
+    git.exe "$@"
+  else
+    command git "$@"
+  fi
+}
+
 alias g='git'
 
 alias ga='git add'
@@ -70,6 +80,12 @@ gcob() { # create branch while replacing stuff
 }
 gcog() { # shift to local branch using grep
     git checkout $(git branch | grep "$1")
+}
+gsw() { # checkout local branch
+    git checkout $(git branch | fzf --height 15)
+}
+gswr() { # checkout remote branch
+    git checkout $(git branch --remote | fzf --height 15)
 }
 
 gback () { # go back in log
@@ -275,7 +291,7 @@ alias gcreatepatch='git format-patch -1 HEAD' # creates patch from latest commit
 gurl () {
     URL="https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_git/VanDa-MST-DataUd-Produkt/pullrequestcreate?sourceRef=$(cur_br)^&targetRef=develop"
     echo "$URL"
-    cmd /C start "$URL"
+    cmd /c start "$URL"
 }
 
 alias gfix='$EDITOR `git diff --name-only | uniq`'

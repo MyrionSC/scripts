@@ -11,5 +11,7 @@ sudo sysctl -w fs.inotify.max_user_watches=524288
 # copy from clipholder. The last part removes lineendings if that is what we want.
 COPY=$(powershell.exe -command "Get-Clipboard" | perl -p -e 's/\r\n$//')
 
+# === VIM
+Insert literal char in command mode: CTRL + q (Does not always work?)
 
 
