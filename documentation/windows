@@ -26,6 +26,6 @@ taskkill /IM mspaint.exe # kill task by name
 taskkill /PID  processId # kill process by PID
 taskkill /FI "memusage gt 102400" # kill processes using large amount of mem (>100MB in this case)
 
-# Create symlink of \Users\mar\.ssh to .ssh in current dir
+# Create directory symlink of \Users\mar\.ssh to .ssh in current dir
 mklink /D .ssh \Users\mar\.ssh
 
