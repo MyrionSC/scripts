@@ -710,5 +710,8 @@ fi
 
 alias isodate='date -u +"%Y-%m-%dT%H:%M:%S%Z"'
 
-
+mockpile() {
+    powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/mockpileinput.json
+    ~/winhome/bin/mockpilercli.exe "C:\\Users\\mar\\.cache\\mockpileinput.json"
+}
 
