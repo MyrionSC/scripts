@@ -715,3 +715,11 @@ mockpile() {
     ~/winhome/bin/mockpilercli.exe "C:\\Users\\mar\\.cache\\mockpileinput.json"
 }
 
+to_sqlite() {
+    powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/db.json
+    cd ~/winhome/.cache
+    cmd /c sqlitebiter file db.json
+    cmd /c rider out.sqlite
+    cd -
+}
+
