@@ -1,0 +1,53 @@
+
+-- Get all tables in database
+SELECT s.[name] AS SchemaName, t.[name] AS TableName
+FROM sys.tables t
+         INNER JOIN sys.schemas s ON t.schema_id = s.schema_id
+ORDER BY SchemaName, TableName;
+
+-- Get views and stored procedures
+SELECT s.[name] as SchemaName, v.[Name] AS ViewName from sys.views v
+INNER JOIN sys.schemas s ON v.schema_id=s.schema_id
+ORDER BY SchemaName, ViewName;
+SELECT s.[name] as SchemaName, p.name AS ProcedureName from sys.procedures p
+INNER JOIN sys.schemas s ON p.schema_id=s.schema_id
+ORDER BY SchemaName, ProcedureName;
+
+-- Get stats for latest queries
+SELECT top 50 sql.text AS sql_query, stats.execution_count,
+              stats.last_execution_time, stats.last_elapsed_time/1000 AS last_elapsed_time_ms, stats.last_logical_reads, stats.last_logical_writes, stats.total_elapsed_time/1000 AS total_elapsed_time_ms,
+              stats.total_logical_reads, stats.total_logical_writes, [plan].query_plan AS query_plan
+FROM sys.dm_exec_query_stats stats
+         CROSS APPLY sys.dm_exec_sql_text(stats.sql_handle) AS sql
+         CROSS APPLY sys.dm_exec_query_plan(stats.plan_handle) AS [plan]
+ORDER BY stats.last_execution_time desc;
+
+
+-- find missing indexes. (maybe only in azure mssql?)
+SELECT
+    CONVERT (varchar, getdate(), 126) AS runtime
+     , mig.index_group_handle
+     , mid.index_handle
+     , CONVERT (decimal (28,1), migs.avg_total_user_cost * migs.avg_user_impact *
+                                (migs.user_seeks + migs.user_scans)) AS improvement_measure
+     , 'CREATE INDEX missing_index_' + CONVERT (varchar, mig.index_group_handle) + '_' +
+       CONVERT (varchar, mid.index_handle) + ' ON ' + mid.statement + '
+        (' + ISNULL (mid.equality_columns,'')
+    + CASE WHEN mid.equality_columns IS NOT NULL
+        AND mid.inequality_columns IS NOT NULL
+               THEN ',' ELSE '' END + ISNULL (mid.inequality_columns, '') + ')'
+    + ISNULL (' INCLUDE (' + mid.included_columns + ')', '') AS create_index_statement
+     , migs.*
+     , mid.database_id
+     , mid.[object_id]
+FROM sys.dm_db_missing_index_groups AS mig
+         INNER JOIN sys.dm_db_missing_index_group_stats AS migs
+                    ON migs.group_handle = mig.index_group_handle
+         INNER JOIN sys.dm_db_missing_index_details AS mid
+                    ON mig.index_handle = mid.index_handle
+ORDER BY migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks + migs.user_scans) DESC;
+
+-- Azure sql database tips query
+https://github.com/microsoft/azure-sql-tips/wiki/Azure-SQL-Database-tips
+
+
