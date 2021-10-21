@@ -51,3 +51,5 @@ ORDER BY migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks + mi
 https://github.com/microsoft/azure-sql-tips/wiki/Azure-SQL-Database-tips
 
 
+-- For when auditing and history is important for a table (which is most of the time), consider using system versioned tables
+
