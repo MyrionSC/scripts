@@ -413,7 +413,7 @@ com! TryCamelCase :%!xargs -n1 -I{} sh -c 'camelcase {}'
 " ====== FORMAT STUFF
 com! Reformat norm mygg=G`y " format file and return to same position
 nnoremap <leader><leader>r :Reformat<ENTER>
-com! FormatJSON :%! jq . " must have jq installed
+com! FormatJSON :%! jq .
 com! FormatXML :%s/</\r</g || norm gg=G " discount xml format for xml in single line, slow on big stuff
 
 " format xml using xmllint

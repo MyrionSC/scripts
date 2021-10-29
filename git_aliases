@@ -13,6 +13,11 @@ git() {
   fi
 }
 
+# get actual name of develop branch (xargs just trims)
+git_develop() {
+    git branch | grep develop | xargs
+}
+
 alias g='git'
 
 alias ga='git add'
@@ -72,7 +77,7 @@ alias gcb='git checkout -b'
 #alias gcob='git checkout -b'
 alias gcom='git checkout master'
 #alias gcod='git checkout develop 2>/dev/null || git checkout development'
-alias gcod='git checkout develop'
+alias gcod='git checkout $(git_develop)'
 alias gcol='git checkout @{-1}' #checkout previous branch
 alias gcop='git checkout @{-1}' #checkout previous branch
 gcob() { # create branch while replacing stuff
@@ -85,7 +90,8 @@ gsw() { # checkout local branch
     git checkout $(git branch | fzf --height 15)
 }
 gswr() { # checkout remote branch
-    git checkout $(git branch --remote | fzf --height 15)
+    git checkout $(git branch -r | sed 's/^ *origin\///' | fzf --height 30)
+
 }
 
 gback () { # go back in log
@@ -163,8 +169,8 @@ alias gmab='git merge --abort'
 alias gmp='git merge @{-1}' #merge previous branch
 alias gml='git merge @{-1}' #merge previous branch
 alias gmlo='git pull origin @{-1}' #fetch origin of last branch and merge to current
-alias gmrd='git fetch origin develop && git merge origin/develop' # merge with remote develop
-alias grbrd='git fetch origin develop && git rebase origin/develop' # rebase with remote develop
+alias gmrd='git fetch origin $(git_develop) && git merge origin/$(git_develop)' # merge with remote develop
+alias grbrd='git fetch origin $(git_develop) && git rebase origin/$(git_develop)' # rebase with remote develop
 
 # merge with remote branch $1
 gmr () {
@@ -182,7 +188,7 @@ alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbm='git rebase master'
-alias grbd='git rebase develop'
+alias grbd='git rebase $(git_develop)'
 alias grbs='git rebase --skip'
 alias grbl='git rebase @{-1}'
 alias grbp='git rebase @{-1}'
@@ -272,7 +278,7 @@ alias glum='git pull upstream master'
 
 alias grmt='git rm -r --cached .' # remove locally tracked files. use gaa after to track files not ignored
 grmtgi () {
-	git rm --cached `git ls-files -i --exclude-from=.gitignore`
+	git rm --cached `git ls-files -ic --exclude-from=.gitignore`
 }
 
 alias gmlr='gcol && gl && gcol && gml' #merge previous branch
@@ -288,7 +294,12 @@ alias cinotes='git add --all && git commit -m "notes commit" && git push'
 alias gcreatepatch='git format-patch -1 HEAD' # creates patch from latest commit
 # to apply: git am < FILE.patch
 
-gurl () {
+dssgurl () {
+    URL="https://dev.azure.com/dssdk/Azure%20Integration/_git/1b12c204-6284-4001-954b-46e082207535/pullrequestcreate?sourceRef=$(cur_br)^&targetRef=story/15044-code-coverage-continued"
+    echo "$URL"
+    cmd /c start msedge "$URL"
+}
+mstgurl () {
     URL="https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_git/VanDa-MST-DataUd-Produkt/pullrequestcreate?sourceRef=$(cur_br)^&targetRef=develop"
     echo "$URL"
     cmd /c start "$URL"
