@@ -4,7 +4,7 @@ if [ -z "$1" ]; then
         echo Quickly download stuff from marand@marand.dk:/var/www/html/share.
         echo First argument should be file or folder in share folder.
         echo if first argument is '-l', download latest modified.
-        echo if first argument is '-d', use dmenu to choose a file
+        echo if first argument is '-f', use fzf to choose a file
         exit
 fi
 
@@ -15,8 +15,8 @@ if [ "$1" == "-l" ]; then
         LATEST=$(ssh $HOST "ls -tA $DIR | head -1")
         rsync -avz "$HOST:$DIR$LATEST" .
         exit
-elif [ "$1" == "-d" ]; then
-        marls | fzf | xargs mardl
+elif [ "$1" == "-f" ]; then
+        marls | fzf --height 20 | xargs mardl
         exit
 fi
 
