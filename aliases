@@ -87,6 +87,8 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias open='cmd.exe /C start'
         alias start='cmd.exe /C start'
         alias clip='clip.exe'
+        alias winhome='cd ~/winhome'
+        alias wh='cd ~/winhome'
         alias xc='clip.exe'
         alias dl='cd ~/winhome/Downloads'
         alias desk='cd ~/winhome/Desktop'
@@ -96,9 +98,11 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias cset='cmd.exe /C set'
         alias csetx='cmd.exe /C setx'
         delenv () {
-            cmd.exe /C REG delete HKCU\Environment /F /V $1
+            cmd /C "REG delete HKCU\Environment /F /V $1"
             echo remember to restart entire terminal
         }
+        alias regdel='delenv'
+        alias delreg='delenv'
         export DL=~/winhome/Downloads
         export DESK=~/winhome/Desktop
         # Trying out wsl git hack
@@ -399,17 +403,16 @@ echo $1 | cowsay -e OO -f dragon-and-cow
 #shopt -s globstar
 
 #fasd init. Try different setups from "man fasd"
-eval "$(fasd --init auto)"
-alias v='f -e vim' # quick opening files with vim
-c () {
-    echo "copied $(f $@) to clipholder"
-    f -e cat $@ | tr -d '\n' | xc
-}
-
-o () {
-    echo "opening $(f $@)"
-    f -e open $@ & disown
-}
+# eval "$(fasd --init auto)"
+# alias v='f -e vim' # quick opening files with vim
+# c () {
+#     echo "copied $(f $@) to clipholder"
+#     f -e cat $@ | tr -d '\n' | xc
+# }
+# o () {
+#     echo "opening $(f $@)"
+#     f -e open $@ & disown
+# }
 
 
 # documents
@@ -632,7 +635,6 @@ egiti() {
 alias dclean='dotnet clean'
 alias drun='dotnet run'
 
-alias winhome='cd ~/winhome'
 
 # autohotkey
 ahk () { # edit and launch autohotkey script

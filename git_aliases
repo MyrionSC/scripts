@@ -257,10 +257,10 @@ gstap () {
 alias gstas='git stash show --text'
 
 # save and retrieve stash by name
-gstan() {
+gstasave() {
         git stash push -m "saved_stash_name_$1"
 }
-gstaan() {
+gstaget() {
         git stash apply $(git stash list | grep "saved_stash_name_$1" | cut -d: -f1)
 }
 
