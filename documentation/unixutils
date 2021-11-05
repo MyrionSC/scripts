@@ -23,3 +23,9 @@ find . \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i \
 # print file information (such as encoding)
 file -i FILENAME
 
+# === cut
+# remove 5 first chars of string with cut
+cut -c 5- # remove first 5 chars
+cut -c 5-8 # get chars between 5 and 8
+cut -c -8 # cut after char 8
+
