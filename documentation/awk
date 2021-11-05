@@ -1,0 +1,3 @@
+
+# Using / as delimiter, print FIRST/SECOND
+awk -F '/' '{print $1"/"$2}'
