@@ -717,11 +717,21 @@ mockpile() {
     ~/winhome/bin/mockpilercli.exe "C:\\Users\\mar\\.cache\\mockpileinput.json"
 }
 
-to_sqlite() {
-    powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/db.json
+sqlite_from_json() {
+    powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/sqlite_from_json_cache.json
     cd ~/winhome/.cache
-    cmd /c sqlitebiter file db.json
+    cmd /c sqlitebiter file sqlite_from_json_cache.json
     cmd /c rider out.sqlite
+    cd -
+}
+sqlite_from_sql() {
+    powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/sqlite_from_sql_cache.sql
+    if [ -f ~/winhome/.cache/temp.db ]; then
+        rm ~/winhome/.cache/temp.db
+    fi
+    sqlite ~/winhome/.cache/temp.db < ~/winhome/.cache/sqlite_from_sql_cache.sql
+    cd ~/winhome/.cache
+    cmd /c rider temp.db
     cd -
 }
 
