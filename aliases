@@ -65,7 +65,7 @@ alias df='df -Th'
 alias writer='lowriter'
 alias work='cd ~/winhome/work'
 alias notes='cd ~/notes'
-alias todo='vim ~/notes/todo.txt'
+alias todo='start https://docs.google.com/document/d/153zkJW6oph4Av4q495SS5dufi3Z5L79GP6koM0jKI1w/edit#'
 
 # platform specific stuff
 if [[ "$(uname)" == "Darwin" ]]; then # It's a Mac!
