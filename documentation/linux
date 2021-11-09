@@ -127,6 +127,7 @@ apt install mlocate
 run: updatedb
 locate FILENAME
 
-
+# install deb file. binaries will probably end up in /usr/bin
+dpkg -i FILE.deb
 
 
