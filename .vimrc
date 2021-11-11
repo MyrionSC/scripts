@@ -403,9 +403,10 @@ highlight StatusLine ctermfg=2
 " remove front whitespace
 "com! RemoveFrontWhitespace :%s/^[\t ]*//g
 "com! RemoveBackWhitespace :%s/\s\+$//e
-com! RemoveFrontBackWhitespace :%s/^\s\+//e | %s/\s\+$//e
 com! TrimWhitespace :%s/^\s\+//e | %s/\s\+$//e
+com! RemoveFrontBackWhitespace :%s/^\s\+//e | %s/\s\+$//e
 com! RemoveEmptyLines :g/^\s*$/d
+com! RemoveAllWhitespace :%s/[ \t\n\r]//
 
 com! TryCamelCase :%!xargs -n1 -I{} sh -c 'camelcase {}'
 

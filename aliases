@@ -631,6 +631,7 @@ egiti() {
     path="$(find-up .gitignore)/.gitignore"
     vim $path
 }
+alias giti='egiti'
 
 alias dclean='dotnet clean'
 alias drun='dotnet run'
@@ -734,4 +735,9 @@ sqlite_from_sql() {
     cmd /c rider temp.db
     cd -
 }
+
+alias sysvar='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
+alias path='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
+alias epath='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
+
 
