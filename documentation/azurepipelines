@@ -1,0 +1,9 @@
+
+
+# print working directory
+          - task: CmdLine@2
+            displayName: 'print system defaultworkingdirectory tree'
+            inputs:
+              script: 'tree'
+              workingDirectory: '$(System.DefaultWorkingDirectory)'
+

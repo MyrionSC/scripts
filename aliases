@@ -98,31 +98,19 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias cset='cmd.exe /C set'
         alias csetx='cmd.exe /C setx'
         delenv () {
-            cmd /C "REG delete HKCU\Environment /F /V $1"
-            echo remember to restart entire terminal
+            if [ $# -eq 0 ]
+            then
+                ARG=$(cmd /c set | fzf | awk -F '=' '{print $1}')
+            else
+                ARG="$1"
+            fi
+            cmd /C "REG delete HKCU\Environment /F /V $ARG"
+            echo "Removing $ARG. If success, remember to restart entire terminal."
         }
         alias regdel='delenv'
         alias delreg='delenv'
         export DL=~/winhome/Downloads
         export DESK=~/winhome/Desktop
-        # Trying out wsl git hack
-        # Does not work with sshkey
-        # checks to see if we are in a windows or linux dir
-        # function isWinDir {
-        #     case $PWD/ in
-        #         /mnt/*) return $(true);;
-        #         *) return $(false);;
-        #     esac
-        # }
-        # # wrap the git command to either run windows git or linux
-        # function git {
-        #     if isWinDir
-        #     then
-        #         git.exe "$@"
-        #     else
-        #         /usr/bin/git "$@"
-        #     fi
-        # }
     else # It actually is linux
         alias dl='cd ~/Downloads'
         alias desk='cd ~/Desktop'
@@ -391,6 +379,7 @@ fi
 
 # drive aliases
 alias eals='vim ~/bin/aliases'
+alias eaz='vim ~/bin/azure/aliases'
 alias ebrc='vim ~/.bashrc'
 alias ezrc='vim ~/.zshrc'
 
@@ -739,5 +728,13 @@ sqlite_from_sql() {
 alias sysvar='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
 alias path='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
 alias epath='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
+
+alias setf='cmd /c set | fzf'
+
+# quick z navigation
+zz () {
+    cd $(z | awk '{print $2}' | tac | fzf)
+}
+
 
 
