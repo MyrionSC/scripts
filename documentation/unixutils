@@ -29,3 +29,7 @@ cut -c 5- # remove first 5 chars
 cut -c 5-8 # get chars between 5 and 8
 cut -c -8 # cut after char 8
 
+
+# === reverse input lines with tac
+cat somefile | tac
+
