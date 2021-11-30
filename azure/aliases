@@ -1,6 +1,13 @@
 
 alias eazals='vim ~/bin/azure/aliases'
 
+az_show() {
+    az account show | jq .
+}
+
+az_list() {
+    az account list | jq .
+}
 
 # subs
 az_change_sub () {

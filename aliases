@@ -403,6 +403,13 @@ echo $1 | cowsay -e OO -f dragon-and-cow
 #     f -e open $@ & disown
 # }
 
+binrg() { # search in bin
+    rg "$@" ~/bin
+}
+rgbin() { # search in bin
+    rg "$@" ~/bin
+}
+
 
 # documents
 alias books='open https://docs.google.com/document/d/1Kz8ryAhjm8AHjcVO956MMFzlwhvrF84n0x21UVvmjA0/edit'
@@ -736,5 +743,15 @@ zz () {
     cd $(z | awk '{print $2}' | tac | fzf)
 }
 
-
+watchexec() {
+    if [ -z "$1" ]; then
+        tldr watchexec
+        return
+    fi
+    if $(pwd -P | grep -q "^\/mnt\/c\/*"); then
+        cmd /c watchexec "$@"
+    else
+        watchexec "$@"
+    fi
+}
 
