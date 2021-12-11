@@ -760,4 +760,14 @@ rm() {
     trash "$@"
 }
 
+docssearch() {
+    if [ -z "$1" ]; then
+        "first arg to docssearch should be search rg term"
+        return
+    fi
+    rg "$@" ~/bin/documentation
+}
+alias ds="docssearch"
+
+
 
