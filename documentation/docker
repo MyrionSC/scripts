@@ -9,4 +9,6 @@ docker exec -it APP_NAME /bin/bash
 docker logs <container-id> -f
 logs are stored at: /var/lib/docker/containers/<container-id>/<container-id>-json.log
 
+# download logs to file
+docker logs CONTAINER > container.log 2>&1
 

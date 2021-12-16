@@ -2,8 +2,8 @@
 
 # Opens a base64 string from clipholder in browser
 if [ "$#" -ne 1 ]; then
-    echo "Tries to convert first base64 string found in clipholder to file"
-    echo "arg1 should be file suffix (eg. pdf)"
+    echo "Tries to convert first base64 string found in clipholder to file and open that file"
+    echo "arg1 should be file suffix (eg. [pdf, txt, png])"
     exit -1
 fi
 

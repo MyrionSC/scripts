@@ -91,7 +91,10 @@ gsw() { # checkout local branch
 }
 gswr() { # checkout remote branch
     git checkout $(git branch -r | sed 's/^ *origin\///' | fzf --height 30)
+}
 
+gcoz() {
+    git checkout $(git log --oneline | fzf --height 30 | awk '{print $1}')
 }
 
 gback () { # go back in log
@@ -229,7 +232,7 @@ alias grorigin='git reset --hard origin/$(cur_br)' # delete all local commits on
 alias gpristine='git reset --hard && git clean -dfx'
 alias guncommit='git reset HEAD^'
 alias grfile='git checkout --' # first arg: filename
-gcof() {
+gcofile() {
     git checkout $1 -- ${@:2}
 } # checkout files from branch. arg1 is branch, rest are files
 # to checkout file from commit: git checkout COMMITHASH FILE

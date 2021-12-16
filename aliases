@@ -740,7 +740,7 @@ alias setf='cmd /c set | fzf'
 
 # quick z navigation
 zz () {
-    cd $(z | awk '{print $2}' | tac | fzf)
+    cd $(z | awk '{print $2}' | tac | fzf --height 30)
 }
 
 watchexec() {
@@ -753,6 +753,10 @@ watchexec() {
     else
         watchexec "$@"
     fi
+}
+
+winpwd() {
+    cmd /c echo %cd%
 }
 
 # apt install trash-cli. trash ends up in ~/.local/share/Trash/. use trash-list to list. trash-restore to restore.
