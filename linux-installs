@@ -14,3 +14,8 @@ ln -s $(which fdfind) ~/.local/bin/fd
 # duf
 https://github.com/muesli/duf
 
+
+# === optional
+lazycli # for making small clis
+lazydocker # if docker and docker-compose on system
+

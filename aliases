@@ -441,7 +441,7 @@ stopwatch(){
     done
 }
 alarm(){
-    countdown $1 && open ~/bin/alarm.wav
+    countdown $1 && open ~/bin/bin/alarm.wav
 }
 
 # google search for string
@@ -772,6 +772,12 @@ docssearch() {
     rg "$@" ~/bin/documentation
 }
 alias ds="docssearch"
+
+# bin search
+rgb () {
+    rg "$@" ~/bin
+}
+alias bs="rgb"
 
 
 

@@ -29,3 +29,12 @@ taskkill /FI "memusage gt 102400" # kill processes using large amount of mem (>1
 # Create directory symlink of \Users\mar\.ssh to .ssh in current dir
 mklink /D .ssh \Users\mar\.ssh
 
+# scan local ports (using admin cmd prompt)
+netstat -ab
+
+
+### Monitoring
+# to monitor System calls, use Process Monitor
+# To see / edit registry, use regedit (run regedit)
+# to see specs and temperature, use speccy
+

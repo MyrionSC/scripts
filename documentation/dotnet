@@ -8,6 +8,8 @@ Console.WriteLine(debugView);
 
 
 
-=== Obligatory nuget packages
-MappingGenerator: https://github.com/cezarypiatek/MappingGenerator
+=== new project startup considerations
+MappingGenerator nuget package: https://github.com/cezarypiatek/MappingGenerator
+custom linting, eg. error if switch not exhaustive
+.net watch run configuration plugin
 

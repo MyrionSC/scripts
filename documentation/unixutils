@@ -3,7 +3,7 @@
 ls file.txt | entr -cp cat /_
 
 # nmap scan for devices on network
-in ifconfig look for inet addr in wlan0 (wireless) or eth0 (wired), eg: inet addr:192.168.1.91
+# in ifconfig look for inet addr in wlan0 (wireless) or eth0 (wired), eg: inet addr:192.168.1.91
 sudo nmap -sn 192.168.1.0/24, which basically scans from 192.168.1.0 to 192.168.1.255
 
 # view autorefreshing log file. can be used to stream to stdout and apply functions like grep or awk.
