@@ -38,3 +38,8 @@ netstat -ab
 # To see / edit registry, use regedit (run regedit)
 # to see specs and temperature, use speccy
 
+
+### Useful software
+PowerToys, a bunch of addons to common windows functionality: https://github.com/microsoft/PowerToys
+
+
