@@ -680,7 +680,7 @@ PROMPT_COMMAND="run_on_prompt_command"
 # keybinding to search in persistent history
 __fzf_persistent_history__() {
   local output
-  output=$(tac ~/.persistent_history | fzf | cut -c 23-)
+  output=$(tac ~/.persistent_history | fzf --no-sort | cut -c 23-)
   # below put output on prompt
   READLINE_LINE=${output#*$'\t'}
   if [ -z "$READLINE_POINT" ]; then
