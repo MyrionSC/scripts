@@ -295,6 +295,10 @@ lst() {
         ls -t | head -$1
     fi
 }
+vlst() {
+    vim $(lst)
+}
+alias vimlst='vlst'
 mvl () {
     if [ $# -eq 1 ]
     then
@@ -715,10 +719,19 @@ mockpile() {
 }
 
 sqlite_from_json() {
-    powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/sqlite_from_json_cache.json
+    if [ -z "$1" ]; then
+        echo taking json from clipboard
+        powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/sqlite_json.json
+    else
+        echo copy from file
+        cp -f $1 ~/winhome/.cache/sqlite_json.json
+    fi
+
     cd ~/winhome/.cache
-    cmd /c sqlitebiter file sqlite_from_json_cache.json
-    cmd /c rider out.sqlite
+    echo === starting sqlitebiter jsonparse
+    cmd /c sqlitebiter file sqlite_json.json
+    echo === sqlitebiter jsonparse done
+    cmd /c "C:\\Users\\mar\\AppData\\Local\\JetBrains\\Toolbox\\apps\\Rider\\ch-0\\213.6461.51\\bin\\rider" out.sqlite
     cd -
 }
 sqlite_from_sql() {
@@ -735,6 +748,7 @@ sqlite_from_sql() {
 alias sysvar='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
 alias path='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
 alias epath='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
+alias setpath='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
 
 alias setf='cmd /c set | fzf'
 
