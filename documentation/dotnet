@@ -13,3 +13,9 @@ MappingGenerator nuget package: https://github.com/cezarypiatek/MappingGenerator
 custom linting, eg. error if switch not exhaustive
 .net watch run configuration plugin
 
+Set implicit usings and nullable
+in csproj file: Project > ProjectGroup
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+

@@ -170,6 +170,10 @@ greps () {
 }
 
 winpath () {
+    cmd /c path | sed 's/;/\n/g' | fzf
+}
+
+winxp () {
     if [ $# -eq 0 ]
     then
         temppath=$(realpath .)
@@ -186,7 +190,6 @@ winpath () {
 
     echo $temppath | tr -d "\n"
 }
-
 xp () {
     if [ $# -eq 0 ]
     then
