@@ -11,7 +11,16 @@ Console.WriteLine(debugView);
 === new project startup considerations
 MappingGenerator nuget package: https://github.com/cezarypiatek/MappingGenerator
 custom linting, eg. error if switch not exhaustive
-.net watch run configuration plugin
+.net watch run configuration plugin (same as dotnet watch in 6?)
+Serilog
+new dotnet 6 using switch (only nontrivial usings at top)
+nullable types switch
+
+
+
+
+
+
 
 Set implicit usings and nullable
 in csproj file: Project > ProjectGroup

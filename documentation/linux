@@ -14,19 +14,12 @@ sudo usermod -a -G GROUP USER
 groups USER
 
 
-
-
 # === Debugging connections
-
-# see which ports are exposed
-ss -lnt
-
-# something something
-nmap -sT -p 8080 me.hr.dev-lessor.dk
+ss -lnt # see which ports are exposed
+sudo netstat -tulpn | grep LISTEN # list open ports
 
 # use ssh creds and settings on remote. Can be used to transfer files directly between two remotes
 ssh -A REMOTE
-
 
 # ssh local -> remote portforward with jumphost inbetween
 ssh -v -J mar@gcpjh.dev-lessor.dk -L 8280:127.0.0.1:8280 hr
