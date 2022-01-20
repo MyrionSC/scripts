@@ -16,6 +16,7 @@ groups USER
 
 # === Debugging connections
 ss -lnt # see which ports are exposed
+ss -tulpn # and more
 sudo netstat -tulpn | grep LISTEN # list open ports
 
 # use ssh creds and settings on remote. Can be used to transfer files directly between two remotes

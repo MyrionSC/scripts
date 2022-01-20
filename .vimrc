@@ -1,5 +1,6 @@
 
 "-- simple options
+set background=dark " TODO: decide if nice, otherwise just change colors of comments with this: hi Comment guifg=#ABCDEF
 set nocompatible
 syntax on
 set showcmd
