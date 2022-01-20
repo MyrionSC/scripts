@@ -125,3 +125,15 @@ locate FILENAME
 dpkg -i FILE.deb
 
 
+# === firewall
+ufw enable
+ufw status verbose # check status
+ufw allow 22/tcp # allow ssh
+ufw allow http # allow http
+ufw allow https # allow https
+sudo ufw allow 53 # allow tcp/udp on port 53
+#see https://www.cyberciti.biz/faq/how-to-open-firewall-port-on-ubuntu-linux-12-04-14-04-lts/ for more
+
+
+
+

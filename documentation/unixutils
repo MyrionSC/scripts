@@ -6,6 +6,30 @@ ls file.txt | entr -cp cat /_
 # in ifconfig look for inet addr in wlan0 (wireless) or eth0 (wired), eg: inet addr:192.168.1.91
 sudo nmap -sn 192.168.1.0/24 # basically scans from 192.168.1.0 to 192.168.1.255
 
+# nmap scan host for open ports
+sudo nmap marand.dk # basic
+sudo nmap -F marand.dk # most common ports
+sudo nmap -p- marand.dk # complete
+
+# === view listening services
+netstat -a -n -o
+netstat -tnlp
+
+notice that the interface is important: For instance, here webapp can only be
+accessed from localhost because interface (local address) is 127.0.0.1
+
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:5000          0.0.0.0:*               LISTEN      1109/webapi
+
+Interface should be 0.0.0.0 to be available from the internet:
+
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:5000          0.0.0.0:*               LISTEN      1109/webapi
+
+This can usually be done when starting servers.
+
+
+
 # view autorefreshing log file. can be used to stream to stdout and apply functions like grep or awk.
 less +F <filepath>
 less -f <filepath> | grep -i -E "foo|bar"
