@@ -208,7 +208,7 @@ noremap L $
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
-" save bash shebang in register b. use @b to get it in vim
+" save bash shebang as a macro in register b. use @b to get it in vim
 let @b='i#!/usr/bin/env bashq'
 
 " Useful shortcuts
@@ -426,7 +426,8 @@ autocmd FileType html
 \ setlocal formatprg=tidy\ -indent\ -quiet\ --show-errors\ 0\ --tidy-mark\ no\ --show-body-only\ auto
 
 
-" commentor create csharp class from boomi profile (needs reformated html)
+" create csharp class from boomi profile (needs reformated html). I will newer
+" use this again but leaving it as docs for replacing chars / piping commands
 com! -bar FindTitle :v/title/d
 com! -bar ExtractTitle :%norm 0/titlee3ld0elD
 com! -bar FirstCharUpper :%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/ge
