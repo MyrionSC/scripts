@@ -642,17 +642,19 @@ alias drun='dotnet run'
 
 # autohotkey
 ahk () { # edit and launch autohotkey script
+    AHK_FILE_DIR=~/winhome/autohotkey
     if [ -z "$1" ]; then
         echo "First arg should be name of autohotkey script that should be executed (tab for completion, remember .ahk ending)"
-        echo "If -e flag: edit file instead"
+        echo "If first arg is -e flag: edit file instead"
+        echo "Files end up in $AHK_FILE_DIR dir"
         return
     fi
 
     if [ "$1" == "-e" ]; then
         shift
         # if file does not exist, create from template
-        [ ! -f ~/winhome/autohotkey/$1 ] && echo "Creating new file from template" && cp ~/bin/autohotkey/template.ahk ~/winhome/autohotkey/$1
-        vim ~/winhome/autohotkey/$1
+        [ ! -f $AHK_FILE_DIR/$1 ] && echo "Creating new file from template" && cp ~/bin/autohotkey/template.ahk $AHK_FILE_DIR/$1
+        vim $AHK_FILE_DIR/$1
         return
     fi
 
