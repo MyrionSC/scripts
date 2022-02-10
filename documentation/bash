@@ -75,9 +75,11 @@ bash creates 3 streams when calling command: stdin, stdout and stderr
 
 # hidden chars (like lineendings)
 - print hidden chars: echo $var | cat -v
-- remove hidden chars: echo $var | tr -d 'HIDDEN_VAR' # fx. 
+- remove hidden chars: echo $var | tr -d 'HIDDEN_VAR' # fx.
 
 sed -e 's/^.//' -e 's/.$//' # remove first and last char from string piped in
+USERPROFILE=$(cmd.exe /c echo %USERPROFILE% | sed 's/\r//') # remove newline
+
 
 # bind
 - bind help: bind --help
