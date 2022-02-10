@@ -8,8 +8,11 @@ if [ -z "$1" ]; then
     exit
 fi
 
+mkdir -p ~/winhome/cache # creates cache dir if not exists
+
 # print command and save to clipboard
-HANDLE_CMD="C:/Users/mar/Programs/handle/handle.exe $1 > C:/Users/mar/cache/killhandle.out"
+USERPROFILE=$(cmd.exe /c echo %USERPROFILE% | sed 's/\r//')
+HANDLE_CMD="$USERPROFILE\\scripts\\handle.exe $1 > $USERPROFILE\\cache\\killhandle.out"
 echo "$HANDLE_CMD" | clip.exe
 echo "$HANDLE_CMD copied to output. ctrl v in elevated cmd."
 
