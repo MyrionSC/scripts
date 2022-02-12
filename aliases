@@ -799,4 +799,5 @@ rgb () {
 alias bs="rgb"
 alias plist="tasklist.exe"
 alias winpwd="cmd /c cd"
+alias tf="terraform.exe"
 

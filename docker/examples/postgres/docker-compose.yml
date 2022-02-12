@@ -1,0 +1,25 @@
+# Use postgres/example user/password credentials with data in same folder
+version: '3.1'
+
+services:
+  db:
+    environment:
+      - POSTGRES_PASSWORD=VERY_SECRET_PASS
+      - POSTGRES_USER=marand
+      - POSTGRES_DB=maindb
+      - PGDATA=/var/lib/postgresql/data
+    image: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+       - ./data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+# db host from adminers point of view is: db
+
