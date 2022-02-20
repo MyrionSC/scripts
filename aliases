@@ -38,11 +38,11 @@ alias pgrep='pgrep -f -l'
 alias pkill='pkill -s 9 -f'
 alias ps='ps aux'
 
-alias ai='sudo apt-get install'
-alias au='sudo apt-get update'
-alias aug='sudo apt-get upgrade'
-alias ar='sudo apt-get remove'
-alias aar='sudo apt-get autoremove'
+alias ai='sudo apt install'
+alias au='sudo apt update'
+alias aug='sudo apt upgrade'
+alias ar='sudo apt remove'
+alias aar='sudo apt autoremove'
 
 al () {
     apt list "*$1*"
@@ -97,6 +97,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias gitg='cmd.exe /C "C:\Program Files\gitg\bin\gitg.exe"' # opens gitgui in current dir
         alias cset='cmd.exe /C set'
         alias csetx='cmd.exe /C setx'
+        alias npm='cmd.exe /c npm'
         delenv () {
             if [ $# -eq 0 ]
             then

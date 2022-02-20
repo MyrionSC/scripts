@@ -139,13 +139,15 @@ ggu() {
 alias ggpur='ggu'
 
 alias ggpull='git pull origin $(cur_br)'
+alias ggpush='git push origin $(cur_br)'
 
-alias ggpush='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt'
+# alias ggpush='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt'
 
 alias ggsup='git branch --set-upstream-to=origin/$(cur_br)'
-alias gpsup='git push --set-upstream origin $(cur_br)'
+alias ggpup='git push --set-upstream origin $(cur_br)'
 
-alias ggpup='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt && git branch --set-upstream-to=origin/$(cur_br) |& tee -a ~/.cache/gitpush-out.txt'
+# alias ggpup='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt && git branch --set-upstream-to=origin/$(cur_br) |& tee -a ~/.cache/gitpush-out.txt'
+# alias ggpup='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt && git branch --set-upstream-to=origin/$(cur_br) |& tee -a ~/.cache/gitpush-out.txt'
 
 alias ghh='git help'
 
