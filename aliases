@@ -98,6 +98,8 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias cset='cmd.exe /C set'
         alias csetx='cmd.exe /C setx'
         alias npm='cmd.exe /c npm'
+        alias dotnet='cmd.exe /c dotnet'
+        alias gradlew='cmd.exe /c gradlew'
         delenv () {
             if [ $# -eq 0 ]
             then
@@ -173,24 +175,23 @@ greps () {
 winpath () {
     cmd /c path | sed 's/;/\n/g' | fzf
 }
-
-winxp () {
-    if [ $# -eq 0 ]
-    then
-        temppath=$(realpath .)
-    else
-        temppath=$(realpath $1)
-    fi
-
-    # for windows sake
-    if [ $(echo $temppath | cut -c1-2) == "/c" ]
-    then
-        temppath="C:${temppath:2}"
-        temppath=$(echo $temppath | tr '/' '\\')
-    fi
-
-    echo $temppath | tr -d "\n"
+winpwd () {
+    cmd /c echo %cd%
 }
+
+# Copy windows path of dir/file
+winxp () {
+    if [ -z "$1" ]; then
+        P=$(realpath .)
+    else
+        P=$(realpath $1)
+    fi
+    P=$(echo $P | sed -e 's/\//\\/g' | sed -e 's/\\mnt\\c/C:/')
+    echo "copied $P"
+    echo -n $P | clip
+}
+alias pc="winxp"
+
 xp () {
     if [ $# -eq 0 ]
     then
@@ -362,7 +363,7 @@ rgvim () {
 }
 # read about navigation via quickfix with 'docs vim'
 
-# quickly edit aliases
+# quickly search aliases
 als () {
     if [ $# -eq 0 ]
     then
@@ -384,10 +385,13 @@ if [ -f ~/bin/git_aliases ]; then
         fi
     }
 fi
+if [ -f ~/bin/azure/aliases ]; then
+    . ~/bin/azure/aliases
+    alias eaz='vim ~/bin/azure/aliases'
+fi
 
 # drive aliases
 alias eals='vim ~/bin/aliases'
-alias eaz='vim ~/bin/azure/aliases'
 alias ebrc='vim ~/.bashrc'
 alias ezrc='vim ~/.zshrc'
 
@@ -775,10 +779,6 @@ watchexec() {
     fi
 }
 
-winpwd () {
-    cmd /c echo %cd%
-}
-
 # apt install trash-cli. trash ends up in ~/.local/share/Trash/. use trash-list to list. trash-restore to restore.
 rm() {
     trash "$@"
@@ -803,5 +803,4 @@ alias tf="terraform.exe"
 
 # lightblue colors for dirs, which removes annoying background in windows part of fs
 LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
-
 

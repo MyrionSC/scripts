@@ -1,0 +1,4 @@
+
+# curl through proxy (fiddler classic in this case)
+curl -L https://marand.dk/anything --proxy 127.0.0.1:8888 --ssl-no-revoke
+

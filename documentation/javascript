@@ -18,3 +18,25 @@ fetch(url, {
 	a.click();
 	a.remove();  //afterwards we remove the element again
 });
+
+
+// Print all css variables
+var allCSS = [].slice.call(document.styleSheets)
+  .reduce(function(prev, styleSheet) {
+    if (styleSheet.cssRules) {
+      return prev + [].slice.call(styleSheet.cssRules)
+        .reduce(function(prev, cssRule) {
+          if (cssRule.selectorText == ':root') {
+            var css = cssRule.cssText.split('{');
+            css = css[1].replace('}','').split(';');
+            for (var i = 0; i < css.length; i++) {
+              var prop = css[i].split(':');
+              if (prop.length == 2 && prop[0].indexOf('--') == 1) {
+                console.log(prop[0], prop[1]);
+              }
+            }
+          }
+        }, '');
+    }
+  }, '');
+

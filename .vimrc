@@ -4,7 +4,7 @@ set background=dark " TODO: decide if nice, otherwise just change colors of comm
 set nocompatible
 syntax on
 set showcmd
-set relativenumber
+" set relativenumber
 set number " show line numbers
 set showmatch " show matching item (like {})
 set matchpairs+=<:> " Set matching pairs of characters and highlight matching brackets
@@ -455,6 +455,12 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
+" replace word under cursor
+nnoremap <Space><Space> :%s/\<<C-r>=expand("<cword>")<CR>\>/
+
+" move visual selection up and down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " visual studio vim rebinds (enter with : )
 " remember to symlink to ~/.vimrc from  %WINHOME%, so vsvim can find it

@@ -29,9 +29,8 @@ taskkill /FI "memusage gt 102400" # kill processes using large amount of mem (>1
 # Create directory symlink of \Users\mar\.ssh to .ssh in current dir
 mklink /D .ssh \Users\mar\.ssh
 
-# scan local ports (using admin cmd prompt)
-netstat -ab
-
+# scan local ports
+netstat -aon | find /i "listening"
 
 ### Monitoring
 # to monitor System calls, use Process Monitor
