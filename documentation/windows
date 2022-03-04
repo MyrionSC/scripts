@@ -14,8 +14,11 @@ windows + r: services.msc
 # merge all csv files in folder
 copy *.csv newfile.csv
 
+# get current datetime string
+set dt=%DATE:~6,4%_%DATE:~3,2%_%DATE:~0,2%__%TIME:~0,2%_%TIME:~3,2%_%TIME:~6,2%
+set dt=%dt: =0%
 
-### processes (todo: write fzf thing to kill a process)
+### processes
 
 # list processes
 tasklist
@@ -40,5 +43,6 @@ netstat -aon | find /i "listening"
 
 ### Useful software
 PowerToys, a bunch of addons to common windows functionality: https://github.com/microsoft/PowerToys
+
 
 

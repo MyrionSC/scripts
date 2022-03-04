@@ -18,8 +18,6 @@ git_develop() {
     git branch | grep develop | xargs
 }
 
-alias g='git'
-
 alias ga='git add'
 alias gaa='git add --all :/'
 alias gapa='git add --patch'

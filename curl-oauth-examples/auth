@@ -2,8 +2,8 @@
 
 curl --location --request POST 'http://devdlapdvhq1.int.lessor.dk:8180/auth/realms/danlon/protocol/openid-connect/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'client_id=danlonhr' \
---data-urlencode 'client_secret=987ca5d3-276f-4803-b41c-7c79106ceac2' \
+--data-urlencode 'client_id=CLIENT_ID' \
+--data-urlencode 'client_secret=SECRET' \
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'username=USERNAME' \
 --data-urlencode 'password=PASSWORD' | jq '.["access_token"]' | tail -c +2 | head -c -2 | clip.exe
