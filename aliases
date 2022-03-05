@@ -101,6 +101,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias npm='cmd.exe /c npm'
         alias dotnet='cmd.exe /c dotnet'
         alias gradlew='cmd.exe /c gradlew'
+        alias rider='cmd.exe /c rider'
         delenv () {
             if [ $# -eq 0 ]
             then

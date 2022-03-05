@@ -22,11 +22,15 @@ sudo netstat -tulpn | grep LISTEN # list open ports
 # use ssh creds and settings on remote. Can be used to transfer files directly between two remotes
 ssh -A REMOTE
 
-# ssh local -> remote portforward with jumphost inbetween
-ssh -v -J mar@gcpjh.dev-lessor.dk -L 8280:127.0.0.1:8280 hr
+# === ssh tunnel / portforward
+# bind local port 4000 to remote port 3000
+# -N: means no shell, which you probably don't want
+ssh -v -N marand -L 4000:localhost:3000
 
-# ssh remote -> local portforward with jumphost inbetween
-ssh -v -J mar@gcpjh.dev-lessor.dk -R 8280:127.0.0.1:8280 hr
+# marand looks like this in .ssh/config
+Host marand
+    HostName 157.90.255.75
+    User marand
 
 
 # === Systemd Cheatsheet

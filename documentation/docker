@@ -1,3 +1,4 @@
+# see bin/docker/examples for examples
 
 # connect to a file inside a container. Probably works with vim as well?
 docker exec -it APP_NAME less /root/payroll/logs/server.log
