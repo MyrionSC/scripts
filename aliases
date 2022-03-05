@@ -97,6 +97,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias gitg='cmd.exe /C "C:\Program Files\gitg\bin\gitg.exe"' # opens gitgui in current dir
         alias cset='cmd.exe /C set'
         alias csetx='cmd.exe /C setx'
+        alias node='cmd.exe /c node'
         alias npm='cmd.exe /c npm'
         alias dotnet='cmd.exe /c dotnet'
         alias gradlew='cmd.exe /c gradlew'
