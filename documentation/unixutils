@@ -31,12 +31,13 @@ This can usually be done when starting servers.
 
 
 # view autorefreshing log file. can be used to stream to stdout and apply functions like grep or awk.
-less +F <filepath>
+less +F <filepath> # follow
 less -f <filepath> | grep -i -E "foo|bar"
 less -f <filepath> | awk '{print $3}'
 
 # ----- datetime formatting
-dt=$(date '+%d/%m/%Y %H:%M:%S');
+dt=$(date '+%Y_%m_%d__%H_%M_%S'); #fileprepend sortable
+dt=$(date '+%d/%m/%Y %H:%M:%S'); #human readable
 echo "$dt" # Output format: 08/03/2020 16:40:30
 
 # use sed to replace multiple strings recursively from current dir

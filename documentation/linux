@@ -62,22 +62,25 @@ There are basically two places in the filesystem where systemd service units are
 The former path is used for services provided by installed packages,
 while the latter can be used by the system administrator for its own services which can override the default ones.
 
-# example systemd file: myservice.service
+# example systemd file (which runs python script): myservice.service
 [Unit]
 Description=Description of your service
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=/path/to/executable
-StandardOutput=file:/abs/path/to/logfile
-StandardError=file:/abs/path/to/logfile
-Restart=on-failure
+ExecStart=/usr/bin/python3 /abs/path/to/script.py --arg argvalue
+StandardOutput=file:/abs/path/to/logfile.log
+StandardError=file:/abs/path/to/logfile.log
+Restart=always # restart when server restarts
 
 [Install]
 WantedBy=multi-user.target
 
-# to activate new service
+# after file creation, reload systemctl
+sudo systemctl daemon-reload
+
+# to activate and then start new service
 sudo systemctl enable myservice.service && sudo systemctl start myservice.service
 
 # to allow USER to start / stop / restart new service

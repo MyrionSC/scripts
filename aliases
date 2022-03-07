@@ -101,7 +101,16 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias npm='cmd.exe /c npm'
         alias dotnet='cmd.exe /c dotnet'
         alias gradlew='cmd.exe /c gradlew'
-        alias rider='cmd.exe /c rider'
+        rider () {
+            RIDERPATH=$(cmd.exe /c es rider.bat | head -1)
+            echo "rider path: $RIDERPATH"
+            cmd.exe /c "$RIDERPATH" $@
+        }
+        webstorm () {
+            WEBSTORMPATH=$(cmd.exe /c es rider.bat | head -1)
+            echo "webstorm path: $WEBSTORMPATH"
+            cmd.exe /c "$WEBSTORMPATH" $@
+        }
         delenv () {
             if [ $# -eq 0 ]
             then
