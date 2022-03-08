@@ -1,0 +1,48 @@
+# === APP SERVICE PLAN
+# docs: https://docs.microsoft.com/en-us/cli/azure/appservice?view=azure-cli-latest
+
+# list app services
+az appservice plan list
+
+# show single app service
+az appservice plan show --resource-group RG_NAME --name ASP_NAME
+
+
+
+
+# === WEBAPP
+# docs: https://docs.microsoft.com/en-us/cli/azure/webapp/deployment?view=azure-cli-latest
+
+# show existing webapps
+az webapp list
+
+# list available runtimes
+az webapp list-runtime
+
+# create webapp in app service plan
+SUB_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+RG_NAME=rg-project-org-dev-1
+ASP_NAME=asp-project-org-dev-1
+WEBAPP_NAME=api-project-org-dev-1
+RUNTIME=DOTNET|6.0
+PLAN_ID=/subscriptions/$SUB_ID/resourceGroups/$RG_NAME/providers/Microsoft.Web/serverfarms/$ASP_NAME
+az webapp create --name $WEBAPP_NAME --plan $PLAN_ID --resource-group $RG_NAME --runtime "$RUNTIME"
+
+# == Deploy script for dotnet webapi to webapp container
+dotnet.exe build
+dotnet.exe publish -o publish
+
+cd publish
+zip -r publish.zip *
+cd -
+
+RG_NAME=rg-project-org-dev-1
+WEBAPP_NAME=api-dotnet-project-org-dev-1
+az webapp deploy --resource-group $RG_NAME --name $WEBAPP_NAME --src-path publish/publish.zip --type zip
+
+rm -r publish
+
+
+
+
+
