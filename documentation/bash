@@ -10,7 +10,8 @@ fi
 
 # ----- common conditionals
 [ -n "$1" ] # true if arg1 exists
-[ -z "$1" ] # true if arg1 does not exist
+[ -z "$1" ] # true if arg1 does not exist or is empty
+[ ! -z "$1" ] # true if arg exists and is not empty
 [ -f "$FILE" ] # true if file exists
 [ "$1" == "first" ] # true if arg1 equals the string "first"
 [ ! $COND ] # false if $COND is true

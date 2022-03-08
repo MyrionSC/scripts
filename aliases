@@ -775,7 +775,16 @@ alias setf='cmd /c set | fzf'
 
 # quick z navigation
 zz () {
-    cd $(z | awk '{print $2}' | tac | fzf --height 30)
+    if [ "$#" -gt 0 ]; then
+        TO_PATH=$(z | awk '{print $2}' | tac | fzf --height 30 --query "$@")
+    else
+        TO_PATH=$(z | awk '{print $2}' | tac | fzf --height 30)
+    fi
+
+    # if not empty, go to path
+    if [ ! -z "$TO_PATH" ]; then
+        cd $TO_PATH
+    fi
 }
 
 watchexec() {
