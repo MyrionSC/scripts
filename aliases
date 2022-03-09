@@ -101,15 +101,22 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias npm='cmd.exe /c npm'
         alias dotnet='cmd.exe /c dotnet'
         alias gradlew='cmd.exe /c gradlew'
+        alias es='cmd.exe /c es'
         rider () {
-            RIDERPATH=$(cmd.exe /c es rider.bat | head -1)
-            echo "rider path: $RIDERPATH"
-            cmd.exe /c "$RIDERPATH" $@
+            if [ $# -eq 0 ]
+            then
+                cmd.exe /c "C:\\Users\\Martin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains Toolbox\\Rider.lnk" &
+            else
+                cmd.exe /c "C:\\Users\\Martin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains Toolbox\\Rider.lnk" $1 &
+            fi
         }
         webstorm () {
-            WEBSTORMPATH=$(cmd.exe /c es rider.bat | head -1)
-            echo "webstorm path: $WEBSTORMPATH"
-            cmd.exe /c "$WEBSTORMPATH" $@
+            if [ $# -eq 0 ]
+            then
+                cmd.exe /c "C:\\Users\\Martin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains Toolbox\\Webstorm.lnk" &
+            else
+                cmd.exe /c "C:\\Users\\Martin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains Toolbox\\Webstorm.lnk" $1 &
+            fi
         }
         delenv () {
             if [ $# -eq 0 ]
