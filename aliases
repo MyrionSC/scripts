@@ -805,6 +805,17 @@ watchexec() {
         watchexec "$@"
     fi
 }
+pywatch() {
+    if [ -z "$1" ]; then
+        echo "first arg must be python file followed by optional args"
+        return
+    fi
+    if $(pwd -P | grep -q "^\/mnt\/c\/*"); then
+        cmd /c watchexec -c -- python "$@"
+    else
+        watchexec  -c -- python "$@"
+    fi
+}
 
 # apt install trash-cli. trash ends up in ~/.local/share/Trash/. use trash-list to list. trash-restore to restore.
 rm() {
