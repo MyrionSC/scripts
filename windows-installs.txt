@@ -1,0 +1,22 @@
+chrome
+update software
+winget
+
+winget install Notepad++ -e
+nvm
+- nvm install latest
+- nvm use 17.5.0
+winget install Everything -e
+python
+
+wsl: wsl --install in elevated
+- ssh-keygen
+- clone scripts
+- fzf
+- z
+- jq
+
+jetbrains toolbox
+
+windows powertoys
+
