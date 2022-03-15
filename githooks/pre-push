@@ -27,18 +27,28 @@ do
 		:
 	else
 		# Check for WIP message
-		MARWIP=`git grep -n 'MARWIP'`
-        # echo $MARWIP
-		# exit 1
-		if [ -n "$MARWIP" ]
+		MARWIP_CODE=`git grep -n 'MARWIP'`
+		MARWIP_COMMIT=`git log --all --grep='MARWIP'`
+		MARDEV_CODE=`git grep -n 'MARDEV'`
+		MARDEV_COMMIT=`git log --all --grep='MARDEV'`
+        CONCAT="$MARWIP_CODE
+        $MARWIP_COMMIT
+        $MARDEV_CODE
+        $MARDEV_COMMIT"
+        CONCAT_NS=$(echo $CONCAT | sed '/^[[:space:]]*$/d')
+
+		if [[ "$CONCAT_NS" = *[![:blank:]]* ]]
 		then
-			echo "Found word MARWIP in repo, not pushing"
-            for match in "$MARWIP"
+			echo "Found word MARWIP or MARDEV in code or commit, not pushing"
+            echo ==============
+            for match in "$CONCAT"
             do
-                echo - $match
+                echo "$match"
             done
+            echo ==============
 			exit 1
 		fi
+
 	fi
 done
 

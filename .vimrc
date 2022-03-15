@@ -166,6 +166,9 @@ noremap! <silent> <C-l> <ESC>
 vnoremap <silent> <C-l> <ESC>
 onoremap <silent> <C-l> <ESC>
 
+" save in insert mode with ctrl s
+inoremap <c-s> <c-o>:w<cr>
+
 " prevents deleting / pasting over values from being entered in the register
 nnoremap d "_d
 nnoremap D "_D
@@ -467,6 +470,7 @@ vnoremap K :m '<-2<CR>gv=gv
 " nnoremap Xae _iAssert.AreEqual();<ENTER><ESC>kf)
 
 com! -bar SingleLine :%s/\n// | %s/\t/ /e | %s/ \+/ /
+
 
 set visualbell
 

@@ -1,4 +1,5 @@
-#
+#!/usr/bin/env bash
+
 # Git Aliases
 # (sorted alphabetically)
 #
@@ -189,7 +190,7 @@ alias gpv='git push -v'
 
 alias gra='git remote add'
 alias grb='git rebase'
-alias grba='git rebase --abort'
+alias grba='git", "rebase", "--abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbm='git rebase master'
@@ -259,27 +260,27 @@ gstap () {
         git stash pop stash{$1}
 	fi
 }
-alias gstas='git stash show --text'
+gstas () {
+    STASH_TO_SHOW=$(git stash list | fzf)
+    if [ ! -z "$STASH_TO_SHOW" ]; then
+        git stash show $(echo $STASH_TO_SHOW | cut -d: -f1) --text
+    fi
+}
+alias gstashow='gstas'
 
 # save and retrieve stash by name
 gstasave() {
         git stash push -m "saved_stash_name_$1"
 }
 gstaget() {
-        git stash apply $(git stash list | grep "saved_stash_name_$1" | cut -d: -f1)
+    STASH_TO_APPLY=$(git stash list | fzf)
+    if [ ! -z "$STASH_TO_APPLY" ]; then
+        git stash apply $(echo $STASH_TO_APPLY | cut -d: -f1)
+    fi
 }
 
-#apply specific stash (in this case 1): git stash apply stash@{1}
+#apply specific stash (in this case 1) without removing it: git stash apply stash@{1}
 #create branch from stash and pop it: git stash branch <name> stash@{1}
-
-alias gt='git tag'
-alias gtd='git tag -d' # delete tag arg1 locally
-alias gts='git tag -s'
-alias gtv='git tag | sort -V'
-
-alias gup='git pull --rebase'
-alias gupv='git pull --rebase -v'
-alias glum='git pull upstream master'
 
 alias grmt='git rm -r --cached .' # remove locally tracked files. use gaa after to track files not ignored
 grmtgi () {
@@ -307,17 +308,6 @@ gurl() {
     REMOTE_AFTER_GIT=$(echo "$REMOTE" | awk -F '/' '{print $3}')
     POSTFIX="pullrequestcreate?sourceRef=$(cur_br)^&targetRef=$(git_develop)"
     URL="$PREFIX/$REMOTE_BEFORE_GIT/$GIT/$REMOTE_AFTER_GIT/$POSTFIX"
-    echo "$URL"
-    cmd /c start "$URL"
-}
-
-dssgurl () {
-    URL="https://dev.azure.com/dssdk/Azure%20Integration/_git/1b12c204-6284-4001-954b-46e082207535/pullrequestcreate?sourceRef=$(cur_br)^&targetRef=story/15044-code-coverage-continued"
-    echo "$URL"
-    cmd /c start msedge "$URL"
-}
-mstgurl () {
-    URL="https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_git/VanDa-MST-DataUd-Produkt/pullrequestcreate?sourceRef=$(cur_br)^&targetRef=develop"
     echo "$URL"
     cmd /c start "$URL"
 }
