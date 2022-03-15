@@ -773,6 +773,18 @@ sqlite_from_sql() {
     cd -
 }
 
+# list processes and kill one
+pskill() {
+    P_TO_KILL=$(cmd /c pslist | fzf | awk '{print $1}')
+    [ -z "$P_TO_KILL" ] && return
+    ALL_P_PID=$(cmd /c pslist | grep -i "$P_TO_KILL" | awk '{print $2}')
+    for PID in $ALL_P_PID; do
+        cmd /c pskill $PID
+    done
+}
+alias pk='pskill'
+alias psk='pskill'
+
 alias sysvar='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
 alias path='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
 alias epath='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'

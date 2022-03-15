@@ -8,6 +8,9 @@ else
         # code
 fi
 
+# if shorthand
+[ -z "$ARG" ] && return # return if $ARG is empty
+
 # ----- common conditionals
 [ -n "$1" ] # true if arg1 exists
 [ -z "$1" ] # true if arg1 does not exist or is empty
