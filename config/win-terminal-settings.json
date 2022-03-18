@@ -91,7 +91,15 @@
         { "command": { "action": "moveFocus", "direction": "left" }, "keys": "alt+h" },
         { "command": { "action": "moveFocus", "direction": "right" }, "keys": "alt+l" },
         { "command": { "action": "moveFocus", "direction": "up" }, "keys": "alt+k" },
-        { "command": null, "keys": "ctrl+," }
+        { "command": null, "keys": "ctrl+," },
+        { "command": { "action": "switchToTab", "index": 0 }, "keys": "ctrl+1" },
+        { "command": { "action": "switchToTab", "index": 1 }, "keys": "ctrl+2" },
+        { "command": { "action": "switchToTab", "index": 3 }, "keys": "ctrl+4" },
+        { "command": { "action": "switchToTab", "index": 4 }, "keys": "ctrl+5" },
+        { "command": { "action": "switchToTab", "index": 5 }, "keys": "ctrl+6" },
+        { "command": { "action": "switchToTab", "index": 6 }, "keys": "ctrl+7" },
+        { "command": { "action": "switchToTab", "index": 7 }, "keys": "ctrl+8" },
+        { "command": { "action": "switchToTab", "index": 4294967295 }, "keys": "ctrl+9" }
     ]
 }
 
