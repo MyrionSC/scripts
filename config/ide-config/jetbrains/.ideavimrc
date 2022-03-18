@@ -1,6 +1,6 @@
 
-" on rider, source .ideavimrc when changed: :source ~/.ideavimrc
-
+" After changes, source .ideavimrc when changed: :source ~/.ideavimrc
+" Full docs: https://github.com/JetBrains/ideavim/tree/master/doc
 " list of supported commands: https://github.com/JetBrains/ideavim/wiki/set-commands
 
 "-- simple options TODO: test what actually works
@@ -61,4 +61,19 @@ set clipboard+=unnamedplus
 
 " todo: test rebind of ctrl-i, ctrl-o to intellij Back and Forward (?)
 " nnoremap <C-o> :action Back<CR>
+
+" === Set whether handler should be IDE og vim
+" https://github.com/JetBrains/ideavim/blob/master/doc/sethandler.md
+sethandler <C-S> a:ide
+sethandler <C-F> a:ide
+sethandler <C-H> a:ide
+sethandler <C-V> i:ide n-v:vim
+sethandler <C-O> a:ide
+sethandler <C-I> a:ide
+sethandler <C-P> a:ide
+sethandler <C-E> a:ide
+sethandler <C-R> n:vim
+sethandler <C-J> a:ide
+sethandler <C-W> a:ide
+sethandler <C-A> a:ide
 

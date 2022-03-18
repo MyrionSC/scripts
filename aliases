@@ -673,8 +673,10 @@ ahk () { # edit and launch autohotkey script
         return
     fi
 
+    # create / edit script if -e flag
     if [ "$1" == "-e" ]; then
         shift
+        mkdir -p $AHK_FILE_DIR
         # if file does not exist, create from template
         [ ! -f $AHK_FILE_DIR/$1 ] && echo "Creating new file from template" && cp ~/bin/autohotkey/template.ahk $AHK_FILE_DIR/$1
         vim $AHK_FILE_DIR/$1
