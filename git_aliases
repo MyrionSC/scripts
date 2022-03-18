@@ -163,7 +163,6 @@ alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 alias gdf='git log -p [--follow] [-1]'
-# log show: use git show COMMIT to see commit changes
 
 alias gm='git merge'
 alias gmom='git merge origin/master'
@@ -240,8 +239,15 @@ gcofile() {
 } # checkout files from branch. arg1 is branch, rest are files
 # to checkout file from commit: git checkout COMMITHASH FILE
 
+
+# git show: use git show COMMIT to see commit changes
+gsh() {
+    SHOW_COMMIT=$(git log --oneline | fzf --height 30 | awk '{print $1}')
+    git show $SHOW_COMMIT
+}
+alias gshow='gsh'
+
 alias gsb='git status -sb'
-alias gsps='git show --pretty=short --show-signature'
 alias gss='git status -s'
 alias gs='git status'
 alias gst='git status'
