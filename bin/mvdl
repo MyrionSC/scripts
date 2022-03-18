@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# copy x number of files from $DL (download dir) to current dir
+# move x number of files from $DL (download dir) to current dir
 if [ $# -eq 0 ]; then
-    ls -t $DL | sed "s/ /\\\ /" | head -1 | sed "s|^|$DL/|" | xargs -I {} cp -v {} .
+    ls -t $DL | sed "s/ /\\\ /" | head -1 | sed "s|^|$DL/|" | xargs -I {} mv -v {} .
 else
-    ls -t $DL | sed "s/ /\\\ /" | head -$1 | sed "s|^|$DL/|" | xargs -I {} cp -v {} .
+    ls -t $DL | sed "s/ /\\\ /" | head -$1 | sed "s|^|$DL/|" | xargs -I {} mv -v {} .
 fi
 
