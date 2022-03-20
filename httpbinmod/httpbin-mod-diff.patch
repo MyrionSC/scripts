@@ -16,13 +16,6 @@ index a7765f7..c71ae89 100644
 +    ports:
 +      - "8080:80"
 +    restart: always
-+#    network_mode: host
-+#    networks:
-+#      - some-net
-+#
-+#networks:
-+#  some-net:
-+#    driver: bridge
 diff --git a/httpbin/core.py b/httpbin/core.py
 index 305c988..add230e 100644
 --- a/httpbin/core.py

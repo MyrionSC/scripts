@@ -24,8 +24,18 @@ ssh -A REMOTE
 
 # === ssh tunnel / portforward
 # bind local port 4000 to remote port 3000
-# -N: means no shell, which you probably don't want
+# -N: Do not start a shell
 ssh -v -N marand -L 4000:localhost:3000
+
+# === reverse ssh tunnel / portforward
+# bind remote port 8080 to local port 8000
+# from ssh man: -R [bind_address:]port:host:hostport
+# \* = all interfaces
+ssh -v -N -R \*:8080:localhost:8000 marand
+
+# IMPORTANT: On server, need to set GatewayPorts clientspecified
+#   in /etc/ssh/sshd_config and restart sshd: systemctl restart sshd
+
 
 # marand looks like this in .ssh/config
 Host marand
