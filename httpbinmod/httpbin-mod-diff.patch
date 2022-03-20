@@ -1,0 +1,63 @@
+diff --git a/docker-compose.yml b/docker-compose.yml
+index a7765f7..c71ae89 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -1,6 +1,14 @@
+-version: '2'
++version: "3.7"
+ services:
+-    httpbin:
+-      build: '.'
+-      ports:
+-        - '80:80'
+\ No newline at end of file
++  httpbin:
++    image: httpbin
++    ports:
++      - "8080:80"
++    restart: always
++#    network_mode: host
++#    networks:
++#      - some-net
++#
++#networks:
++#  some-net:
++#    driver: bridge
+diff --git a/httpbin/core.py b/httpbin/core.py
+index 305c988..add230e 100644
+--- a/httpbin/core.py
++++ b/httpbin/core.py
+@@ -396,20 +396,20 @@ def view_anything(anything=None):
+         description: Anything passed in request
+     """
+ 
+-    return jsonify(
+-        get_dict(
+-            "url",
+-            "args",
+-            "headers",
+-            "origin",
+-            "method",
+-            "form",
+-            "data",
+-            "files",
+-            "json",
+-        )
++    res_dict = get_dict(
++        "url",
++        "args",
++        "headers",
++        "origin",
++        "method",
++        "form",
++        "data",
++        "files",
++        "json",
+     )
+-
++    app.logger.critical("=== Received request to anything")
++    app.logger.critical(f"\n{json.dumps(res_dict, indent=4)}")
++    return jsonify(res_dict)
+ 
+ @app.route("/post", methods=("POST",))
+ def view_post():
