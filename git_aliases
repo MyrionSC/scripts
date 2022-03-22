@@ -97,6 +97,11 @@ gswr() { # checkout remote branch
 gcoz() {
     git checkout $(git log --oneline | fzf --height 30 | awk '{print $1}')
 }
+gccp() { # copy commit hash
+    COMMIT_TO_COPY=$(git log --oneline | fzf --height 30 | awk '{print $1}')
+    echo copied $COMMIT_TO_COPY to clipholder
+    echo $COMMIT_TO_COPY | clip
+}
 
 gback () { # go back in log
     if [ "$#" -eq 1 ]; then
@@ -251,6 +256,7 @@ alias gsb='git status -sb'
 alias gss='git status -s'
 alias gs='git status'
 alias gst='git status'
+alias st='git status' # so many mistakes...
 
 alias gsta='git stash save'
 alias gstaa='git stash apply'
@@ -318,6 +324,7 @@ gurl() {
     cmd /c start "$URL"
 }
 
+# opens all unstaged files
 alias gfix='$EDITOR `git diff --name-only | uniq`'
 
 # Find out which pattern / .gitignore file is ignoring a file

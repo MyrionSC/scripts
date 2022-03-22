@@ -28,9 +28,9 @@ do
 	else
 		# Check for WIP message
 		MARWIP_CODE=`git grep -n 'MARWIP'`
-		MARWIP_COMMIT=`git log --all --grep='MARWIP'`
+		MARWIP_COMMIT=`git log --grep='MARWIP'`
 		MARDEV_CODE=`git grep -n 'MARDEV'`
-		MARDEV_COMMIT=`git log --all --grep='MARDEV'`
+		MARDEV_COMMIT=`git log --grep='MARDEV'`
         CONCAT="$MARWIP_CODE
         $MARWIP_COMMIT
         $MARDEV_CODE
