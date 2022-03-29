@@ -14,9 +14,9 @@
 " set synmaxcol=1024 " Syntax coloring lines that are too long just slows down the world
 
 " search options
-" set ignorecase
-" set smartcase " ignores case if all lowercase, does not if one or more uppercase
-" set incsearch " search highlight while typing
+set ignorecase
+set smartcase " ignores case if all lowercase, does not if one or more uppercase. ignorecase must be set as well.
+set incsearch " search highlight while typing
 " set wrapscan " search from top if bottom reached
 " set gdefault " replace multiple occurences of search replace on line. Use g suffix to return to first occurence
 
@@ -78,4 +78,5 @@ sethandler <C-W> a:ide
 sethandler <C-A> a:vim
 sethandler <C-X> a:vim
 sethandler <C-D> a:vim
+sethandler <C-K> a:ide
 
