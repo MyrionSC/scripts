@@ -15,7 +15,11 @@
 
 " search options
 set ignorecase
+<<<<<<< HEAD
 set smartcase " ignores case if all lowercase, does not if one or more uppercase. MUST SET BOTH ignorecase smartcase
+=======
+set smartcase " ignores case if all lowercase, does not if one or more uppercase. ignorecase must be set as well.
+>>>>>>> 2e77d204d87c5a7aaca9e16180d8215c30f4145e
 set incsearch " search highlight while typing
 " set wrapscan " search from top if bottom reached
 " set gdefault " replace multiple occurences of search replace on line. Use g suffix to return to first occurence
@@ -69,8 +73,10 @@ sethandler <C-F> a:ide
 sethandler <C-H> a:ide
 sethandler <C-I> a:ide
 sethandler <C-J> a:ide
+sethandler <C-K> a:ide
 sethandler <C-O> a:ide
 sethandler <C-P> a:ide
+sethandler <C-Q> a:ide
 sethandler <C-R> n:vim
 sethandler <C-S> a:ide
 sethandler <C-V> i:ide n-v:vim
