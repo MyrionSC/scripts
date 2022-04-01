@@ -861,3 +861,11 @@ alias jvm="sudo update-alternatives --config java"
 #LS_COLORS=$LS_COLORS:'di=1;34:' ; export LS_COLORS
 
 
+alias dn="dotnet"
+dnnew() {
+    SELECTED=$(dotnet new --list | fzf)
+    echo $SELECTED
+}
+
+
+
