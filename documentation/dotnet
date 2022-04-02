@@ -18,13 +18,35 @@ nullable types switch
 
 
 
-
-
-
-
 Set implicit usings and nullable
 in csproj file: Project > ProjectGroup
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+
+
+=== HTTP Client
+
+// GET
+using var httpClient = new HttpClient();
+var res = await httpClient.SendAsync(new HttpRequestMessage
+{
+    Method = HttpMethod.Get,
+    RequestUri = new Uri(url)
+});
+var content = await res.Content.ReadFromJsonAsync<object>();
+
+// POST
+using var httpClient = new HttpClient();
+var res = await httpClient.SendAsync(new HttpRequestMessage
+{
+    Method = HttpMethod.Post,
+    RequestUri = new Uri(url),
+    Content = new StringContent(JsonSerializer.Serialize(body), Encoding.UTF8, "application/json")
+});
+Console.WriteLine(await res.Content.ReadAsStringAsync());
+res.EnsureSuccessStatusCode();
+
+
 
 
