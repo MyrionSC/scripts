@@ -52,11 +52,13 @@ nnoremap dd "_dd
 vnoremap p "_dP
 inoremap jk <ESC>
 inoremap kj <ESC>
+
 nmap æ /
 nmap Æ ?
+cnoremap æ <CR>
 
-" inoremap <C-l> {
-" inoremap <C-m> [
+inoremap <C-k> {
+inoremap <C-j> [
 
 " IDE specific (see examples: https://github.com/JetBrains/ideavim#ide-specific-options)
 if has('ide')
@@ -75,12 +77,13 @@ sethandler <C-E> a:ide
 sethandler <C-F> a:ide
 sethandler <C-H> a:ide
 sethandler <C-I> a:ide
-sethandler <C-J> a:ide
-sethandler <C-K> a:vim
+sethandler <C-J> n-v:ide i:vim
+sethandler <C-K> n-v:ide i:vim
 sethandler <C-L> n-v:vim i:vim
 sethandler <C-M> n-v:ide i:vim
 sethandler <C-O> a:ide
 sethandler <C-P> a:ide
+sethandler <C-Q> a:ide
 sethandler <C-R> n:vim
 sethandler <C-S> a:ide
 sethandler <C-V> i:ide n-v:vim
