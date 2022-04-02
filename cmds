@@ -1,0 +1,104 @@
+
+    Name              Args Address Complete    Definition
+    BoomiToCSharp     0                        FindTitle | ExtractTitle | FirstCharUpper | CamelCase 
+    Bundle            +                        call vundle#config#bundle(<args>)
+!   BundleClean       ?                        PluginClean<bang>
+    BundleDocs        0                        PluginDocs
+!   BundleInstall     ?            custom      PluginInstall<bang> <args>
+!   BundleList        0                        PluginList<bang>
+!   BundleSearch      ?            custom      PluginSearch<bang> <args>
+    BundleUpdate      0                        PluginInstall!
+    CSharpGenerateMapper 0                     :%norm yiwIto.<Esc>La = from.<Esc>pA;
+    CSharpGetPropNames 0                       :%norm d2exElD
+    CSharpReverseMapper 0                      :%norm 03lviwx/from/e<Esc>llPlvLhhx03lP
+|   CamelCase         0                        :%s#\%(\%(\k\+\)\)\@<=_\(\k\)#\u\1#ge
+    Cargo             +                        call cargo#cmd(<q-args>)
+    Cbench            *                        call cargo#bench(<q-args>)
+    Cbuild            *                        call cargo#build(<q-args>)
+    Ccheck            *                        call cargo#check(<q-args>)
+    Cclean            *                        call cargo#clean(<q-args>)
+    Cdoc              *                        call cargo#doc(<q-args>)
+    Cinit             *                        call cargo#init(<q-args>)
+    Cinstall          *                        call cargo#install(<q-args>)
+    Cnew              +                        call cargo#new(<q-args>)
+|   Commentary        0    .                   call s:go(<line1>,<line2>)
+    Cpublish          *                        call cargo#publish(<q-args>)
+    Crun              *                        call cargo#run(<q-args>)
+    Cruntarget        *                        call cargo#runtarget(<q-args>)
+    Csearch           *                        call cargo#search(<q-args>)
+    Ctest             *                        call cargo#test(<q-args>)
+    Cupdate           *                        call cargo#update(<q-args>)
+    CurrentLineWhitespaceOff *                 echoerr 'E492: Deprecated command CurrentLineWhitespac
+    CurrentLineWhitespaceOn 0                  echoerr 'E492: Deprecated command CurrentLineWhitespac
+    DisableStripWhitespaceOnSave 0             call <SNR>17_DisableStripWhitespaceOnSave()
+    DisableWhitespace 0                        call <SNR>17_DisableWhitespace()
+    DoMatchParen      0                        call s:DoMatchParen()
+    EnableStripWhitespaceOnSave 0              call <SNR>17_EnableStripWhitespaceOnSave()
+    EnableWhitespace  0                        call <SNR>17_EnableWhitespace()
+!|  Explore           *    0c ?    dir         call netrw#Explore(<count>,0,0+<bang>0,<q-args>)
+|   ExtractTitle      0                        :%norm 0/title<CR>e3ld0elD
+|   FindTitle         0                        :v/title/d
+|   FirstCharUpper    0                        :%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/ge
+    FormatJSON        0                        :%! jq .
+    FormatXML         0                        :%s/</\r</g || norm gg=G " discount xml format for xml
+    GLVS              0                        call getscript#GetLatestVimScripts()
+    GetLatestVimScripts 0                      call getscript#GetLatestVimScripts()
+    GetScripts        0                        call getscript#GetLatestVimScripts()
+!|  Hexplore          *    0c ?    dir         call netrw#Explore(<count>,1,2+<bang>0,<q-args>)
+    LP                *                        call   LogiPat(<q-args>,1)
+    LPE               +                        echomsg LogiPat(<q-args>)
+    LPF               +                        let  s:LogiPatFlags="<args>"
+    LPR               *                        call   LogiPat(<q-args>,1,"r")
+!|  Lexplore          *    0c ?    dir         call netrw#Lexplore(<count>,<bang>0,<q-args>)
+    LoadBuffers       0                        :args `rg --hidden --files`
+    LogiPat           *                        call   LogiPat(<q-args>,1)
+    LogiPatFlags      +                        let  s:LogiPatFlags="<args>"
+    MANPAGER          0                        call s:ManPager() | delcommand MANPAGER
+!   MkVimball         +    .       file        call vimball#MkVimball(<line1>,<line2>,<bang>0,<f-args
+    NetUserPass       *                        call NetUserPass(<f-args>)
+!   NetrwClean        0                        call netrw#Clean(<bang>0)
+    NetrwSettings     0                        call netrwSettings#NetrwSettings()
+!|  Nexplore          *                        call netrw#Explore(-1,0,0,<q-args>)
+    NextTrailingWhitespace 0 %                 call <SNR>17_GotoTrailingWhitespace(0, <line1>, <line2
+    NoMatchParen      0                        call s:NoMatchParen()
+    Nread             *    1c ?                let s:svpos= winsaveview()|call netrw#NetRead(<count>,
+    Nsource           *                        let s:svpos= winsaveview()|call netrw#NetSource(<f-arg
+    Ntree             ?                        call netrw#SetTreetop(1,<q-args>)
+    Nwrite            *    %                   let s:svpos= winsaveview()|<line1>,<line2>call netrw#N
+!|  Pexplore          *                        call netrw#Explore(-2,0,0,<q-args>)
+    PlaceholdersToTypes 0                      :%s/s$/string/ge | :%s/n$/int/ge | :%s/d$/DateTime/ge 
+|   Plugin            +                        call vundle#config#bundle(<args>)
+!   PluginClean       ?                        call vundle#installer#clean('!' == '<bang>')
+    PluginDocs        0                        call vundle#installer#helptags(g:vundle#bundles)
+!   PluginInstall     *            custom      call vundle#installer#new('!' == '<bang>', <f-args>)
+!   PluginList        0                        call vundle#installer#list('!' == '<bang>')
+!   PluginSearch      ?            custom      call vundle#scripts#all('!' == '<bang>', <q-args>)
+    PluginUpdate      *            custom      PluginInstall! <args>
+    PrevTrailingWhitespace 0 %                 call <SNR>17_GotoTrailingWhitespace(1, <line1>, <line2
+    Reformat          0                        norm mygg=G`y " format file and return to same positio
+    RemoveAllWhitespace 0                      :%s/[ \t\n\r]//
+    RemoveEmptyLines  0                        :g/^\s*$/d
+    RemoveFrontBackWhitespace 0                :%s/^\s\+//e | %s/\s\+$//e
+    RmVimball         *            dir         call vimball#SaveSettings()|call vimball#RmVimball(<f-
+!|  Sexplore          *    0c ?    dir         call netrw#Explore(<count>,1,0+<bang>0,<q-args>)
+|   SingleLine        0                        :%s/\n// | %s/\t/ /e | %s/ \+/ /
+!   StripWhitespace   0    %                   call <SNR>17_StripWhitespaceCommand(<line1>, <line2>, 
+!   StripWhitespaceOnChangedLines 0 %          call <SNR>17_StripWhitespaceOnChangedLinesCommand(<lin
+    SwaggerToCSharpClass 0                     :g/:/norm J0Evd0viWxLa <Esc>pa { get; set; }<Esc>0dwip
+|   TOhtml            0    %                   :call tohtml#Convert2HTML(<line1>, <line2>)
+|   Texplore          *    0c ?    dir         call netrw#Explore(<count>,0,6        ,<q-args>)
+|   Text2CSharpProp   0                        :g/./norm Ipublic string <Esc>A { get; set; }<Esc>
+    ToggleStripWhitespaceOnSave 0              call <SNR>17_ToggleStripWhitespaceOnSave()
+    ToggleWhitespace  0                        call <SNR>17_ToggleWhitespace()
+|   TranslateDaEn     0                        :%!trans -d -b da:en
+    TrimWhitespace    0                        :%s/^\s\+//e | %s/\s\+$//e
+    TryCamelCase      0                        :%!xargs -n1 -I{} sh -c 'camelcase {}'
+    UseVimball        ?            dir         call vimball#Vimball(1,<f-args>)
+!|  Vexplore          *    0c ?    dir         call netrw#Explore(<count>,1,4+<bang>0,<q-args>)
+    VimballList       0                        call vimball#Vimball(0)
+    Vimuntar          ?            file        call tar#Vimuntar(<q-args>)
+!   VundleClean       ?                        PluginClean<bang>
+    VundleDocs        0                        PluginDocs
+!   VundleInstall     ?            custom      PluginInstall<bang> <args>
+!   VundleSearch      ?            custom      PluginSearch<bang> <args>
+    VundleUpdate      *            custom      PluginInstall! <args>

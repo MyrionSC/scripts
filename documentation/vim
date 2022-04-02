@@ -60,3 +60,6 @@ eg :exe ":normal i" . stdpath('config')
 :set list
 :set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 
+" === see what features vim was compiled with
+:version
+

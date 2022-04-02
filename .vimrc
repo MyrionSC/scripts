@@ -145,8 +145,6 @@ filetype plugin indent on               " required
 " MAPPINGS START
 " --------------
 
-map <C-s> :w
-
 " === Buffers
 " print buffers and prepare to go to one
 nnoremap gb :ls<cr>:b<space>
