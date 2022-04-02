@@ -1,3 +1,4 @@
+
 " After changes, source .ideavimrc when changed: :source ~/.ideavimrc
 " Full docs: https://github.com/JetBrains/ideavim/tree/master/doc
 " action docs: https://github.com/JetBrains/ideavim#finding-actions
@@ -14,14 +15,15 @@ set ignorecase smartcase " ignores case if all lowercase, does not if one or mor
 set incsearch hlsearch " search highlight while typing
 set clipboard+=unnamedplus
 
-<<<<<<< HEAD
 " === ideavim plugin emulators
 " docs: https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
 set surround
 set commentary
 set argtextobj
 let g:argtextobj_pairs="[:],(:),<:>"
-set highlightedyank " does not work in Rider?
+set highlightedyank
+set NERDTree " Commands: https://github.com/JetBrains/ideavim/wiki/NERDTree-support
+nnoremap <C-l> :NERDTreeFind<CR>
 
 " === ideavim integrations
 set ideajoin " see https://github.com/JetBrains/ideavim/wiki/%60ideajoin%60-examples
@@ -48,17 +50,14 @@ nnoremap d "_d
 nnoremap D "_D
 nnoremap dd "_dd
 vnoremap p "_dP
-nnoremap <C-o> :action Back<CR>
-nnoremap <C-i> :action Forward<CR>
 inoremap jk <ESC>
 inoremap kj <ESC>
 nmap æ /
 nmap Æ ?
 
-inoremap <C-l> {
-inoremap <C-m> [
+" inoremap <C-l> {
+" inoremap <C-m> [
 
-<<<<<<< HEAD
 " IDE specific (see examples: https://github.com/JetBrains/ideavim#ide-specific-options)
 if has('ide')
     if &ide =~? 'rider'
@@ -66,8 +65,6 @@ if has('ide')
         vmap gc :action CommentByLineComment<CR>
     endif
 endif
-=======
->>>>>>> d2a8bf5b2297b45acc952518a3d6d1db2ee02129
 
 " === Set whether handler should be IDE og vim
 " https://github.com/JetBrains/ideavim/blob/master/doc/sethandler.md
@@ -79,15 +76,15 @@ sethandler <C-F> a:ide
 sethandler <C-H> a:ide
 sethandler <C-I> a:ide
 sethandler <C-J> a:ide
-sethandler <C-K> a:ide
-sethandler <C-L> n-v:ide i:vim
+sethandler <C-K> a:vim
+sethandler <C-L> n-v:vim i:vim
 sethandler <C-M> n-v:ide i:vim
 sethandler <C-O> a:ide
 sethandler <C-P> a:ide
-sethandler <C-Q> a:ide
 sethandler <C-R> n:vim
 sethandler <C-S> a:ide
 sethandler <C-V> i:ide n-v:vim
 sethandler <C-W> a:ide
 sethandler <C-X> a:vim
+
 
