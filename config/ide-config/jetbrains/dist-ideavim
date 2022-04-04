@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cp -v ~/bin/config/ide-config/jetbrains/.ideavimrc ~/winhome
+

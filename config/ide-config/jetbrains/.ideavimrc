@@ -59,6 +59,7 @@ cnoremap æ <CR>
 
 inoremap <C-k> {
 inoremap <C-j> [
+inoremap <C-l> (
 
 " IDE specific (see examples: https://github.com/JetBrains/ideavim#ide-specific-options)
 if has('ide')
