@@ -258,6 +258,9 @@ vnoremap <C-k> :m '<-2<CR>gvgv
 " save readonly file changes
 cmap w!! w !sudo tee >/dev/null %
 
+" cnoremap <C-c> !cat ~/bin/datafiles/all-vim-commands.txt | cut -b5- cmds | cut -d ' ' -f 1 | fzf
+
+
 " ctags keybind
 set tags=tags
 nmap <leader>T :!ctags -R .<CR><CR>
