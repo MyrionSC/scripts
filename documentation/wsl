@@ -14,4 +14,9 @@ COPY=$(powershell.exe -command "Get-Clipboard" | perl -p -e 's/\r\n$//')
 # === VIM
 Insert literal char in command mode: CTRL + q (Does not always work?)
 
+# run intellij in wsl (after installing and configuring xlaunch)
+export DISPLAY="$(grep nameserver /etc/resolv.conf | sed 's/nameserver //'):0"
+idea() {
+    nohup /home/mra/intellij/idea-IU-213.7172.25/bin/idea.sh &
+}
 

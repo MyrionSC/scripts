@@ -11,3 +11,47 @@ sudo update-alternatives --config java
 # find location
 which java
 
+
+
+# some scripts to use when deploying / debugging java apps
+api() {
+    cd /some/path/temp
+    ./gradlew run
+}
+api_redeploy() {
+    echo copying /some/path/fat.jar to container with id CONTAINER_ID
+    docker cp /some/path/fat.jar CONTAINER_ID:/app
+    echo copy done. restarting...
+    docker restart CONTAINER_ID
+    echo restart done.
+}
+api_search_local() {
+    mkdir -p ~/searchlocalapi
+    cd ~/searchlocalapi
+    cp /some/path/fat.jar .
+    unzip fat.jar
+    ls
+}
+api_search_deployed() {
+    mkdir -p ~/searchdeployedapi
+    cd ~/searchdeployedapi
+    docker cp some-id:/app/fat.jar .
+    unzip fat.jar
+    ls
+}
+
+build() {
+    cd /some/path
+    ./gradlew build
+}
+clean() {
+    cd /some/path
+    ./gradlew clean
+}
+tasks() {
+    cd /some/path
+    ./gradlew tasks --all > ~/.cache/tasksall
+    cat ~/.cache/tasksall | fzf
+}
+
+
