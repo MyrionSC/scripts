@@ -14,13 +14,8 @@
 " set synmaxcol=1024 " Syntax coloring lines that are too long just slows down the world
 
 " search options
-set ignorecase
-<<<<<<< HEAD
-set smartcase " ignores case if all lowercase, does not if one or more uppercase. MUST SET BOTH ignorecase smartcase
-=======
-set smartcase " ignores case if all lowercase, does not if one or more uppercase. ignorecase must be set as well.
->>>>>>> 2e77d204d87c5a7aaca9e16180d8215c30f4145e
-set incsearch " search highlight while typing
+set ignorecase smartcase " ignores case if all lowercase, does not if one or more uppercase. ignorecase must be set as well.
+set incsearch hlsearch " search highlight while typing
 " set wrapscan " search from top if bottom reached
 " set gdefault " replace multiple occurences of search replace on line. Use g suffix to return to first occurence
 
@@ -41,8 +36,8 @@ nnoremap d "_d
 nnoremap D "_D
 nnoremap dd "_dd
 vnoremap p "_dP
-nnoremap <C-o> :action Back<CR>
-nnoremap <C-i> :action Forward<CR>
+" nnoremap <C-o> :action Back<CR>
+" nnoremap <C-i> :action Forward<CR>
 inoremap jk <ESC>
 inoremap kj <ESC>
 nmap æ /

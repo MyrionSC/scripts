@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cp ~/bin/config/ide-config/jetbrains/.ideavimrc ~
+cp ~/bin/config/ide-config/jetbrains/.ideavimrc ~/winhome
+
