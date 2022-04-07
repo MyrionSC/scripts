@@ -82,6 +82,13 @@ set rtp+=~/.vim/bundle/Vundle.vim	"required
 call vundle#begin()			"required
 Plugin 'VundleVim/Vundle.vim'           "required
 
+" === FZF VIM
+" docs: https://github.com/junegunn/fzf.vim
+set rtp+=~/.fzf " use fzf installed via git
+Plugin 'junegunn/fzf.vim' " get functions
+nnoremap <leader>c :Commands<CR>
+
+
 Plugin 'tpope/vim-repeat'
 
 " add some plugins from https://www.youtube.com/watch?v=wlR5gYd6um0
@@ -136,6 +143,7 @@ filetype plugin indent on               " required
 " Plugins TODO:
 " - Test out CamelCaseMotion
 
+
 " -----------
 " PLUGINS END
 " -----------
@@ -144,8 +152,6 @@ filetype plugin indent on               " required
 " --------------
 " MAPPINGS START
 " --------------
-
-map <C-s> :w
 
 " === Buffers
 " print buffers and prepare to go to one
