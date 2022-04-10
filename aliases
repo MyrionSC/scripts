@@ -751,7 +751,10 @@ alias isodate='date -u +"%Y-%m-%dT%H:%M:%S%Z"'
 
 mockpile() {
     powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/mockpileinput.json
-    ~/winhome/bin/mockpilercli.exe "C:\\Users\\mar\\.cache\\mockpileinput.json"
+    # cat ~/winhome/.cache/mockpileinput.json
+    # ~/winhome/scripts/mockpilercli.exe /home/marand/winhome/.cache/mockpileinput.json
+    # cmd.exe /C echo %HOMEPATH%
+    ~/winhome/scripts/mockpilercli.exe "C:\\Users\\Martin\\.cache\\mockpileinput.json"
 }
 
 sqlite_from_json() {
