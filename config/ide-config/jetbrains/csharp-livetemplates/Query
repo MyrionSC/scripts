@@ -1,0 +1,34 @@
+
+=== VARS
+
+QueryName: Current filename without extension
+ReturnDTO: Insert reference to type
+Namespace: Default namespace for current file
+
+=== BODY
+
+using MediatR;
+using Microsoft.Extensions.Logging;
+
+namespace $Namespace$;
+
+public class $QueryName$ : IRequest<$ReturnDTO$>
+{
+}
+
+public class $QueryName$Handler : IRequestHandler<$QueryName$, $ReturnDTO$>
+{
+    private readonly ILogger<$QueryName$Handler> _logger;
+    
+    public $QueryName$Handler(ILogger<$QueryName$Handler> logger)
+    {
+        _logger = logger;
+    }
+
+    public Task<$ReturnDTO$> Handle($QueryName$ request, CancellationToken cancellationToken)
+    {
+        $END$
+    }
+}
+
+
