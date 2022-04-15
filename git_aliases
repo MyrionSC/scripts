@@ -313,6 +313,7 @@ alias gcreatepatch='git format-patch -1 HEAD' # creates patch from latest commit
 # to apply: git am < FILE.patch
 
 gurl() {
+    # TODO: do gitlab
     PREFIX='https://dev.azure.com'
     REMOTE=$(git config --get remote.origin.url | cut -c 26-)
     REMOTE_BEFORE_GIT=$(echo "$REMOTE" | awk -F '/' '{print $1"/"$2}')
