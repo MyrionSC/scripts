@@ -131,6 +131,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         }
         alias regdel='delenv'
         alias delreg='delenv'
+        export WH=~/winhome
         export DL=~/winhome/Downloads
         export DESK=~/winhome/Desktop
     else # It actually is linux
