@@ -17,7 +17,7 @@
 #     di <container> : docker inspect <container>                          #
 #     dim            : docker images                                       #
 #     dip            : IP addresses of all running containers              #
-#     dl <container> : docker logs -f <container>                          #
+#     dol <container>: docker logs -f <container>                          #
 #     dnames         : names of all running containers                     #
 #     dps            : docker ps                                           #
 #     dpsa           : docker ps -a                                        #
@@ -28,84 +28,126 @@
 #                                                                          #
 ############################################################################
 
+# help
+function doh-fn() {
+cat <<EOF >&2
+daws <svc> <cmd> <opts> : aws cli in docker with <svc> <cmd> <opts>
+dc             : docker-compose
+dcu            : docker-compose up -d
+dcd            : docker-compose down
+dcr            : docker-compose run
+dex <container>: execute a bash shell inside the RUNNING <container>
+di <container> : docker inspect <container>
+dim            : docker images
+dip            : IP addresses of all running containers
+dol <container>: docker logs -f <container>
+dnames         : names of all running containers
+dps            : docker ps
+dpsa           : docker ps -a
+drmc           : remove all exited containers
+drmid          : remove all dangling images
+drun <image>   : execute a bash shell in NEW container from <image>
+dsr <container>: stop then remove <container>
+EOF
+}
+
+
 function dnames-fn {
-	for ID in `docker ps | awk '{print $1}' | grep -v 'CONTAINER'`
-	do
-    	docker inspect $ID | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
-	done
+docker ps --format '{{.Names}}'
 }
 
 function dip-fn {
-    echo "IP addresses of all named running containers"
+echo "IP addresses of all named running containers"
 
-    for DOC in `dnames-fn`
-    do
-        IP=`docker inspect $DOC | grep -m3 IPAddress | cut -d '"' -f 4 | tr -d "\n"`
-        OUT+=$DOC'\t'$IP'\n'
-    done
-    echo $OUT|column -t
+for DOC in `dnames-fn`
+do
+IP=`docker inspect $DOC | grep -m3 IPAddress | cut -d '"' -f 4 | tr -d "\n"`
+OUT+=$DOC'\t'$IP'\n'
+done
+echo $OUT|column -t
 }
 
 function dex-fn {
-	docker exec -it $1 ${2:-bash}
+if [ -z "$1" ]; then
+    docker exec -it $(dnames | fzf --height 30) ${2:-bash}
+else
+    docker exec -it $1 ${2:-bash}
+fi
 }
 
 function di-fn {
-	docker inspect $1
+if [ -z "$1" ]; then
+    docker inspect $(dnames | fzf --height 30)
+else
+    docker inspect $1
+fi
 }
 
-function dl-fn {
-	docker logs -f $1
+function dol-fn {
+if [ -z "$1" ]; then
+    docker logs -f $(dnames | fzf --height 30)
+else
+    docker logs -f $1
+fi
 }
 
 function drun-fn {
-	docker run -it $1 $2
+docker run -it $1 $2
 }
 
 function dcr-fn {
-	docker-compose run $@
+docker-compose run $@
 }
 
 function dsr-fn {
-	docker stop $1;docker rm $1
+docker stop $1;docker rm $1
 }
 
 function drmc-fn {
-       docker rm $(docker ps --all -q -f status=exited)
+docker rm $(docker ps --all -q -f status=exited)
 }
 
 function drmid-fn {
-       imgs=$(docker images -q -f dangling=true)
-       [ ! -z "$imgs" ] && docker rmi "$imgs" || echo "no dangling images."
+DANGLING_IMGS=$(docker images -q -f dangling=true)
+if [ -z $DANGLING_IMGS ]; then
+    echo No dangling images detected
+else
+    docker rmi $DANGLING_IMGS
+fi
 }
 
 # in order to do things like dex $(dlab label) sh
 function dlab {
-       docker ps --filter="label=$1" --format="{{.ID}}"
+docker ps --filter="label=$1" --format="{{.ID}}"
 }
 
 function dc-fn {
-        docker-compose $*
+docker-compose $*
 }
 
 function d-aws-cli-fn {
-    docker run \
-           -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
-           -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION \
-           -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
-           amazon/aws-cli:latest $1 $2 $3
+docker run \
+-e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+-e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION \
+-e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+amazon/aws-cli:latest $1 $2 $3
 }
 
+alias edals='vim ~/bin/docker/docker-aliases.sh'
+alias edockals='vim ~/bin/docker/docker-aliases.sh'
+
+alias doh=doh-fn
 alias daws=d-aws-cli-fn
 alias dc=dc-fn
-alias dcu="docker-compose up -d"
-alias dcd="docker-compose down"
+alias dcu="docker-compose up -d --remove-orphans"
+alias dcd="docker-compose down --remove-orphans"
+alias dcdu="docker-compose down --remove-orphans && docker-compose up -d"
 alias dcr=dcr-fn
 alias dex=dex-fn
 alias di=di-fn
 alias dim="docker images"
 alias dip=dip-fn
-alias dl=dl-fn
+alias dol=dol-fn
 alias dnames=dnames-fn
 alias dps="docker ps"
 alias dpsa="docker ps -a"

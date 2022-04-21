@@ -555,90 +555,9 @@ alias 9='cd -9'
 
 
 # === docker
-#alias dock-enter='docker exec -it todo bash'
-
-# Most of functions below copied from github user jgrodziski docker-aliases.sh gist
-function dnames-fn {
-	for ID in `cmd.exe /c docker ps | awk '{print $1}' | grep -v 'CONTAINER'`
-	do
-    	cmd.exe /c docker inspect $ID | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
-	done
-}
-
-function dip-fn {
-    echo "IP addresses of all named running containers"
-    for DOC in `dnames-fn`
-    do
-        IP=`cmd.exe /c docker inspect $DOC | grep -m3 IPAddress | cut -d '"' -f 4 | tr -d "\n"`
-        OUT+=$DOC'\t'$IP'\n'
-    done
-    echo $OUT|column -t
-}
-
-function dex-fn {
-	cmd.exe /c docker exec -it $1 ${2:-bash}
-}
-
-function di-fn {
-	cmd.exe /c docker inspect $1
-}
-
-function dl-fn {
-	cmd.exe /c docker logs -f $1
-}
-
-function drun-fn {
-	cmd.exe /c docker run -it $1 $2
-}
-
-function dsr-fn {
-	cmd.exe /c docker stop $1;cmd.exe /c docker rm $1
-}
-
-function drmc-fn {
-       cmd.exe / c docker rm $(cmd.exe /c docker ps --all -q -f status=exited)
-}
-
-function drmid-fn {
-       cmd.exe /c docker rmi $(cmd.exe /c docker images -q -f dangling=true)
-}
-
-#     dex <container>: execute a bash shell inside the RUNNING <container> #
-#     di <container> : docker inspect <container>                          #
-#     dim            : docker images                                       #
-#     dip            : IP addresses of all running containers              #
-#     dl <container> : docker logs -f <container>                          #
-#     dnames         : names of all running containers                     #
-#     dps            : docker ps                                           #
-#     dpsa           : docker ps -a                                        #
-#     drmc           : remove all exited containers                        #
-#     drmid          : remove all dangling images                          #
-#     drun <image>   : execute a bash shell in NEW container from <image>  #
-#     dsr <container>: stop then remove <container>                        #
-alias dex=dex-fn
-alias di=di-fn
-alias dim="docker images"
-alias dimr='docker rmi'
-alias dip=dip-fn
-#alias dl=dl-fn
-alias dnames=dnames-fn
-alias dps="docker ps"
-alias dpsa="docker ps -a"
-alias drmc=drmc-fn
-alias drmid=drmid-fn
-alias dimrd=drmid-fn
-alias drun=drun-fn
-alias dsp="docker system prune --all"
-alias dsr=dsr-fn
-
-alias dc="docker-compose"
-alias dcu="docker-compose up -d --remove-orphans"
-alias dcd="docker-compose down --remove-orphans"
-alias dcdu="docker-compose down --remove-orphans && docker-compose up -d"
-
-dbash () {
-    docker exec -it "$1" /bin/bash
-}
+if [ -f ~/bin/docker/docker-aliases.sh ]; then
+    . ~/bin/docker/docker-aliases.sh
+fi
 
 
 # cat ide search replace patterns
