@@ -1,0 +1,11 @@
+
+User in: Both
+
+=== VARS
+
+TYPE: Insert reference to type
+
+=== BODY
+
+JsonConvert.DeserializeObject<$TYPE$>($SELECTION$$END$)
+
