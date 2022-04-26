@@ -58,7 +58,11 @@ alias av='apt-cache policy'
 alias ni='npm install'
 alias nrm='npm remove'
 alias ns='npm start'
-alias nr='npm run'
+# alias nr='npm run'
+nr () {
+    SCRIPT=$(cmd /c npm run | fzf --tac)
+    cmd /c npm run $SCRIPT
+}
 alias nre='npm run env'
 
 alias df='df -Th'
