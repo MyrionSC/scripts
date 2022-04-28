@@ -1,0 +1,7 @@
+
+Use in: Both
+
+=== BODY
+
+JsonConvert.SerializeObject($SELECTION$$END$)
+
