@@ -94,11 +94,11 @@ gswr() { # checkout remote branch
     git checkout $(git branch -r | sed 's/^ *origin\///' | fzf --height 30)
 }
 
-gcoz() {
-    git checkout $(git log --oneline | fzf --height 30 | awk '{print $1}')
+gcolog() {
+    git checkout $(git log --oneline | fzf | awk '{print $1}')
 }
 gccp() { # copy commit hash
-    COMMIT_TO_COPY=$(git log --oneline | fzf --height 30 | awk '{print $1}')
+    COMMIT_TO_COPY=$(git log --oneline | fzf | awk '{print $1}')
     echo copied $COMMIT_TO_COPY to clipholder
     echo $COMMIT_TO_COPY | clip
 }
