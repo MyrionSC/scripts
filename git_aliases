@@ -313,13 +313,11 @@ alias gcreatepatch='git format-patch -1 HEAD' # creates patch from latest commit
 # to apply: git am < FILE.patch
 
 gurl() {
-    REMOTE=$(git config --get remote.origin.url)
-    echo "remote: $REMOTE"
-    if [[ "$REMOTE" == *"gitlab"* ]]; then
-        echo "Gitlab"
-        
-
-        https://gitlab.lessor.dk/microservice/hr-service/-/merge_requests/new?merge_request%5Bsource_branch%5D=story%2FDL-9945-Optimize-architecture-call-Danl%C3%B8n-directly&merge_request%5Bsource_project_id%5D=107&merge_request%5Btarget_branch%5D=develop&merge_request%5Btarget_project_id%5D=107
+    if [[ "$(git config --get remote.origin.url)" == *"gitlab"* ]]; then
+        MR_URL=$(cat ~/.cache/gitpush-out.txt | grep "https://" | cut -c 11-)
+        echo "Opening $MR_URL"
+        start $MR_URL
+        # https://gitlab.lessor.dk/microservice/hr-service/-/merge_requests/new?merge_request%5Bsource_branch%5D=story%2FDL-9945-Optimize-architecture-call-Danl%C3%B8n-directly&merge_request%5Bsource_project_id%5D=107&merge_request%5Btarget_branch%5D=develop&merge_request%5Btarget_project_id%5D=107
     else
         PREFIX='https://dev.azure.com'
         REMOTE=$(git config --get remote.origin.url | cut -c 26-)
