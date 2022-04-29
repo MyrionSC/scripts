@@ -149,11 +149,11 @@ alias ggpush='git push origin $(cur_br)'
 
 # alias ggpush='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt'
 
-alias ggsup='git branch --set-upstream-to=origin/$(cur_br)'
-alias ggpup='git push --set-upstream origin $(cur_br)'
+# alias ggsup='git branch --set-upstream-to=origin/$(cur_br)'
+# alias ggpup='git push --set-upstream origin $(cur_br)'
 
-# alias ggpup='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt && git branch --set-upstream-to=origin/$(cur_br) |& tee -a ~/.cache/gitpush-out.txt'
-# alias ggpup='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt && git branch --set-upstream-to=origin/$(cur_br) |& tee -a ~/.cache/gitpush-out.txt'
+alias ggpup='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt && git branch --set-upstream-to=origin/$(cur_br) |& tee -a ~/.cache/gitpush-out.txt'
+alias ggpup='git push origin $(cur_br) |& tee ~/.cache/gitpush-out.txt && git branch --set-upstream-to=origin/$(cur_br) |& tee -a ~/.cache/gitpush-out.txt'
 
 alias ghh='git help'
 
@@ -313,16 +313,24 @@ alias gcreatepatch='git format-patch -1 HEAD' # creates patch from latest commit
 # to apply: git am < FILE.patch
 
 gurl() {
-    # TODO: do gitlab
-    PREFIX='https://dev.azure.com'
-    REMOTE=$(git config --get remote.origin.url | cut -c 26-)
-    REMOTE_BEFORE_GIT=$(echo "$REMOTE" | awk -F '/' '{print $1"/"$2}')
-    GIT='_git'
-    REMOTE_AFTER_GIT=$(echo "$REMOTE" | awk -F '/' '{print $3}')
-    POSTFIX="pullrequestcreate?sourceRef=$(cur_br)^&targetRef=$(git_develop)"
-    URL="$PREFIX/$REMOTE_BEFORE_GIT/$GIT/$REMOTE_AFTER_GIT/$POSTFIX"
-    echo "$URL"
-    cmd /c start "$URL"
+    REMOTE=$(git config --get remote.origin.url)
+    echo "remote: $REMOTE"
+    if [[ "$REMOTE" == *"gitlab"* ]]; then
+        echo "Gitlab"
+        
+
+        https://gitlab.lessor.dk/microservice/hr-service/-/merge_requests/new?merge_request%5Bsource_branch%5D=story%2FDL-9945-Optimize-architecture-call-Danl%C3%B8n-directly&merge_request%5Bsource_project_id%5D=107&merge_request%5Btarget_branch%5D=develop&merge_request%5Btarget_project_id%5D=107
+    else
+        PREFIX='https://dev.azure.com'
+        REMOTE=$(git config --get remote.origin.url | cut -c 26-)
+        REMOTE_BEFORE_GIT=$(echo "$REMOTE" | awk -F '/' '{print $1"/"$2}')
+        GIT='_git'
+        REMOTE_AFTER_GIT=$(echo "$REMOTE" | awk -F '/' '{print $3}')
+        POSTFIX="pullrequestcreate?sourceRef=$(cur_br)^&targetRef=$(git_develop)"
+        URL="$PREFIX/$REMOTE_BEFORE_GIT/$GIT/$REMOTE_AFTER_GIT/$POSTFIX"
+        echo "$URL"
+        cmd /c start "$URL"
+    fi
 }
 
 # opens all unstaged files

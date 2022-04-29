@@ -25,6 +25,13 @@ fi
 
 arithmetic operators: -eq, -ne, -lt, -le, -gt, -ge
 
+# if contains
+STR='GNU/Linux is an operating system'
+SUB='Linux'
+if [[ "$STR" == *"$SUB"* ]]; then
+  echo "It's there."
+fi
+
 # count number of lines in var VAR
 echo -n "$VAR" | grep -c '^'
 
