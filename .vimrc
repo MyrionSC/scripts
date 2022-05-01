@@ -165,9 +165,19 @@ nnoremap <silent> <C-m> :try\|wa\|catch /\<E141\>/\|echomsg 'Not all files saved
 nmap <leader>v :tabe ~/.vimrc<CR>
 autocmd bufwritepost .vimrc source ~/.vimrc
 
+" Map key chord `jk` to <Esc>. Credits: https://old.reddit.com/r/vim/comments/ufgrl8/journey_to_the_ultimate_imap_jk_esc/
+let g:esc_j_lasttime = 0
+let g:esc_k_lasttime = 0
+function! JKescape(key)
+    if a:key=='j' | let g:esc_j_lasttime = reltimefloat(reltime()) | endif
+    if a:key=='k' | let g:esc_k_lasttime = reltimefloat(reltime()) | endif
+    let l:timediff = abs(g:esc_j_lasttime - g:esc_k_lasttime)
+    return (l:timediff <= 0.10 && l:timediff >=0.001) ? "\b\e" : a:key
+endfunction
+inoremap <expr> j JKescape('j')
+inoremap <expr> k JKescape('k')
+
 " exit insert mode from homebar
-inoremap jk <ESC>
-inoremap kj <ESC>
 noremap! <silent> <C-l> <ESC>
 vnoremap <silent> <C-l> <ESC>
 onoremap <silent> <C-l> <ESC>
