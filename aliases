@@ -60,8 +60,12 @@ alias nrm='npm remove'
 alias ns='npm start'
 # alias nr='npm run'
 nr () {
-    SCRIPT=$(cmd /c npm run | fzf --tac)
-    cmd /c npm run $SCRIPT
+    if [ $# -eq 0 ]; then
+        SCRIPT=$(cmd /c npm run | fzf --tac)
+        cmd /c npm run $SCRIPT
+    else
+        cmd /c npm run $1
+    fi
 }
 alias nre='npm run env'
 
