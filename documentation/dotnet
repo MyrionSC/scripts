@@ -16,8 +16,6 @@ Serilog
 new dotnet 6 using switch (only nontrivial usings at top)
 nullable types switch
 
-
-
 Set implicit usings and nullable
 in csproj file: Project > ProjectGroup
     <ImplicitUsings>enable</ImplicitUsings>
@@ -46,6 +44,88 @@ var res = await httpClient.SendAsync(new HttpRequestMessage
 });
 Console.WriteLine(await res.Content.ReadAsStringAsync());
 res.EnsureSuccessStatusCode();
+
+
+
+
+
+
+
+=== JWT unpack
+public static class JwtExtensions
+{
+    private const string BearerPrefix = "Bearer ";
+    public static string TryGetString(this JwtPayload payload, string key)
+    {
+        if (!payload.TryGetValue(key, out var value))
+            throw new ArgumentException($"JWT payload did not contain key \"{key}\"");
+        return (string) value;
+    }
+    public static IEnumerable<T> TryGetArray<T>(this JwtPayload payload, string key)
+    {
+        if (!payload.TryGetValue(key, out var value))
+            throw new ArgumentException($"JWT payload did not contain key \"{key}\"");
+        return JsonConvert.DeserializeObject<IEnumerable<T>>(value.ToString());
+    }
+    public static JwtPayload TryGetJwtPayload(this HttpContext? httpContext)
+    {
+        // use with: var payload = _httpContextAccessor.HttpContext.TryGetJwtPayload();
+        if (httpContext == null) throw new ArgumentNullException("httpContext", "There is no active HttpContext");
+        var authHeader = httpContext.Request.Headers.Authorization.ToString();
+        if (authHeader == "") throw new ArgumentException("No Authorization header detected");
+        if (!authHeader.Contains(BearerPrefix, StringComparison.InvariantCultureIgnoreCase))
+            throw new ArgumentException("No Bearer token detected. Authorization header should have format: \"Bearer SomeJWT\"");
+
+        var handler = new JwtSecurityTokenHandler();
+        var tokenS = handler.ReadToken(
+            authHeader.Replace(BearerPrefix, "", StringComparison.InvariantCultureIgnoreCase)
+        ) as JwtSecurityToken;
+        return tokenS!.Payload;
+    }
+}
+
+
+
+
+
+=== Application Insights config
+// In Program.cs
+Console.WriteLine($"Using ApplicationInsights ConnectionString: \"{builder.Configuration.GetValue<string>("APPLICATIONINSIGHTS_CONNECTION_STRING")}\"");
+builder.Services.AddApplicationInsightsTelemetry(o =>
+{
+    o.ConnectionString = builder.Configuration.GetValue<string>("APPLICATIONINSIGHTS_CONNECTION_STRING");
+    o.EnableAdaptiveSampling = false;
+});
+builder.Services.AddSingleton<ITelemetryInitializer, CustomRequestTelemetryInitializer>();
+builder.Services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) =>
+{
+    // log sqlstatement. TODO: see if works for cosmos
+    module.EnableSqlCommandTextInstrumentation = true;
+});
+
+// In CustomRequestTelemetryInitializer.cs
+// Adds information from custom headers and claims to Application insights request telemetry
+public class CustomRequestTelemetryInitializer : ITelemetryInitializer
+{
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    public CustomRequestTelemetryInitializer(IHttpContextAccessor httpContextAccessor)
+    {
+        _httpContextAccessor = httpContextAccessor;
+    }
+    public void Initialize(ITelemetry telemetry)
+    {
+        var requestTelemetry = telemetry as RequestTelemetry;
+        if (requestTelemetry == null) return;
+
+        var headers = _httpContextAccessor.HttpContext!.Request.Headers;
+        if (headers["Transaction-Id"] != "")
+            requestTelemetry.Properties.Add("TransactionId", headers["Transaction-Id"]);
+
+        var payload = _httpContextAccessor.HttpContext.TryGetJwtPayload();
+        requestTelemetry.Properties.Add("UserId", payload.TryGetString("oid"));
+        requestTelemetry.Properties.Add("UserEmail", payload.TryGetString("preferred_username"));
+    }
+}
 
 
 
