@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-# Git Aliases
-# (sorted alphabetically)
-#
+# consider ~/.gitconfig with some aliases like so:
+#[alias]
+#	co = checkout
+#	ci = commit
+#	rb = rebase
 
 # if in windows part of filesystem in WSL, use windows git
 # Remember to have symlink of .ssh (see windows docs)
@@ -332,6 +334,15 @@ gurl() {
     fi
 }
 
+# Operations like reset ^HEAD --hard or rebase can remove commits.
+# If you did not mean to remove a commit, it can be rescued via commands below.
+# Once you have the hash, you can do a git show to see the diff, or a checkout, cherry-pick,
+# or merge depending on how you want to get the change back into your history.
+# For instance: Can get commit back by running: git merge <HASH>
+alias gref='git reflog' # see record of when tip of branches are updated
+alias grefa='git reflog --all' # More info
+alias glost='git fsck --lost-found' # search for dangling commits / trees
+
 # opens all unstaged files
 alias gfix='$EDITOR `git diff --name-only | uniq`'
 
@@ -345,4 +356,8 @@ alias gfix='$EDITOR `git diff --name-only | uniq`'
 
 # To debug git cli problems:
 #GIT_CURL_VERBOSE=1 GIT_TRACE=1 <command> # eg: git pull
+
+# to get quick archive of repo: 
+# - as zip: git archive HEAD --format=zip > archive.zip
+# - as tar.gz: git archive HEAD | gzip > archive.tar.gz
 
