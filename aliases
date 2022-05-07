@@ -100,7 +100,6 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias xc='clip.exe'
         alias dl='cd ~/winhome/Downloads'
         alias desk='cd ~/winhome/Desktop'
-        #alias gurl="egrep -o 'https?://[^ ]+' ~/.cache/gitpush-out.txt | xargs -I {} cmd.exe /C start {} > /dev/null 2>&1"
         alias osite="egrep -o 'https?://[^ ]+'| tr -d '' | xargs cmd.exe /C start" # opens siteurl from std/in
         alias gitg='cmd.exe /C "C:\Program Files\gitg\bin\gitg.exe"' # opens gitgui in current dir
         alias cset='cmd.exe /C set'
@@ -111,20 +110,10 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias gradlew='cmd.exe /c gradlew'
         alias es='cmd.exe /c es'
         rider () {
-            if [ $# -eq 0 ]
-            then
-                cmd.exe /c "C:\\Users\\Martin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains Toolbox\\Rider.lnk" &
-            else
-                cmd.exe /c "C:\\Users\\Martin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains Toolbox\\Rider.lnk" $1 &
-            fi
+            cmd /c 'C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\Rider.lnk' . &
         }
         webstorm () {
-            if [ $# -eq 0 ]
-            then
-                cmd.exe /c "C:\\Users\\Martin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains Toolbox\\Webstorm.lnk" &
-            else
-                cmd.exe /c "C:\\Users\\Martin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains Toolbox\\Webstorm.lnk" $1 &
-            fi
+            cmd /c 'C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\Webstorm.lnk' . &
         }
         delenv () {
             if [ $# -eq 0 ]
