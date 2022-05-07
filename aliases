@@ -110,10 +110,10 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias gradlew='cmd.exe /c gradlew'
         alias es='cmd.exe /c es'
         rider () {
-            cmd /c 'C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\Rider.lnk' . &
+            cmd.exe /c 'C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\Rider.lnk' . &
         }
         webstorm () {
-            cmd /c 'C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\Webstorm.lnk' . &
+            cmd.exe /c 'C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\Webstorm.lnk' . &
         }
         delenv () {
             if [ $# -eq 0 ]
