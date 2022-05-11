@@ -102,6 +102,7 @@ gccp() { # copy commit hash
     echo copied $COMMIT_TO_COPY to clipholder
     echo $COMMIT_TO_COPY | clip
 }
+alias gcpc='gccp'
 
 gback () { # go back in log
     if [ "$#" -eq 1 ]; then

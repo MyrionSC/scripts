@@ -5,7 +5,7 @@
 " list of supported commands: https://github.com/JetBrains/ideavim/wiki/set-commands
 
 " Search for ideavim action with ":actionlist somecommand" or actionlist in terminal
-" action can then be executed with ":action ACTION" or mapped with: nmap <leader>h <action>(ACTION)
+" action can then be executed with ":action ACTION" or mapped with: nmap <leader>h <action>(ACTION) 
 " track actions with action (search everything for it): IdeaVim: track action Ids
 " can then be mapped with: nmap <leader>h <action>(PreviousTab)
 
@@ -14,8 +14,6 @@
 set ignorecase smartcase " ignores case if all lowercase, does not if one or more uppercase. ignorecase must be set as well.
 set incsearch hlsearch " search highlight while typing
 set clipboard+=unnamedplus
-" set wrapscan " search from top if bottom reached
-" set gdefault " replace multiple occurences of search replace on line. Use g suffix to return to first occurence
 
 " === ideavim plugin emulators
 " docs: https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
@@ -36,6 +34,7 @@ set scrolloff=10 " minimum number of lines above and below the cursor
 " === Mappings
 let mapleader=" "
 nnoremap <leader>r :action IdeaVim.ReloadVimRc.reload<CR>
+nnoremap <leader>v :action VimActions<CR>
 nmap <leader>h <action>(PreviousTab)
 nmap <leader>l <action>(NextTab)
 nmap <leader>bd <action>(CloseEditor)
@@ -62,6 +61,12 @@ cnoremap æ <CR>
 inoremap <C-k> {
 inoremap <C-j> [
 inoremap <C-l> (
+
+vnoremap ( "xdi()<ESC>"xP
+vnoremap { "xdi{}<ESC>"xP
+vnoremap [ "xdi[]<ESC>"xP
+vnoremap " "xdi""<ESC>"xP
+vnoremap ' "xdi''<ESC>"xP
 
 " IDE specific (see examples: https://github.com/JetBrains/ideavim#ide-specific-options)
 if has('ide')
@@ -92,5 +97,4 @@ sethandler <C-S> a:ide
 sethandler <C-V> i:ide n-v:vim
 sethandler <C-W> a:ide
 sethandler <C-X> a:vim
-
 
