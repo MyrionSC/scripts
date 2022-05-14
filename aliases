@@ -738,6 +738,12 @@ zz () {
 watch() {
     if [ -z "$1" ]; then
         tldr watchexec
+        echo ""
+        echo "watchexec -r -e py -- python server.py        Call/restart python server.py when any Python file in the current directory (and all subdirectories) changes"
+        echo "watchexec -r -- 'echo \$WATCHEXEC_COMMON_PATH/\$WATCHEXEC_WRITTEN_PATH | wc -c'    pipe modified / created filenames"
+        echo "watchexec  -r  -- 'realpath --relative-to=. \$WATCHEXEC_COMMON_PATH/\$WATCHEXEC_WRITTEN_PATH'         get path of new / modified files relative to current dir"
+        echo "watchexec --print-events ...      print events that watchexec see"
+        echo "For more examples: https://github.com/watchexec/watchexec/tree/main/cli#usage-examples"
         return
     fi
     if $(pwd -P | grep -q "^\/mnt\/c\/*"); then
@@ -809,5 +815,8 @@ jwtd() {
         jq -R 'split(".") | .[0],.[1] | @base64d | fromjson' <<< "${1}"
     fi
 }
+
+# use cmd curl in wsl because of localhost problems
+alias curl='cmd.exe /c curl'
 
 

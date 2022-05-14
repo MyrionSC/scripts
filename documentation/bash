@@ -52,6 +52,9 @@ do
    echo "Welcome $c times"
 done
 
+# online eternal
+for ((;;)) do sleep 1s; date; done
+
 # loop through files in dir and remove extension
 for f in *; do
     base={f%.*}
