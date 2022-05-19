@@ -250,7 +250,7 @@ gcofile() {
 
 # git show: use git show COMMIT to see commit changes
 gsh() {
-    SHOW_COMMIT=$(git log --oneline | fzf --height 30 | awk '{print $1}')
+    SHOW_COMMIT=$(git log --format="%C(auto)%h %s (%ae, %aI)" | fzf --no-sort --height 30 | awk '{print $1}')
     git show $SHOW_COMMIT
 }
 alias gshow='gsh'
