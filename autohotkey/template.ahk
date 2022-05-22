@@ -43,3 +43,27 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; ^!d:: ; example using clipboard
 ; SendRaw %clipboard%.display()
 ; Return
+
+
+; = Toggle hold down a key
+; F3::
+; Toggle2 := !Toggle2
+; if Toggle2
+;     Send {w down}
+; else
+;     Send {w up}
+; return
+
+; = Toggle loop
+; #MaxThreadsPerHotkey 2
+; F2::
+; Toggle := !Toggle
+; loop
+; {
+;     If not Toggle
+;         break
+; 	Send, w
+;  	Sleep, 3
+; }
+; return
+
