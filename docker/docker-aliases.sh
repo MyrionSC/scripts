@@ -77,7 +77,9 @@ fi
 
 function di-fn {
 if [ -z "$1" ]; then
-    docker inspect $(dnames | fzf --height 30)
+    ID=$(dnames | fzf --height 30)
+    docker inspect $ID
+    history -s di $ID
 else
     docker inspect $1
 fi
@@ -85,7 +87,9 @@ fi
 
 function dol-fn {
 if [ -z "$1" ]; then
-    docker logs -f $(dnames | fzf --height 30)
+    ID=$(dnames | fzf --height 30)
+    docker logs -f $ID
+    history -s dol $ID
 else
     docker logs -f $1
 fi
