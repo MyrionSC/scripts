@@ -51,7 +51,16 @@ clean() {
 tasks() {
     cd /some/path
     ./gradlew tasks --all > ~/.cache/tasksall
-    cat ~/.cache/tasksall | fzf
+    SELECTED_TASK=$(cat ~/.cache/tasksall | fzf)
+    if [[ $SELECTED_TASK == "> Task"* ]]; then
+        CMD=$(echo $SELECTED_TASK | awk '{print $3}')
+    else
+        CMD=$(echo $SELECTED_TASK | awk '{print $1}')
+    fi
+    echo "./gradlew $CMD"
+    ./gradlew $CMD
+    history -s ./gradlew $CMD
 }
+
 
 
