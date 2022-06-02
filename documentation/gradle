@@ -10,3 +10,21 @@
 ./gradlew help --task test
 
 
+
+
+# === distribute multi project
+# = in build.gradle.kts
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "io.ktor.server.netty.EngineMain"
+    }
+    manifest.attributes["Class-Path"] = configurations
+        .runtimeClasspath
+        .get()
+        .joinToString(separator = " ") { file -> file.name }
+}
+Then run with with: ./gradlew project:distZip or distTar
+file is then in build/distributions
+
+
+
