@@ -606,7 +606,7 @@ ahk () { # edit and launch autohotkey script
 }
 
 # === persistent history, credits to https://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash
-export HISTTIMEFORMAT="%F %T  " # changes history format to include datetime
+# export HISTTIMEFORMAT="%F %T  " # changes history format to include datetime ## messes with new sysz
 log_bash_persistent_history()
 {
   [[
