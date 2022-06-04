@@ -819,4 +819,11 @@ jwtd() {
 # use cmd curl in wsl because of localhost problems
 alias curl='cmd.exe /c curl'
 
+# to make use of https://github.com/MyrionSC/sysz-append-history
+sysz() {
+    history -w; history -c;
+    eval $(which sysz) # for some reason just: sysz kills the shell
+    history -r;
+}
+
 
