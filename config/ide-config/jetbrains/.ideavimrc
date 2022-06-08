@@ -50,7 +50,8 @@ noremap c "_c
 nnoremap d "_d
 nnoremap D "_D
 nnoremap dd "_dd
-vnoremap p "_dP
+vnoremap p "0p
+vnoremap P "0P
 inoremap jk <ESC>
 inoremap kj <ESC>
 
