@@ -130,3 +130,45 @@ public class CustomRequestTelemetryInitializer : ITelemetryInitializer
 
 
 
+
+
+==== Body Log middleware
+// in ContentLogMiddleware.cs
+using System.Text;
+
+namespace InternalAPI.Middleware;
+
+public class ContentLogMiddleware
+{
+    private readonly RequestDelegate _next;
+    private readonly ILogger<ContentLogMiddleware> _logger;
+
+    public ContentLogMiddleware(RequestDelegate next, ILogger<ContentLogMiddleware> logger)
+    {
+        _next = next;
+        _logger = logger;
+    }
+
+    public async Task Invoke(HttpContext context)
+    {
+        if (context.Request.Method == "POST" || context.Request.Method == "PUT")
+        {
+            if (context.Request.ContentLength > 30_000)
+            {
+                _logger.LogDebug("ContentLogMiddleware: Body is more than 30KB so not logged [ContentLength:{ContentLength}]", context.Request.ContentLength);
+            }
+            else
+            {
+                context.Request.EnableBuffering();
+                using StreamReader reader = new StreamReader(context.Request.Body, Encoding.UTF8, true, 1024, true);
+                _logger.LogDebug(await reader.ReadToEndAsync());
+                context.Request.Body.Position = 0;
+            }
+        }
+
+        await _next(context);
+    }
+}
+
+
+
