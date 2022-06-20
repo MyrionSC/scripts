@@ -527,11 +527,6 @@ strlen() {
 alias rg='rg -M 400'
 alias less='less +F' # real time update on file
 
-# fzf scripts
-if [ -f ./fzf-scripts.sh  ]; then
-    source ./fzf-scripts.sh
-fi
-
 # history
 alias ghist='cat ~/.bash_history | grep'
 alias ehist='vim ~/.bash_history'
@@ -825,5 +820,10 @@ sysz() {
     eval $(which sysz) # for some reason just: sysz kills the shell
     history -r;
 }
+
+cdf () {
+    cd $(find . -type d | fzf)
+}
+
 
 
