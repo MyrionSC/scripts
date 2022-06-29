@@ -1,0 +1,8 @@
+
+## debug css via outline and background
+* {
+    box-sizing: border-box;
+    outline: 1px solid limegreen !important;
+    background: rgb(0 100.0 0 / 0.1) !important;
+}
+
