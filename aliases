@@ -824,5 +824,10 @@ cdf () {
     cd $(find . -type d | fzf)
 }
 
-
+search_custom_commands () {
+    compgen -A function -abk | fzf
+}
+search_all_commands () {
+    compgen -A function -abck | fzf
+}
 
