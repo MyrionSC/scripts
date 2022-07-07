@@ -194,8 +194,8 @@ nnoremap D "_D
 " xnoremap P "_dP
 vnoremap d "_d
 vnoremap c "_di
-vnoremap p "0p
-vnoremap P "0P
+vnoremap p "_p
+vnoremap P "_P
 
 " remap search
 nnoremap æ /\v

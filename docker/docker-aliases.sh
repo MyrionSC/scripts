@@ -104,7 +104,13 @@ docker-compose run $@
 }
 
 function dsr-fn {
-docker stop $1;docker rm $1
+if [ -z "$1" ]; then
+    ID=$(dnames | fzf --height 30)
+    docker stop $ID;docker rm $ID
+    history -s di $ID
+else
+    docker stop $1;docker rm $1
+fi
 }
 
 function drmc-fn {
