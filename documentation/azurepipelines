@@ -1,9 +1,74 @@
 
+# === Debug tasks
 
 # print working directory
-          - task: CmdLine@2
-            displayName: 'print system defaultworkingdirectory tree'
-            inputs:
-              script: 'tree'
-              workingDirectory: '$(System.DefaultWorkingDirectory)'
+- task: CmdLine@2
+  displayName: 'print system defaultworkingdirectory tree'
+  inputs:
+    script: 'tree'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+# print artifact staging directory on ubunt
+- task: CmdLine@2
+  displayName: 'Directory listing - Build.ArtifactStagingDirectory'
+  inputs:
+    script: |
+      cd $(Build.ArtifactStagingDirectory)
+      ls -Rla
+
+
+
+# === Full dotnet to azure webapp deploy pipeline
+# = envs are set in envs in DevOps GUI for pipeline
+# serviceConnection: name from https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml
+# appServiceName: name of app
+trigger:
+- develop
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: 'restore'
+    projects: 'src/UI/SomeProj/SomeProj.csproj'
+#    projects: 'src/**/*.csproj' # for all projs
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build SomeProj'
+  inputs:
+    command: 'build'
+#    projects: 'src/**/*.csproj' # for all projs
+    projects: 'src/UI/SomeProj/SomeProj.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish SomeProj'
+  inputs:
+    command: publish
+    publishWebProjects: True # when publishWebProjects is used projects argument is skipped https://github.com/Microsoft/azure-pipelines-tasks/tree/master/Tasks/DotNetCoreCLIV2
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+- task: CmdLine@2
+  displayName: 'Directory listing - Build.ArtifactStagingDirectory'
+  inputs:
+    script: |
+      cd $(Build.ArtifactStagingDirectory)
+      ls -Rla
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '$(serviceConnection)'
+    appName: '$(appServiceName)'
+    appType: 'webAppLinux'
+    package: '$(Build.ArtifactStagingDirectory)/SomeProj.zip'
+
 
