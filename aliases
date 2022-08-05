@@ -831,3 +831,5 @@ search_all_commands () {
     compgen -A function -abck | fzf
 }
 
+alias untar='tar xvf'
+
