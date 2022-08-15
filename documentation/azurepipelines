@@ -18,6 +18,78 @@
 
 
 
+
+
+# === React to azure webapp deploy pipeline
+# Including replace of local env var with git hash value, which can be used in js with process.env.REACT_APP_GIT_HASH
+# must have line in .env* files: REACT_APP_GIT_HASH=__GIT_HASH_REPLACE__
+trigger:
+- develop
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.1.0'
+  displayName: 'Install Node.js'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+  displayName: 'npm install'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: sed -i "s/__GIT_HASH_REPLACE__/$(git rev-parse --short HEAD)/g" .env*
+  displayName: 'replace .env* __GIT_HASH_REPLACE__ with git hash'
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'run build:$(stage)'
+  displayName: 'npm run build'
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'run citest'
+  displayName: 'npm run citest'
+
+- task: CopyFiles@2
+  displayName: 'Copy files'
+  inputs:
+    sourceFolder: 'build'
+    Contents: '**/*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    cleanTargetFolder: true
+
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Build Artifacts'
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+
+- task: AzureWebApp@1
+  displayName: 'Deploy to App Service'
+  inputs:
+    azureSubscription: '$(serviceConnection)'
+    appName: '$(appServiceName)'
+    appType: 'webAppLinux'
+    package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
+
+
+
 # === Full dotnet to azure webapp deploy pipeline
 # = envs are set in envs in DevOps GUI for pipeline
 # serviceConnection: name from https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml
