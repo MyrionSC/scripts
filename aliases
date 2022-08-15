@@ -832,4 +832,6 @@ search_all_commands () {
 }
 
 alias untar='tar xvf'
+alias te='cd $(tere)'
+alias untar='tar xvf'
 
