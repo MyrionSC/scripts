@@ -1,0 +1,6 @@
+# Goes in Custom key mappings field
+
+map H previousTab
+map L nextTab
+map <a-h> goBack
+map <a-l> goForward
