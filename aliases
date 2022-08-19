@@ -131,6 +131,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         export WH=~/winhome
         export DL=~/winhome/Downloads
         export DESK=~/winhome/Desktop
+        alias curl='cmd.exe /c curl' # use cmd curl in wsl because of localhost problems
     else # It actually is linux
         alias dl='cd ~/Downloads'
         alias desk='cd ~/Desktop'
@@ -809,9 +810,6 @@ jwtd() {
         jq -R 'split(".") | .[0],.[1] | @base64d | fromjson' <<< "${1}"
     fi
 }
-
-# use cmd curl in wsl because of localhost problems
-alias curl='cmd.exe /c curl'
 
 # to make use of https://github.com/MyrionSC/sysz-append-history
 sysz() {
