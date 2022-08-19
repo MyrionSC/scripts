@@ -1,0 +1,34 @@
+
+### Links
+- https://developer.chrome.com/web/tools/puppeteer/
+- https://developer.chrome.com/blog/headless-chrome/
+
+
+# when testing, open chrome with delay so have something to look at
+const browser = await puppeteer.launch({
+  headless: false,
+  slowMo: 250, // slow down by 250ms
+  devtools: true
+});
+
+# Query page elements and print prop
+const allLinkHrefs = await page.evaluate(() => Array.from(document.querySelectorAll('a'), a => a.href));
+console.log(allLinkHrefs)
+
+# get text of list of elements
+const textList = await page.evaluate(() => Array.from(document.querySelectorAll('[data-test-foo4="true"]'), element => element.textContent));
+
+# click on element
+const example = await page.$$('someSelector');
+await example[0].click();
+
+# take pdf of page (only supported in headless mode)
+await page.pdf({path: 'page.pdf', format: 'A4'});
+
+# === print useragent
+const puppeteer = require('puppeteer');
+(async() => {
+  const browser = await puppeteer.launch();
+  console.log(await browser.version());
+  await browser.close();
+})();
