@@ -364,18 +364,18 @@ alias evimrc="vim ~/.vimrc"
 alias viml="vim $(lst)"
 
 ffv () {
-    vim $(rg --hidden --files -g "*$1*")
+    vim $(rg -i --hidden --files -g "*$1*")
 }
 ffrm () {
-    rm $(rg --hidden --files -g "*$1*")
+    rm $(rg -i --hidden --files -g "*$1*")
 }
 rgv () {
-    rg --vimgrep "$1" > vim_quickfix_list
+    rg -i --vimgrep "$1" > vim_quickfix_list
     vim -q vim_quickfix_list
     rm vim_quickfix_list
 }
 rgvim () {
-    rg --vimgrep "$1" > vim_quickfix_list
+    rg -i --vimgrep "$1" > vim_quickfix_list
     vim -q vim_quickfix_list
     rm vim_quickfix_list
 }
@@ -433,12 +433,11 @@ echo $1 | cowsay -e OO -f dragon-and-cow
 #     f -e open $@ & disown
 # }
 
-binrg() { # search in bin
-    rg "$@" ~/bin
+# bin search
+rgb () {
+    rg -i "$@" ~/bin
 }
-rgbin() { # search in bin
-    rg "$@" ~/bin
-}
+alias bs="rgb"
 
 
 # documents
@@ -775,11 +774,6 @@ docssearch() {
 }
 alias ds="docssearch"
 
-# bin search
-rgb () {
-    rg "$@" ~/bin
-}
-alias bs="rgb"
 alias plist="tasklist.exe"
 alias tf="terraform.exe"
 
