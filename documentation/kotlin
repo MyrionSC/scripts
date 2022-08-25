@@ -1,0 +1,121 @@
+
+
+=== HTTP client
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.delete
+import io.ktor.client.request.get
+import io.ktor.client.request.parameter
+import io.ktor.client.request.post
+import io.ktor.client.request.put
+import io.ktor.client.request.setBody
+import io.ktor.client.request.url
+import io.ktor.http.ContentType
+import io.ktor.http.HttpMethod
+import io.ktor.http.contentType
+import mu.KotlinLogging
+
+val NO_BODY: Any? = null
+
+class HttpClientHelper(val client: HttpClient) {
+    val logger = KotlinLogging.logger { }
+
+    suspend inline fun <reified R> get(
+        url: String,
+        params: Map<String, String>? = null,
+        contentType: ContentType = ContentType.Application.Json
+    ): R {
+        return makeRequest(HttpMethod.Get, url, NO_BODY, params = params, contentType = contentType)
+    }
+
+    suspend inline fun <reified R> post(
+        url: String,
+        contentType: ContentType = ContentType.Application.Json
+    ): R {
+        return makeRequest(HttpMethod.Post, url, NO_BODY, contentType = contentType)
+    }
+
+    suspend inline fun <reified B, reified R> post(
+        url: String,
+        body: B,
+        contentType: ContentType = ContentType.Application.Json
+    ): R {
+        return makeRequest(HttpMethod.Post, url, body, contentType = contentType)
+    }
+
+    suspend inline fun <reified R> put(
+        url: String,
+        contentType: ContentType = ContentType.Application.Json
+    ): R {
+        return makeRequest(HttpMethod.Put, url, NO_BODY, contentType = contentType)
+    }
+
+    suspend inline fun <reified B, reified R> put(
+        url: String,
+        body: B,
+        contentType: ContentType = ContentType.Application.Json
+    ): R {
+        return makeRequest(HttpMethod.Put, url, body, contentType = contentType)
+    }
+
+    suspend inline fun <reified R> delete(
+        url: String,
+        contentType: ContentType = ContentType.Application.Json
+    ): R {
+        return makeRequest(HttpMethod.Delete, url, NO_BODY, contentType = contentType)
+    }
+
+    suspend inline fun <reified B, reified R> delete(
+        url: String,
+        body: B,
+        contentType: ContentType = ContentType.Application.Json
+    ): R {
+        return makeRequest(HttpMethod.Delete, url, body, contentType = contentType)
+    }
+
+    suspend inline fun <reified B, reified R> makeRequest(
+        method: HttpMethod,
+        url: String,
+        body: B? = null,
+        params: Map<String, String>? = null,
+        contentType: ContentType = ContentType.Application.Json
+    ): R {
+        logClientRequest(method, url)
+        try {
+            val builder: HttpRequestBuilder.() -> Unit = {
+                url(url)
+                if (body != null) {
+                    contentType(contentType)
+                    setBody(body)
+                }
+                params?.forEach { parameter(it.key, it.value) }
+            }
+            val response = when (method) {
+                HttpMethod.Get -> client.get(builder)
+                HttpMethod.Post -> client.post(builder)
+                HttpMethod.Put -> client.put(builder)
+                HttpMethod.Delete -> client.delete(builder)
+                else -> throw IllegalArgumentException("$method is not supported")
+            }
+
+            return if (response is R) {
+                response
+            } else {
+                response.body()
+            }
+        } catch (e: Exception) {
+            logger.error { "Caught ($e) while putting $url with body: $body" }
+            throw e
+        }
+    }
+
+    fun logClientRequest(method: HttpMethod, urlString: String, params: Map<String, String>? = null) {
+        if (params != null) {
+            val paramsString = params.map { (k, v) -> "$k=$v" }.joinToString("&")
+            logger.info { "$method: $urlString?$paramsString" }
+        } else {
+            logger.info { "$method: $urlString" }
+        }
+    }
+}
