@@ -18,7 +18,7 @@ git() {
 
 # get actual name of develop branch (xargs just trims)
 git_develop() {
-    git branch | grep develop | xargs
+    git branch | grep "  develop" | xargs
 }
 
 alias ga='git add'
@@ -76,7 +76,7 @@ alias gcpc='git cherry-pick --continue'
 alias gco='git checkout'
 alias gcb='git checkout -b'
 #alias gcob='git checkout -b'
-alias gcom='git checkout main'
+alias gcom='git checkout master || git checkout main'
 #alias gcod='git checkout develop 2>/dev/null || git checkout development'
 alias gcod='git checkout $(git_develop)'
 alias gcol='git checkout @{-1}' #checkout previous branch

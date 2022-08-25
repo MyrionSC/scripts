@@ -41,6 +41,7 @@ di <container> : docker inspect <container>
 dim            : docker images
 dip            : IP addresses of all running containers
 dol <container>: docker logs -f <container>
+dor <container>: docker restart <container>
 dnames         : names of all running containers
 dps            : docker ps
 dpsa           : docker ps -a
@@ -85,6 +86,7 @@ else
 fi
 }
 
+# can be used with piping eg: dol NAME | grep GET
 function dol-fn {
 if [ -z "$1" ]; then
     ID=$(dnames | fzf --height 30)
@@ -92,6 +94,16 @@ if [ -z "$1" ]; then
     history -s dol $ID
 else
     docker logs -f $1
+fi
+}
+
+function dor-fn {
+if [ -z "$1" ]; then
+    ID=$(dnames | fzf --height 30)
+    docker restart $ID
+    history -s dor $ID
+else
+    docker restart $1
 fi
 }
 
@@ -158,6 +170,7 @@ alias di=di-fn
 alias dim="docker images"
 alias dip=dip-fn
 alias dol=dol-fn
+alias dor=dor-fn
 alias dnames=dnames-fn
 alias dps="docker ps"
 alias dpsa="docker ps -a"
