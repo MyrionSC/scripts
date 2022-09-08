@@ -524,7 +524,7 @@ strlen() {
     echo ${#strlenargs}
 }
 
-alias rg='rg -M 400'
+alias rg='rg -i -M 400'
 alias less='less +F' # real time update on file
 
 # history
