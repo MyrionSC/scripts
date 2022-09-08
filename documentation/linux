@@ -153,4 +153,21 @@ sudo ufw allow 53 # allow tcp/udp on port 53
 
 
 
+# === watch / monitor dir and files
+# see possible events with: man inotifywait
+# see more examples with: tldr inotifywait
 
+# = common flags (not all)
+# -m: monitor continuously
+# -r: recursively
+# --exclude: exclude files/dir by regular expression
+# --excludei: exclude files/dir by regular expression, case insensitive
+# --quiet: watch quietly
+
+# Example: watch dir recursively for created/modified files and do something with them
+inotifywait -r -m /path -e create,moved_to,modify |
+    while read dir action file; do
+        echo "The file '$file' appeared in directory '$dir' via '$action'"
+        # do something with the file
+    done
+# can also use grep or sed before while to filter / transform
