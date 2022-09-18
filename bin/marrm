@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+        echo Remove files / folders from marand share
+        echo First argument should be file or folder in share folder.
+        exit
+fi
+
+HOST="marand"
+DIR="/var/www/marand/share/"
+
+for NAME in $@
+do
+    ssh marand "rm -v -r /var/www/marand/share/$NAME"
+done
