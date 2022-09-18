@@ -8,6 +8,7 @@ scp -r "$@" marand:/var/www/marand/share
 echo ""
 for FILENAME in $@
 do
-    echo "$REMOTEPATH$FILENAME"
+    echo "https://$REMOTEPATH$FILENAME"
+    (cd ~/bin/windows-stuff && powershell.exe -File QRCodeURI.ps1 https://$REMOTEPATH$FILENAME)
 done
 
