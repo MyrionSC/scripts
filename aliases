@@ -805,6 +805,12 @@ jwtd() {
     fi
 }
 
+# encode json from clipboard to base64 and open in jsonhero
+jhero() {
+    powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/jsonhero_input.json
+    start https://jsonhero.io/new?j=$(cat ~/winhome/.cache/jsonhero_input.json | base64 -w 0)
+}
+
 # to make use of https://github.com/MyrionSC/sysz-append-history
 sysz() {
     history -w; history -c;
