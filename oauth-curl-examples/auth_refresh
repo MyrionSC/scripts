@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+URL=http://localhost:8180
+REALM=realm
+CLIENT_ID=clientid
+SECRET=987ca5d3-276f-4803-b41c-7c79106ceac2
+REFRESH_TOKEN=XXX
+
+curl --location --request POST "$URL/auth/realms/$REALM/protocol/openid-connect/token" \
+--header "Content-Type: application/x-www-form-urlencoded" \
+--data-urlencode "client_id=$CLIENT_ID" \
+--data-urlencode "client_secret=$SECRET" \
+--data-urlencode "grant_type=refresh_token" \
+--data-urlencode "scope=openid" \
+--data-urlencode "refresh_token=$REFRESH_TOKEN"
