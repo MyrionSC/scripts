@@ -833,3 +833,7 @@ alias untar='tar xvf'
 alias te='cd $(tere)'
 alias untar='tar xvf'
 
+alias pathkill='findhandle'
+alias killpath='findhandle'
+alias findpath='findhandle'
+
