@@ -60,6 +60,7 @@ alias gcl='git clone --recursive'
 #alias gcleanf='git clean -fd' # remove untracked files. git clean -n to see what is removed before remove
 #alias gcleann='git clean -n' # remove untracked files dry-run
 gclean() {
+    [ -z "$(git clean -dn)" ] && echo Nothing to clean && return
     git clean -dn
     read -p "delete shown files and dirs? [y/n]" -n 1 -r
     echo
@@ -115,7 +116,7 @@ gback () { # go back in log
 }
 alias gswb='git switch -'
 
-#git revert <commit_hash> # revert single commit
+#git revert <commit_hash> # revert / rollback single commit
 
 #git revert <oldest_commit_hash>..<latest_commit_hash> # revert range of commits
 #git revert --no-commit <hash>..HEAD # revert from head until commit hash
