@@ -9,3 +9,17 @@ location /endpoint {
     proxy_pass http://127.0.0.1:8080;
 }
 
+
+### Configure longer log rotation and how long you keep logs
+1. cd /etc/logrotate.d/
+2. vim nginx and change daily -> weekly and change rotate value
+
+
+### Generate monitoring report from nginx logs
+1. Install goaccess: apt install goaccess
+2. navigate to nginx logs dir (probably /var/log/nginx)
+3. compile all the access logs: zcat access*.gz > compiled_access.txt && cat access.log.1 >> compiled_access.txt && cat access.log >> compiled_access.txt
+    3.1 If you want to only see for some site: cat compiled_access.txt | grep somesite > somesite.log
+4. To generate report: goaccess compiled_access.txt -o nginx_report.html --log-format=COMBINED
+5. mv nginx_report.html somewhere in webroot so can access from outside
+
