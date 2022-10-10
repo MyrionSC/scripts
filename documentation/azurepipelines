@@ -1,4 +1,10 @@
 
+# pipeline triggers and variables can be set in GUI. Then it is easier
+  # trigger by branch:
+    # Pipeline > Edit > Burger menu > Triggers > Override the YAML.. > Branch Filters (then save)
+    # https://stackoverflow.com/questions/67399612/multi-branch-pipeline-in-azure-devops
+  # set vars in Pipeline > Edit > Variables and use with bash syntax $(SOMEVAR)
+
 # === Debug tasks
 
 # print working directory
@@ -94,6 +100,7 @@ steps:
 # = envs are set in envs in DevOps GUI for pipeline
 # serviceConnection: name from https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml
 # appServiceName: name of app
+
 trigger:
 - develop
 - main
