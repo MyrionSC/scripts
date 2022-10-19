@@ -22,6 +22,7 @@ if [ -z "$1" ]; then
     echo "ang2-ts-server"
     echo "scoreboard"
     echo "databricks-navigation-chrome-extension"
+    echo "sentry-to-application-insights-navigator"
     exit
 fi
 

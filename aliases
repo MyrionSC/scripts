@@ -837,3 +837,6 @@ alias pathkill='findhandle'
 alias killpath='findhandle'
 alias findpath='findhandle'
 
+alias windir='cmd /c echo %cd%'
+alias rp='realpath'
+
