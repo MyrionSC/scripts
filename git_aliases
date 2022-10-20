@@ -346,6 +346,10 @@ alias gref='git reflog' # see record of when tip of branches are updated
 alias grefa='git reflog --all' # More info
 alias glost='git fsck --lost-found' # search for dangling commits / trees
 
+gprepush() {
+    cp -v ~/bin/githooks/pre-push .
+}
+
 # opens all unstaged files
 alias gfix='$EDITOR `git diff --name-only | uniq`'
 
@@ -363,4 +367,6 @@ alias gfix='$EDITOR `git diff --name-only | uniq`'
 # to get quick archive of repo: 
 # - as zip: git archive HEAD --format=zip > archive.zip
 # - as tar.gz: git archive HEAD | gzip > archive.tar.gz
+
+
 
