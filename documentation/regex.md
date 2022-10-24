@@ -15,11 +15,14 @@ $		 matches the end of the string, or the end of a line if the multiline flag (m
 \B		 matches any position that is not a word boundary. This matches a position, not a character.
 
 #Groups & Lookaround
-(ABC)	 groups multiple tokens together and creates a capture group for extracting a substring or using a backreference.Character
-\1		 matches the results of a previous capture group. For example \1 matches the results of the first capture group and \3 matches the third.Character
-(?:ABC)	 groups multiple tokens together without creating a capture group.Character
-(?=ABC)	 matches a group after the main expression without including it in the result.Character
-(?!ABC)	 specifies a group that can not match after the main expression (if it matches, the result is discarded).
+(ABC)	 groups multiple tokens together and creates a capture group for extracting a substring or using a backreference
+\1		 matches the results of a previous capture group. For example \1 matches the results of the first capture group and \3 matches the third
+(?:ABC)	 groups multiple tokens together without creating a capture group
+x(?=y)	 Lookahead assertion: Matches "x" only if "x" is followed by "y". For example, /Jack(?=Sprat)/ matches "Jack" only if it is followed by "Sprat".
+/Jack(?=Sprat|Frost)/ matches "Jack" only if it is followed by "Sprat" or "Frost". However, neither "Sprat" nor "Frost" is part of the match results.
+x(?!y)   Negative lookahead assertion: Matches "x" only if "x" is not followed by "y". For example, /\d+(?!\.)/ matches a number only if it is not followed by a decimal point. /\d+(?!\.)/.exec('3.141') matches "141" but not "3".
+(?<=y)x  Lookbehind assertion: Matches "x" only if "x" is preceded by "y". For example, /(?<=Jack)Sprat/ matches "Sprat" only if it is preceded by "Jack". /(?<=Jack|Tom)Sprat/ matches "Sprat" only if it is preceded by "Jack" or "Tom". However, neither "Jack" nor "Tom" is part of the match results.
+(?<!y)x  Negative lookbehind assertion: Matches "x" only if "x" is not preceded by "y". For example, /(?<!-)\d+/ matches a number only if it is not preceded by a minus sign. /(?<!-)\d+/.exec('3') matches "3". /(?<!-)\d+/.exec('-3') match is not found because the number is preceded by the minus sign.
 
 #Quantifiers & Alternation
 +		 matches 1 or more of the preceding token.	
