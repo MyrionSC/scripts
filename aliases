@@ -106,6 +106,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias csetx='cmd.exe /C setx'
         alias node='cmd.exe /c node'
         alias npm='cmd.exe /c npm'
+        alias npx='cmd.exe /c npx'
         alias dotnet='cmd.exe /c dotnet'
         alias gradlew='cmd.exe /c gradlew'
         alias es='cmd.exe /c es'
