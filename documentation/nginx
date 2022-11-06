@@ -1,4 +1,3 @@
-
 ### Reverse proxy
 send request to some service running on a port and return response, while not changing any headers
 
@@ -23,3 +22,12 @@ location /endpoint {
 4. To generate report: goaccess compiled_access.txt -o nginx_report.html --log-format=COMBINED
 5. mv nginx_report.html somewhere in webroot so can access from outside
 
+## example:
+#!/usr/bin/env bash
+zcat access*.gz > compiled_access.txt && cat access.log.1 >> compiled_access.txt && cat access.log >> compiled_access.txt
+goaccess compiled_access.txt -o all.html --log-format=COMBINED
+mv -v all.html /var/www/marand/share/site_reports
+cat compiled_access.txt | grep https://raunsoft.dk/ > compiled_raunsoft.txt
+goaccess compiled_raunsoft.txt -o raunsoft.html --log-format=COMBINED
+mv -v raunsoft.html /var/www/marand/share/site_reports
+# To run from crontab -e every sunday: 0 0 * * 0 (cd /var/log/nginx/ && ./generate_and_share.sh)
