@@ -583,7 +583,13 @@ ahk () { # edit and launch autohotkey script
     if [ -z "$1" ]; then
         echo "First arg should be name of autohotkey script that should be executed (tab for completion, remember .ahk ending)"
         echo "If first arg is -e flag: edit file instead"
+        echo "If first arg is -s flag: open WindowSpy"
         echo "Files end up in $AHK_FILE_DIR dir"
+        return
+    fi
+
+    if [ "$1" == "-s" ]; then
+        cmd /c "C:\Program Files\AutoHotkey\WindowSpy.ahk" &
         return
     fi
 
@@ -840,4 +846,6 @@ alias findpath='findhandle'
 
 alias windir='cmd /c echo %cd%'
 alias rp='realpath'
+
+alias jobs='jobs && echo to kill job X: kill %X'
 

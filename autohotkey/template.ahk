@@ -71,8 +71,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; Use WindowsSpy in autohotkey dir to get positions, names etc.
 ; Run, "C:\Program Files\Fortinet\FortiClient\FortiClient.exe"
 ; Sleep, 3000
-; ControlClick, x78 y311, ahk_exe FortiClient.exe
+; ControlClick, x87 y389, ahk_exe FortiClient.exe
 ; Sleep, 1000
-; ControlClick, x542 y426, ahk_exe FortiClient.exe
+; ControlClick, x646 y535, ahk_exe FortiClient.exe
 ; Send, SomeText{ENTER}
 
