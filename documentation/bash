@@ -1,27 +1,33 @@
 # preferred shebang:
 #!/usr/bin/env bash
 
-# ----- if
-if [ $COND ]; then
-        # code
+# ----- if (with conditional elif and else)
+if [[ $COND ]]
+then
+    # code
+elif [[ $OTHERCOND ]]
+then
+    # code
 else
-        # code
+    # code
 fi
 
 # if shorthand
-[ -z "$ARG" ] && return # return if $ARG is empty
+[[ -z "$ARG" ]] && return # return if $ARG is empty
 
 # ----- common conditionals
-[ -n "$1" ] # true if arg1 exists
-[ -z "$1" ] # true if arg1 does not exist or is empty
-[ ! -z "$1" ] # true if arg exists and is not empty
-[ -f "$FILE" ] # true if file exists
-[ "$1" == "first" ] # true if arg1 equals the string "first"
-[ ! $COND ] # false if $COND is true
-[ $COND1 && $COND2 ] # true if $COND1 and $COND2 is true
-[ $COND1 || $COND2 ] # true if either $COND1 or $COND2 is true
-[ "$#" -ne 1 ] # true if number of arguments not equal to 1
-[ "$#" -eq 1 ] # true if number of arguments equal to 1
+-n "$1" # true if arg1 exists
+-z "$1" # true if arg1 does not exist or is empty
+! -z "$1" # true if arg exists and is not empty
+-f "$FILE" # true if file exists
+-d "$DIR" # true if dir exists
+"$1" == "first" # true if arg1 equals the string "first"
+a < b # true if a less than b
+! $COND # false if $COND is true
+[[ $COND1 ]] && [[ $COND2 ]] # true if $COND1 and $COND2 is true
+[[ $COND1 ]] || [[ $COND2 ]] # true if either $COND1 or $COND2 is true
+"$#" -ne 1 # true if number of arguments not equal to 1
+"$#" -eq 1 # true if number of arguments equal to 1
 
 arithmetic operators: -eq, -ne, -lt, -le, -gt, -ge
 

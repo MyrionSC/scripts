@@ -346,9 +346,17 @@ alias gref='git reflog' # see record of when tip of branches are updated
 alias grefa='git reflog --all' # More info
 alias glost='git fsck --lost-found' # search for dangling commits / trees
 
+# copy MARWIP pre-push
 gprepush() {
-    cp -v ~/bin/githooks/pre-push .
+    if [[ -d ./.git ]]; then
+        cp -v ~/bin/githooks/pre-push  .git/hooks
+    elif [[ -d ./hooks ]]; then
+        cp -v ~/bin/githooks/pre-push hooks
+    else
+        cp -v ~/bin/githooks/pre-push .
+    fi
 }
+alias gitprepush='gprepush'
 
 # opens all unstaged files
 alias gfix='$EDITOR `git diff --name-only | uniq`'
