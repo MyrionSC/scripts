@@ -849,3 +849,6 @@ alias rp='realpath'
 
 alias jobs='jobs && echo to kill job X: kill %X'
 
+alias debinstall='sudo dpkg -i'
+alias chx='chmod +x'
+
