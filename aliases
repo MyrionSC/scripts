@@ -909,3 +909,6 @@ where () {
     fi
 }
 
+alias debinstall='sudo dpkg -i'
+alias chx='chmod +x'
+
