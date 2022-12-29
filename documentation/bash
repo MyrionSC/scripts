@@ -116,9 +116,15 @@ shorthand to create dir (and parents) if not exists: mkdir -p /path/to/dir
 # get path of current script
 SCRIPTPATH=$(realpath $(dirname $0))
 
-
 # generate 10 random numbers in range 1-100000
 shuf -i 1-100000 -n 10
 
-
+# confirm something
+read -r -p "Are you sure? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+    do_something
+else
+    do_something_else
+fi
 

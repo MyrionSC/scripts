@@ -15,21 +15,43 @@ PATH=$PATH:~/bin
 PATH=$PATH:~/bin/bin
 PATH=$PATH:~/.local/bin
 
-export NUC=marand@marand.dk
-export WEB=/var/www/html
-
 #set -o vi
 bind -m vi-insert "\C-l":clear-screen
 # ctrl-space is bind <leader> for now
-bind '"\C- f":"$(fzf --height 15)"'
-bind '"\C- v":"vim $(fzf --height 15)\n"'
-#bind '"\C-r":"ls"'
 
-alias ll='ls -alFh'
-alias la='ls -Ah'
-alias lt='ls -th'
-alias l='ls -CFh'
-alias lf='ls -th | head -1'
+bind '"\C- f":"$(fzf --height 15)"'
+bind '"\C- v":"vim $(fzf --height 15)"'
+
+bind '"\C-n":"tree"'
+bind '"\C-j":"cd $(find . -type d -print | fzf --height 30)"'
+
+# left alt bindings
+bind '"x":"| xargs -I@ "'
+bind '"g":"| grep "'
+bind '"d":"$(date -u +\"%Y-%m-%d\")"'
+
+# bind ctrl-k to exa or ls -l
+if command -v exa &> /dev/null
+then
+    bind '"\C-k":"exa -a"'
+    alias ll='exa -alFh'
+    alias la='exa -ah'
+    alias lt='exa --sort oldest'
+    alias l='exa -Fh'
+    alias lf='exa -th | head -1'
+else
+    bind '"\C-k":"ls -l"'
+    alias ll='ls -alFh'
+    alias la='ls -Ah'
+    alias lt='ls -th'
+    alias l='ls -CFh'
+    alias lf='ls -th | head -1'
+fi
+
+if command -v batcat &> /dev/null
+then
+    alias cat='batcat --plain --wrap character'
+fi
 
 alias mv='mv -i'
 alias cp='cp -i'
@@ -848,4 +870,42 @@ alias windir='cmd /c echo %cd%'
 alias rp='realpath'
 
 alias jobs='jobs && echo to kill job X: kill %X'
+
+where () {
+    if [ $# -eq 0 ]
+    then
+        echo first arg must be name of command
+        return
+    fi
+    T=$(type "$1" | head -n 1)
+    echo $T
+    if [[ "$T" == *"is aliased to"* ]]; then
+        rg "alias $1 ?=" ~/bin
+        read -r -p "edit? [y/N] " response
+        if [[ "$response" =~ ^([yY])$ ]]
+        then
+            rg --vimgrep "alias $1 ?=" ~/bin > vim_quickfix_list
+            vim -q vim_quickfix_list
+            rm vim_quickfix_list
+        fi
+    elif [[ "$T" == *"is a function"* ]]; then
+        rg "$1 ?\(\) ?\{" ~/bin
+        read -r -p "edit? [y/N] " response
+        if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+        then
+            rg --vimgrep "$1 ?\(\) ?\{" ~/bin > vim_quickfix_list
+            vim -q vim_quickfix_list
+            rm vim_quickfix_list
+        fi
+    elif [[ "$T" == *"is"* ]]; then
+        echo "is file or link"
+        read -r -p "edit? [y/N] " response
+        if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+        then
+            vim $(command -v $1)
+        fi
+    else
+        return # "not found"
+    fi
+}
 
