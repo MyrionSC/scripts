@@ -107,6 +107,13 @@ gccp() { # copy commit hash
 }
 alias gcpc='gccp'
 
+gccpmany() { # copy many commit hash. tab to select multiple
+    COMMIT_TO_COPY=$(git log --oneline | fzf -m | tac | awk '{print $1}')
+    echo copied $COMMIT_TO_COPY to clipholder
+    echo $COMMIT_TO_COPY | clip
+}
+alias gccpm='gccpmany'
+
 gback () { # go back in log
     if [ "$#" -eq 1 ]; then
         git checkout HEAD~$1
