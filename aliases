@@ -392,16 +392,13 @@ ffv () {
 ffrm () {
     rm $(rg -i --hidden --files -g "*$1*")
 }
-rgv () {
-    rg -i --vimgrep "$1" > vim_quickfix_list
-    vim -q vim_quickfix_list
-    rm vim_quickfix_list
-}
 rgvim () {
-    rg -i --vimgrep "$1" > vim_quickfix_list
+    rg -i --vimgrep --hidden "$1" > vim_quickfix_list
     vim -q vim_quickfix_list
     rm vim_quickfix_list
 }
+alias rgv='rgvim'
+
 # read about navigation via quickfix with 'docs vim'
 
 # quickly search aliases
@@ -882,9 +879,9 @@ where () {
     if [[ "$T" == *"is aliased to"* ]]; then
         rg "alias $1 ?=" ~/bin
         read -r -p "edit? [y/N] " response
-        if [[ "$response" =~ ^([yY])$ ]]
+        if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
         then
-            rg --vimgrep "alias $1 ?=" ~/bin > vim_quickfix_list
+            rg --vimgrep --hidden "alias $1 ?=" ~/bin ~/.bashrc > vim_quickfix_list
             vim -q vim_quickfix_list
             rm vim_quickfix_list
         fi
@@ -893,7 +890,7 @@ where () {
         read -r -p "edit? [y/N] " response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
         then
-            rg --vimgrep "$1 ?\(\) ?\{" ~/bin > vim_quickfix_list
+            rg --vimgrep --hidden "$1 ?\(\) ?\{" ~/bin ~/.bashrc > vim_quickfix_list
             vim -q vim_quickfix_list
             rm vim_quickfix_list
         fi
@@ -905,7 +902,7 @@ where () {
             vim $(command -v $1)
         fi
     else
-        return # "not found"
+        return # prints "not found"
     fi
 }
 
