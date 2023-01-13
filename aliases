@@ -23,7 +23,7 @@ bind '"\C- f":"$(fzf --height 15)"'
 bind '"\C- v":"vim $(fzf --height 15)"'
 
 bind '"\C-n":"tree"'
-bind '"\C-j":"cd $(find . -type d -print | fzf --height 30)"'
+bind '"\C-j":"cd $(fd --type d | fzf --height 30)"'
 
 # left alt bindings
 bind '"x":"| xargs -I@ "'
@@ -393,9 +393,9 @@ ffrm () {
     rm $(rg -i --hidden --files -g "*$1*")
 }
 rgvim () {
-    rg -i --vimgrep --hidden "$1" > vim_quickfix_list
-    vim -q vim_quickfix_list
-    rm vim_quickfix_list
+    rg -i --vimgrep --hidden "$1" > ~/.local/vim_quickfix_list
+    vim -q ~/.local/vim_quickfix_list
+    rm ~/.local/vim_quickfix_list
 }
 alias rgv='rgvim'
 
@@ -881,18 +881,18 @@ where () {
         read -r -p "edit? [y/N] " response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
         then
-            rg --vimgrep --hidden "alias $1 ?=" ~/bin ~/.bashrc > vim_quickfix_list
-            vim -q vim_quickfix_list
-            rm vim_quickfix_list
+            rg --vimgrep --hidden "alias $1 ?=" ~/bin ~/.bashrc > ~/.local/vim_quickfix_list
+            vim -q ~/.local/vim_quickfix_list
+            rm ~/.local/vim_quickfix_list
         fi
     elif [[ "$T" == *"is a function"* ]]; then
         rg "$1 ?\(\) ?\{" ~/bin
         read -r -p "edit? [y/N] " response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
         then
-            rg --vimgrep --hidden "$1 ?\(\) ?\{" ~/bin ~/.bashrc > vim_quickfix_list
-            vim -q vim_quickfix_list
-            rm vim_quickfix_list
+            rg --vimgrep --hidden "$1 ?\(\) ?\{" ~/bin ~/.bashrc > ~/.local/vim_quickfix_list
+            vim -q ~/.local/vim_quickfix_list
+            rm ~/.local/vim_quickfix_list
         fi
     elif [[ "$T" == *"is"* ]]; then
         echo "is file or link"
