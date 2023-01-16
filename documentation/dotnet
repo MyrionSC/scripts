@@ -5,6 +5,16 @@ var debugView = root.GetDebugView();
 Console.WriteLine(debugView);
 
 
+=== Print all registered services (In Program.cs before builder.build())
+foreach (var service in builder.Services)
+{
+    Console.WriteLine($"{service.ServiceType.FullName},{service.ImplementationType?.FullName}");
+}
+
+=== Test that service is registered correctly on upstart
+var app = builder.Build();
+var b = app.Services.GetService<IRequestHandler<GetDeviceQuery, DeviceDto?>>();
+
 
 === StringJoin extension method
 public static class Extensions

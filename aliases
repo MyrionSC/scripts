@@ -40,7 +40,7 @@ then
     alias l='exa -Fh'
     alias lf='exa -th | head -1'
 else
-    bind '"\C-k":"ls -l"'
+    bind '"\C-k":"ls -a"'
     alias ll='ls -alFh'
     alias la='ls -Ah'
     alias lt='ls -th'
