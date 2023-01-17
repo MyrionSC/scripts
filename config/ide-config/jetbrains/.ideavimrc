@@ -60,8 +60,9 @@ nmap Æ ?
 cnoremap æ <CR>
 
 inoremap <C-k> {
-inoremap <C-j> [
-inoremap <C-l> (
+inoremap <C-l> }
+inoremap <C-i> (
+inoremap <C-o> )
 
 vnoremap ( "xdi()<ESC>"xP
 vnoremap { "xdi{}<ESC>"xP
@@ -85,12 +86,12 @@ sethandler <C-D> a:vim
 sethandler <C-E> a:ide
 sethandler <C-F> a:ide
 sethandler <C-H> a:ide
-sethandler <C-I> a:ide
+sethandler <C-I> n-v:ide i:vim
 sethandler <C-J> n-v:ide i:vim
 sethandler <C-K> n-v:ide i:vim
 sethandler <C-L> n-v:vim i:vim
 sethandler <C-M> n-v:ide i:vim
-sethandler <C-O> a:ide
+sethandler <C-O> n-v:ide i:vim
 sethandler <C-P> a:ide
 sethandler <C-Q> a:ide
 sethandler <C-R> n:vim
