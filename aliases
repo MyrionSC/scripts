@@ -469,10 +469,12 @@ alias wishlist='open https://docs.google.com/document/d/1GapiFZZXzOXmDn1hb6Uy4f_
 alias hours='open https://docs.google.com/spreadsheets/d/1Z-3PQJbS1fUwjIs86l6sh5ffAfT7gtQz6pg7tfYzE2I/edit'
 
 # cat ssh config
-alias sshc='cat ~/.ssh/config'
 alias sshconf='cat ~/.ssh/config'
-alias esshc='vim ~/.ssh/config'
+alias sshc='sshconf'
 alias esshconf='vim ~/.ssh/config'
+alias esshc='esshconf'
+alias sshkeycopy='cat ~/.ssh/id_rsa.pub | clip'
+alias sshcopy='sshkeycopy'
 
 # shell timers
 countdown(){
