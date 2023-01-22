@@ -138,6 +138,14 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         webstorm () {
             cmd.exe /c 'C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\Webstorm.lnk' . &
         }
+        pycharm () {
+            cmd.exe /c 'C:\Users\%USERNAME%\scripts\pycharm_link.bat' $(cmd.exe /c echo '%cd%') &
+            # pycharm_link.bat: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\"PyCharm Professional.lnk" %1
+        }
+        intellij () {
+            cmd.exe /c 'C:\Users\%USERNAME%\scripts\intellij_link.bat' $(cmd.exe /c echo '%cd%') &
+            # intellij_link.bat: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\"IntelliJ IDEA Ultimate.lnk" %1
+        }
         delenv () {
             if [ $# -eq 0 ]
             then
