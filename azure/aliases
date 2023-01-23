@@ -1,16 +1,17 @@
+#!/usr/bin/env bash
 
 alias eazals='vim ~/bin/azure/aliases'
 
-az_show() {
+az_account_show() {
     az account show | jq .
 }
 
-az_list() {
+az_account_list() {
     az account list | jq .
 }
 
 # subs
-az_change_sub () {
+az_account_change_sub () {
     NAME=$(az account list | jq '.[].name' | fzf --height 15)
     SUB=$(az account list | jq ".[] | select(.name==$NAME)")
     az account set --subscription $(echo $SUB | jq .id | sed -e 's/^.//' -e 's/.$//')
@@ -18,44 +19,18 @@ az_change_sub () {
     echo $SUB | jq .
 }
 
-az_mst_logstream_prod() {
-    az webapp log tail --resource-group MST-VanDa-DataUd --name mst-dataud-prod-api-app
+az_logstream() {
+    az webapp log tail --resource-group RG --name WebAppName
 }
 
-# list tasks
-az_dss_list() {
-    az boards query --id 5ecc509d-29d7-496f-8bd4-5d8868801227
-}
-az_dss_open() {
-    TASKS=$(az_dss_list)
-    ID=$(echo "$TASKS" | jq -r '.[].fields | (."System.Id"|tostring) + " " + ."System.WorkItemType" + " " + ."System.State" + " - " + ."System.Title"' | fzf | awk '{print $1}')
-    cmd /c "start msedge https://dev.azure.com/dssdk/Azure%20Integration/_workitems/edit/$ID"
-}
-
-# MST tasks
-az_tasks_open() {
-    cmd /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/$1
-}
-az_tasks_show() {
-    az boards work-item show --id $1
-}
 az_tasks_create_story() {
     az boards work-item create \
         --title "$@" \
         --type "Product Backlog Item" \
-        --fields "System.IterationId=211" "System.IterationLevel1=VanDa-MST-DataUd" "System.IterationLevel2=Sprint\ 4" | tee ~/.cache/az_tasks_create
+        --fields "System.IterationId=211" "System.IterationLevel1=ProjName" "System.IterationLevel2=Sprint\ X" | tee ~/.cache/az_tasks_create
     NAME=$(cat ~/.cache/az_tasks_create | jq '.["fields"]["System.Title"]' | tr " " "-" | tr -d ":" | tr -d "\"")
     ID=$(cat ~/.cache/az_tasks_create | jq .id)
     git co -b "story/$ID-$NAME"
-    cmd.exe /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/$ID
+    cmd.exe /c start https://dev.azure.com/SUB/_workitems/edit/$ID
 }
-az_tasks_create_bug() {
-    az boards work-item create \
-        --title "$@" \
-        --type "Bug" \
-        --fields "System.IterationId=211" "System.IterationLevel1=VanDa-MST-DataUd" "System.IterationLevel2=Sprint\ 4" | tee ~/.cache/az_tasks_create
-    NAME=$(cat ~/.cache/az_tasks_create | jq '.["fields"]["System.Title"]' | tr " " "-" | tr -d ":" | tr -d "\"")
-    ID=$(cat ~/.cache/az_tasks_create | jq .id)
-    git co -b "bug/$ID-$NAME"
-    cmd.exe /c start https://dev.azure.com/miljoestyrelsen/VanDa-MST-DataUd/_workitems/edit/$ID
-}
+

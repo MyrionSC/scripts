@@ -52,6 +52,7 @@ alias gcan!='git commit -v -a --no-edit --amend'
 alias gcans!='git commit -v -a -s --no-edit --amend'
 alias gcm='git commit -m'
 alias gcam='git commit -m'
+alias cam='git commit -m'
 alias gcsm='git commit -s -m'
 
 alias gcf='git config --list'
