@@ -1,0 +1,15 @@
+
+
+// === Reading and writing to files
+const fs = require("fs");
+function readFromFile(path) {
+    return fs.readFileSync(path, "utf-8")
+}
+function writeToFile(path, inp) {
+    fs.writeFileSync(path, typeof inp === "object" ? JSON.stringify(inp) : inp)
+}
+module.exports = {
+    writeToFile: writeToFile,
+    readFromFile: readFromFile
+}
+
