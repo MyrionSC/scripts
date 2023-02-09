@@ -1,5 +1,12 @@
 
 
+// === Measuring time
+const start = new Date().getTime();
+// Do something
+const end = new Date().getTime();
+console.log(`did something in ${end - start} ms`)
+
+
 // === Reading and writing to files
 const fs = require("fs");
 function readFromFile(path) {
