@@ -161,6 +161,19 @@ com! LoadBuffers :args `rg --hidden --files`
 " save all buffers. If not able to, like if unnamed file exists, write message
 nnoremap <silent> <C-m> :try\|wa\|catch /\<E141\>/\|echomsg 'Not all files saved!'\|endtry<CR>
 
+" opens a new empty buffer
+" nmap <leader>t :enew<CR>
+" " moves to the next buffer
+" nmap <leader>l :bnext<CR>
+" " moves to the previous buffer
+" nmap <leader>h :bprevious<CR>
+" " closes the current buffer, moves to the previous one
+" nmap <leader>bd :bd<CR>
+" " forces buffer close
+" nmap <leader>BD :bd!<CR>
+" shows all open buffers and their status
+
+
 " edit vimrc from vim
 nmap <leader>v :tabe ~/.vimrc<CR>
 autocmd bufwritepost .vimrc source ~/.vimrc

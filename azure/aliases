@@ -5,6 +5,7 @@ alias eazals='vim ~/bin/azure/aliases'
 az_account_show() {
     az account show | jq .
 }
+alias az_sub='az_show'
 
 az_account_list() {
     az account list | jq .

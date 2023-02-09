@@ -28,6 +28,7 @@ bind '"\C-j":"cd $(fd --type d | fzf --height 30)"'
 # left alt bindings
 bind '"x":"| xargs -I@ "'
 bind '"g":"| grep "'
+bind '"v":"| vim -"'
 bind '"d":"$(date -u +\"%Y-%m-%d\")"'
 
 # bind ctrl-k to exa or ls -l
@@ -94,6 +95,7 @@ alias nre='npm run env'
 alias df='df -Th'
 alias writer='lowriter'
 alias work='cd ~/winhome/work'
+alias components='cd ~/winhome/source/components'
 alias notes='cd ~/notes'
 alias todo='start https://docs.google.com/document/d/153zkJW6oph4Av4q495SS5dufi3Z5L79GP6koM0jKI1w/edit#'
 
@@ -131,6 +133,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias npx='cmd.exe /c npx'
         alias dotnet='cmd.exe /c dotnet'
         alias gradlew='cmd.exe /c gradlew'
+        alias func='func.exe'
         alias es='cmd.exe /c es'
         rider () {
             cmd.exe /c 'C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\"Start Menu"\Programs\"JetBrains Toolbox"\Rider.lnk' . &
