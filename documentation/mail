@@ -10,7 +10,7 @@ mailhub=smtp.gmail.com:587
 rewriteDomain=gmail.com
 hostname=HOSTNAME (whatever hostname command returns)
 AuthUser=GMAIL_USERNAME@gmail.com
-AuthPass=GMAIL_PASSWORD
+AuthPass=GMAIL_PASSWORD # this is an app password, see https://support.google.com/accounts/answer/185833?visit_id=638119677323478847-192443726&p=InvalidSecondFactor&rd=1#
 FromLineOverride=YES
 UseTLS=YES
 UseSTARTTLS=YES
@@ -21,7 +21,60 @@ root:GMAIL_USERNAME@gmail.com:smtp.gmail.com:587
 localuser:GMAIL_USERNAME@gmail.com:smtp.gmail.com:587
 
 
-##### To send mail:
+# To send mail:
 
 echo "test" | mail -s "subject" recipient@mail.com
 
+
+
+
+
+########### Send mail via Python flask server:
+#!/usr/bin/env python3
+
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import json
+from flask import Flask, request
+
+app = Flask(__name__)
+PRIVATE_PW = "SOME_GUID"
+
+def send_mail(subject, mail_content, sender_address, receiver_address):
+    message = MIMEMultipart()
+    message['From'] = sender_address
+    message['To'] = receiver_address
+    message['Subject'] = subject
+    message.attach(MIMEText(mail_content, 'html'))
+
+    session = smtplib.SMTP('smtp.gmail.com', 587)
+    session.starttls()
+    session.login('GMAIL_USERNAME@gmail.com', 'GMAIL_APP_PASSWORD')
+    session.sendmail(sender_address, receiver_address, message.as_string())
+    session.quit()
+
+@app.route('/sendmail', methods=['POST'])
+def index():
+    auth_header = request.headers.get('Authorization')
+    if not auth_header:
+        print("no auth header")
+        return json.dumps({"message":"No Authorization header. Should be format 'Bearer xxxx'."}), 401
+
+    if not auth_header.split(" ")[1] or auth_header.split(" ")[1] != PRIVATE_PW:
+        return json.dumps({"message":"Password is not correct"}), 401
+
+    body = json.loads(request.data)
+    print(body)
+
+    if not 'subject' in body or not 'content' in body or not 'sender' in body or not 'receiver' in body:        return json.dumps({"message":"bodyformat is not correct, should be as in example", "example": {"subject": "some_subject", "content":"<h1>some content</h1>", "sender":"sender@mail.com", "receiver":"receiver@mail.com"}}), 400
+
+    subject = body['subject']
+    mail_content = body['content']
+    sender_address = body['sender']
+    receiver_address = body['receiver']
+    send_mail(subject, mail_content, sender_address, receiver_address)
+
+    return json.dumps({'message': f"sent mail from '{sender_address}' to '{receiver_address}' with subject '{subject}'"})
+
+app.run()
