@@ -76,7 +76,16 @@ alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
 alias gcps='git cherry-pick --skip'
 
-alias gco='git checkout'
+gco() { # checkout local branch
+    if [ "$#" -gt 0 ]; then
+        git checkout $1
+    else
+        COMMIT=$(git log --format="%C(auto)%h %s (%ae, %aI)" | fzf --no-sort --height 30 | awk '{print $1}')
+        git checkout $COMMIT
+    fi
+}
+alias gcoc='gco'
+#alias gco='git checkout'
 alias gcb='git checkout -b'
 #alias gcob='git checkout -b'
 alias gcom='git checkout master || git checkout main'

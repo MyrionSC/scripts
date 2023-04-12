@@ -85,8 +85,12 @@ alias ns='npm start'
 nr () {
     if [ $# -eq 0 ]; then
         SCRIPT=$(cmd /c npm run | fzf --tac)
+        history -s npm run $ID
+        echo npm run $ID >> ~/.persistent_history
         cmd.exe /c npm run $SCRIPT
     else
+        history -s npm run $1
+        echo npm run $1 >> ~/.persistent_history
         cmd.exe /c npm run $1
     fi
 }
@@ -918,6 +922,7 @@ where () {
         return # prints "not found"
     fi
 }
+alias wh='where'
 
 alias debinstall='sudo dpkg -i'
 alias chx='chmod +x'
