@@ -79,6 +79,8 @@ alias ash='apt show' # apt show pckgname - shows information about a package
 alias av='apt-cache policy'
 
 alias ni='npm install'
+alias nis='npm install --save'
+alias nisd='npm install --save-dev'
 alias nrm='npm remove'
 alias ns='npm start'
 # alias nr='npm run'
@@ -749,6 +751,7 @@ pskill() {
     done
 }
 alias pk='pskill'
+alias pkill='pskill'
 alias psk='pskill'
 
 alias sysvar='cmd /c rundll32 sysdm.cpl,EditEnvironmentVariables'
