@@ -925,7 +925,7 @@ where () {
         return # prints "not found"
     fi
 }
-alias wh='where'
+alias whe='where'
 
 alias debinstall='sudo dpkg -i'
 alias chx='chmod +x'
