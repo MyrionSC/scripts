@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+cat << EndOfMessage
+    Procmon64.exe - GUI, shows systemcalls
+    PsExec.exe - Execute processes remotely, PsExec executes a program on a remote system, where remotely executed console applications execute interactively
+    findhandle - finds the process with given filehandle
+    handle.exe - show, search for and close filehandles
+    killpid - kills process by ID (first arg should be PID)
+    killport - kills the process running on a port (first arg should be port nr)
+    less.exe - show large files
+    pslist.exe - show list of running processes
+EndOfMessage
+
