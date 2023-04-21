@@ -7,6 +7,7 @@ if [ -z "$1" ]; then
     echo "ang2-ts-server"
     echo "blazor-presentation"
     echo "clipfit-badminton-printer"
+    echo "coding-assistant"
     echo "coffeebreak-calendar"
     echo "components"
     echo "databricks-navigation-chrome-extension"
