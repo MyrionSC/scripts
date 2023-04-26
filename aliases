@@ -174,10 +174,10 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         export DESK=~/winhome/Desktop
 
         winpath () {
-            cmd /c path | sed 's/;/\n/g' | fzf
+            cmd.exe /c path | sed 's/;/\n/g' | fzf
         }
         winpwd () {
-            cmd /c echo %cd%
+            cmd.exe /c echo %cd%
         }
         winxp () { # Copy windows path of dir/file
             if [ -z "$1" ]; then
@@ -187,7 +187,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
             fi
             P=$(echo $P | sed -e 's/\//\\/g' | sed -e 's/\\mnt\\c/C:/')
             echo "copied $P"
-            echo -n $P | clip
+            echo -n $P | clip.exe
         }
         alias pc="winxp"
         alias curl='cmd.exe /c curl' # use cmd curl in wsl because of localhost problems

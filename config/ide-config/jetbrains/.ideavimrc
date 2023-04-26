@@ -14,6 +14,7 @@
 set ignorecase smartcase " ignores case if all lowercase, does not if one or more uppercase. ignorecase must be set as well.
 set incsearch hlsearch " search highlight while typing
 set clipboard+=unnamedplus
+set idearefactormode=keep
 
 " === ideavim plugin emulators
 " docs: https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
@@ -37,11 +38,9 @@ nnoremap <leader>r :action IdeaVim.ReloadVimRc.reload<CR>
 nnoremap <leader>v :action VimActions<CR>
 nmap <leader>h <action>(PreviousTab)
 nmap <leader>l <action>(NextTab)
-nmap <leader>bd <action>(CloseEditor)
 nmap <leader>i <action>(Generate)
 nmap <leader>m <action>(Git.Menu)
 nmap <leader>s <action>(QuickChangeScheme)
-nmap <leader>e <action>(GotoNextError)
 " TODO: open livetemplates for current language
 
 noremap H ^
