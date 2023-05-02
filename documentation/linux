@@ -79,6 +79,7 @@ After=network.target
 
 [Service]
 Type=simple
+WorkingDirectory=/abs/path/to
 ExecStart=/usr/bin/python3 /abs/path/to/script.py --arg argvalue
 StandardOutput=file:/abs/path/to/logfile.log
 StandardError=file:/abs/path/to/logfile.log
