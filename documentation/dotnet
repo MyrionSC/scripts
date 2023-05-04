@@ -191,3 +191,73 @@ public class ContentLogMiddleware
 
 
 
+=== ErrorHandlerMiddleware
+
+= In Program.cs
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
+= In ErrorHandlerMiddleware.cs
+namespace InternalAPI.Middleware;
+
+public class ErrorHandlerMiddleware
+{
+    private readonly RequestDelegate _next;
+    private readonly ILogger<ErrorHandlerMiddleware> _logger;
+
+    public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger)
+    {
+        _next = next;
+        _logger = logger;
+    }
+
+    public async Task Invoke(HttpContext context)
+    {
+        try
+        {
+            await _next(context);
+        }
+        catch (Exception error)
+        {
+            // If transaction-id header is not set, it is empty string.
+            var transactionId = context.Request.Headers["transaction-id"].ToString();
+            _logger.LogError(0, error, "{TransactionId} === ErrorHandlerMiddleware: {message}", transactionId, error.Message);
+            
+            var response = context.Response;
+            response.ContentType = "application/json";
+            response.StatusCode = GetHttpStatusCode(error);
+            await response.WriteAsync(JsonConvert.SerializeObject(new { message = error.Message }));
+        }
+    }
+
+    private static int GetHttpStatusCode(Exception error)
+    {
+        switch(error)
+        {
+            case BadHttpRequestException e:
+                return (int)HttpStatusCode.BadRequest;
+            case ArgumentException e:
+                return (int)HttpStatusCode.BadRequest;
+            case ApplicationException e:
+                return (int)HttpStatusCode.BadRequest;
+            case ForbiddenAccessException e:
+                return (int)HttpStatusCode.Unauthorized;
+            case UnauthorizedAccessException e:
+                return (int)HttpStatusCode.Unauthorized;
+            case KeyNotFoundException e:
+                return (int)HttpStatusCode.NotFound;
+            case NotFoundException:
+                return (int)HttpStatusCode.NotFound;
+            default:
+                return (int)HttpStatusCode.InternalServerError;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
