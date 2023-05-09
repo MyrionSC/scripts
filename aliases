@@ -19,6 +19,10 @@ PATH=$PATH:~/.local/bin
 bind -m vi-insert "\C-l":clear-screen
 # ctrl-space is bind <leader> for now
 
+# == Small bind docs:
+# - bind -S: see binds
+# - bind -P: see commands (bound and not)
+
 bind '"\C- f":"$(fzf --height 15)"'
 bind '"\C- v":"vim $(fzf --height 15)"'
 
@@ -654,7 +658,7 @@ log_bash_persistent_history()
   local command_part="${BASH_REMATCH[1]}"
   if [ "$command_part" != "$PERSISTENT_HISTORY_LAST" ]
   then
-    echo "$command_part" >> ~/.persistent_history
+    echo "$PWD $command_part" >> ~/.persistent_history
     export PERSISTENT_HISTORY_LAST="$command_part"
   fi
 }
@@ -670,7 +674,8 @@ PROMPT_COMMAND="run_on_prompt_command"
 # keybinding to search in persistent history
 __fzf_persistent_history__() {
   local output
-  output=$(tac ~/.persistent_history | fzf --no-sort)
+  # removes first line which is now path command was called from
+  output=$(tac ~/.persistent_history | sed 's/[^ ]* *//' | fzf --no-sort)
   # below put output on prompt
   READLINE_LINE=${output#*$'\t'}
   if [ -z "$READLINE_POINT" ]; then
@@ -679,10 +684,24 @@ __fzf_persistent_history__() {
     READLINE_POINT=0x7fffffff
   fi
 }
-# bind to ctrl-p because alt-r is taken
+
+# keybinding to search in persistent history in current dir
+__fzf_persistent_history_in_dir__() {
+  local output
+  # maybe futurework: filter by current dir, then by parent dir, then by child dirs
+  output=$(tac ~/.persistent_history | grep "^$PWD" | sed 's/[^ ]* *//' | fzf --no-sort)
+  # below put output on prompt
+  READLINE_LINE=${output#*$'\t'}
+  if [ -z "$READLINE_POINT" ]; then
+    echo "$READLINE_LINE"
+  else
+    READLINE_POINT=0x7fffffff
+  fi
+}
+
 bind -m emacs-standard -x '"\C-p": __fzf_persistent_history__'
-bind -m vi-command -x '"\C-p": __fzf_persistent_history__'
-bind -m vi-insert -x '"\C-p": __fzf_persistent_history__'
+# see if ctrl-o breaks anything
+bind -m emacs-standard -x '"": __fzf_persistent_history_in_dir__'
 
 # register hook that saves last pwd to cachefile
 settitle () {
@@ -693,7 +712,6 @@ LASTPWD=~/.cache/last-pwd.txt
 typeset -g CHPWD_COMMAND=""
 _chpwd_hook() {
   echo "$PWD" > "$LASTPWD"
-  # TODO: title only end or x chars
   settitle "$PWD"
 }
 PROMPT_COMMAND="_chpwd_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
