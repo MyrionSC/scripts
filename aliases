@@ -93,11 +93,11 @@ nr () {
     if [ $# -eq 0 ]; then
         SCRIPT=$(cmd /c npm run | fzf --tac)
         history -s npm run $ID
-        echo npm run $ID >> ~/.persistent_history
+        echo $PWD npm run $ID >> ~/.persistent_history
         cmd.exe /c npm run $SCRIPT
     else
         history -s npm run $1
-        echo npm run $1 >> ~/.persistent_history
+        echo $PWD npm run $1 >> ~/.persistent_history
         cmd.exe /c npm run $1
     fi
 }
