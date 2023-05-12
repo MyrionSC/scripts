@@ -689,7 +689,7 @@ __fzf_persistent_history__() {
 __fzf_persistent_history_in_dir__() {
   local output
   # maybe futurework: filter by current dir, then by parent dir, then by child dirs
-  output=$(tac ~/.persistent_history | grep "^$PWD" | sed 's/[^ ]* *//' | fzf --no-sort)
+  output=$(tac ~/.persistent_history | grep "^$PWD " | sed 's/[^ ]* *//' | fzf --no-sort)
   # below put output on prompt
   READLINE_LINE=${output#*$'\t'}
   if [ -z "$READLINE_POINT" ]; then
