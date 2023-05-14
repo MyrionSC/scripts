@@ -822,6 +822,13 @@ pywatch() {
     fi
     watch  -c -- python "$@"
 }
+nodewatch() {
+    if [ -z "$1" ]; then
+        echo "first arg must be node file followed by optional args"
+        return
+    fi
+    watch  -c -- node "$@"
+}
 
 # apt install trash-cli. trash ends up in ~/.local/share/Trash/. use trash-list to list. trash-restore to restore.
 rm() {
@@ -949,4 +956,6 @@ alias debinstall='sudo dpkg -i'
 alias chx='chmod +x'
 
 alias wt='wintools'
+
+alias pers='cat ~/.persistent_history'
 

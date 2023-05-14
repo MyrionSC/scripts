@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+DIR=~/winhome/.cache/textgen
 if [ -z "$1" ]; then
-    echo first arg should be name of textgen template
-    echo if first parameter is -p, do not edit template, just play it
+    echo first arg should be name of textgen template, either .py or .js
+    echo - files end up in $DIR
+    echo if first parameter is -p, do not edit template, just watch it
     exit
 fi
 
@@ -17,12 +19,23 @@ FILE="$DIR/$1"
 mkdir -p "$DIR" # create dir if not exists
 
 if [ ! -f "$FILE" ]; then
-    cp ~/bin/textgen/textgen_template.py $FILE
+    if [[ $FILE == *.py ]]; then
+        cp ~/bin/textgen/textgen_python_template.py $FILE
+    elif [[ $FILE == *.js ]]; then
+        cp ~/bin/textgen/textgen_node_template.js $FILE
+    else
+        echo only python and node textgen supported
+        exit
+    fi
 fi
 
 if [ -z $NO_EDIT ]; then
     vim $FILE
 fi
 
-python3 $FILE
+if [[ $FILE == *.py ]]; then
+    cmd.exe /c watchexec python C:\\Users\\%USERNAME%\\.cache\\textgen\\$1 -c
+else
+    cmd.exe /c watchexec node C:\\Users\\%USERNAME%\\.cache\\textgen\\$1 -c
+fi
 
