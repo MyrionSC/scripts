@@ -4,7 +4,8 @@ DIR=~/winhome/.cache/textgen
 if [ -z "$1" ]; then
     echo first arg should be name of textgen template, either .py or .js
     echo - files end up in $DIR
-    echo if first parameter is -p, do not edit template, just watch it
+    echo if first parameter is -p, do not edit template, just play it
+    echo if -w is set, watch it
     exit
 fi
 
@@ -33,9 +34,18 @@ if [ -z $NO_EDIT ]; then
     vim $FILE
 fi
 
-if [[ $FILE == *.py ]]; then
-    cmd.exe /c watchexec python C:\\Users\\%USERNAME%\\.cache\\textgen\\$1 -c
+read -r -p "Watch? [y/N] " WATCH
+if [[ "$WATCH" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    if [[ $FILE == *.py ]]; then
+        cmd.exe /c watchexec python C:\\Users\\%USERNAME%\\.cache\\textgen\\$1 -c
+    else
+        cmd.exe /c watchexec node C:\\Users\\%USERNAME%\\.cache\\textgen\\$1 -c
+    fi
 else
-    cmd.exe /c watchexec node C:\\Users\\%USERNAME%\\.cache\\textgen\\$1 -c
+    if [[ $FILE == *.py ]]; then
+        cmd.exe /c python C:\\Users\\%USERNAME%\\.cache\\textgen\\$1 -c
+    else
+        cmd.exe /c node C:\\Users\\%USERNAME%\\.cache\\textgen\\$1 -c
+    fi
 fi
 

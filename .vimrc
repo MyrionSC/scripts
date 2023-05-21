@@ -500,6 +500,9 @@ vnoremap K :m '<-2<CR>gv=gv
 
 com! -bar SingleLine :%s/\n// | %s/\t/ /e | %s/ \+/ /
 
-
 set visualbell
+
+set hlsearch
+hi Search term=reverse cterm=underline ctermfg=2 ctermbg=none guifg=Black guibg=Yellow
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
