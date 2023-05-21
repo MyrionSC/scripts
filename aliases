@@ -650,6 +650,7 @@ ahk () { # edit and launch autohotkey script
 
 # === persistent history, credits to https://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash
 # export HISTTIMEFORMAT="%F %T  " # changes history format to include datetime ## messes with new sysz
+do_not_persist_array=("ls" "bin" "gp" "gst" "gaa" "gd" "eals" "rbc")
 log_bash_persistent_history()
 {
   [[
@@ -658,8 +659,14 @@ log_bash_persistent_history()
   local command_part="${BASH_REMATCH[1]}"
   if [ "$command_part" != "$PERSISTENT_HISTORY_LAST" ]
   then
-    echo "$PWD $command_part" >> ~/.persistent_history
-    export PERSISTENT_HISTORY_LAST="$command_part"
+      # Don't persist very common commands
+      for substring in "${do_not_persist_array[@]}"; do
+          if [[ "$command_part" == "$substring" ]]; then
+              return
+          fi
+      done
+      echo "$PWD $command_part" >> ~/.persistent_history
+      export PERSISTENT_HISTORY_LAST="$command_part"
   fi
 }
 
