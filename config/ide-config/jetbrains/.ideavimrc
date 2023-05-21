@@ -11,8 +11,6 @@
 
 " === Common settings
 " docs: https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
-set ignorecase smartcase " ignores case if all lowercase, does not if one or more uppercase. ignorecase must be set as well.
-set incsearch hlsearch " search highlight while typing
 set clipboard+=unnamedplus
 set idearefactormode=keep
 
@@ -54,10 +52,6 @@ vnoremap P "0P
 inoremap jk <ESC>
 inoremap kj <ESC>
 
-nmap æ /
-nmap Æ ?
-cnoremap æ <CR>
-
 inoremap <C-k> {
 inoremap <C-l> }
 inoremap <C-i> (
@@ -68,6 +62,14 @@ vnoremap { "xdi{}<ESC>"xP
 vnoremap [ "xdi[]<ESC>"xP
 vnoremap " "xdi""<ESC>"xP
 vnoremap ' "xdi''<ESC>"xP
+
+" Search
+set ignorecase smartcase " ignores case if all lowercase, does not if one or more uppercase. ignorecase must be set as well.
+set incsearch hlsearch " search highlight while typing
+nnoremap <silent> <leader> :nohlsearch<ENTER>
+nmap æ /
+nmap Æ ?
+cnoremap æ <CR>
 
 " IDE specific (see examples: https://github.com/JetBrains/ideavim#ide-specific-options)
 if has('ide')
