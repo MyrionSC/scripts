@@ -40,3 +40,46 @@ var allCSS = [].slice.call(document.styleSheets)
     }
   }, '');
 
+
+
+// === Useful extension methods
+// Put in file 'extensions.js' and use 'import extensions.js' in index.js
+
+/** Wrapper for Object.keys. Return list of values of object */
+Object.defineProperty(Object.prototype, "getValues", {
+    value: function getValues() {
+        return Object.values(this)
+    },
+    writable: false,
+    enumerable: false
+});
+
+/** Wrapper for Object.keys. Return list of keys of object */
+Object.defineProperty(Object.prototype, "getKeys", {
+    value: function getKeys() {
+        return Object.keys(this)
+    },
+    writable: false,
+    enumerable: false
+});
+
+/** Wrapper for Object.entries. Returns list of 2 item lists, where first is key, second value */
+Object.defineProperty(Object.prototype, "toList", {
+    value: function toList() {
+        return Object.entries(this)
+    },
+    writable: false,
+    enumerable: false
+});
+
+/** Wrapper for Object.fromEntries. Returns object from list of 2 item lists, where first is key, second value */
+Object.defineProperty(Array.prototype, "toMap", {
+    value: function toMap() {
+        // TODO: maybe take optional parameters to set key, value
+        return Object.fromEntries(this)
+    },
+    writable: true,
+    enumerable: false
+});
+
+
