@@ -35,6 +35,7 @@ bind '"g":" | grep "'
 bind '"v":" | vim -"'
 bind '"d":"$(date -u +\"%Y-%m-%d\")"'
 bind '"s":" | clip"'
+bind '"f":"vim $(find | fzf --height 15)"'
 
 # bind ctrl-k to exa or ls -l
 if command -v exa &> /dev/null
