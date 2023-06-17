@@ -118,6 +118,7 @@ if [ ! -d $USERPROFILE\\cache ]; then
     echo folder does not exist
 fi
 shorthand to create dir (and parents) if not exists: mkdir -p /path/to/dir
+- If dir already exists, do nothing
 
 # get path of current script
 SCRIPTPATH=$(realpath $(dirname $0))
@@ -133,4 +134,7 @@ then
 else
     do_something_else
 fi
+
+# see difference between two strings
+diff  <(echo "$HASH" ) <(echo "$CACHEHASH")
 

@@ -92,10 +92,27 @@ alias ns='npm start'
 # alias nr='npm run'
 nr () {
     if [ $# -eq 0 ]; then
-        SCRIPT=$(cmd /c npm run | fzf --tac)
+        mkdir -p /home/$USER/.local/nr
+        CACHEFILE="/home/$USER/.local/nr/$(basename $PWD)"
+        CACHEHASHFILE="/home/$USER/.local/nr/$(basename $PWD)_hash"
+
+        HASH=$(sha1sum package.json | awk '{print $1}')
+        CACHEHASH=$(cat $CACHEHASHFILE 2> /dev/null)
+
+        if [[ $HASH == $CACHEHASH ]]
+        then
+            echo package.json has not changed, using cache
+            ID=$(cat $CACHEFILE | fzf --tac)
+        else
+            echo package.json has changed
+            echo $HASH > $CACHEHASHFILE
+            cmd /c npm run > $CACHEFILE
+            ID=$(cat $CACHEFILE | fzf --tac)
+        fi
+
         history -s npm run $ID
         echo $PWD npm run $ID >> ~/.persistent_history
-        cmd.exe /c npm run $SCRIPT
+        cmd.exe /c npm run $ID
     else
         history -s npm run $1
         echo $PWD npm run $1 >> ~/.persistent_history
