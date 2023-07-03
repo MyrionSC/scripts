@@ -8,4 +8,6 @@ jq '.[] | select(.location=="Stockholm") | .name'
 # change value to field, leaving everything else the same and write to file (field does not have to exist)
 cat 000301837190.json | jq ".schemaCell[].toolValues.photoApplicable = true" >> temp.json
 
+# if you get output looking like "null someField" when piping, it is probably because lineshift is added or something
+#  use ' // empty' in query to handle that. example: echo $OUT | jq '.exp // empty')
 

@@ -106,7 +106,7 @@ nr () {
         else
             echo package.json has changed
             echo $HASH > $CACHEHASHFILE
-            cmd /c npm run > $CACHEFILE
+            cmd.exe /c npm run > $CACHEFILE
             ID=$(cat $CACHEFILE | fzf --tac)
         fi
 
@@ -894,7 +894,10 @@ jwtd() {
     if [ $# -eq 0 ]
     then
         powershell.exe -command "Get-Clipboard" > ~/winhome/.cache/jwtd_input.json
-        cat ~/winhome/.cache/jwtd_input.json | jq -R 'split(".") | .[0],.[1] | @base64d | fromjson'
+        OUT=$(cat ~/winhome/.cache/jwtd_input.json | jq -R 'split(".") | .[0],.[1] | @base64d | fromjson')
+        echo $OUT | jq
+        EXP=$(echo $OUT | jq '.exp // empty')
+        echo Expiry time: $(date -d @$EXP)
     else
         jq -R 'split(".") | .[0],.[1] | @base64d | fromjson' <<< "${1}"
     fi

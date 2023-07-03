@@ -63,7 +63,7 @@ alias gcl='git clone --recursive'
 gclean() {
     [ -z "$(git clean -dn)" ] && echo Nothing to clean && return
     git clean -dn
-    read -p "delete shown files and dirs? [y/n]" -n 1 -r
+    read -p "delete shown files and dirs? [y/N]" -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
