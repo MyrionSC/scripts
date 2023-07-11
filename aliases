@@ -987,3 +987,61 @@ alias wt='wintools'
 
 alias pers='cat ~/.persistent_history'
 
+
+# === Airmaster
+web() {
+  cd /mnt/c/Users/Martin/source/airmaster/airlinq-web
+}
+web_run() {
+  cd /mnt/c/Users/Martin/source/airmaster/airlinq-web
+  npm run start_local
+}
+web_run_dev_local() {
+  cd /mnt/c/Users/Martin/source/airmaster/airlinq-web
+  npm run start_dev_local
+}
+web_run_prod_local() {
+  cd /mnt/c/Users/Martin/source/airmaster/airlinq-web
+  npm run start_prod_local
+}
+web_pipe() {
+  start https://dev.azure.com/airmasteras/AirlinqOnline/_build?definitionId=2
+}
+legacyapi() {
+  cd /mnt/c/Users/Martin/source/airmaster/airlinq-legacy-api
+  npm start
+}
+
+api() {
+  cd /mnt/c/Users/Martin/source/airmaster/airlinq-api
+}
+api_run() {
+  cd /mnt/c/Users/Martin/source/airmaster/airlinq-api
+  dotnet watch --project src/UI/InternalAPI/
+}
+api_run_dev() {
+  cd /mnt/c/Users/Martin/source/airmaster/airlinq-api
+  dotnet watch run --project src/UI/InternalAPI/ --launch-profile InternalAPIDevelopment
+}
+api_run_prod() {
+  cd /mnt/c/Users/Martin/source/airmaster/airlinq-api
+  dotnet watch run --project src/UI/InternalAPI/ --launch-profile InternalAPIProduction
+}
+api_health_prod() {
+    curl --silent https://web-api.airlinq.eu/health | jq
+}
+api_health_test() {
+    curl --silent https://api-web-test.airlinq.eu/health | jq
+}
+api_pipe() {
+    start https://dev.azure.com/airmasteras/AirlinqOnline/_build?definitionId=9
+}
+api_swagger() {
+    start https://api-web-test.airlinq.eu/swagger
+}
+
+alias jmeter='cmd.exe /c jmeter'
+alias func='cmd.exe /c func.exe'
+
+
+
