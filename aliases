@@ -151,6 +151,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         }
         alias cmd='cmd.exe'
         alias open='cmd.exe /C start'
+        alias o='cmd.exe /C start'
         alias start='cmd.exe /C start'
         alias clip='clip.exe'
         alias winhome='cd ~/winhome'
@@ -673,7 +674,7 @@ ahk () { # edit and launch autohotkey script
 
 # === persistent history, credits to https://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash
 # export HISTTIMEFORMAT="%F %T  " # changes history format to include datetime ## messes with new sysz
-do_not_persist_array=("ls" "bin" "gp" "gst" "gaa" "gd" "gb" "eals" "rbc")
+do_not_persist_array=("ls" "bin" "gp" "gst" "gaa" "gd" "gb" "eals" "rbc" "gl" "zz" "ca" "cb")
 log_bash_persistent_history()
 {
   [[
@@ -1047,6 +1048,4 @@ api_swagger() {
 
 alias jmeter='cmd.exe /c jmeter'
 alias func='cmd.exe /c func.exe'
-
-
 
