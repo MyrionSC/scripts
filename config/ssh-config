@@ -1,0 +1,13 @@
+
+Host marand
+    HostName 157.90.255.75
+    User marand
+
+Host nuc
+    HostName 192.168.87.177
+    User marand
+
+Host cronpup
+    HostName 157.90.255.75
+    User cronpup
+
