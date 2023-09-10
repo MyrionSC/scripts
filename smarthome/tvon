@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-hs100.sh -i 192.168.87.166 on
-
