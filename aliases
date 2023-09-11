@@ -90,9 +90,11 @@ alias ash='apt show' # apt show pckgname - shows information about a package
 alias av='apt-cache policy'
 
 alias ni='npm install'
+alias nig='npm install --global'
 alias nis='npm install --save'
 alias nisd='npm install --save-dev'
 alias nrm='npm remove'
+alias nrmg='npm remove --global'
 alias ns='npm start'
 # alias nr='npm run'
 nr () {

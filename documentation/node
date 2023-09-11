@@ -20,3 +20,58 @@ module.exports = {
     readFromFile: readFromFile
 }
 
+
+// === sqlite3 extension to await query
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('mydb.db');
+function getQueryFunc() {
+    return function (sql, params = []) {
+        const that = this;
+        return new Promise(function (resolve, reject) {
+            that.all(sql, params, function (error, rows) {
+                if (error)
+                    reject(error);
+                else
+                    resolve(rows);
+            });
+        });
+    };
+}
+db.query = getQueryFunc();
+await db.query("CREATE TABLE IF NOT EXISTS t1(c1 TEXT, c2 TEXT)")
+await db.query("INSERT INTO t1 (c1, c2) VALUES (?, ?)", ['hello', 'world'])
+
+
+// === Cosmosdb query
+const {CosmosClient} = require('@azure/cosmos')
+const endpoint = process.env.COSMOS_API_URL
+const key = process.env.COSMOS_API_KEY
+const database = process.env.COSMOS_DB
+const client = new CosmosClient({endpoint, key})
+const container = client.database(database).container("containername")
+async function executeContainerStringQuery(container, queryString) {
+    const querySpec = {query: queryString, parameters: []};
+    return (await container.items.query(querySpec).fetchAll()).resources;
+}
+let res = await executeContainerStringQuery(container, `SELECT c.id FROM c WHERE c.type = 'sometype'`);
+
+
+// === Table storage client
+const getTableClientFromConnStringAndName = function getTableClientFromConnStringAndName(dataTables, connString, tableName) {
+    const {TableClient} = dataTables
+    return TableClient.fromConnectionString(connString, tableName)
+}
+const saveObjectToTableStorageRow = async function saveObjectToTableStorageRow(tableClient, partitionKey, rowKey, objToSave) {
+    const tableRowObj = {partitionKey: partitionKey, rowKey: rowKey, ...objToSave}
+    // tablestorage cannot handle complex types (objects and lists), so we stringify those before save
+    const tableRowWithObjectsListsStringified = {}
+    Object.entries(tableRowObj).forEach(e => { // could be ([key,val]) => (I think)
+        const [key, val] = e
+        tableRowWithObjectsListsStringified[key] = typeof val === "object" ? JSON.stringify(val) : val
+    })
+    await tableClient.createEntity(tableRowWithObjectsListsStringified)
+}
+const dataTables = require("@azure/data-tables");
+const tableClient = getTableClientFromConnStringAndName(dataTables, process.env.BLOB_STORAGE_DEVICE_LOG_CONNECTION_STRING, "tablename")
+await saveObjectToTableStorageRow(tableClient, "tablename", randomUUID(), someObjToSave)
+

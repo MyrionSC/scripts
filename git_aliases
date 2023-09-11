@@ -215,8 +215,8 @@ alias gpv='git push -v'
 
 alias gra='git remote add'
 alias grb='git rebase'
-alias grba='git rebase --abort'
-alias grbc='git rebase --continue'
+alias grba='git rebase --abort && echo aborted rebase'
+alias grbc='git rebase --continue && echo continued rebase'
 alias grbi='git rebase -i'
 alias grbm='git rebase master'
 alias grbd='git rebase $(git_develop)'
@@ -340,7 +340,6 @@ gurl() {
         MR_URL=$(cat ~/.cache/gitpush-out.txt | grep "https://" | cut -c 11-)
         echo "Opening $MR_URL"
         start $MR_URL
-        # https://gitlab.lessor.dk/microservice/hr-service/-/merge_requests/new?merge_request%5Bsource_branch%5D=story%2FDL-9945-Optimize-architecture-call-Danl%C3%B8n-directly&merge_request%5Bsource_project_id%5D=107&merge_request%5Btarget_branch%5D=develop&merge_request%5Btarget_project_id%5D=107
     else
         PREFIX='https://dev.azure.com'
         REMOTE=$(git config --get remote.origin.url | cut -c 26-)
