@@ -1,6 +1,10 @@
-fasd
-ripgrep
-entr
+
+# z
+https://github.com/rupa/z
+source z.sh file in .bashrc
+
+# ripgrep
+sudo apt install ripgrep
 
 # fzf (do not use apt)
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
