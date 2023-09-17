@@ -38,6 +38,20 @@ if [[ "$STR" == *"$SUB"* ]]; then
   echo "It's there."
 fi
 
+# test if file exists
+if [ -f /tmp/foo.txt ]; then
+    echo "File exists!"
+fi
+shorthand file not exists: [ ! -f /tmp/foo.txt ] && echo "File not found!"
+more checks here: https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+
+# test if dir does not exist
+if [ ! -d $USERPROFILE\\cache ]; then
+    echo folder does not exist
+fi
+shorthand to create dir (and parents) if not exists: mkdir -p /path/to/dir
+- If dir already exists, do nothing
+
 # count number of lines in var VAR
 echo -n "$VAR" | grep -c '^'
 
@@ -105,20 +119,6 @@ USERPROFILE=$(cmd.exe /c echo %USERPROFILE% | sed 's/\r//') # remove newline
 - bind help: bind --help
 - see currently bound functions: bind -P
 - bind function func to ctrl-e: bind '"\C-e": func'
-
-# test if file exists
-if [ -f /tmp/foo.txt ]; then
-    echo "File exists!"
-fi
-shorthand file not exists: [ ! -f /tmp/foo.txt ] && echo "File not found!"
-more checks here: https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
-
-# test if dir does not exist
-if [ ! -d $USERPROFILE\\cache ]; then
-    echo folder does not exist
-fi
-shorthand to create dir (and parents) if not exists: mkdir -p /path/to/dir
-- If dir already exists, do nothing
 
 # get path of current script
 SCRIPTPATH=$(realpath $(dirname $0))

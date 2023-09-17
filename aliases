@@ -93,12 +93,14 @@ alias ni='npm install'
 alias nig='npm install --global'
 alias nis='npm install --save'
 alias nisd='npm install --save-dev'
+alias nid='npm install --save-dev'
 alias nrm='npm remove'
 alias nrmg='npm remove --global'
 alias ns='npm start'
 # alias nr='npm run'
 nr () {
     if [ $# -eq 0 ]; then
+        [ ! -f package.json ] && echo no package.json in current dir && return
         mkdir -p /home/$USER/.local/nr
         CACHEFILE="/home/$USER/.local/nr/$(basename $PWD)"
         CACHEHASHFILE="/home/$USER/.local/nr/$(basename $PWD)_hash"
@@ -998,41 +1000,41 @@ alias pers='cat ~/.persistent_history'
 
 # === Airmaster
 web() {
-  cd /mnt/c/Users/Martin/source/airmaster/airlinq-web
+  cd ~/winhome/source/airmaster/airlinq-web
 }
 web_run() {
-  cd /mnt/c/Users/Martin/source/airmaster/airlinq-web
+  cd ~/winhome/source/airmaster/airlinq-web
   npm run start_local
 }
 web_run_dev_local() {
-  cd /mnt/c/Users/Martin/source/airmaster/airlinq-web
+  cd ~/winhome/source/airmaster/airlinq-web
   npm run start_dev_local
 }
 web_run_prod_local() {
-  cd /mnt/c/Users/Martin/source/airmaster/airlinq-web
+  cd ~/winhome/source/airmaster/airlinq-web
   npm run start_prod_local
 }
 web_pipe() {
   start https://dev.azure.com/airmasteras/AirlinqOnline/_build?definitionId=2
 }
 legacyapi() {
-  cd /mnt/c/Users/Martin/source/airmaster/airlinq-legacy-api
+  cd ~/winhome/source/airmaster/airlinq-legacy-api
   npm start
 }
 
 api() {
-  cd /mnt/c/Users/Martin/source/airmaster/airlinq-api
+  cd ~/winhome/source/airmaster/airlinq-api
 }
 api_run() {
-  cd /mnt/c/Users/Martin/source/airmaster/airlinq-api
+  cd ~/winhome/source/airmaster/airlinq-api
   dotnet watch --project src/UI/InternalAPI/
 }
 api_run_dev() {
-  cd /mnt/c/Users/Martin/source/airmaster/airlinq-api
+  cd ~/winhome/source/airmaster/airlinq-api
   dotnet watch run --project src/UI/InternalAPI/ --launch-profile InternalAPIDevelopment
 }
 api_run_prod() {
-  cd /mnt/c/Users/Martin/source/airmaster/airlinq-api
+  cd ~/winhome/source/airmaster/airlinq-api
   dotnet watch run --project src/UI/InternalAPI/ --launch-profile InternalAPIProduction
 }
 api_health_prod() {
