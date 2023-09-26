@@ -15,7 +15,7 @@ read -p "Open qr code? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [y
 
 for FILENAME in $@
 do
-    (cd ~/bin/windows-stuff && powershell.exe -File QRCodeURI.ps1 https://$REMOTEPATH$FILENAME)
+    (cd ~/winhome/scripts && powershell.exe -File QRCodeURI.ps1 https://$REMOTEPATH$FILENAME)
 done
 
 

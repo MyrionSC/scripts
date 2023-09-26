@@ -1,0 +1,11 @@
+
+
+=== Application Insights
+
+to see whether logs are being sampled, use below logs query. if RetainedPercentage is less than 100, sampling is used.
+```
+union requests,dependencies,pageViews,browserTimings,exceptions,traces
+| where timestamp > ago(1d)
+| summarize RetainedPercentage = 100/avg(itemCount) by bin(timestamp, 1h), itemType
+```
+
