@@ -1,0 +1,28 @@
+IS_NUMBER(<expr>)
+
+Returns a boolean value indicating if the type of the specified expression is a number
+
+SELECT VALUE {
+    isBooleanANumber: IS_NUMBER(true),
+    isNumberANumber: IS_NUMBER(1),
+    isStringANumber: IS_NUMBER("value"),
+    isNullANumber: IS_NUMBER(null),
+    isObjectANumber: IS_NUMBER({ "name": "Tecozow coat" }),
+    isObjectStringPropertyANumber: IS_NUMBER({ "name": "Tecozow coat" }.name),
+    isObjectNumberPropertyANumber: IS_NUMBER({ "quantity": 0 }.quantity),
+    isUndefinedANumber: IS_NUMBER({}.category)
+}
+-->
+[
+  {
+    "isBooleanANumber": false,
+    "isNumberANumber": true,
+    "isStringANumber": false,
+    "isNullANumber": false,
+    "isObjectANumber": false,
+    "isObjectStringPropertyANumber": false,
+    "isObjectNumberPropertyANumber": true,
+    "isUndefinedANumber": false
+  }
+]
+

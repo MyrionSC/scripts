@@ -1,0 +1,16 @@
+IS_DEFINED(<expr>)
+
+Returns a boolean indicating if the property has been assigned a value
+
+SELECT VALUE {
+    isDefined: IS_DEFINED({ "quantity" : 5 }.quantity),
+    isNotDefined: IS_DEFINED({ "quantity" : 5 }.name)
+}
+-->
+[
+  {
+    "isDefined": true,
+    "isNotDefined": false
+  }
+]
+

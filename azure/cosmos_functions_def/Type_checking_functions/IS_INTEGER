@@ -1,0 +1,21 @@
+Returns a boolean indicating if a number is a 64-bit signed integer. 64-bit signed integers range from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+
+IS_INTEGER(<numeric_expr>)
+
+SELECT VALUE {
+    smallDecimalValue: IS_INTEGER(3454.123),
+    integerValue: IS_INTEGER(5523432),
+    minIntegerValue: IS_INTEGER(-9223372036854775808),
+    maxIntegerValue: IS_INTEGER(9223372036854775807),
+    outOfRangeValue: IS_INTEGER(18446744073709551615)
+}
+-->
+[
+  {
+    "smallDecimalValue": false,
+    "integerValue": true,
+    "minIntegerValue": true,
+    "maxIntegerValue": true,
+    "outOfRangeValue": false
+  }
+]

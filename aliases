@@ -1053,3 +1053,6 @@ api_swagger() {
 alias jmeter='cmd.exe /c jmeter'
 alias func='cmd.exe /c func.exe'
 
+alias cosmos_func_def="cd ~/bin/azure/cosmos_functions_def && fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+alias cosfunc="cosmos_func_def"
+
