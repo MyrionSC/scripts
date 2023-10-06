@@ -10,10 +10,7 @@ if [ -f ~/bin/.autocomplete.sh ]; then
     . ~/bin/.autocomplete.sh
 fi
 
-
-PATH=$PATH:~/bin
-PATH=$PATH:~/bin/bin
-PATH=$PATH:~/.local/bin
+PATH=$PATH:~/bin:/bin/bin:~/.local/bin:~/private-scripts
 
 #set -o vi
 bind -m vi-insert "\C-l":clear-screen
@@ -1053,6 +1050,8 @@ api_swagger() {
 alias jmeter='cmd.exe /c jmeter'
 alias func='cmd.exe /c func.exe'
 
-alias cosmos_func_def="cd ~/bin/azure/cosmos_functions_def && fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-alias cosfunc="cosmos_func_def"
+cos() {
+    CMD=$(compgen -c cos_ | sort | uniq | fzf)
+    bash $CMD
+}
 
