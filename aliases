@@ -1052,7 +1052,9 @@ alias func='cmd.exe /c func.exe'
 
 cos() {
     CMD=$(compgen -c cos_ | sort | uniq | fzf)
-    bash $CMD
+    history -s "$CMD | jless"
+    echo "$PWD $CMD | jless" >> ~/.persistent_history
+    bash $CMD | jless
 }
 
 alias mvdl='mv -v $DL/$(ls -t $DL | head -1) .'
