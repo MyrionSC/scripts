@@ -1055,3 +1055,6 @@ cos() {
     bash $CMD
 }
 
+alias mvdl='mv -v $DL/$(ls -t $DL | head -1) .'
+alias cpdl='cp -v $DL/$(ls -t $DL | head -1) .'
+
