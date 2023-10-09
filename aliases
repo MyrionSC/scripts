@@ -1007,6 +1007,10 @@ web_run_dev_local() {
   cd ~/winhome/source/airmaster/airlinq-web
   npm run start_dev_local
 }
+web_run_prod() {
+  cd ~/winhome/source/airmaster/airlinq-web
+  npm run start_prod
+}
 web_run_prod_local() {
   cd ~/winhome/source/airmaster/airlinq-web
   npm run start_prod_local

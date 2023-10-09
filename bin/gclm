@@ -24,6 +24,7 @@ if [ -z "$1" ]; then
     echo "notflix"
     echo "parallel-and-multicore-computing"
     echo "postgresql-scripts"
+    echo "private-scripts"
     echo "raunsoft-frontpage"
     echo "redrain"
     echo "scoreboard"
