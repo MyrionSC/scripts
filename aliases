@@ -10,7 +10,7 @@ if [ -f ~/bin/.autocomplete.sh ]; then
     . ~/bin/.autocomplete.sh
 fi
 
-PATH=$PATH:~/bin:/bin/bin:~/.local/bin:~/private-scripts
+PATH=$PATH:~/bin:~/bin/bin:~/.local/bin:~/private-scripts
 
 #set -o vi
 bind -m vi-insert "\C-l":clear-screen
