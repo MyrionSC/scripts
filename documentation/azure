@@ -1,5 +1,4 @@
 
-
 === Application Insights
 
 to see whether logs are being sampled, use below logs query. if RetainedPercentage is less than 100, sampling is used.
