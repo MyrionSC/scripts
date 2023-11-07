@@ -75,3 +75,63 @@ const dataTables = require("@azure/data-tables");
 const tableClient = getTableClientFromConnStringAndName(dataTables, process.env.BLOB_STORAGE_DEVICE_LOG_CONNECTION_STRING, "tablename")
 await saveObjectToTableStorageRow(tableClient, "tablename", randomUUID(), someObjToSave)
 
+
+// === Blob storage helpers
+/** Write data to blob
+ *
+ * const {BlobServiceClient} = require("@azure/storage-blob");
+ * const blobServiceClient = BlobServiceClient.fromConnectionString(storageConnString)
+ * @param {object} blobServiceClient obtained via call to BlobServiceClient.fromConnectionString(storageConnString)
+ * @param {string} containerName
+ * @param {string} blobName
+ * @param {any} data
+ * @returns {Promise<void>}
+ */
+const blobStorageWriteBlob = async (blobServiceClient, containerName, blobName, data) => {
+    const blobContainer = blobServiceClient.getContainerClient(containerName);
+    const blockBlobClient = blobContainer.getBlockBlobClient(blobName);
+    await blockBlobClient.upload(data, data.length);
+}
+/** read data from blob
+ *
+ * const {BlobServiceClient} = require("@azure/storage-blob");
+ * const blobServiceClient = BlobServiceClient.fromConnectionString(storageConnString)
+ * @param {object} blobServiceClient obtained via call to BlobServiceClient.fromConnectionString(storageConnString)
+ * @param {string} containerName
+ * @param {string} blobName
+ * @returns {Promise<string>}
+ */
+const blobStorageReadBlob = async (blobServiceClient, containerName, blobName) => {
+    const blobContainer = blobServiceClient.getContainerClient(containerName);
+    const blockBlobClient = blobContainer.getBlockBlobClient(blobName);
+    let blobDownloadResponseParsed = await blockBlobClient.download(0)
+    await streamToText(blobDownloadResponseParsed.readableStreamBody)
+}
+async function streamToText(readable) {
+    readable.setEncoding('utf8');
+    let data = '';
+    for await (const chunk of readable) {
+        data += chunk;
+    }
+    return data;
+}
+/** List containers in blob storage
+ *
+ * const {BlobServiceClient} = require("@azure/storage-blob");
+ * const blobServiceClient = BlobServiceClient.fromConnectionString(storageConnString)
+ * @param {object} blobServiceClient obtained via call to BlobServiceClient.fromConnectionString(storageConnString)
+ * @returns {Promise<*[]>}
+ */
+const blobStorageListBlobs = async (blobServiceClient) => {
+    const containerList = blobServiceClient.listContainers()
+    const resultsList = []
+    for await (const container of containerList) {
+        resultsList.push(container)
+    }
+    return resultsList
+}
+
+
+
+
+
