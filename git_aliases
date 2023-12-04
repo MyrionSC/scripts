@@ -21,6 +21,14 @@ git_develop() {
     git branch | grep "  develop" | xargs
 }
 
+git_main_name() {
+    if git show-ref --quiet refs/heads/main; then
+        echo main
+    else
+        echo master
+    fi
+}
+
 alias ga='git add'
 alias gaa='git add --all :/'
 alias gapa='git add --patch'
@@ -88,8 +96,7 @@ alias gcoc='gco'
 #alias gco='git checkout'
 alias gcb='git checkout -b'
 #alias gcob='git checkout -b'
-alias gcom='git checkout master || git checkout main'
-#alias gcod='git checkout develop 2>/dev/null || git checkout development'
+alias gcom='git checkout $(git_main_name)'
 alias gcod='git checkout $(git_develop)'
 alias gcol='git checkout @{-1}' #checkout previous branch
 alias gcop='git checkout @{-1}' #checkout previous branch
@@ -191,10 +198,10 @@ alias gloga='git log --oneline --decorate --graph --all'
 alias gdf='git log -p [--follow] [-1]'
 
 alias gm='git merge'
-alias gmom='git merge origin/master'
+alias gmom='git merge origin/$(git_main_name)'
 alias gmt='git mergetool --no-prompt'
 alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
-alias gmum='git merge upstream/master'
+alias gmum='git merge upstream/$(git_main_name)'
 alias gma='git merge --abort'
 alias gmab='git merge --abort'
 alias gmp='git merge @{-1}' #merge previous branch
@@ -218,7 +225,7 @@ alias grb='git rebase'
 alias grba='git rebase --abort && echo aborted rebase'
 alias grbc='git rebase --continue && echo continued rebase'
 alias grbi='git rebase -i'
-alias grbm='git rebase master'
+alias grbm='git rebase $(git_main_name)'
 alias grbd='git rebase $(git_develop)'
 alias grbs='git rebase --skip'
 alias grbl='git rebase @{-1}'
