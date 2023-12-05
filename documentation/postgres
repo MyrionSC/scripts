@@ -1,0 +1,45 @@
+
+
+
+---- Optimize
+Run explain analyse some_query and find the slowest parts of query. Try to index it. Run it again to see if works.
+
+gui to analyze: https://explain.depesz.com/s/3TNb#stats
+
+Analyze causes command to be run, so for commands that change something, like UPDATE, INSERT, DELETE etc. use rollback:
+
+BEGIN;
+EXPLAIN ANALYZE ...;
+ROLLBACK;
+
+
+
+
+---- pg_stat_statements
+track statistics of SQL planning and execution
+
+-- Install
+CREATE EXTENSION pg_stat_statements;
+
+-- get stats for queries
+SELECT
+    query,
+    calls,
+    rows,
+    total_exec_time,
+    (total_exec_time / 1000) as total_sec,
+    (total_exec_time / 1000 / 60) as total_min,
+    mean_exec_time as avg_ms,
+    min_exec_time,
+    max_exec_time,
+    stddev_exec_time
+FROM pg_stat_statements
+ORDER BY total_exec_time DESC
+LIMIT 10;
+
+
+
+
+
+
+
