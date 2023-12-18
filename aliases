@@ -1061,6 +1061,11 @@ cos() {
     bash $CMD | jless
 }
 
+utils() {
+    UTIL=$(ls ~/bin/utils | sort | uniq | fzf --preview='less ~/bin/utils/{}' --bind shift-up:preview-page-up,shift-down:preview-page-down)
+    cat ~/bin/utils/$UTIL
+}
+
 alias mvdl='mv -v $DL/$(ls -t $DL | head -1) .'
 alias cpdl='cp -v $DL/$(ls -t $DL | head -1) .'
 
