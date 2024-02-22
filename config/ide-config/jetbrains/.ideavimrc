@@ -28,7 +28,8 @@ nnoremap <C-l> :NERDTreeFind<CR>
 set ideajoin " see https://github.com/JetBrains/ideavim/wiki/%60ideajoin%60-examples
 set idearefactormode=keep
 set scrolloff=10 " minimum number of lines above and below the cursor
-
+set sidescrolloff=10
+set history=1000   " overrides the 200 in defaults.vim
 
 " === Mappings
 let mapleader=" "
@@ -101,3 +102,35 @@ sethandler <C-V> i:ide n-v:vim
 sethandler <C-W> a:ide
 sethandler <C-X> a:vim
 
+" Stolen from https://github.com/citizenmatt/dotfiles/blob/master/ideavimrc, thanks guy
+function! Invert(calledFromVisual)
+  let antonyms = ['true', 'false', 'after', 'before', 'start', 'end', 'left', 'right', 'first', 'last', 'True', 'False', 'After', 'Before', 'Start', 'End', 'Left', 'Right', 'First', 'Last']
+
+  if a:calledFromVisual
+    normal gv"wy
+  else
+    normal "wyiw
+  endif
+  let wordUnderCaret = @w
+
+  let eraseWord = a:calledFromVisual ? 'gvc' : 'ciw'
+  let count = 0
+  while (count < len(antonyms))
+    if (antonyms[count] ==# wordUnderCaret)
+      let antonym = (count % 2 ==? 0) ? antonyms[count + 1] : antonyms[count - 1]
+      execute 'normal ' .. eraseWord .. antonym
+      break
+    endif
+    let count += 1
+  endwhile
+endfunction
+
+nnoremap gX :set opfunc=Redact<CR>g@
+nnoremap gx :set opfunc=function('Redact')<CR>g@
+nnoremap gy :set opfunc={arg -> execute "normal `[v`]rx"}<CR>g@
+function! Redact(type)
+    execute "normal `[v`]rx"
+endfunction
+
+nnoremap ! :call Invert(0)<CR>
+vnoremap ! :<C-u>call Invert(1)<CR>
