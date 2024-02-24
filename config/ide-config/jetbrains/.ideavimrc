@@ -42,6 +42,10 @@ nmap <leader>m <action>(Git.Menu)
 nmap <leader>s <action>(QuickChangeScheme)
 " TODO: open livetemplates for current language
 
+" React Mappings
+nmap <leader>b :let old = @/<ENTER>/export default function<ENTER>:nohlsearch<ENTER>:action GotoDeclaration<ENTER>:let @/ = old<ENTER>
+
+
 noremap H ^
 noremap L $
 noremap c "_c
@@ -134,3 +138,7 @@ endfunction
 
 nnoremap ! :call Invert(0)<CR>
 vnoremap ! :<C-u>call Invert(1)<CR>
+
+
+
+
