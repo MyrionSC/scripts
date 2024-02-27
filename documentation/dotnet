@@ -1,4 +1,9 @@
 
+=== Dotnet outdated: tool to update nuget packages or dotnet version
+https://github.com/dotnet-outdated/dotnet-outdated
+Usage: dotnet outdated
+
+
 === Print all config and where they come from (config is type IConfiguration)
 var root = (IConfigurationRoot)config;
 var debugView = root.GetDebugView();
@@ -25,6 +30,7 @@ public static class Extensions
         return result;
     }
 }
+
 
 
 === new project startup considerations
@@ -66,10 +72,6 @@ res.EnsureSuccessStatusCode();
 
 
 
-
-
-
-
 === JWT unpack
 public static class JwtExtensions
 {
@@ -102,8 +104,6 @@ public static class JwtExtensions
         return tokenS!.Payload;
     }
 }
-
-
 
 
 
@@ -145,9 +145,6 @@ public class CustomRequestTelemetryInitializer : ITelemetryInitializer
         requestTelemetry.Properties.Add("UserEmail", payload.TryGetString("preferred_username"));
     }
 }
-
-
-
 
 
 
