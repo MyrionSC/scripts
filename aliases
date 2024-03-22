@@ -675,7 +675,7 @@ ahk () { # edit and launch autohotkey script
 
 # === persistent history, credits to https://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash
 # export HISTTIMEFORMAT="%F %T  " # changes history format to include datetime ## messes with new sysz
-do_not_persist_array=("ls" "bin" "gp" "gst" "gaa" "gd" "gb" "eals" "rbc" "gl" "zz" "ca" "cb")
+do_not_persist_array=("ls" "la" "bin" "gp" "gst" "gaa" "gd" "gb" "eals" "rbc" "gl" "zz" "ca" "cb")
 log_bash_persistent_history()
 {
   [[
@@ -716,24 +716,25 @@ __fzf_persistent_history__() {
     READLINE_POINT=0x7fffffff
   fi
 }
+bind -m emacs-standard -x '"\C-p": __fzf_persistent_history__'
 
 # keybinding to search in persistent history in current dir
 __fzf_persistent_history_in_dir__() {
   local output
   # maybe futurework: filter by current dir, then by parent dir, then by child dirs
+  echo $PWD
   output=$(tac ~/.persistent_history | grep "^$PWD " | sed 's/[^ ]* *//' | fzf --no-sort)
+  echo $output
   # below put output on prompt
-  READLINE_LINE=${output#*$'\t'}
-  if [ -z "$READLINE_POINT" ]; then
-    echo "$READLINE_LINE"
-  else
-    READLINE_POINT=0x7fffffff
-  fi
+  # READLINE_LINE=${output#*$'\t'}
+  # if [ -z "$READLINE_POINT" ]; then
+  #   echo "$READLINE_LINE"
+  # else
+  #   READLINE_POINT=0x7fffffff
+  # fi
 }
-
-bind -m emacs-standard -x '"\C-p": __fzf_persistent_history__'
-# see if ctrl-o breaks anything
-bind -m emacs-standard -x '"": __fzf_persistent_history_in_dir__'
+bind -m emacs-standard -x '"\C-O": __fzf_persistent_history_in_dir__'
+# bind -m emacs-standard -x '"": __fzf_persistent_history_in_dir__'
 
 # register hook that saves last pwd to cachefile
 settitle () {

@@ -251,6 +251,10 @@ public class ErrorHandlerMiddleware
 }
 
 
+=== IDX20803: Unable to obtain configuration from https://login.microsoftonline.com...
+open admin cmd
+ipconfig /flushdns
+restart pc
 
 
 
