@@ -959,8 +959,8 @@ where () {
     echo $T
     if [[ "$T" == *"is aliased to"* ]]; then
         rg "alias $1 ?=" ~/bin
-        read -r -p "edit? [y/N] " response
-        if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+        read -r -p "edit? [Y/n] " response
+        if [[ "$response" =~ ([yY]|)$ ]]
         then
             rg --vimgrep --hidden "alias $1 ?=" ~/bin ~/.bashrc > ~/.local/vim_quickfix_list
             vim -q ~/.local/vim_quickfix_list
@@ -968,8 +968,9 @@ where () {
         fi
     elif [[ "$T" == *"is a function"* ]]; then
         rg "$1 ?\(\) ?\{" ~/bin
-        read -r -p "edit? [y/N] " response
-        if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+        read -r -p "edit? [Y/n] " response
+        echo $response
+        if [[ "$response" =~ ([yY]|)$ ]]
         then
             rg --vimgrep --hidden "$1 ?\(\) ?\{" ~/bin ~/.bashrc > ~/.local/vim_quickfix_list
             vim -q ~/.local/vim_quickfix_list
@@ -977,8 +978,8 @@ where () {
         fi
     elif [[ "$T" == *"is"* ]]; then
         echo "is file or link"
-        read -r -p "edit? [y/N] " response
-        if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+        read -r -p "edit? [Y/n] " response
+        if [[ "$response" =~ ([yY]|)$ ]]
         then
             vim $(command -v $1)
         fi

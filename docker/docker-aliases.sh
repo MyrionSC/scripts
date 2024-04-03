@@ -8,7 +8,6 @@
 #     wget -O - https://gist.githubusercontent.com/jgrodziski/9ed4a17709baad10dbcd4530b60dfcbb/raw/d84ef1741c59e7ab07fb055a70df1830584c6c18/docker-aliases.sh | bash
 #                                                                          #
 #     # Usage:                                                             #
-#     daws <svc> <cmd> <opts> : aws cli in docker with <svc> <cmd> <opts>  #
 #     dc             : docker-compose                                      #
 #     dcu            : docker-compose up -d                                #
 #     dcd            : docker-compose down                                 #
@@ -31,7 +30,6 @@
 # help
 function doh-fn() {
 cat <<EOF >&2
-daws <svc> <cmd> <opts> : aws cli in docker with <svc> <cmd> <opts>
 dc             : docker-compose
 dcu            : docker-compose up -d
 dcd            : docker-compose down
@@ -147,19 +145,10 @@ function dc-fn {
 docker-compose $*
 }
 
-function d-aws-cli-fn {
-docker run \
--e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
--e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION \
--e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
-amazon/aws-cli:latest $1 $2 $3
-}
-
 alias edals='vim ~/bin/docker/docker-aliases.sh'
 alias edockals='vim ~/bin/docker/docker-aliases.sh'
 
 alias doh=doh-fn
-alias daws=d-aws-cli-fn
 alias dc=dc-fn
 alias dcu="docker-compose up -d --remove-orphans"
 alias dcd="docker-compose down --remove-orphans"
