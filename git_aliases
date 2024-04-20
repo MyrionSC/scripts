@@ -105,9 +105,9 @@ gcob() { # create branch while replacing stuff
 }
 gsw() { # checkout local branch
     if [ "$#" -gt 0 ]; then
-        git checkout $(git branch | fzf --height 15 --query "$@")
+        git checkout $(git branch | fzf --query "$@")
     else
-        git checkout $(git branch | fzf --height 15)
+        git checkout $(git branch | fzf)
     fi
 }
 alias gcog="gsw"
@@ -390,6 +390,13 @@ gfix () {
     rg --vimgrep --hidden ======= $(/usr/bin/git rev-parse --show-toplevel) > ~/.local/fix_list
     vim -q ~/.local/fix_list
     rm ~/.local/fix_list
+}
+
+gblrecent() {
+    git branch --sort=-committerdate
+}
+gbrrecent() {
+    git branch --remote --sort=-committerdate
 }
 
 # Find out which pattern / .gitignore file is ignoring a file

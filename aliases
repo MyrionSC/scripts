@@ -1009,22 +1009,21 @@ web_run_dev_local() {
   cd ~/winhome/source/airmaster/airlinq-web
   npm run start_dev_local
 }
-web_run_prod() {
+web_run_dev_local_api() {
   cd ~/winhome/source/airmaster/airlinq-web
-  npm run start_prod
+  npm run start_dev_local_api
 }
 web_run_prod_local() {
   cd ~/winhome/source/airmaster/airlinq-web
   npm run start_prod_local
 }
+web_run_prod_local_api() {
+  cd ~/winhome/source/airmaster/airlinq-web
+  npm run start_prod_local_api
+}
 web_pipe() {
   start https://dev.azure.com/airmasteras/AirlinqOnline/_build?definitionId=2
 }
-legacyapi() {
-  cd ~/winhome/source/airmaster/airlinq-legacy-api
-  npm start
-}
-
 api() {
   cd ~/winhome/source/airmaster/airlinq-api
 }
