@@ -1074,3 +1074,7 @@ docs() {
     vim ~/bin/documentation/$1
 }
 
+urlencode() {
+    echo $1 | jq -sRr @uri | trim
+}
+

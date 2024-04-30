@@ -18,7 +18,8 @@ git() {
 
 # get actual name of develop branch (xargs just trims)
 git_develop() {
-    git branch | grep "  develop" | xargs
+    #git branch | grep "  develop" | xargs
+    echo develop
 }
 
 git_main_name() {
