@@ -70,7 +70,7 @@
             "command": "unbound",
             "keys": "ctrl+comma"
         }
-    ],
+    ]
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",

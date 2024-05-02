@@ -164,7 +164,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias gitg='cmd.exe /C "C:\Program Files\gitg\bin\gitg.exe"' # opens gitgui in current dir
         alias cset='cmd.exe /C set'
         alias csetx='cmd.exe /C setx'
-        alias node='cmd.exe /c node'
+        # alias node='cmd.exe /c node'
         alias npm='cmd.exe /c npm'
         alias npx='cmd.exe /c npx'
         alias dotnet='cmd.exe /c dotnet'
@@ -219,7 +219,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
             echo -n $P | clip.exe
         }
         alias pc="winxp"
-        alias curl='cmd.exe /c curl' # use cmd curl in wsl because of localhost problems
+        # alias curl='cmd.exe /c curl' # use cmd curl in wsl because of localhost problems
     else # It actually is linux
         alias dl='cd ~/Downloads'
         alias desk='cd ~/Desktop'
@@ -623,7 +623,8 @@ fi
 alias idesrp="cat ~/bin/ide-config/jetbrains/search-replace-patterns"
 
 alias jvu="sudo update-alternatives --config java"
-
+alias jvm="sudo update-alternatives --config java"
+alias javav="sudo update-alternatives --config java"
 
 # find files in parent dirs
 find-up () {
@@ -868,6 +869,10 @@ rm() {
     trash "$@"
 }
 
+docs() {
+    DOC=$(ls ~/bin/documentation | sort | uniq | fzf --preview='less ~/bin/documentation/{}' --bind shift-up:preview-page-up,shift-down:preview-page-down)
+    vim ~/bin/documentation/$DOC
+}
 docssearch() {
     if [ -z "$1" ]; then
         "first arg to docssearch should be search rg term"
@@ -1069,10 +1074,6 @@ utils() {
 
 alias mvdl='mv -v $DL/$(ls -t $DL | head -1) .'
 alias cpdl='cp -v $DL/$(ls -t $DL | head -1) .'
-
-docs() {
-    vim ~/bin/documentation/$1
-}
 
 urlencode() {
     echo $1 | jq -sRr @uri | trim

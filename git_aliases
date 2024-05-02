@@ -210,6 +210,7 @@ alias gml='git merge @{-1}' #merge previous branch
 alias gmlo='git pull origin @{-1}' #fetch origin of last branch and merge to current
 alias gmrd='git fetch origin $(git_develop) && git merge origin/$(git_develop)' # merge with remote develop
 alias grbrd='git fetch origin $(git_develop) && git rebase origin/$(git_develop)' # rebase with remote develop
+alias gmtheirs='git merge -s recursive -X theirs ' # merge given branch into current branch while resolving all conflicts to incomming changes
 
 # merge with remote branch $1
 gmr () {

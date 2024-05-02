@@ -37,6 +37,7 @@ dcr            : docker-compose run
 dex <container>: execute a bash shell inside the RUNNING <container>
 di <container> : docker inspect <container>
 dim            : docker images
+dima           : docker images --all
 dip            : IP addresses of all running containers
 dol <container>: docker logs -f <container>
 dor <container>: docker restart <container>
@@ -157,6 +158,7 @@ alias dcr=dcr-fn
 alias dex=dex-fn
 alias di=di-fn
 alias dim="docker images"
+alias dima="docker images --all"
 alias dip=dip-fn
 alias dol=dol-fn
 alias dor=dor-fn
