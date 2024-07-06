@@ -97,10 +97,11 @@ alias gcoc='gco'
 #alias gco='git checkout'
 alias gcb='git checkout -b'
 #alias gcob='git checkout -b'
-alias gcom='git checkout $(git_main_name)'
+#alias gcom='git checkout $(git_main_name)'
+alias gcom='git checkout master'
 alias gcod='git checkout $(git_develop)'
 alias gcol='git checkout @{-1}' #checkout previous branch
-alias gcop='git checkout @{-1}' #checkout previous branch
+alias gcop='git checkout preprod' #checkout previous branch
 gcob() { # create branch while replacing stuff
     git checkout -b $(echo "$@" | tr " " "-" | tr -d ":")
 }
