@@ -11,3 +11,8 @@ Host cronpup
     HostName 157.90.255.75
     User cronpup
 
+Host storage
+    HostName u293742.your-storagebox.de
+    User u293742
+    Port 23
+
