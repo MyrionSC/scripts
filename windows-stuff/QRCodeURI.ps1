@@ -1,4 +1,4 @@
-# To install: 'Install-Module -Name QRCodeGenerator' in powershell admin, accept all, then close
+# To install: 'Install-Module -Name QRCodeGenerator -scope CurrentUser'
 # Documentation (run in powershell after import): Get-Help New-PSOneQRCodeURI -ShowWindow
 
 $param1=$args[0]

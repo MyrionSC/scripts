@@ -1079,3 +1079,10 @@ urlencode() {
     echo $1 | jq -sRr @uri | trim
 }
 
+qr() {
+    # get from clipholder
+    CLIP=$(powershell.exe -command "Get-Clipboard")
+    echo showing qrcode for: $CLIP
+    (cd ~/winhome/scripts && powershell.exe -File QRCodeURI.ps1 $CLIP)
+}
+
