@@ -46,6 +46,8 @@ dps            : docker ps
 dpsa           : docker ps -a
 drmc           : remove all exited containers
 drmid          : remove all dangling images
+dsp            : docker system prune --all (remove all containers/images)
+dspv           : docker system prune -a -f --volumes (delete also volumes)
 drun <image>   : execute a bash shell in NEW container from <image>
 dsr <container>: stop then remove <container>
 EOF
@@ -169,4 +171,6 @@ alias drmc=drmc-fn
 alias drmid=drmid-fn
 alias drun=drun-fn
 alias dsp="docker system prune --all"
+alias dspv="docker system prune -a -f --volumes"
 alias dsr=dsr-fn
+

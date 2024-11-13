@@ -165,7 +165,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias cset='cmd.exe /C set'
         alias csetx='cmd.exe /C setx'
         # alias node='cmd.exe /c node'
-        alias npm='cmd.exe /c npm'
+        #alias npm='cmd.exe /c npm'
         alias npx='cmd.exe /c npx'
         alias dotnet='cmd.exe /c dotnet'
         alias gradlew='cmd.exe /c gradlew'
@@ -324,6 +324,7 @@ alias www='cd /var/www/html/'
 #     find . -type d -iname "*$1*"
 # }
 alias fda='fd --hidden'
+alias fdf='fd | fzf'
 
 cdd() { # try to cd to a dir match
     DIRS=$(find . -type d -iname "*$1*")
