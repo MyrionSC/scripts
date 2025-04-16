@@ -1,0 +1,45 @@
+[global_config]
+  window_state = maximise
+  always_split_with_profile = True
+[keybindings]
+  zoom_in = <Primary>KP_Add
+  zoom_out = <Primary>KP_Subtract
+  cycle_next = ""
+  cycle_prev = ""
+  go_up = <Alt>k
+  go_down = <Alt>j
+  go_left = <Alt>h
+  go_right = <Alt>l
+  split_horiz = <Shift><Alt>j
+  split_vert = <Shift><Alt>l
+  page_up = <Primary>u
+  page_down = <Primary>d
+  next_tab = <Primary>Tab
+  prev_tab = <Primary><Shift>Tab
+  switch_to_tab_1 = <Primary>1
+  switch_to_tab_2 = <Primary>2
+  switch_to_tab_3 = <Primary>3
+  switch_to_tab_4 = <Primary>4
+  switch_to_tab_5 = <Primary>5
+  switch_to_tab_6 = <Primary>6
+  switch_to_tab_7 = <Primary>7
+  switch_to_tab_8 = <Primary>8
+  switch_to_tab_9 = <Primary>9
+  layout_launcher = ""
+[profiles]
+  [[default]]
+    cursor_fg_color = "#000000"
+    cursor_bg_color = "#aaaaaa"
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
+    bold_is_bright = True
+    title_use_system_font = False
+    title_font = Sans 12
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]
