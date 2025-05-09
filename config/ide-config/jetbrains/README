@@ -1,3 +1,13 @@
 to use: import settings.zip into jetbrains ide
 
 remember to turn off settings sync. That fucks up the import (maybe)
+
+
+To get old commit modal back:
+
+edit idea.properties (In "IDE"/bin, use everything to find)
+
+add line:
+vcs.force.modal.commit=true
+
+
