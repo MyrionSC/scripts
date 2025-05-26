@@ -11,7 +11,7 @@ do
     echo "https://$REMOTEPATH$FILENAME"
 done
 
-read -p "Open qr code? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+read -p "Open qr code? (y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 
 for FILENAME in $@
 do
