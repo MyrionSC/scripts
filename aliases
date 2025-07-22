@@ -724,16 +724,16 @@ bind -m emacs-standard -x '"\C-p": __fzf_persistent_history__'
 __fzf_persistent_history_in_dir__() {
   local output
   # maybe futurework: filter by current dir, then by parent dir, then by child dirs
-  echo $PWD
+  # echo $PWD
   output=$(tac ~/.persistent_history | grep "^$PWD " | sed 's/[^ ]* *//' | fzf --no-sort)
-  echo $output
+  # echo $output
   # below put output on prompt
-  # READLINE_LINE=${output#*$'\t'}
-  # if [ -z "$READLINE_POINT" ]; then
-  #   echo "$READLINE_LINE"
-  # else
-  #   READLINE_POINT=0x7fffffff
-  # fi
+  READLINE_LINE=${output#*$'\t'}
+  if [ -z "$READLINE_POINT" ]; then
+    echo "$READLINE_LINE"
+  else
+    READLINE_POINT=0x7fffffff
+  fi
 }
 bind -m emacs-standard -x '"\C-O": __fzf_persistent_history_in_dir__'
 # bind -m emacs-standard -x '"": __fzf_persistent_history_in_dir__'
