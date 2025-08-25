@@ -815,6 +815,7 @@ alias setf='cmd /c set | fzf'
 
 # quick z navigation
 zz () {
+    # z binary from https://github.com/rupa/z must be in path and should be sourced from bashrc
     if [ "$#" -gt 0 ]; then
         TO_PATH=$(z | awk '{print $2}' | tac | fzf --height 30 --query "$@")
     else
