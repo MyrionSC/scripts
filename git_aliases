@@ -371,6 +371,10 @@ gurl() {
 alias gref='git reflog' # see record of when tip of branches are updated
 alias grefa='git reflog --all' # More info
 alias glost='git fsck --lost-found' # search for dangling commits / trees
+g_dangling_commits() # search for dangling commits with commit message
+{
+    git fsck --lost-found | grep "dangling commit" | cut -d ' ' -f 3 | xargs git log --oneline --no-walk
+}
 
 # copy MARWIP pre-push
 gprepush() {
