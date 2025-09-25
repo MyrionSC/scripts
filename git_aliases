@@ -407,7 +407,7 @@ gremoverecent () {
         while read date branch
         do
             branch_date=$(date -d"$date" +%s)
-            limit_date=$(date -d"3 months ago" +%s)
+            limit_date=$(date -d"3 weeks ago" +%s)
             if [ "$branch_date" -lt "$limit_date" ]; then
                 branch_name=${branch#refs/heads/}
                 echo "Deleting branch $date $branch_name"
@@ -416,10 +416,11 @@ gremoverecent () {
                 # git branch -D "$cleaned_name"
             fi
         done
+        echo Uncomment line when ready to delete
 }
 
 gblrecent() {
-    git branch --sort=-committerdate
+    git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(align:35)%(color:yellow)%(refname:short)%(color:reset)%(end) - %(color:red)%(objectname:short)%(color:reset) - %(align:40)%(contents:subject)%(end) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 }
 gbrrecent() {
     git branch --remote --sort=-committerdate
