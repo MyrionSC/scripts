@@ -224,6 +224,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # It's Good ol' Lin
         alias dl='cd ~/Downloads'
         alias desk='cd ~/Desktop'
         alias xc='xclip -selection c' # example: pwd | xc
+        alias clip='xclip -selection c' # example: pwd | xc
         alias open='xdg-open'
         alias xpaste='xclip -selection clipboard -o'
         export DL=~/Downloads
