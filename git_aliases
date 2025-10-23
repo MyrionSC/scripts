@@ -148,6 +148,9 @@ alias gswb='git switch -'
 #git revert <commit_hash> # revert / rollback single commit
 
 #git revert <oldest_commit_hash>..<latest_commit_hash> # revert range of commits
+# hvis merge commit, vælg parent: git revert <commit_hash> -m <1 eller 2>
+#   hvor parent kan findes med git log: Merge
+#   find ud af hvilken med: git log <id fra Merge>
 #git revert --no-commit <hash>..HEAD # revert from head until commit hash
 #git checkout HASH -- file1/to/revert file2/to/revert # revert files to commit with HASH
 
