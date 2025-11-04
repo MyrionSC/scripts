@@ -415,7 +415,7 @@ gremoverecent () {
                 branch_name=${branch#refs/heads/}
                 echo "Deleting branch $date $branch_name"
                 cleaned_name=$(echo $branch_name | cut -d " " -f 3- | cut -c 12- )
-                # Uncomment below line when you are ready to delete branches
+                echo Uncomment below line when you are ready to delete branches
                 # git branch -D "$cleaned_name"
             fi
         done
