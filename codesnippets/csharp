@@ -1,0 +1,7 @@
+
+== See all config vars and where from
+
+var root = (IConfigurationRoot)builder.Configuration;
+var debugView = root.GetDebugView();
+Console.WriteLine(debugView);
+
