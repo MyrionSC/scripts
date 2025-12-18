@@ -40,7 +40,7 @@ set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
 " nnoremap <leader><space> :noh<cr>
 set ignorecase
 set smartcase " ignores case if all lowercase, does not if one or more uppercase
-" set incsearch " search highlight while typing
+set incsearch " search highlight while typing
 set wrapscan " search from top if bottom reached
 set gdefault " replace multiple occurences of search replace on line. Use g suffix to return to first occurence
 
