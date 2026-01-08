@@ -1,0 +1,9 @@
+
+# install via
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
+
+# config file should be symlinked in dir
+
+/home/martin/.config/ghostty
+

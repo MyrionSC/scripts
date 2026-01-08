@@ -20,36 +20,36 @@ bind -m vi-insert "\C-l":clear-screen
 # - bind -S: see binds
 # - bind -P: see commands (bound and not)
 
-bind '"\C- f":"$(fzf --height 15)"'
-bind '"\C- v":"vim $(fzf --height 15)"'
+# bind '"\C- f":"$(fzf --height 15)"'
+# bind '"\C- v":"vim $(fzf --height 15)"'
 
-bind '"\C-n":"tree"'
+# bind '"\C-n":"tree"'
 navigate_dir_fzf () {
     TARGET=$(fd --type d | fzf --height 30)
     [[ -z "$TARGET" ]] && return
     cd $TARGET
 }
-bind '"\C-j":"navigate_dir_fzf"'
+# bind '"\C-j":"navigate_dir_fzf"'
 
 # left alt bindings
-bind '"x":" | xargs -I@ "'
-bind '"g":" | grep "'
-bind '"v":" | vim -"'
-bind '"d":"$(date -u +\"%Y-%m-%d\")"'
-bind '"s":" | clip"'
-bind '"f":"vim $(find | fzf --height 15)"'
+# bind '"x":" | xargs -I@ "'
+# bind '"g":" | grep "'
+# bind '"v":" | vim -"'
+# bind '"d":"$(date -u +\"%Y-%m-%d\")"'
+# bind '"s":" | clip"'
+# bind '"f":"vim $(find | fzf --height 15)"'
 
 # bind ctrl-k to exa or ls -l
 if command -v exa &> /dev/null
 then
-    bind '"\C-k":"exa -a"'
+#    bind '"\C-k":"exa -a"'
     alias ll='exa -alFh'
     alias la='exa -ah'
     alias lt='exa --sort oldest'
     alias l='exa -Fh'
     alias lf='exa -th | head -1'
 else
-    bind '"\C-k":"ls -a"'
+#    bind '"\C-k":"ls -a"'
     alias ll='ls -alFh'
     alias la='ls -Ah'
     alias lt='ls -th'

@@ -12,8 +12,6 @@
   go_right = <Alt>l
   split_horiz = <Shift><Alt>j
   split_vert = <Shift><Alt>l
-  page_up = <Primary>u
-  page_down = <Primary>d
   next_tab = <Primary>Tab
   prev_tab = <Primary><Shift>Tab
   switch_to_tab_1 = <Primary>1

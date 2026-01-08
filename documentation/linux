@@ -172,3 +172,10 @@ inotifywait -r -m /path -e create,moved_to,modify |
         # do something with the file
     done
 # can also use grep or sed before while to filter / transform
+
+# see if terminal receive events
+# xev -event keyboard
+
+
+
+
