@@ -18,8 +18,18 @@ ln -s $(which fdfind) ~/.local/bin/fd
 # duf
 https://github.com/muesli/duf
 
+# flameshot - screenshot tool
+ai flameshot
+# add keyboard shortcut 'flameshot gui' to shift+super+s
+
 
 # === optional
 lazycli # for making small clis
 lazydocker # if docker and docker-compose on system
+
+
+
+
+
+
 

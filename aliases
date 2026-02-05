@@ -614,7 +614,6 @@ alias 9='cd -9'
 # alias -g G='| grep -i' # Bash can't handle this
 
 
-
 # === docker
 if [ -f ~/bin/docker/docker-aliases.sh ]; then
     . ~/bin/docker/docker-aliases.sh

@@ -70,12 +70,6 @@ keybind = alt+shift+j=new_split:down
 keybind = alt+shift+k=new_split:up
 keybind = alt+shift+w=close_surface
 
-
-
-
-
-
-
-
-
+# when using ssh for first time, copy terminfo
+shell-integration-features = ssh-terminfo,ssh-env
 
