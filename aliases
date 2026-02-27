@@ -10,6 +10,8 @@ if [ -f ~/bin/.autocomplete.sh ]; then
     . ~/bin/.autocomplete.sh
 fi
 
+[ -f ~/bin/bin/z.sh ] && source ~/bin/bin/z.sh
+
 PATH=$PATH:~/bin:~/bin/bin:~/.local/bin:~/private-scripts/bin:~/winhome/scripts
 
 #set -o vi
@@ -614,6 +616,7 @@ alias 9='cd -9'
 # alias -g G='| grep -i' # Bash can't handle this
 
 
+
 # === docker
 if [ -f ~/bin/docker/docker-aliases.sh ]; then
     . ~/bin/docker/docker-aliases.sh
@@ -1087,4 +1090,5 @@ qr() {
     echo showing qrcode for: $CLIP
     (cd ~/winhome/scripts && powershell.exe -File QRCodeURI.ps1 $CLIP)
 }
+
 

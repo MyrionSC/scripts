@@ -1,8 +1,4 @@
 
-# z
-https://github.com/rupa/z
-source z.sh file in .bashrc
-
 # ripgrep
 sudo apt install ripgrep
 
@@ -26,10 +22,6 @@ ai flameshot
 # === optional
 lazycli # for making small clis
 lazydocker # if docker and docker-compose on system
-
-
-
-
 
 
 
