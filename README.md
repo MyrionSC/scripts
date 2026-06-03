@@ -46,6 +46,12 @@ ln -s /home/martinra/bin/config/ide-config/jetbrains/.ideavimrc ~
 
 -----
 
+A lot of scripts need fzf. I would recommend not installing fzf via a package manager. Instead go to fzf github, clone it, and run install script. Then things will get hooked up correctly to history, etc.
+
+https://github.com/junegunn/fzf
+
+-----
+
 z fast manager
 
 
@@ -67,27 +73,13 @@ ln -s /home/martinra/bin/config/ghostty /home/martinra/.config/ghostty
 
 -----
 
-```
-ln -s /home/martinra/bin/config/ghostty /home/martinra/.config/ghostty
-```
-
------
-
-
 Some scripts expect ~/winhome to exist (if on WSL)
 
 create it with: ln -s /mnt/c/Users/CUR_USER ~/winhome
 
-
 -----
 
 get dir colors: ln -s ~/bin/.dircolors ~
-
------
-
-A lot of scripts need fzf. I would recommend not installing fzf via a package manager. Instead go to fzf github, clone it, and run install script. Then things will get hooked up correctly to history, etc.
-
-https://github.com/junegunn/fzf
 
 ---
 
