@@ -54,10 +54,14 @@
 # command palette: ctrl+shift+p
 #  - see in palette what keys are
 
-background = 000000
-foreground = ffffff
+theme = Abernathy
+
+#background = 000000
+#foreground = ffffff
 window-save-state = always
 # fullscreen = true
+
+
 
 keybind = alt+h=goto_split:left
 keybind = alt+l=goto_split:right
@@ -69,6 +73,7 @@ keybind = alt+shift+l=new_split:right
 keybind = alt+shift+j=new_split:down
 keybind = alt+shift+k=new_split:up
 keybind = alt+shift+w=close_surface
+keybind = ctrl+shift+w=close_surface
 
 # when using ssh for first time, copy terminfo
 shell-integration-features = ssh-terminfo,ssh-env
