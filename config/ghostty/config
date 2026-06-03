@@ -61,13 +61,10 @@ theme = Abernathy
 window-save-state = always
 # fullscreen = true
 
-
-
 keybind = alt+h=goto_split:left
 keybind = alt+l=goto_split:right
-# todo: debug alt+j and k at some point
-keybind = alt+m=goto_split:down
-keybind = alt+u=goto_split:up
+keybind = alt+j=goto_split:down
+keybind = alt+k=goto_split:up
 keybind = alt+shift+h=new_split:left
 keybind = alt+shift+l=new_split:right
 keybind = alt+shift+j=new_split:down

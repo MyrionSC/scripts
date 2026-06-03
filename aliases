@@ -377,6 +377,10 @@ findlib () {
 findcore () { # search EVERYWHERE # can also use locate for this
     sudo find /bin /lib /lib64 /snap /usr /etc /opt /sbin /var /home -iname "*$1*"
 }
+ffh () {
+    # find . -type f -iname "*$1*"
+    rg --hidden --files -g "*$1*"
+}
 
 alias countfiles='find . -type f | wc -l'
 alias countdirs='find . -maxdepth 1 -type d | wc -l'
@@ -935,6 +939,9 @@ sysz() {
 }
 
 cdf () {
+    cd $(find . -type d | fzf)
+}
+ffd () {
     cd $(find . -type d | fzf)
 }
 
